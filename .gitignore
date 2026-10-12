@@ -1,0 +1,31 @@
+# Ignore everything by default (scans of handwritten notes, local tooling, ...)
+*
+
+# ...but keep descending into directories so the rules below can apply
+!*/
+
+# Repository files
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+
+# Everything inside any `latex` directory (e.g. QM_I/latex/, Termo_I/latex/)
+!**/latex/**
+
+# LaTeX build artifacts (PDF output is kept)
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb

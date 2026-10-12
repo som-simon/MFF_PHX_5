@@ -1,0 +1,1444 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble}
+
+\title{Kvantová mechanika I.\ (2014/2015)\\[2pt]\large přepis ručně psaných poznámek}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%======================================================================
+% QM-I-2014-1.pdf
+%======================================================================
+\section*{0. Organizační poznámky}
+\addcontentsline{toc}{section}{0. Organizační poznámky}
+\strana{QM-I-1}
+
+\begin{tabular}{lll}
+St & 9:00 -- 10:30 & P \\
+   & + 10:40 -- 12:10 & Cv \\
+Čt & 10:40 -- 12:10 & P
+\end{tabular}
+\quad $\Big\}$ většinou
+
+\textbf{Já:} \underline{kontaktní informace} \dots\ viz web
+
+\textbf{Zápočet:} cvičení \dots\ DÚ $= 50$\,b; koncem semestru písemka $= 50$\,b
+\begin{itemize}[nosep]
+  \item zápočet $\geq 50$\,b
+  \item bez zkouškového příkladu $\geq 75$
+  \item tričko s QM tematikou $\geq 90$\,b
+\end{itemize}
+
+\subsection*{Literatura}
+\begin{enumerate}[label=\arabic*)]
+  \item Pavel Cejnar: \emph{A Condensed Course of QM}; Karolinum 2013
+  \item J.\ Formánek: \emph{Úvod do kvant.\ teorie} (Academia 1983, 2004)
+  \item L.\ E.\ Ballentine: \emph{QM a Modern Development}; \\
+        J.\ J.\ Sakurai: \emph{Modern QM} \hfill $\Big\}$ moderní přístup
+  \item L.\ D.\ Landau, E.\ M.\ Lifschitz: \emph{QM Nonrelativistic Theory}; \\
+        Cohen-Tannoudji, Diu, Laloe: \emph{Q.M.} \hfill $\Big\}$ klasické
+  \item \emph{Cvičení:}
+  \begin{itemize}[nosep]
+    \item S.\ Flügge: \emph{Practical QM}
+    \item \sout{J.\ Pišút, V.\ Čer} Galitsky, Karnakov, Kogan: \emph{Exploring QM} (2013 Oxford) -- Collection of 700+ Solv.\ Prob.
+    \item + příklady v jiných učebnicích
+  \end{itemize}
+\end{enumerate}
+
+\subsection*{Doporučené doplňkové přednášky}
+\begin{itemize}[nosep]
+  \item Pavel Krtouš: NTMF036: \emph{Interpretace kvant.\ mechaniky} \dots\ každé 2 roky \dots\ letos Čt 8:10 -- 10:30
+  \item Karel Houfek: NTMF061: \emph{Teor.\ grup a její aplikace ve fyz.} \dots\ letos Pá 8:10 -- 11:20
+\end{itemize}
+
+\subsection*{Diskuse: \uv{Co znáte z úvodu do QM?}}
+základní \uv{postuláty}, neurčitost, rovinná vlna, $\vb{L}^2, L_z$, LHO, H, jáma, SR, kontinuita (a pravd.\ interpret.), spin, \dots
+
+\uv{Co znáte z matematiky?} \quad mat.\ statistika?
+
+LVP + skal.\ součin, Fce $\mathbb{C}$-proměnné, zákl.\ integ.\ a difro \pozn{$\leftarrow$ předpoklad}
+
+teorie FFT + řady, distribuce, $\mathcal{H}$-prostor, $\ell^2$, $\mathcal{L}^2$ \pozn{$\leftarrow$ udělám úvod (minimalistický)}
+
+%----------------------------------------------------------------------
+\section{Úvodní poznámky}
+\strana{QM-I-2}
+
+Doporučená interpretace QM: \\
+\quad \uv{Shut up and calculate} \quad N.\ D.\ Mermin, Phys.\ Today Apr.\ 1989
+\pozn{Ashcroft, Mermin: Solid State Phys.} \\
+mylně připisováno Feynmanovi \pozn{+ BBT 2?.9.}
+
+\subsection*{Plán přednášky}
+\begin{itemize}[nosep]
+  \item základní formalismus a mat.\ aparát QM
+        \pozn{pragmatický přístup. Exaktní mat. \uv{fousy} někdy vynecháme}
+  \item příklady konkrét.\ syst.\ (\sout{sada řeš})
+  \begin{itemize}[nosep]
+    \item částice se spinem
+    \item bodová částice v 1D a 3D \dots\ odvození ze symetrie
+          \pozn{příklad moderního způsobu budování teorií}
+  \end{itemize}
+  \item základní řešitelné modely v 1D a 3D
+        \pozn{smysl práce fyzika: black-box heavy calcul $\times$ simple model; zásobárna modelů + příklady jejich aplikace}
+  \item časový vývoj
+  \item úvod do teorie rozptylu
+        \pozn{sofistik.\ použití čas.\ záv./nezáv.\ přístupu, problémy se spoj.\ částí spektra}
+  \item částice v mg.\ poli
+\end{itemize}
+
+NTMF067 \dots\ Kvantová mechanika II \pozn{příští semestr}: \\
+přibližné metody, vícečásticové systémy, matice hustoty a otevřené systémy.
+
+\subsection*{Základní aspekty QM chování}
+\begin{itemize}
+  \item \underline{diskrétní charakter} \pozn{některých veličin, které jsou v klas.\ mechanice spojité}
+\end{itemize}
+
+\kw{Planckova konstanta} \quad
+$\vzorec{\hbar = \begin{cases} 1.05\cdot 10^{-34}\ \mathrm{J\cdot s} \\ 0.66\ \mathrm{eV\cdot fs}\end{cases}}$
+
+$\to$ rozměr jako \quad Moment hybnosti \dots\ $\vec{L} = \vec{x}\times\vec{p}$ \\
+\phantom{$\to$ rozměr jako} \quad Akce \quad $S = \int L\,\dd t$ \quad $\big(= \int p\,\dd q - Et\big)$
+\pozn{čas.\ nezáv.\ V} \\
+\phantom{$\to$ rozměr jako \quad Akce} \quad \underline{Hamilton} \quad Maupertuis \quad princip
+
+\pozn{kvantování ELMG-pole -- to tady dělat nebudeme}
+
+\begin{itemize}[nosep]
+  \item 1900 Planck (záření čer.\ tělesa), \quad 1905 Einstein (fotoefekt)
+  \item 1913 Bohr (model atomu) \dots \quad 1914 Franck + Hertz \quad
+        $\mathrm{Hg} + e \to \mathrm{Hg}^* + e$ \quad ($4.9$\,eV)
+  \item 1922 Stern--Gerlach experiment \pozn{k atomům se vrátíme příští semestr}
+\end{itemize}
+\pozn{prototyp kvantového měření DISKRÉTNÍ SYSTÉM -- rozebereme podrobněji:}
+
+\strana{QM-I-3}
+\pozn{dva stab.\ izotopy 107 a 109}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % pec
+  \draw (0,0) rectangle (1.6,1);
+  \node at (0.8,0.5) {\color{gray}Pec};
+  % clona
+  \draw (2.3,-0.6) -- (2.3,0.35);
+  \draw (2.3,0.65) -- (2.3,1.6);
+  % svazek
+  \draw[-{Stealth}] (2.5,0.5) -- (6.2,0.5);
+  \node[above] at (3.3,0.55) {Ag};
+  \node[above] at (4.6,0.9) {${}^2S_{1/2}$ stav};
+  \node[below] at (3.6,0.2) {$[\mathrm{Kr}]\,4d^{10}5s^1$};
+  \draw[decorate,decoration={brace,mirror,amplitude=4pt}] (2.6,-0.5) -- (4.6,-0.5);
+  \node at (3.6,-1) {$47\,e^-$};
+  % magnet S (klínový) a N
+  \draw (6.4,1.6) -- (6.4,1.1) -- (6.8,0.75) -- (8.4,0.75) -- (8.8,1.1) -- (8.8,1.6);
+  \node at (7.6,1.3) {S};
+  \draw (6.4,-0.6) -- (6.4,0.2) -- (8.8,0.2) -- (8.8,-0.6);
+  \node at (7.6,-0.2) {N};
+  \draw[-{Stealth}] (7.6,0.25) -- (7.8,0.7) node[right] {$\vec B$};
+  % rozštěpení
+  \draw[gray,dashed,-{Stealth}] (8.9,0.5) -- (10.2,1.1);
+  \draw[gray,dashed,-{Stealth}] (8.9,0.5) -- (10.2,-0.1);
+  % souřadnice
+  \draw[-{Stealth}] (11,0) -- (11,1.3) node[right] {$z$};
+  \draw[-{Stealth}] (11,0) -- (12.2,0) node[right] {$x$};
+  \draw[-{Stealth}] (11,0) -- (11.6,0.45) node[right] {$y$};
+\end{tikzpicture}
+\end{center}
+
+energie \dots\ dipól v MG poli \qquad $E = -\vec\mu\cdot\vec B$ \\
+\phantom{energie \dots\ dipól v MG poli} \qquad
+$F_z = \pdv{z}\big(\vec\mu\cdot\vec B\big) = \mu_z\cdot\pdv{B_z}{z}$
+\pozn{Bohr magneton}
+
+naměřené \quad $\mu = \pm\dfrac{\hbar}{2}\,\dfrac{e}{2m_e}$ \quad \dots\ odpovídá momentu hybnosti \quad $S_z = \pm\frac12\hbar$ \\
+\pozn{nuclear spin nepřispívá $m_p \gg m_e$}
+
+\textbf{Poznámky:}
+\begin{itemize}[nosep]
+  \item prototyp měření \dots\ spin \dots\ měřený systém; \\
+        prostorové souřadnice atomu -- součást aparátu
+  \item výsledek měření v rozporu s klas.\ představou \dots\ diskrét.\ hodnoty
+  \item budeme používat jako ideal.\ příklad později
+\end{itemize}
+
+\begin{itemize}
+  \item \underline{interference a difrakce}
+\end{itemize}
+dvouštěrbinový experiment \pozn{Feynman a $\heartsuit$ QM}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+  % (c) obě štěrbiny
+  \node at (0,3.2) {\textcircled{c}};
+  \draw (0,1.2) -- (0,1.6) -- (0.3,1.6) -- (0.3,1.2) -- cycle;
+  \draw (0,1.3)--(0.3,1.3) (0,1.4)--(0.3,1.4) (0,1.5)--(0.3,1.5);
+  \draw[thick] (2,0) -- (2,0.6); \draw[thick] (2,0.9) -- (2,2.1); \draw[thick] (2,2.4) -- (2,3);
+  \node[gray] at (1.75,2.55) {\small A}; \node[gray] at (1.75,0.45) {\small B};
+  \draw[thick] (4.5,0) -- (4.5,3);
+  \draw[gray,dashed] (0.3,1.4) -- (2,2.25) -- (4.5,2);
+  \draw[gray,dashed] (0.3,1.4) -- (2,0.75) -- (4.5,2);
+  \node[gray] at (4.75,2) {\small x};
+  \node at (2,-0.4) {$z_1$}; \node at (4.5,-0.4) {$z_2$};
+  \node at (5.6,1.5) {\Large$\neq$};
+  \draw (5.6,1.5) circle (0.45);
+  % (b) jen A
+  \node at (6.8,3.2) {\textcircled{b}};
+  \draw[thick] (7.2,0) -- (7.2,2.1); \draw[thick] (7.2,2.4) -- (7.2,3);
+  \node[gray] at (7.5,2.6) {\small A}; \node[gray] at (7.5,0.6) {\small B};
+  \draw[thick] (9.4,0) -- (9.4,3);
+  \draw[gray] (7.2,2.25) -- (9.4,2);
+  \node at (10.5,1.5) {\Large$+$};
+  \draw (10.5,1.5) circle (0.45);
+  % (a) jen B
+  \node at (11.5,3.2) {\textcircled{a}};
+  \draw[thick] (12,0) -- (12,0.6); \draw[thick] (12,0.9) -- (12,3);
+  \node[gray] at (12.3,2.6) {\small A}; \node[gray] at (12.3,0.6) {\small B};
+  \draw[thick] (14.2,0) -- (14.2,3);
+  \draw[gray] (12,0.75) -- (14.2,2);
+  % osy
+  \draw[-{Stealth}] (15.3,1) -- (15.3,2.2) node[right] {$x$};
+  \draw[-{Stealth}] (15.3,1) -- (16.5,1) node[right] {$z$};
+  \draw[-{Stealth}] (15.3,1) -- (15.8,0.4) node[below] {$y$};
+\end{tikzpicture}
+\end{center}
+
+např.\ rychlé elektrony 50\,keV \dots\ rychl.\ $v$
+\begin{itemize}[nosep]
+  \item lze chápat jako měření polohy $x, y$; $z$ součástí měř.\ aparatury \\
+        $\to$ příprava systému v $t_1 = z_1/v$, \quad měření v $t_2 = z_2/v$
+\end{itemize}
+
+experiment \textcircled{a} příprava ve stavu \quad $\psi_B(t_1) \to \psi_B(t_2)$ \quad nalezneme na stínítku \\
+\phantom{experiment} \textcircled{b} \phantom{příprava ve stavu} \quad $\psi_A(t_1) \to \psi_A(t_2)$
+
+analogie s optikou (Youngův experiment, 1805) \\
+\quad $\to$ signál na stínítku \quad $|\psi_A|^2$; \quad $|\psi_B(t_2)|^2$
+
+fáze je dána klas.\ akcí \quad $S = \displaystyle\int_{t_0}^{t_2} p(q)\,\dd q$ \quad podél dráhy částice \\
+(upřesníme později \dots\ WKB aproximace; dráhový integrál)
+\[
+  \to\quad \psi(x,t) = \sqrt{\rho(x,t)}\;e^{\,iS(x,t)/\hbar}
+  \qquad\text{pozorovatelnost interference } \Delta S \sim \hbar
+\]
+
+%----------------------------------------------------------------------
+\strana{QM-I-4}
+popis interference \quad signál na stínítku $\sim |\psi|^2 = |\psi_A + \psi_B|^2$ \\
+\quad v rozporu s klas.\ zákony pravděpodobnosti: \quad $\neq |\psi_A|^2 + |\psi_B|^2$
+
+vlnově-částic.\ dualismus \dots\ elektron musel v nějakém smyslu projít oběma štěrbinami, ale vždy pozorujeme celý elektron \\
+$\to$ podobné úvahy vedou k zdánlivým rozporům \quad $\to$ viz MOTTO
+
+Experimentálně prověřeno: elektrony 1961; 1970.\ léta -- individ.\ $e^-$ \\
+\quad 1994--5 \dots\ $\mathrm{He}_2, \mathrm{Na}_2, \mathrm{I}_2$; \quad 1999: $\mathrm{C}_{60}$; \quad organ.\ mol.\ s 810 atomy: 2013
+\pozn{$\uparrow$ i dnes jednotlivé molekuly}
+
+\begin{minipage}{0.5\textwidth}
+Podobné experimenty \dots\ difrakce na mřížce, \\
+Mach--Zehnderův interferometr
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=0.8]
+  % vstupní svazek
+  \draw[double] (-1.5,0) -- (0,0);
+  % BS dole vlevo
+  \draw[thick] (-0.3,-0.3) -- (0.3,0.3); \node[below] at (0,-0.3) {\small BS};
+  % zrcadlo dole vpravo
+  \draw[thick] (2.2,-0.3) -- (2.8,0.3); \node[right] at (2.8,0) {\small M};
+  \draw (0,0) -- (2.5,0) -- (2.5,2);
+  % zrcadlo nahoře vlevo
+  \draw[thick] (-0.3,1.7) -- (0.3,2.3); \node[left] at (-0.3,2.1) {\small M};
+  \draw (0,0) -- (0,2) -- (2.5,2);
+  % BS nahoře vpravo
+  \draw[thick] (2.2,1.7) -- (2.8,2.3); \node[above right] at (2.6,2.2) {\small BS};
+  \draw[-{Stealth}] (2.5,2) -- (3.5,2) node[right] {$D_1$};
+  \draw[-{Stealth}] (2.5,2) -- (2.5,2.9) node[above] {$D_2$};
+\end{tikzpicture}
+\end{minipage}
+
++ další nuance: delayed choice, kvant.\ guma
+
+\begin{itemize}
+  \item \underline{statistický charakter}
+        \pozn{\dots\ individ.\ výsledek nepředpověditelný -- velký soubor ano} \\
+        \dots\ viz výše \dots\ srovn.\ Stern--Gerlach \\
+        až na výjimky jen pravděpodobnosti, ne jistota \pozn{(integrály pohybu)}
+  \item \underline{vliv měření na stav} \dots\ kolaps vln.\ funkce \\
+        \dots\ měření modifikuje časový vývoj \\
+        detailní rozbor viz \dots\ Pavel Krtouš: Interpretace QM, NTMF036 \\
+        \pozn{(modely měření, kvantová guma, EPR, Bellovy nerovnosti, teleportace \dots)}
+\end{itemize}
+
+\textbf{DNES:} zlatý věk kvantové technologie! \pozn{(osobní výběr)}
+\begin{itemize}[nosep]
+  \item experimenty testující fundament.\ základy \pozn{(dříve jen thought experiments)}
+  \item kvantové počítání, kryptografie, \dots
+  \item mnohočásticová fyzika:
+  \begin{itemize}[nosep]
+    \item kompletní měření \uv{state-to-state} rozptylu \quad ($\to$ \uv{měření vln.\ fce})
+          \pozn{Nobel Chem.\ 1999}
+    \item časově rozlišená dynamika \dots\ femto \& atto pulzy
+    \item experimenty s extrémně chladnými plyny (dnes i molekuly) \pozn{Nobel 1997, 2001} \\
+          \dots\ BEC, atom-laser, optical lattices, zastav.\ světlo, metrologie
+    \item transportní jevy -- formulace nerovnovážné stat.\ fyziky
+    \item nanotechnologie \dots\ kvantové stroje, využití biomol., STM + manipulace
+    \item graphene, nanotrubičky, Q-Hall jev \pozn{Nobel 2010}
+    \item vysokoteplotní supravod.
+    \item \uv{ab initio} výpočty v Q-chemii, solid state, rozptyl \pozn{Nobel 98 (Chem)}
+    \item Jaderná a částic.\ fyzika \pozn{Higgs Nobel 2013, 1999; Nobel dynamika Chem.\ 2013}
+  \end{itemize}
+\end{itemize}
+
+%======================================================================
+% QM-I-2014-2.pdf
+%======================================================================
+\section{Formalismus kvantové teorie 1}
+\strana{QM-I-5}
+
+Začneme s konečnými LVP, nekonečně dim.\ Hilbert.\ p.\ později.
+
+\subsection{Opakování LVP (komentované s ohledem na QM)}
+
+\kw{Lineární vektor.\ prostor (LVP)} $=$ \kw{Prostor stavů} (ket space)
+
+\begin{definice}[LVP]
+LVP $= \{\text{vektorů } \phi\}$ s operacemi $+$; násob.\ $\mathbb{C}$ číslem, \\
+tj.\ uzavřený vůči těmto operacím:
+\[
+  \vzorec{\forall\, \phi,\psi\in V \;\Rightarrow\; a\phi + b\psi \in V}
+  \qquad\dots\quad \text{\kw{Princip superpozice}}
+\]
+\pozn{(kočky pana Schrödingera -- viz interpretace)}
+\end{definice}
+
+další algeb.\ požadavky (axiomy): asoc.\ $+$; komut.\ $+$, $\exists\, 0 + \phi = \phi$, $\exists\, {-v}$, \\
+distrib.\ pro vektory i čísla, asoc.\ $\cdot\,\mathbb{C}$, $\exists\, 1\cdot\phi = \phi$
+
+\underline{zopakujte:} lineární závislost, dimenze, báze
+
+\begin{definice}[Skalární součin]
+\kw{Skalární součin} (inner product) \dots\ amplitudy pravděpod. \\
+\quad $(\psi|\phi) \in \mathbb{C}$ \quad splňující:
+\begin{enumerate}[label=\arabic*)]
+  \item $(\psi|\phi) = (\phi|\psi)^*$
+  \item $(\phi|c_1\psi_1 + c_2\psi_2) = c_1(\phi|\psi_1) + c_2(\phi|\psi_2)$ \hfill linearita ve 2.\ argumentu \\
+        1)+2) $\Rightarrow$ \quad $(c_1\phi_1 + c_2\phi_2|\psi) = c_1^*(\phi_1|\psi) + c_2^*(\phi_2|\psi)$ \hfill antilinearita v 1.\ argum.
+  \item $(\phi|\phi) \geq 0$; \quad rovnost $\Leftrightarrow \phi = 0$ \hfill \dots\ posit.\ definitnost \\
+        \pozn{pozn: norma $\|\phi\| = \sqrt{(\phi|\phi)}$} \hfill $\to$ důležitá pro pravděpod.\ int.
+\end{enumerate}
+\end{definice}
+
+\underline{zopakujte:} ON báze \quad $\{\phi_i,\ i = 1\dots d\}$ \qquad $(\phi_i,\phi_j) = \delta_{ij}$ \\
+\quad rozklad \quad $\forall\psi\ \exists c_i:\ \psi = \sum_i c_i\phi_i$ \quad přitom $c_i = \braket{\phi_i}{\psi}$ \\
+\quad tj.\ $\forall$ konečný LVP je izomorfní s $\mathbb{C}^d$ \\
+\quad \pozn{$\to$ připomenout zápis skalár.\ souč.\ v bázi $(\phi|\psi) = \sum f_i^* c_i$}
+
+\begin{definice}[Duální prostor]
+\kw{Duální prostor $V^*$}: $\equiv$ prostor $\forall$ lin.\ funkcionálů nad $V$ \hfill (bra space) \\
+\pozn{(pozor: v $\infty$ dim budeme přísnější)}
+\end{definice}
+
+v konečné dim.\ je $V$ a $V^*$ izomorfní, tj.\ $\mathbb{C}^d$
+
+\textbf{DK:} označme $F(\phi_i) = f_i^*$, \quad pak $\forall\, F(\psi) = f_i^* c_i \equiv (\phi|\psi)$ \\
+\quad kde $\ket{\phi} = \sum f_i\ket{\phi_i}$ \quad \dots\ tj.\ libovolný lin.\ funkcionál lze reprezentovat skalárním součinem \\
+\pozn{v $\infty$ dim musíme dávat bacha na konvergenci $\sum_{1}^{\infty}$ -- později}
+
+značení (matematické): funkcionál odpovídající vektoru $\phi$:
+\[ F_\phi(\psi) = (\phi,\psi) \]
+
+%----------------------------------------------------------------------
+\strana{QM-I-6}
+\subsection*{Diracova notace}
+ket vektory z $V$: $\ket{\psi}$ \quad \dots\ v konečné dim.\ slop.\ vekt.\ $\begin{pmatrix} c_1\\ \vdots\\ c_d\end{pmatrix}$
+
+bra vektory z $V^*$: $\bra{\psi}$ \quad \dots\ v konečné dimenzi řád.\ vektory \\
+\quad $\bra{\psi}$ vlastně odpovídá působení funkcionálu $F_\psi$, tj.\ řádkovému vektoru $(c_1^*,\dots,c_d^*)$
+
+\underline{poznámka:} skalární součin $\braket{\phi}{\psi}$ můžeme číst jako maticové násobení řád.\ matice $1\times d$ a slop.\ matice $d\times 1$ \\
+\quad přechod $\ket{\psi}\to\bra{\psi} = \ket{\psi}^\dagger$ lze chápat jako hermit.\ sdružení \\
+\quad \pozn{pozn: $\big(c_1\ket{\psi_1} + c_2\ket{\psi_2}\big)^\dagger = c_1^*\bra{\psi_1} + c_2^*\bra{\psi_2} \leftrightarrow F_{(c_1\psi_1 + c_2\psi_2)}$}
+
+\subsection*{Lineární operátory}
+\hfill \underline{pozorovatelné (měřit.) veličiny} a \underline{transformace} stavů
+
+Lineární operátor $\hat A: V \to V$ \\
+\quad tj.\ $\forall\ket{\psi}\in V\ \exists\ket{\phi} \equiv \hat A\ket{\psi} \in V$ \quad \pozn{(v $\infty$ dim opatrnější)} \\
+\quad linearita \quad $\hat A\big(c_1\ket{\phi_1} + c_2\ket{\phi_2}\big) = c_1\hat A\ket{\phi_1} + c_2\hat A\ket{\phi_2}$
+
+\dots\ ON báze + linearita \dots\ $\hat A$ jednoznačně zadán čísly $a_{ij} \equiv \mel{\phi_i}{\hat A}{\phi_j}$ \\
+\quad v konečné dimenzi lze ztotožnit $\hat A$ a matici $a_{ij}$ \\
+$\to$ Diracova notace \quad $\mel{\phi}{\hat A}{\psi}$; \ $\hat A\ket{\psi}$; \ $\bra{\psi}\hat A$ \quad \dots\ vše maticové násobení
+\pozn{např.\ $A\ket{\psi} = \sum_j a_{ij}c_j$}
+
+\begin{itemize}
+  \item rovnost operátorů \quad $\hat A = \hat B \Leftrightarrow \hat A\ket{\phi} = \hat B\ket{\phi}\ \ \forall\ket{\phi}$
+  \item nulový a jednotkový operátor $\hat 0, \hat I$ \quad \pozn{(často prostě $0, 1$ $\to$ z kontextu)}
+  \item sčítání operátorů: \quad $\hat A + \hat B$, \qquad $(\hat A + \hat B) + \hat C = \hat A + (\hat B + \hat C)$
+  \item násobení operátorů: \quad $\hat A\hat B$ \dots\ skládání zobr., či násobení matic \\
+        pozor \quad $\hat A\hat B \neq \hat B\hat A$ (obecně) \quad \dots\ def.\ $[\hat A,\hat B] = \hat A\hat B - \hat B\hat A$ \\
+        obvyklý trik: \quad $\hat A\hat B = \hat B\hat A + [\hat A,\hat B]$
+  \item funkce operátoru \quad $f(\hat A) = \sum_n f_n\hat A^n$ \quad \dots\ např.: $e^{\hat A} = \sum_n \frac{1}{n!}\hat A^n$
+\end{itemize}
+
+pozor: vektoru $A\ket{\psi}$ neodpovídá lin.\ funkcionál $F_{A\ket{\psi}} \neq \bra{\psi}A$ \\
+\phantom{pozor: vektoru} ale \quad $F_{A\ket{\psi}} = \bra{\psi}A^\dagger$ \\
+\quad kde $A^\dagger$ je hermitovsky sdružená matice $(A^\dagger)_{ij} = a_{ji}^*$
+
+%----------------------------------------------------------------------
+\strana{QM-I-7}
+\subsection*{Sdružený operátor (adjoint)}
+\begin{definice}[Sdružený operátor]
+matematická definice: \quad $B = A^\dagger$ \quad pokud \quad $(B\phi|\psi) = (\phi, A\psi)$ \quad $\forall\phi,\psi\in V$ \\
+pozn: v $\infty$ dim to komplikují def.\ obory \dots\ později
+\end{definice}
+
+v kon.\ dimenzích: dosadíme bázi:
+\[
+  a_{ij} = (\phi_i, A\phi_j) = (B\phi_i, \phi_j) = (\phi_j, B\phi_i)^* = B_{ji}^*
+\]
+tj.\ opravdu $A^\dagger$ odpovídá hermit.\ sdruž.\ matice \quad $a^\dagger_{ji} = B_{ij}$
+
+Vlastnosti: \quad
+$\left.\begin{aligned}
+  (cA)^\dagger &= c^*A^\dagger \\
+  (A+B)^\dagger &= A^\dagger + B^\dagger \\
+  (AB)^\dagger &= B^\dagger A^\dagger
+\end{aligned}\right\}$ \quad \pozn{DK viz cvičení} \quad \pozn{pozn: pro matice rovněž platí}
+
+\subsection*{Vnější součin \ $\ket{\psi}\bra{\phi} \equiv$ operátor}
+def: \quad $\big(\ket{\psi}\bra{\phi}\big)\ket{u} \equiv \big(\braket{\phi}{u}\big)\ket{\psi}$ \quad ($\braket{\phi}{u}$ \dots\ $\mathbb{C}$-číslo)
+
+$\hookrightarrow$ v Dirac.\ notaci \quad
+$\begin{pmatrix} c_1\\ \vdots\\ c_d\end{pmatrix}(f_1^*\cdots f_d^*) =
+ \begin{pmatrix} c_1f_1^* & \cdots & c_1f_d^* \\ \vdots & & \vdots \\ c_df_1^* & \cdots & c_df_d^*\end{pmatrix}$
+
+\underline{pozn:} výraz \quad $\ket{\psi}\braket{\phi}{u} = \big(\ket{\psi}\bra{\phi}\big)\ket{u} = \ket{\psi}\big(\braket{\phi}{u}\big)$ \\
+\quad lze libovolně uzávorkovat (matic.\ násobení) $\to$ def.\ asociativita
+
+platí \quad $\big(\ket{\psi}\bra{\phi}\big)^\dagger = \ket{\phi}\bra{\psi}$
+
+\underline{pozn:} Rozvoj operátoru do báze lze psát
+\[
+  \hat A = \hat I\hat A\hat I = \sum_i \ket{\phi_i}\bra{\phi_i}\hat A\sum_j\ket{\phi_j}\bra{\phi_j}
+  = \sum_{ij} a_{ij}\ket{\phi_i}\bra{\phi_j} = \sum_j \ket{\hat A\phi_j}\bra{\phi_j}
+\]
+přitom jsem užil tzv.\ \kw{rozklad jedničky} \quad $\vzorec{\hat I = \sum_n \ket{\phi_n}\bra{\phi_n}}$ \quad (relace úplnosti)
+
+podobně lze odvozovat vyjádření jiných výrazů v bázi, např.
+\[
+  \braket{\phi}{\psi} = \mel{\phi}{\hat I}{\psi} = \sum_n \underbrace{\braket{\phi}{\phi_n}}_{f_n^*}\underbrace{\braket{\phi_n}{\psi}}_{c_n} = \sum_n f_n^* c_n
+\]
+
+\subsection*{(Ortogonální) projekční operátor}
+\begin{definice}[Projektor]
+\begin{tabular}{lll}
+$\hat P^2 = \hat P$ & \pozn{(Idempotence)} & \pozn{\dots\ tj.\ $\ket{b} = P\ket{a}$, pak $P\ket{b} = \ket{b}$} \\
+$P = P^\dagger$ & \pozn{(ortogonalita)} & \pozn{\dots\ tj.\ $\ket{f} = P\ket{\psi}$ a $\ket{\bar f} = \ket{\psi} - \ket{f} = (I-P)\ket{\psi}$} \\
+ & & \pozn{pak $\braket{\bar f}{f} = 0 \ \Rightarrow\ \mel{\psi}{(I-P^\dagger)P}{\psi} = 0$}
+\end{tabular}
+\end{definice}
+
+\textbf{PŘ:} \quad $\hat P = \ket{\phi}\bra{\phi}$ \ $\leftarrow$ pokud $\braket{\phi}{\phi} = 1$ \quad \dots\ nebo \quad
+$P = \dfrac{1}{\braket{\phi}{\phi}}\ket{\phi}\bra{\phi}$ \pozn{vždy}
+
+%----------------------------------------------------------------------
+\strana{QM-I-8}
+\subsection*{Samosdružené operátory \hfill \underline{pozorovatelné}}
+\begin{definice}[Samosdružený (hermitovský) operátor]
+v kon.\ dim \quad $A = A^\dagger$ \quad (prostě maticově) \quad $\to$ \kw{Hermitovské operátory} \\
+v $\infty$ dim se tyto dva pojmy mohou lišit \quad
+tj.\ $\vzorec{\mel{\phi}{A}{\psi} = \mel{\psi}{A}{\phi}^*\ \ \forall\psi,\phi}$
+\end{definice}
+
+\subsection*{Vlastní čísla a vektory}
+doporučení: zopakovat lin.\ algebru, podobnostní transf.; diagonalizace
+
+\begin{tabular}{l@{\qquad}l|l}
+$\hat A\ket{\phi} = \lambda\ket{\phi}$ & hermit.\ matice & $\to \lambda\in\mathbb{R}$ \\
+$\bra{\phi}\hat A = \lambda\bra{\phi}$ & & $\to$ levé a pravé vl.\ v.\ totožné \\
+ & $|\hat A - \lambda\hat I| = 0$ & $\to$ vl.\ v.\ pro $\lambda\neq\lambda'$ ortogonální \\
+ & {\small charakteristický pol.} &
+\end{tabular}
+
+$\to$ lze vybrat bázi z vlastních vektorů
+
+obvyklá notace \quad $\hat A\ket{a} = a\ket{a}$ \quad \dots\ předp.\ normování $\braket{a}{a} = 1$ \\
+nebo (degenerace $\equiv$ netriv.\ vlastní podprostor):
+\[
+  \hat A\ket{a,k} = a\ket{a,k} \qquad k = 1,\dots,d_a;\quad \textstyle\sum d_a = d
+\]
+\quad $\to$ ON báze \quad $\braket{a,k}{a',k'} = \delta_{aa'}\delta_{kk'}$
+
+platí: \quad $\mel{a,k}{\hat A}{a',k'} = a\,\delta_{aa'}\delta_{kk'}$
+
+$\to$ \kw{spektrální rozklad}
+\[
+  \vzorec{\hat A = \sum_a a\underbrace{\sum_k \ket{a,k}\bra{a,k}}_{\hat P_a} = \sum_a a\hat P_a}
+\]
+\quad projektor na vlastní podprostor \quad $\hat P_a = \sum_k\ket{a,k}\bra{a,k}$ \\
+\quad (ověřte: $\hat P_a^2 = \hat P_a$; $\hat P_a^\dagger = \hat P_a$) \quad nedegenerované spektrum $\to$ prostě $\hat P_a = \ket{a}\bra{a}$
+
+funkce operátoru: \quad $f(\hat A) = \sum_a f(a)\hat P_a$ \\
+\quad \dots\ zobecnění pro případ nekonverg.\ Taylorova rozvoje
+
+\underline{pozn:}
+\begin{itemize}[nosep]
+  \item projektor \dots\ Hermitovský
+  \begin{itemize}[nosep]
+    \item[--] vl.\ č.\ jen $0, 1$ \quad \dots\ $P\ket{\psi} = \lambda\ket{\psi} = P^2\ket{\psi} = \lambda^2\ket{\psi}\ \ \forall\ket{\psi}$ \quad $\Rightarrow \lambda^2 = \lambda$
+    \item[--] působí jako $0$ na svém jádru, jinde jako $\hat I$
+    \item[--] je sám sobě spektrálním rozkladem
+    \item[--] $(I - P)$ je projektor na ortogonální doplněk
+  \end{itemize}
+  \item relace $\hat A = \sum_{ak}\ket{ak}a\bra{ak}$ je vlastně $\hat A = U\Lambda U^\dagger$, \\
+        kde $U$ je matice přechodu k bázi z vl.\ v.
+\end{itemize}
+
+%======================================================================
+% QM-I-2014-3.pdf
+%======================================================================
+\subsection{Základní principy kvantové teorie (POSTULÁTY)}
+\strana{QM-I-9}
+
+\begin{veta}[Postuláty kvantové teorie]
+\begin{enumerate}[label=\textcircled{\arabic*}]
+  \item Stav systému je popsán vektorem v komplexním LVP (stavový prostor $\equiv\mathcal{H}$), přesněji paprskem $\lambda\psi$, $\forall\lambda\in\mathbb{C}$.
+  \item Pozorovatelným veličinám odpovídají Hermitovské lineární operátory. Přípustné hodnoty jsou dány jejich vlastními čísly. \hfill $\hat A\ket{a} = a\ket{a}$ \dots\ $A = \sum a\hat P_a$
+  \item Skalární součin na stavovém prostoru definuje tzv.\ amplitudu pravděpodobnosti. Podmíněná pravděpodobnost pro naměření hodnoty $a$ pozorovatelné $\hat A$ systému připraveného ve stavu $\ket{\psi}$ je
+  \[
+    \vzorec{\mu(a,\psi) \equiv |\braket{a}{\psi}|^2} \qquad
+    \Big(= \mel{\psi}{P_a}{\psi} = \sum_k |\braket{a,k}{\psi}|^2 \ \dots\ \text{degenerované spektrum}\Big)
+  \]
+  Po naměření hodnoty $a$ systém přejde do stavu
+  \[
+    \ket{\psi} \xrightarrow{\ \hat A\ } \ket{\bar\psi} = \ket{a}
+    \qquad \Big(= \tfrac{1}{\sqrt{\mu}}P_a\ket{\psi}\ \dots\ \text{degenerované spektrum}\Big)
+  \]
+  (\kw{Redukce stavu}, \kw{kolaps vlnové funkce}) \pozn{$\leftarrow$ motivace měřením $x$}
+\end{enumerate}
+\end{veta}
+
+\textbf{Poznámky:}
+\begin{itemize}[nosep]
+  \item[--] \pozn{existují různé formulace / sady postulátů}
+  \item[--] \pozn{později přibereme} unitární časový vývoj \\
+            \pozn{(princip koresp.)} + konkrétní tvar operátorů pro různé systémy
+\end{itemize}
+
+\underline{Ad 1)}
+\begin{itemize}[nosep]
+  \item[--] v $\infty$ dimenzích \dots\ požadavky úplnosti/spojitosti $\to$ Hilbertův prostor (později)
+  \item[--] vlnovou funkci je výhodné normovat: $\|\psi\|^2 = \braket{\psi}{\psi} = 1$ \quad (stále není určená fáze!)
+\end{itemize}
+
+\underline{Ad 2)}
+\begin{itemize}[nosep]
+  \item[--] z vlastností výše plyne, že měřitelné veličiny $a\in\mathbb{R}$ \\
+            a vektory tvoří bázi $\to$ měřitelná hodnota je def.\ $\forall\psi\in\mathcal{H}$
+\end{itemize}
+
+\underline{Ad 3)}
+\begin{itemize}[nosep]
+  \item[--] vzorec je uveden pro normovanou $\psi$. Pokud $\braket{\psi}{\psi}\neq 1$, \\
+            pak \quad $\mu(a,\psi) = \dfrac{|\braket{a}{\psi}|^2}{\braket{\psi}{\psi}}$
+            \quad \pozn{$\leftarrow \ket{\psi}\to\dfrac{\ket{\psi}}{\sqrt{\braket{\psi}{\psi}}}$}
+  \item[--] střední hodnota pozorovatelné po mnoha měřeních:
+  \[
+    \langle A\rangle = \sum_a \mu(a,\psi)\,a = \sum_a \mel{\psi}{\hat P_a}{\psi}\,a = \bra{\psi}\sum_a aP_a\ket{\psi}
+    = \vzorec{\mel{\psi}{A}{\psi}}
+  \]
+  \pozn{Pokud $\braket{\psi}{\psi}\neq 1$: \ $\langle A\rangle = \dfrac{\mel{\psi}{A}{\psi}}{\braket{\psi}{\psi}}$}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{QM-I-10}
+\subsection*{PŘÍKLAD: částice se spinem $1/2$ \ (Sakurai)}
+aplikace postulátů na Stern--Gerlachův experiment \\
+\quad $\to$ konstrukce modelu na základě $\uparrow$
+
+\underline{Několik experimentů (schéma):}
+
+\begin{center}
+\begin{tikzpicture}[
+    box/.style={draw,minimum width=1.4cm,minimum height=0.6cm},
+    blk/.style={-{Bar[width=6pt]Bar[width=6pt]}},
+    >=Stealth, x=1cm, y=1cm]
+  % (0)
+  \node at (-0.8,0) {(0)};
+  \node[box,gray] (z0) at (0.5,0) {zdroj};
+  \node[box] (s0) at (3,0) {SG\,$z$};
+  \draw[->] (z0) -- (s0);
+  \draw[->] (s0.east)++(0,0.15) -- ++(1.3,0.15) node[right] {$S_z = +\frac{\hbar}{2}$};
+  \draw[->] (s0.east)++(0,-0.15) -- ++(1.3,-0.15) node[right] {$S_z = -\frac{\hbar}{2}$};
+  % osy
+  \draw[->] (10,-0.2) -- (10,0.6) node[right] {$z$};
+  \draw[->] (10,-0.2) -- (11,-0.2) node[right] {$y$};
+  \draw[->] (10,-0.2) -- (9.5,-0.6) node[left] {$x$};
+  % (a)
+  \node at (-0.8,-1.5) {(a)};
+  \node[box,gray] (za) at (0.5,-1.5) {zdroj};
+  \node[box] (sa) at (3,-1.5) {SG\,$z$};
+  \node[box] (sa2) at (5.6,-1.5) {SG\,$z$};
+  \draw[->] (za) -- (sa);
+  \draw[->] (sa.east)++(0,0.15) -- (sa2.west|-0,-1.35);
+  \draw[blk] (sa.east)++(0,-0.15) -- ++(0.5,0);
+  \draw[->] (sa2.east)++(0,0.15) -- ++(1.1,0.15) node[right] {$S_z = \frac{\hbar}{2}$ \qquad $\mu = 1$};
+  \draw[dotted] (sa2.east)++(0,-0.15) -- ++(1.1,-0.15) node[right] {$S_z = -\frac{\hbar}{2}$ \quad $\mu = 0$ nepozorováno};
+  % (b)
+  \node at (-0.8,-3) {(b)};
+  \node[box,gray] (zb) at (0.5,-3) {zdroj};
+  \node[box] (sb) at (3,-3) {SG\,$z$};
+  \node[box] (sb2) at (5.6,-3) {SG\,$x$};
+  \draw[->] (zb) -- (sb);
+  \draw[->] (sb.east)++(0,0.15) -- (sb2.west|-0,-2.85);
+  \draw[blk] (sb.east)++(0,-0.15) -- ++(0.5,0);
+  \draw[->] (sb2.east)++(0,0.15) -- ++(1.1,0.15) node[right] {$S_x = \frac{\hbar}{2}$ \qquad $\mu = \frac12$};
+  \draw[->] (sb2.east)++(0,-0.15) -- ++(1.1,-0.15) node[right] {$S_x = -\frac{\hbar}{2}$ \quad $\mu = \frac12$};
+  % (c)
+  \node at (-0.8,-4.5) {(c)};
+  \node[box,gray] (zc) at (0.5,-4.5) {zdroj};
+  \node[box] (sc) at (3,-4.5) {SG\,$z$};
+  \node[box] (sc2) at (5.6,-4.5) {SG\,$x$};
+  \node[box] (sc3) at (8.2,-4.5) {SG\,$z$};
+  \draw[->] (zc) -- (sc);
+  \draw[->] (sc.east)++(0,0.15) -- (sc2.west|-0,-4.35);
+  \draw[blk] (sc.east)++(0,-0.15) -- ++(0.5,0);
+  \draw[->] (sc2.east)++(0,0.15) -- (sc3.west|-0,-4.35);
+  \draw[blk] (sc2.east)++(0,-0.15) -- ++(0.5,0);
+  \draw[->] (sc3.east)++(0,0.15) -- ++(1,0.15) node[right] {$S_z = +\hbar/2$ \quad $\mu = \frac12$};
+  \draw[->] (sc3.east)++(0,-0.15) -- ++(1,-0.15) node[right] {$S_z = -\hbar/2$ \quad $\mu = \frac12$};
+\end{tikzpicture}
+\end{center}
+\hrule\medskip
+
+\textbf{(0):} Nejjednodušší model na základě měření (0):
+\begin{itemize}
+  \item stav.\ prostor $\mathcal{H} = \mathcal{L}\{\ket{z+},\ket{z-}\}$
+        \pozn{$\leftarrow$ jsou OG (vl.\ v.\ $\hat S_z$), bůno normalizace} \\
+        $\forall$ stav \quad $\ket{\psi} = \alpha\ket{z+} + \beta\ket{z-} \equiv \begin{pmatrix}\alpha\\ \beta\end{pmatrix}$
+  \item měření SG\,$z$ $\to$ hermit.\ matice
+  \[
+    \hat S_z = \frac{\hbar}{2}\big(\ket{z+}\bra{z+} - \ket{z-}\bra{z-}\big) = \frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+    \quad \pozn{$\leftarrow\sigma_z$}
+  \]
+\end{itemize}
+popis 1.\ měření: $\ket{\psi}$ neznáme, ale po měření $\ket{\bar\psi} = \ket{z+}$
+
+\textbf{(a):} Druhé měření \dots\ před: $\ket{\psi} = \ket{z+}$ \quad \pozn{(nebo $\lambda\ket{z+}$)} \\
+\quad $\mu\big(+\tfrac{\hbar}{2} = S_z, \psi\big) = |\braket{z+}{\psi}|^2 = 1$ \\
+\quad po měření: \quad $\ket{\bar\psi} = \ket{z+}$
+
+\textbf{(b):} Neznáme $\hat S_x$, ale pokusíme se jej najít
+
+\pozn{pozn: nepotřebujeme větší stav.\ prostor: $\mathcal{L}\{\ket{z{+}x{+}}, \ket{z{-}x{+}}, \ket{z{+}x{-}}, \ket{z{-}x{-}}\}$?} \\
+\pozn{měření (c) říká, že tento model nefunguje; zkusme pokračovat s $\mathcal{H} = \mathbb{C}^2$}
+
+%----------------------------------------------------------------------
+\strana{QM-I-11}
+operátor \quad $\hat S_x = \dfrac{\hbar}{2}\big(\ket{x+}\bra{x+} - \ket{x-}\bra{x-}\big)$
+
+\begin{minipage}{0.68\textwidth}
+pozorujeme \quad $\mu\big(S_x = +\tfrac{\hbar}{2}, \ket{z+}\big) = |\braket{x+}{z+}|^2 = \tfrac12$ \\
+\phantom{pozorujeme} \quad $\mu\big(S_x = -\tfrac{\hbar}{2}, \ket{z+}\big) = |\braket{x-}{z+}|^2 = \tfrac12$
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+koneč.\ stav: \\ $\ket{\bar\psi} = \ket{x+}$ \\ $\ket{\bar\psi} = \ket{x-}$
+\end{minipage}
+
+\textbf{(c)} \quad $\mu\big(S_z = +\tfrac{\hbar}{2}, \ket{x+}\big) = |\braket{z+}{x+}|^2 = \tfrac12$ \\
+\phantom{\textbf{(c)}} \quad $\mu\big(S_z = -\tfrac{\hbar}{2}, \ket{x+}\big) = |\braket{z-}{x+}|^2 = \tfrac12$
+\begin{align*}
+  \Rightarrow\quad \ket{x+} &= \tfrac{1}{\sqrt2}\ket{z+} + \tfrac{1}{\sqrt2}e^{i\delta_1}\ket{z-}
+    &&\text{ortogonalita } \braket{x+}{x-} = 0 \\
+  \ket{x-} &= \tfrac{1}{\sqrt2}\ket{z+} - \tfrac{1}{\sqrt2}e^{i\delta_1}\ket{z-}
+    &&\swarrow\ \text{fixuje druhou fázi}
+\end{align*}
+\quad $\uparrow$ celková fáze libovolná \dots\ v $\hat S_x$ se neprojeví
+
+zatím máme: \quad
+$\hat S_x = \frac{\hbar}{2}\big[\ket{x+}\bra{x+} - \ket{x-}\bra{x-}\big]
+ = \frac{\hbar}{2}\big[e^{-i\delta_1}\ket{z+}\bra{z-} + e^{i\delta_1}\ket{z-}\bra{z+}\big]$
+
+\underline{IZOTROPIE PROSTORU:} \dots\ obrácení celého aparátu $\to$ stejný výsl. \pozn{$z\to y\to z$}
+\[
+  \Rightarrow\quad \hat S_y = \frac{\hbar}{2}\big[e^{-i\delta_2}\ket{z+}\bra{z-} + e^{i\delta_2}\ket{z-}\bra{z+}\big]
+  \ \to\
+  \begin{aligned}
+    \ket{y+} &= \tfrac{1}{\sqrt2}\big(\ket{+} + e^{i\delta_2}\ket{-}\big) \\
+    \ket{y-} &= \tfrac{1}{\sqrt2}\big(\ket{+} - e^{i\delta_2}\ket{-}\big)
+  \end{aligned}
+\]
+
+\begin{minipage}{0.65\textwidth}
+další otočení aparátu: \pozn{$x\to y\to x$}
+\[
+  \Rightarrow\quad |\braket{y\pm}{x+}|^2 = |\braket{y\pm}{x-}|^2 = \tfrac12
+\]
+tj.\ \quad $\frac12\big|1 \pm e^{i(\delta_1-\delta_2)}\big| = \frac{1}{\sqrt2}$
+\[
+  \to\quad \delta_2 - \delta_1 = \pm\frac{\pi}{2}
+\]
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+\begin{tikzpicture}[scale=1.1,gray]
+  \draw[->] (-1.2,0) -- (1.6,0) node[right] {Re};
+  \draw[->] (0,-1.2) -- (0,1.4) node[right] {Im};
+  \draw[->,thick] (0,0) -- (1,0) node[below] {$1$};
+  \draw[->,thick] (1,0) -- (1,1) node[right] {$\pm i$};
+  \draw[dashed] (0,0) -- (1,1) node[midway,above left] {$\sqrt2$};
+  \draw[dashed] (0,0) -- (1,-1);
+  \fill (0,1) circle (1pt) (0,-1) circle (1pt);
+\end{tikzpicture}
+\end{minipage}
+
+\dots\ konvence fáze v bázi $\ket{z\pm}$ \\
+$\to$ dá se volit $S_x$ reálná matice \dots\ $\delta_1 = 0$ \quad $\Rightarrow\ \delta_2 = +\frac{\pi}{2}$
+\pozn{(pravotočivé $\ket{x+},\ket{y+},\ket{z+}$)}
+
+\underline{závěr:}
+\[
+  \begin{aligned}
+    \ket{x\pm} &= \tfrac{1}{\sqrt2}\big(\ket{z+} \pm \ket{z-}\big) = \tfrac{1}{\sqrt2}\begin{pmatrix}1\\ \pm1\end{pmatrix} \\
+    \ket{y\pm} &= \tfrac{1}{\sqrt2}\big(\ket{z+} \pm i\ket{z-}\big)
+  \end{aligned}
+  \quad\to\quad
+  \begin{aligned}
+    \hat S_x &= \tfrac{\hbar}{2}\big[\ket{+}\bra{-} + \ket{-}\bra{+}\big] \\
+    \hat S_y &= \tfrac{\hbar}{2}\big[-i\ket{+}\bra{-} + i\ket{-}\bra{+}\big]
+  \end{aligned}
+\]
+
+\kw{Pauliho matice}
+\[
+\vzorec{\hat{\vec\sigma} = (\hat\sigma_x,\hat\sigma_y,\hat\sigma_z) \equiv
+ \left(\begin{pmatrix}0&1\\1&0\end{pmatrix}, \begin{pmatrix}0&-i\\ i&0\end{pmatrix}, \begin{pmatrix}1&0\\0&-1\end{pmatrix}\right)}, \qquad
+\vzorec{\hat{\vec S} = \frac{\hbar}{2}\hat{\vec\sigma}}
+\]
+
+\underline{Pozn:} Posunovací operátory \quad
+$S_+ = \hbar\ket{+}\bra{-} = \hbar\begin{pmatrix}0&1\\0&0\end{pmatrix}$, \quad
+$S_- = \hbar\ket{-}\bra{+} = \hbar\begin{pmatrix}0&0\\1&0\end{pmatrix} = S_+^\dagger$
+
+\begin{minipage}{0.5\textwidth}
+platí: \quad $S_\pm = S_x \pm iS_y$ \\[2pt]
+\quad $S_-\ket{+} = \hbar\ket{-}$ \qquad $S_-\ket{-} = 0$ \\
+\quad $S_+\ket{-} = \hbar\ket{+}$ \qquad $S_+\ket{+} = 0$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+Poznáme později obecně při vyšetřování momentu hybnosti a rotač.\ symetrie
+\end{minipage}
+
+%----------------------------------------------------------------------
+\strana{QM-I-12}
+\underline{pozn:} později uvidíme částice s větším spinem
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, box/.style={draw,minimum width=0.9cm,minimum height=0.5cm}]
+  % s = 1/2
+  \node at (0,0) {$s = \frac12$};
+  \node[box] (a) at (2,0) {SG};
+  \draw[->] (0.6,0) -- (a.west);
+  \draw[->] (a.east) -- ++(0.8,0.3);
+  \draw[->] (a.east) -- ++(0.8,-0.3);
+  \node at (1.6,-0.9) {$e^-, p^+, n$};
+  \node at (1.6,-1.6) {$\hat S_x,\hat S_y,\hat S_z$:};
+  % s = 1
+  \node at (4.6,0) {$s = 1$};
+  \node[box] (b) at (6.4,0) {SG};
+  \draw[->] (5.1,0) -- (b.west);
+  \draw[->] (b.east) -- ++(0.8,0.4);
+  \draw[->] (b.east) -- ++(0.8,0);
+  \draw[->] (b.east) -- ++(0.8,-0.4);
+  \node at (6,-0.9) {např.\ $d$};
+  \node at (6,-1.6) {matice $3\times3$};
+  % s = 3/2
+  \node at (9.2,0) {$s = \frac32$};
+  \node[box] (c) at (11,0) {SG};
+  \draw[->] (9.8,0) -- (c.west);
+  \draw[->] (c.east) -- ++(0.8,0.45);
+  \draw[->] (c.east) -- ++(0.8,0.15);
+  \draw[->] (c.east) -- ++(0.8,-0.15);
+  \draw[->] (c.east) -- ++(0.8,-0.45);
+  \node at (11.4,-0.9) {atd.};
+  \node at (11.2,-1.6) {matice $4\times4$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Přechod k jiné bázi}
+pozorovatelná $\hat A$ \quad \dots\ katalog stavů $\ket{a_i}$, \ $i = 1,\dots,d$ \\
+jiná pozorovatelná $\hat B$ \quad \dots\ $\ket{b_i}$
+
+reprezentace $A$:
+\begin{align*}
+  \ket{\psi} = \underbrace{I}_{\sum_i\ket{a_i}\bra{a_i}}\ket{\psi} &= \sum_i \psi_i\ket{a_i}; \qquad \psi_i = \braket{a_i}{\psi} \\
+  &= \sum_i \psi_i \underbrace{I}_{\sum_j\ket{b_j}\bra{b_j}}\ket{a_i}
+   = \sum_j\underbrace{\Big[\sum_i\overbrace{\braket{b_j}{a_i}}^{U_{ji}}\psi_i\Big]}_{\tilde\psi_j}\ket{b_j}
+\end{align*}
+tj.\ matice přechodu k jiné bázi (reprezentaci): \quad
+$\begin{pmatrix}\tilde\psi_1\\ \vdots\\ \tilde\psi_d\end{pmatrix} = U\begin{pmatrix}\psi_1\\ \vdots\\ \psi_d\end{pmatrix}$
+
+unitární matice \quad $U^\dagger U = I$: \quad
+$\sum_j (U^\dagger)_{ij}U_{ji'} = \sum_j U_{ji}^*U_{ji'} = \sum_j\braket{b_j}{a_i}^*\braket{b_j}{a_{i'}} = \delta_{ii'}$
+
+podobně operátory:
+\[
+  \tilde C_{jj'} \equiv \mel{b_j}{\hat C}{b_{j'}} = \sum_{ii'}\braket{b_j}{a_i}C_{ii'}\braket{a_{i'}}{b_{j'}} = UCU^\dagger
+\]
+
+\subsection*{Nekompatibilní pozorovatelné a relace neurčitosti}
+o momentech pravd.\ rozdělení: \quad $\mu_n = \sum_a \mu_a a^n = \langle\hat A^n\rangle$ \\
+speciálně \quad $\mu_0 = 1$, \quad $\mu_1 = \mel{\psi}{\hat A}{\psi}$, \quad $\mu_2 = \mel{\psi}{\hat A^2}{\psi}$
+
+rozptyl měření veličiny $A$ ve stavu $\psi$:
+\[
+  (\Delta A)^2 \equiv \mel{\psi}{(\hat A - \langle A\rangle)^2}{\psi} = \langle\hat A^2\rangle - \langle A\rangle^2 = \mu_2 - \mu_1^2
+\]
+\dots\ speciálně pro $\ket{\psi} = \ket{a}$ \quad \dots\ $\mu_a = 1$, \ $\mu_{a'\neq a} = 0$ \\
+\quad tj.\ $\mu_1 = a$, $\mu_2 = a^2$ \quad a tedy \quad $\Delta A \equiv \sqrt{\mu_2 - \mu_1^2} = 0$
+
+%----------------------------------------------------------------------
+\strana{QM-I-13}
+\subsection*{Relace neurčitosti}
+\begin{veta}[Relace neurčitosti]
+nechť \quad $[\hat A,\hat B] = i\hat C$ \quad ($\neq 0 \overset{\text{def}}{\equiv}$ \kw{Nekompatibilní}) \\
+\quad \phantom{nechť} $\uparrow$ to $i$ tady je, aby $\hat C^\dagger = \hat C$
+\[
+  \text{potom}\qquad \vzorec{(\Delta A)\cdot(\Delta B) \geq \tfrac12\,|\mel{\psi}{\hat C}{\psi}|}
+\]
+\end{veta}
+
+\underline{Důkaz:} \quad Schwarzova nerovnost \quad $\|\phi_1\|\cdot\|\phi_2\| \geq |\braket{\phi_1}{\phi_2}|$ \\
+\quad pro \quad $\ket{\phi_1} = (A - \langle A\rangle)\ket{\psi}$ \quad $\to\ \|\phi_1\| = \sqrt{\mel{\psi}{(A-\langle A\rangle)^2}{\psi}} = \Delta A$ \\
+\quad \phantom{pro} \quad $\ket{\phi_2} = (B - \langle B\rangle)\ket{\psi}$ \quad podob.\ $\|\phi_2\| = \Delta B$
+
+pravá strana:
+\begin{align*}
+  |\braket{\phi_1}{\phi_2}| &= \big|\bra{\psi}\big(AB - A\langle B\rangle - \langle A\rangle B + \langle A\rangle\langle B\rangle\big)\ket{\psi}\big| \\
+  &= \big|\bra{\psi}\big(AB - \langle A\rangle\langle B\rangle\big)\ket{\psi}\big| \\
+  &= \Big|\bra{\psi}\Big(\frac{AB - BA}{2} + \frac{AB + BA}{2} - \langle A\rangle\langle B\rangle\Big)\ket{\psi}\Big| \\
+  &= \Big|\underbrace{\bra{\psi}\tfrac{AB+BA}{2}\ket{\psi} - \langle A\rangle\langle B\rangle}_{\in\mathbb{R}}
+     + \tfrac{i}{2}\underbrace{\mel{\psi}{C}{\psi}}_{\in\mathbb{R}}\Big|
+     \geq \tfrac12|\mel{\psi}{C}{\psi}| \qquad\text{c.b.d.}
+\end{align*}
+
+\textbf{PŘ 1:}
+\begin{itemize}[nosep]
+  \item Heisenberg \quad $[\hat x,\hat p] = i\hbar$ \quad $\to$ \quad $\vzorec{\Delta x\cdot\Delta p \geq \frac{\hbar}{2}}$
+  \item spin $1/2$ \quad $[\hat S_z,\hat S_x] = i\hbar\hat S_y$ \quad (ověřte! \quad obecně $[\hat S_a,\hat S_b] = i\hbar\,\varepsilon_{abc}\hat S_c$ \quad $\leftarrow$ Levi-Civita)
+\end{itemize}
+\quad tj.\ \quad $\Delta S_x\cdot\Delta S_z \geq \frac{\hbar}{2}|\langle S_y\rangle|$
+
+důsledky:
+\begin{enumerate}[label=\arabic*)]
+  \item \uv{ostrá hodnota} $\hat S_z$ \dots\ např.: $\ket{\psi} = \ket{z+}$ $\to$ $\Delta S_z = 0$ \\
+        pak musí být $\langle S_y\rangle = 0$, tj.\ $P_\pm = \frac12$!
+  \item \uv{ostrá hodnota} $S_y$ \dots\ tj.\ $|\langle S_y\rangle| = \frac{\hbar}{2}$ \\
+        $\to$ nesmí být $\Delta S_x = 0$ ani $\Delta S_z = 0$, \ tj.\ ne vlastní stavy!
+\end{enumerate}
+
+\subsection*{Kompatibilní pozorovatelné}
+následující tvrzení řeší důsledky relace $[\hat A,\hat B] = 0$ pro dvě pozorovatelné (hermitovské matice) $\hat A,\hat B$
+
+pozn: (triviální, ale důležitá) \quad $[\hat A,\hat B] = 0 \Leftrightarrow \hat A\hat B = \hat B\hat A$ \\
+\quad tj.\ ve výrazech lze prohazovat $A\leftrightarrow B$
+
+%----------------------------------------------------------------------
+\strana{QM-I-14}
+\begin{veta}[Lemma 1]
+$[\hat A,\hat B] = 0 \ \wedge\ B\ket{\psi} = b\ket{\psi}$ \quad $\Rightarrow$ \quad $B\ket{\phi} = b\ket{\phi}$ \quad pro $\ket{\phi} = A\ket{\psi}$
+\end{veta}
+
+\underline{DK:} prostě dosadit $\phi = A\ket{\psi}$ do $B\ket{\phi}$ + užití předpokladu \\
+\underline{komentář:} invariance vl.\ podprostorů $B$ vůči působení $A$
+
+\begin{veta}[Lemma 2]
+$[\hat A,\hat B] = 0$, \ $\hat A\ket{a_i} = a_i\ket{a_i}$, \ $a_1\neq a_2$ \quad $\Rightarrow$ \quad $\mel{a_1}{\hat B}{a_2} = 0$
+\end{veta}
+
+\underline{DK:} \quad
+$0 = \mel{a_1}{[\hat A,\hat B]}{a_2} = \mel{a_1}{\hat A\hat B}{a_2} - \mel{a_1}{\hat B\hat A}{a_2}$ \\
+\phantom{\underline{DK:}} \quad $0 = (a_1 - a_2)\mel{a_1}{\hat B}{a_2}$ \quad $\to$ \quad c.b.d.
+
+\underline{komentář:}
+
+\begin{center}
+\begin{tikzpicture}[x=0.5cm,y=0.5cm,gray]
+  % spektrální rozklad A
+  \node[left] at (-0.8,-2.5) {sp.\ rozklad $\hat A$};
+  \draw (0,0) -- (0,-5) (5,0) -- (5,-5);
+  \node at (0.5,-0.5) {$a_1$}; \node at (1.5,-1.5) {$a_1$};
+  \node at (2.5,-2.5) {$a_2$}; \node at (3.5,-3.5) {$a_2$}; \node at (4.5,-4.5) {$a_2$};
+  \node at (3.5,-1) {$0$}; \node at (1,-3.8) {$0$};
+  \draw[decorate,decoration={brace,amplitude=3pt}] (0,0.2) -- (2,0.2) node[midway,above=2pt] {\small $a_1$};
+  \draw[decorate,decoration={brace,amplitude=3pt}] (2,0.2) -- (5,0.2) node[midway,above=2pt] {\small $a_2$};
+  % šipka
+  \draw[->] (6.5,-2.5) -- (10,-2.5) node[midway,above] {$[\hat A,\hat B] = 0$};
+  % B
+  \node at (11,-2.5) {$\hat B =$};
+  \begin{scope}[xshift=6cm]
+    \draw (0,0) -- (0,-5) (5,0) -- (5,-5);
+    \draw[pattern=north east lines,pattern color=gray!60] (0,0) rectangle (2,-2);
+    \draw[pattern=north east lines,pattern color=gray!60] (2,-2) rectangle (5,-5);
+    \node at (3.5,-1) {$0$}; \node at (1,-3.5) {$0$};
+    \draw[decorate,decoration={brace,amplitude=3pt}] (0,0.2) -- (2,0.2) node[midway,above=2pt] {\small $a_1$};
+    \draw[decorate,decoration={brace,amplitude=3pt}] (2,0.2) -- (5,0.2) node[midway,above=2pt] {\small $a_2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+budeme hojně používat ve výpočtech \hfill
+$\nearrow$ částečná diagonalizace $B$ -- známé spektrum $A$
+
+\begin{veta}[Lemma 3a]
+$[\hat A,\hat B] = 0$ \quad $\Rightarrow$ \quad $[\hat P_a,\hat B] = 0$ \\
+\quad $\hat A = \sum_a a\hat P_a$, \qquad $\hat B = \sum_b b\hat P_b$
+\end{veta}
+
+\underline{DK:} báze vl.\ v.\ $\hat A$: \quad $\hat A\ket{a,\alpha} = a\ket{a,\alpha}$ \quad $\to$ \quad $\hat P_a = \sum_\alpha\ket{a\alpha}\bra{a\alpha}$
+\begin{align*}
+  \mel{a_1\alpha_1}{[\hat P_a,\hat B]}{a_2\alpha_2}
+  &= \sum_\alpha\underbrace{\braket{a_1\alpha_1}{a\alpha}}_{\delta_{a_1a}\delta_{\alpha_1\alpha}}\mel{a\alpha}{\hat B}{a_2\alpha_2}
+   - \sum_\alpha\mel{a_1\alpha_1}{\hat B}{a\alpha}\underbrace{\braket{a\alpha}{a_2\alpha_2}}_{\delta_{aa_2}\delta_{\alpha\alpha_2}} \\
+  &= \delta_{a_1a}\mel{a_1\alpha_1}{\hat B}{a_2\alpha_2} - \delta_{aa_2}\mel{a_1\alpha_1}{\hat B}{a_2\alpha_2} \\
+  &= 0 \quad \begin{cases}
+       \text{pro } a_1 = a_2 & \text{díky faktoru } \delta_{a_1a} - \delta_{a_2a} \\
+       \text{pro } a_1\neq a_2 & \text{díky lemmatu 2}
+     \end{cases}
+\end{align*}
+
+\begin{veta}[Lemma 3]
+$[\hat A,\hat B] = 0$ \quad $\Rightarrow$ \quad $[\hat P_a,\hat P_b] = 0 \quad \forall a,b$
+\end{veta}
+
+\underline{DK:} užití lemmatu 3a $\to$ $[\hat P_a,\hat B] = 0$ + opak.\ pro $\hat A\to\hat B$, $\hat B\to\hat P_a$
+
+\underline{Důsledek:} \quad $\hat P_{ab} \equiv \hat P_a\hat P_b$ je projekční operátor \\
+\quad ověření \quad $\hat P_{ab}^\dagger = \hat P_b^\dagger\hat P_a^\dagger = \hat P_b\hat P_a = \hat P_{ab}$ \\
+\quad \phantom{ověření} \quad $\hat P_{ab}^2 = \hat P_a\hat P_b\hat P_a\hat P_b = \hat P_a^2\hat P_b^2 = \hat P_{ab}$
+
+%----------------------------------------------------------------------
+\strana{QM-I-15}
+Dokonce platí
+
+\begin{veta}[VĚTA]
+samosdružené $\hat A,\hat B$: \quad $[\hat A,\hat B] = 0 \Leftrightarrow [\hat P_a,\hat P_b] = 0$
+\end{veta}
+
+pozn: \quad ($\Rightarrow$) jsme dokázali výše \\
+\phantom{pozn:} \quad ($\Leftarrow$) je triviálním důsl.\ spekt.\ rozkladu a linearity komutátoru: \\
+\phantom{pozn:} \quad\quad $[\hat A,\alpha_1\hat B_1 + \alpha_2\hat B_2] = \alpha_1[\hat A,\hat B_1] + \alpha_2[\hat A,\hat B_2]$
+
+\begin{veta}[VĚTA]
+samosdružené operátory $A, B$ mají společnou bázi vl.\ v. \quad $\Leftrightarrow$ \quad $\vzorec{[\hat A,\hat B] = 0}$
+\end{veta}
+
+\underline{DK:}
+\begin{itemize}[nosep]
+  \item[--] stačí vzít bázi ve vl.\ podprostoru $\hat P_{ab}\ket{\psi} = \lambda\ket{\psi}$ \\
+            pro $\lambda = 1$ a $\forall a,b$, pro něž je $\hat P_{ab}\neq 0$
+  \item[$\to$] tyto prostory jsou navz.\ ortogonální díky $\hat P_a\hat P_{a'} = \delta_{aa'}\hat P_a$ \\
+            (podob.\ pro $b$) a navíc jejich direkt.\ součet je celý $\mathcal{H}$, \\
+            neboť \quad $\hat I = \sum_{ab}\hat P_{ab}$ \quad \pozn{DK $= \hat I\cdot\hat I = \sum_a\hat P_a\cdot\sum_b\hat P_b$}
+\end{itemize}
+pozn \dots\ $\{(a,b)\}$ nemusí být kart.\ součin $\to$ vynecháváme $\hat P_{ab} = 0$
+
+\underline{pozn:}
+\begin{itemize}
+  \item společný spektr.\ rozklad \quad
+        $\hat A = \sum_{ab}a\hat P_{ab}$ \quad \pozn{$= \sum_a a\underbrace{\big(\textstyle\sum_b\hat P_{ab}\big)}_{\hat P_a}$} \\
+        \phantom{společný spektr.\ rozklad} \quad $\hat B = \sum_{ab}b\hat P_{ab}$ \quad \pozn{podobně}
+  \item funkce dvou proměnných \quad $f(\hat A,\hat B) = \sum_{ab}f(a,b)\hat P_{ab}$ \\
+        \dots\ není jednoznačně definovaná pro nekomutující $\hat A,\hat B$
+  \item dá se rozšířit na libovolný počet navzájem komut.\ oper. \\
+        $\hat A^{(1)},\hat A^{(2)},\dots,\hat A^{(N)}$ navzájem komutují $\Rightarrow$ $\exists$ spol.\ báze vl.\ v.\ $\forall\hat A^{(i)}$
+\end{itemize}
+
+\subsection*{Úplný systém komutujících operátorů (ÚSKO)}
+\begin{definice}[ÚSKO]
+Řekneme, že $\underbrace{\hat A^{(1)},\dots,\hat A^{(N)}}_{\text{(navzájem komutující)}}$ tvoří \kw{ÚSKO}, pokud $\forall$ přípustná \\
+vlastních čísel $\{a^{(1)},\dots,a^{(N)}\}$ jednoznačně definuje spol.\ vlastní vektor $\ket{\psi}$ (až na fázi)
+\end{definice}
+
+značení \quad $\ket{\psi} \equiv \ket{a^{(1)},\dots,a^{(N)}}$
+
+\underline{pozn:}
+\begin{itemize}[nosep]
+  \item tj.\ spol.\ projektory $P_{a^{(1)}\dots a^{(N)}}$ už jsou jednodim.\ nebo $0$
+  \item sadu $\{\hat A^{(1)},\dots,\hat A^{(N)}\}$ lze považovat za jeden operátor \\
+        s nedegenerovaným spektrem vl.\ čísel \dots\ $N$-tice $\{a^{(1)},\dots,a^{(N)}\} \equiv \vec a$
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{QM-I-16}
+\begin{veta}[Věta]
+Pokud operátor $\hat F$ komutuje s $\forall A^{(1)},\dots,A^{(N)}$, které tvoří ÚSKO, pak lze vyjádřit jako $\hat F = f(A^{(1)},\dots,A^{(N)})$
+\end{veta}
+
+\underline{DK:} $\hat F, A^{(1)},\dots,A^{(N)}$ mají spol.\ sadu vl.\ v., ale to musí být $\ket{a^{(1)}\dots a^{(N)}}$ \\
+\quad současně $\hat F\ket{a^{(1)}\dots a^{(N)}} = f\ket{a^{(1)}\dots a^{(N)}}$ \dots\ $f$ je jediné pro $\forall$ sadu $\uparrow$
+
+\textbf{Poznámka:}
+\begin{itemize}[nosep]
+  \item značná část zbytku přednášky bude o hledání ÚSKO pro různé systémy a hledání jejich spektra a transf.\ mezi nimi.
+  \item Pro odpovědi na fyzikální otázky potřebujeme, aby veličina, která nás zajímá, byla součástí ÚSKO, nebo jejich funkcí.
+  \item Uvidíme, že pro odpověď na otázky o časovém vývoji je vhodné mít v ÚSKO Hamiltonián.
+\end{itemize}
+
+\subsection*{Pozn: DIREKTNÍ SOUČET PROSTORŮ}
+\begin{minipage}{0.72\textwidth}
+rozklad \quad $I = \sum_a P_a$ \quad $\longleftrightarrow$ \quad $\mathcal{H} = \bigoplus_a\mathcal{H}_a$ \\
+\hspace*{4cm} \dots\ rozklad do navz.\ ortogon.\ podprostorů
+\end{minipage}
+\begin{minipage}{0.26\textwidth}
+\pozn{ve vektorech:} \\
+$\psi = \left(\begin{array}{c} f_1 \\ \hline \vdots \\ \hline f_d \end{array}\right)
+ \begin{array}{l} \}\,a_1 \\ \\ \}\,a_n \end{array}$
+\end{minipage}
+
+podobně lze skládat:
+
+\begin{definice}[Direktní součet]
+$\mathcal{H} = \mathcal{H}^{(1)}\oplus\mathcal{H}^{(2)}$ \quad je LVP daný
+$\Big\{\big(\ket{\psi^{(1)}},\ket{\psi^{(2)}}\big),\ \ket{\psi^{(1)}}\in\mathcal{H}^{(1)},\ \ket{\psi^{(2)}}\in\mathcal{H}^{(2)}\Big\}$ \\
+\quad s operacemi:
+\begin{align*}
+  \ket{\psi} + \ket{\phi} &= \big(\ket{\psi^{(1)}} + \ket{\phi^{(1)}},\ \ket{\psi^{(2)}} + \ket{\phi^{(2)}}\big) \\
+  \alpha\ket{\psi} &= \big(\alpha\ket{\psi^{(1)}},\ \alpha\ket{\psi^{(2)}}\big) \\
+  \braket{\phi}{\psi} &= \braket{\phi^{(1)}}{\psi^{(1)}}_{\mathcal{H}^{(1)}} + \braket{\phi^{(2)}}{\psi^{(2)}}_{\mathcal{H}^{(2)}}
+\end{align*}
+\end{definice}
+
+tj.\ v konečné dimenzích:
+\[
+  \ket{\psi^{(1)}} = \begin{pmatrix} f_1^{(1)}\\ \vdots\\ f_{d_1}^{(1)}\end{pmatrix},\quad
+  \ket{\psi^{(2)}} = \begin{pmatrix} f_1^{(2)}\\ \vdots\\ f_{d_2}^{(2)}\end{pmatrix}
+  \quad\longrightarrow\quad
+  \ket{\psi} = \begin{pmatrix} f_1^{(1)}\\ \vdots\\ f_{d_1}^{(1)}\\ f_1^{(2)}\\ \vdots\\ f_{d_2}^{(2)}\end{pmatrix}
+  \qquad\text{dimenze}
+\]
+tj.\ $\mathcal{H}^{(1)}\oplus\mathcal{H}^{(2)}$ je prostor, jehož bází (ortonormální) je sjednocení bází $\mathcal{H}^{(1)}$ a $\mathcal{H}^{(2)}$
+
+\underline{Příklad:} \quad $\mathbb{C}^2 = \mathbb{C}\oplus\mathbb{C}$; \quad $\mathbb{C}^n = \mathbb{C}\oplus\mathbb{C}\oplus\dots\oplus\mathbb{C}$ \\
+\phantom{\underline{Příklad:}} \quad $I = \sum_{ab}P_{ab}$ \quad \dots\ $\mathcal{H} = \bigoplus_a\bigoplus_b\mathcal{H}_{ab}$
+
+%----------------------------------------------------------------------
+\strana{QM-I-17}
+fyzikálně: \dots\ přidávání dalších hodnot pozorovatelné
+
+\begin{minipage}{0.4\textwidth}
+\textbf{PŘ:} Kvantové tečky:
+
+\begin{center}
+\begin{tikzpicture}[gray]
+  \foreach \x/\l in {0/A, 0.8/B, 2/C, 2.8/D}
+    \node[draw,circle,inner sep=1.5pt,double] at (\x,0) {\small\l};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+$\mathcal{H}^{(1)} = \mathcal{L}\{\ket{A},\ket{B}\}$ \\
+\quad poloha elektronu je $\ket{A}$ nebo $\ket{B}$ \\
+$\mathcal{H}^{(2)} = \mathcal{L}\{\ket{C},\ket{D}\}$ \\
+\quad poloha elektronu je $\ket{C}$ nebo $\ket{D}$
+\end{minipage}
+\[
+  \mathcal{H} = \mathcal{H}^{(1)}\oplus\mathcal{H}^{(2)} = \mathcal{L}\{\ket{A},\ket{B},\ket{C},\ket{D}\}
+\]
+
+\subsection*{DIREKTNÍ SOUČIN PROSTORŮ \ {\normalfont\small (někdy též tenzorový)}}
+\begin{itemize}[nosep]
+  \item[--] důležitá operace \dots\ skládání dvou kvantových systémů, respektive přidávání stupňů volnosti
+  \item[--] prostor, jehož bází je kartézský součin bází
+\end{itemize}
+
+\begin{definice}[Direktní (tenzorový) součin]
+nechť $\mathcal{H}^{(1)}$ \dots\ báze $\{\ket{\phi_i^{(1)}}\}_{i=1}^{d_1}$ \quad \dots\ podob.\ $\mathcal{H}^{(2)}$ \\
+\quad pak def: \quad $\mathcal{H} = \mathcal{H}^{(1)}\otimes\mathcal{H}^{(2)}$ \quad je prostor s bází $\{\ket{\phi_i^{(1)}}\ket{\phi_j^{(2)}}\}_{i=1,\,j=1}^{d_1,\ d_2}$ \\
+\quad tj.\ prostor s dimenzí $d = d_1\cdot d_2$ \quad (izomorfní maticím $d_1\times d_2$) \\
+\quad tj.\ obecný vektor \quad $\ket{\psi} = \sum_{ij}\psi_{ij}\ket{\phi_i}\ket{\phi_j}$
+\quad \dots\ někdy se vynechává horní index \dots\ automat.\ 1.\ vekt.\ $\mathcal{H}^{(1)}$ \\
+\quad + součet a násobení číslem definovaný přirozeně (distrib.\ zákon)
+\end{definice}
+
+\begin{itemize}
+  \item pozn: zkrácený zápis \quad $\ket{\phi_i^{(1)}}\ket{\phi_j^{(2)}} \equiv \ket{\phi_i^{(1)}}\otimes\ket{\phi_j^{(2)}} \equiv \ket{\phi_i^{(1)}\phi_j^{(2)}}$
+  \item \underline{skalární součin} \quad
+        $\braket{\phi^{(1)}\phi^{(2)}}{\psi^{(1)}\psi^{(2)}} = \braket{\phi^{(1)}}{\psi^{(1)}}_{\mathcal{H}^{(1)}}\braket{\phi^{(2)}}{\psi^{(2)}}_{\mathcal{H}^{(2)}}$ \\
+        speciálně báze: \quad $\braket{\phi_i\phi_j}{\phi_{i'}\phi_{j'}} = \braket{\phi_i}{\phi_{i'}}\braket{\phi_j}{\phi_{j'}} = \delta_{ii'}\delta_{jj'}$
+  \item \underline{faktorizované vektory:} \quad
+        $\ket{\psi^{(1)}} = \sum_i f_i^{(1)}\ket{\phi_i^{(1)}}$; \quad $\ket{\psi^{(2)}} = \sum_j f_j^{(2)}\ket{\phi_j^{(2)}}$ \\
+        $\to$ distrib.\ zákon \quad
+        $\ket{\psi^{(1)}\psi^{(2)}} \equiv \ket{\psi^{(1)}}\ket{\psi^{(2)}} \equiv \ket{\psi^{(1)}}\otimes\ket{\psi^{(2)}} = \sum_{ij}f_i^{(1)}f_j^{(2)}\ket{\phi_i\phi_j}$
+  \item \kw{entanglement:} \pozor{ne každý stav je možno napsat $\uparrow$}
+  \item možno zobecnit na více prostorů \quad
+        $\mathcal{H} = \mathcal{H}^{(1)}\otimes\mathcal{H}^{(2)}\otimes\mathcal{H}^{(3)}$, \quad
+        $\mathcal{H} = \bigotimes_{i=1}^{N}\mathcal{H}^{(i)}$
+  \item \underline{OPERÁTORY na $\mathcal{H}^{(1)}\otimes\mathcal{H}^{(2)}$:} \quad
+        obecně \quad $\hat A\otimes\hat B\ket{\phi}\ket{\psi} = \hat A\ket{\phi}\otimes\hat B\ket{\psi}$ \\
+        operátor $\hat A$ na $\mathcal{H}^{(1)}$ \dots\ rozšíření na $\mathcal{H}^{(1)}\otimes\mathcal{H}^{(2)}$ \dots\ $\hat A\to\hat A\otimes\hat I$ \\
+        podobně $\hat B$ na $\mathcal{H}^{(2)}$ $\to$ $\hat I\otimes\hat B$
+\end{itemize}
+ČASTO: ÚSKO na $\mathcal{H}^{(1)}\otimes\mathcal{H}^{(2)}$ budován z ÚSKO na $\mathcal{H}^{(1)}$ a ÚSKO na $\mathcal{H}^{(2)}$
+
+%----------------------------------------------------------------------
+\strana{QM-I-18}
+\subsection*{PŘÍKLADY}
+\textbf{A) MATEMATICKÉ}
+\begin{itemize}
+  \item $\mathcal{H} = \mathbb{C}$ \quad \dots\ 1D vektory \quad $\ket{\psi} = \alpha\ket{e_1}$ \hfill $\mathcal{H}'\equiv\mathcal{H}$
+  \begin{itemize}[nosep]
+    \item[--] $\mathcal{H}\oplus\mathcal{H}'$ \ (izomorfní $\mathbb{C}^2$) \quad \dots\ báze $\{\ket{e_1},\ket{e_1'}\}$ \dots\ 2 komp.\ \dots\ $\begin{pmatrix}\alpha\\ \alpha'\end{pmatrix}$
+    \item[--] $\mathcal{H}\otimes\mathcal{H}'$ \ (izomorfní $\mathbb{C}$) \quad \dots\ báze $\{\ket{e_1}\ket{e_1'}\}$ \dots\ 1 vektor
+  \end{itemize}
+  \item $\mathcal{H} = \mathbb{C}^2$
+  \begin{itemize}[nosep]
+    \item[--] $\mathcal{H}\oplus\mathcal{H}'$ \ ($\equiv\mathbb{C}^4$) \quad $\Big\}$ ale jiná struktura \quad
+          $\nearrow \begin{pmatrix}\ \\ \ \end{pmatrix}\!\begin{smallmatrix}1\\2\end{smallmatrix}\
+                    \begin{pmatrix}\ \\ \ \end{pmatrix}\!\begin{smallmatrix}1'\\2'\end{smallmatrix}$
+    \item[--] $\mathcal{H}\otimes\mathcal{H}'$ \ ($\equiv\mathbb{C}^4$) \hspace{3.7cm}
+          $\searrow \begin{pmatrix}\ \\ \ \\ \ \\ \ \end{pmatrix}\!\begin{smallmatrix}11'\\12'\\21'\\22'\end{smallmatrix}$
+  \end{itemize}
+  \item Obecně: \quad $\mathbb{C}^n\oplus\mathbb{C}^m \equiv \mathbb{C}^{n+m}$ \\
+        \phantom{Obecně:} \quad $\mathbb{C}^n\otimes\mathbb{C}^m \equiv \mathbb{C}^{n\times m}$ \quad
+        $\leftarrow$ izomorfní prostoru matic, ale v QM píšeme do sloupce
+\end{itemize}
+
+\textbf{B) FYZIKÁLNÍ:}
+\begin{itemize}
+  \item jedna částice v kvantové trojtečce
+        \tikz[gray,baseline=-3pt]{\foreach \x/\l in {0/1,0.6/2,1.2/3} \node[draw,circle,inner sep=1pt] at (\x,0) {\scriptsize\l};} \\
+        $\mathcal{H}^{(D)} = \mathcal{L}\{\ket{1},\ket{2},\ket{3}\}$ \ ($\equiv\mathbb{C}^3$) \\
+        \quad $\ket{\psi} = \sum_d\alpha_d\ket{d}$, \quad $d = 1,2,3$ \quad $\longleftrightarrow$ \quad
+        $\begin{pmatrix}\alpha_1\\ \alpha_2\\ \alpha_3\end{pmatrix}$
+  \item dvě částice v trojtečce: \\
+        $\mathcal{H} = \mathcal{H}^{(D)}\otimes\mathcal{H}^{(D)} = \mathcal{L}\{\ket{11},\ket{12},\ket{13},\ket{21},\dots,\ket{33}\}$ \ ($\equiv\mathbb{C}^9$) \\
+        \quad $\ket{\psi} = \sum_{d_1d_2}\psi_{d_1d_2}\ket{d_1d_2}$, \qquad $\ket{d_1d_2} \equiv \ket{d_1}\otimes\ket{d_2}$ \\
+        \hspace*{6.2cm} $\to$ částice 1 v $\ket{d_1}$; částice 2 v $\ket{d_2}$ \\
+        \underline{pozn:} komplikace \dots\ nerozlišitelné částice $\to$ později
+  \item částice se spinem $\frac12$: \quad $\mathcal{H}^{(S)} = \mathcal{L}\{\ket{+},\ket{-}\} \equiv \mathbb{C}^2$
+  \item částice se spinem $\frac12$ v trojtečce: \quad $\mathcal{H} = \mathcal{H}^{(D)}\otimes\mathcal{H}^{(S)}$ \ ($\equiv\mathbb{C}^6$) \\
+        \quad $\ket{\psi} = \sum_{ds}\psi_{ds}\ket{ds}$; \qquad
+        $\ket{ds} \equiv \underbrace{\ket{d}}_{=1,2,3}\otimes\underbrace{\ket{s}}_{=+,-}$
+        \quad $\leftarrow$ částice v místě $d$ se spinem $s$
+\end{itemize}
+\pozn{$\to$ na cvičení též pozorovatelné, 2 částice se spinem}
+
+př: \underline{Entanglement} \quad např.\ $\ket{\psi} = \ket{1+} + \ket{2-}$ nelze faktorizovat \\
+\quad jako \quad $\ket{\psi} = \ket{\phi}\otimes\ket{\sigma}$ \qquad \pozn{DALŠÍ PŘ NA CVIČENÍ}
+
+%======================================================================
+% QM-I-2014-4.pdf
+%======================================================================
+\section{Formalismus kvantové teorie 2}
+\strana{QM-I-19}
+\begin{itemize}[nosep]
+  \item[--] případ spojitého spektra
+  \item[--] pár poznámek k úvodu do funkcionální analýzy
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+\textbf{PŘ 1:} částice v 1D \dots\ bezstrukturní
+
+Experiment \dots\ měření polohy $x$:
+
+\bigskip
+\quad $\Rightarrow$ \quad $\mathcal{H} = \mathcal{L}\{\ket{x};\ x\in\mathbb{R}\}$
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\begin{tikzpicture}[gray,scale=0.8]
+  % zdroj
+  \draw (0,1.3) rectangle (0.3,1.6);
+  \draw[dashed,->] (0.4,1.45) -- (1.4,1.6);
+  % štěrbina
+  \draw[thick] (1.6,1.75) -- (1.6,2.8);
+  \draw[thick] (1.6,1.45) -- (1.6,0.3);
+  % dvojštěrbina
+  \draw[thick] (3,2.2) -- (3,3);
+  \draw[thick] (3,1.4) -- (3,1.95);
+  \draw[thick] (3,0) -- (3,1.15);
+  % stínítko
+  \draw[->] (4.6,0) -- (4.6,3.2) node[right] {$x$};
+  \foreach \y in {2.7,2.3,2.22,2.15,1.6,1.4,1.3} \fill (4.6,\y) circle (1.5pt);
+  \draw[->] (5,0.2) -- (5.5,0.35) node[right] {$z$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{tabular}{@{}lll}
+OBECNÝ VEKTOR: & $\ket{\psi} = \sum_x\psi_x\ket{x}$ \quad $\longrightarrow$ & $\ket{\psi} = \int\psi(x)\ket{x}\,\dd x$ \\[3pt]
+SKALÁRNÍ SOUČIN: & $\braket{\phi}{\psi} = \sum_x\phi_x^*\psi_x$ \quad $\longrightarrow$ & $\braket{\phi}{\psi} = \int\phi(x)^*\psi(x)\,\dd x$ \\[3pt]
+NORMOVÁNÍ: & $\ket{\psi}\to\ket{\psi'} = \dfrac{\ket{\psi}}{\sqrt{\braket{\psi}{\psi}}}$ & \dots\ lze jen $\int|\psi(x)|^2\dd x < \infty$
+\end{tabular}
+
+$\to$ požadujeme \quad $\mathcal{H} = L^2(\mathbb{R}) \equiv \big\{\psi(x):\ \int|\psi(x)|^2\dd x < \infty\big\}$ \\
+\hspace*{5.3cm} $\uparrow$ def.\ skoro všude na $\mathbb{R}$
+
+OPERÁTOR: \qquad $\hat x = \sum_x xP_x$ \quad $\longrightarrow$ \quad $\hat x = \int x\ket{x}\bra{x}\,\dd x$
+
+\textbf{PŘ 2:} (polo)nekonečný řetízek kvantových teček (atomů)
+
+\begin{center}
+\begin{tikzpicture}[gray]
+  \draw[dotted] (-0.8,0) -- (-0.3,0);
+  \foreach \x/\l in {0/{-2},1/{-1},2/0,3/1,4/2} {
+    \draw (\x,0) circle (0.2);
+    \node[above] at (\x,0.25) {\scriptsize$\ket{\l}$};
+  }
+  \draw[dotted] (4.3,0) -- (4.8,0);
+\end{tikzpicture}
+\end{center}
+
+$\mathcal{H} = \mathcal{L}\{\ket{n};\ n\in\mathbb{Z}\}$ \quad \dots\ $\ket{\psi} = \sum_n\psi_n\ket{n}$ \\
+\dots\ normalizovatelnost \quad $\|\psi\|^2 = \sum_n|\psi_n|^2 < \infty$ \quad \dots\ prostor $\mathcal{H} = \ell^2(\mathbb{Z})$
+
+zpátky k příkladu 1: \\
+\quad pravděpodobnost nalezení částice v místě $x$ $\sim|\psi_x|^2$ \\
+\quad vlastní stavy operátoru $\hat x$ na $L^2(\mathbb{R})$
+
+\begin{minipage}{0.58\textwidth}
+\underline{Diracova $\delta$-funkce}
+
+můžeme chápat jako limitu $\varepsilon\to 0$
+\[
+  \delta(x) = \lim_{\varepsilon\to 0}\frac{1}{\varepsilon}\,\chi_{\langle 0,\varepsilon\rangle}(x)
+\]
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.9]
+  \draw[->] (-1.5,0) -- (2.2,0) node[right] {\small $x$};
+  \draw[thick] (-1.5,0.02) -- (0,0.02) -- (0,1.8) -- (0.5,1.8) -- (0.5,0.02) -- (2,0.02);
+  \node[below] at (0,0) {\small $0$};
+  \node[below] at (0.5,0) {\small $\varepsilon$};
+  \node[gray,left] at (0,1.8) {\small $1/\varepsilon$};
+\end{tikzpicture}
+\end{minipage}
+
+vlastnosti: \quad $\delta(x) = 0\ \ \forall x\neq 0$; \quad $\int\delta(x)\,\dd x = 1$; \quad $\int\delta(x)f(x)\,\dd x = f(0)$ \\
+$\to$ vlastní funkce operátoru $\hat x$ \quad $\hat x\psi_{x_0} = x_0\psi_{x_0}$ \quad \dots\ $\psi_{x_0}(x) = \delta(x - x_0)$
+
+JEDNODUCHÝ NÁHLED \dots\ Dirac
+\[
+  \psi(x) \to \text{sloupcový vektor s spojitým indexem}
+  \begin{pmatrix}\vdots\\ \psi(x_0)\\ \vdots\end{pmatrix}\!\cdots x_0
+  \qquad
+  \delta(x - x_0)\cdots
+  \begin{pmatrix}0\\ \vdots\\ \blacktriangle\\ \vdots\\ 0\end{pmatrix}\!\cdots x_0
+\]
+\hfill jako konečně-dim $\mathcal{H}$, jen $\sum_n\to\int\dd x$
+
+%----------------------------------------------------------------------
+\strana{QM-I-20}
+\subsection{(jemný) Úvod do pokročilých mat.\ metod QM}
+
+Reed \& Simon: \emph{Methods of modern mathematical physics}. \quad (cca 1600 stran) \\
+\quad I.\ Functional analysis \quad II.\ Fourier Analysis, Self-Adjointness \\
+\quad III.\ Scattering Theory \quad IV.\ Analysis of Operators
+
+motto k úvodní kapitole: \emph{\uv{The beginner should not be discouraged if he finds that he does not have the prerequisites for reading the prerequisites.}}
+
+\subsubsection*{Hilbertův prostor \pozn{(ket vektory, stavy)}}
+\begin{definice}[Hilbertův prostor]
+LVP $\mathcal{H}$ nazveme \kw{Hilbertovým prostorem}, pokud \\
+\quad $\forall$ Cauchyovská posloupnost vektorů z $\mathcal{H}$ má limitu v $\mathcal{H}$ \hfill (ÚPLNOST)
+\end{definice}
+
+\underline{Pozn:} $\{\psi_n\}_{n=1}^\infty$ je Cauchyovská, pokud:
+\quad $\forall\varepsilon > 0\ \exists K:\ \forall m,n > K:\ \|\psi_m - \psi_n\| < \varepsilon$
+
+\underline{Pozn:} úplnost normovaného prostoru $\to$ Banachův prostor \\
+\quad v Hilbertovi: \quad $\|\psi\| = \sqrt{\braket{\psi}{\psi}}$ \quad norma induk.\ skal.\ součinem
+
+\underline{Pozn:} Def.\ limity: řekneme $\psi_n\to\psi$, pokud $\|\psi_n - \psi\|\to 0$
+
+\subsubsection*{Separabilita $\mathcal{H}$}
+\begin{definice}[Separabilita]
+$\mathcal{H}$ nazveme \kw{separabilní} $\Leftrightarrow$ $\exists$ spočetná hustá podmnožina \\
+\hspace*{3.9cm} $\Leftrightarrow$ $\exists$ spočetná ON báze
+\end{definice}
+
+\underline{PŘ:} (Prostory)
+\begin{itemize}[nosep]
+  \item prostor $\ell^2$ $\equiv$ prostor posl.\ $\psi\equiv\{\psi_n\}_{n=1}^\infty$; \ $\sum|\psi_n|^2 < \infty$ \\
+        \quad skalární součin \quad $\braket{\phi}{\psi} \equiv \sum_n\phi_n^*\psi_n$
+  \item prostor $L^2(a,b)$; \ $(a,b)\subset\mathbb{R}$ \dots\ může být neomezený \\
+        \quad $\to$ fce $\psi(x)$ na $(a,b)$: \ $\int|\psi|^2\dd x < \infty$ \\
+        \quad skalární součin \quad $\braket{\phi}{\psi} \equiv \int\phi^*(x)\psi(x)\,\dd x$
+  \item Banachův prostor $L^p(a,b)$: \quad $\int|\psi|^p\dd x < \infty$ \quad \dots\ $L^2$ je spec.\ př.
+\end{itemize}
+
+\underline{PŘ} (Báze)
+\begin{itemize}[nosep]
+  \item v prostoru $\ell^2$ je kanon.\ báze: \quad
+        $\begin{aligned}[t] \{1,0,0,\dots\} &\equiv \ket{\phi_1} \\ \{0,1,0,\dots\} &\equiv \ket{\phi_2} \\ &\ \vdots \end{aligned}$
+  \item v prostoru $L^2(0,L)$ \dots\ Fourierovská báze \quad
+        $\ket{\phi_k} = \frac{1}{\sqrt L}e^{2ik\pi x/L}$, \quad $k = \dots,-1,0,1,\dots$ \\
+        \quad nebo reálná \quad $\ket{\phi_n} = \frac{1}{\sqrt L},\ \sqrt{\frac2L}\sin\frac{2\pi x}{L},\ \sqrt{\frac2L}\cos\frac{2\pi x}{L},\ \dots$
+\end{itemize}
+$\forall\psi\in L^2(0,L)$: \quad $\ket{\psi} = \sum_n f_n\ket{\phi_n}$ \quad \dots\ reprezentace $\ket{\psi}\leftrightarrow\{f_n\}_{n=1}^\infty$ \\
+$\to$ \pozor{$\forall$ separabilní $\mathcal{H}$ je izomorfní $\ell^2$} \hfill lin.\ operátory \dots\ \uv{matice}
+
+%----------------------------------------------------------------------
+\strana{QM-I-21}
+\subsubsection*{Duální prostor \pozn{(bra vektory, spoj.\ lin.\ funkcionály)}}
+\underline{Lineární funkcionály:} \quad $F:\mathcal{H}\to\mathbb{C}$ \\
+\quad norma: \quad $\|F\| = \sup\dfrac{\|F(\ket{\psi})\|}{\|\psi\|}$ \quad \dots\ tj.\ $\|F(\psi)\| \leq \|\psi\|\cdot\|F\|$
+
+Lineární funkcionály: \quad omezenost $\Leftrightarrow$ spojitost v bodě $\Leftrightarrow$ spojitost na $\mathcal{H}$
+
+\begin{veta}[Rieszova věta o reprezentaci]
+$\forall F\in\mathcal{H}^*$ ($\equiv$ prostor $\forall$ spoj.\ lin.\ funkcionálů) \ $\exists!\,\ket{\phi}\in\mathcal{H}:\ F(\psi) = \braket{\phi}{\psi}$ \\
+navíc: \quad $\|F\|_{\mathcal{H}^*} = \|\phi\|_{\mathcal{H}}$ \\
+tj.\ izomorfizmus: \quad $\vzorec{\mathcal{H}\equiv\mathcal{H}^*}$
+\end{veta}
+
+\underline{pozn:} $\uparrow$ lze DK díky úplnosti a $\exists$ skalár.\ součinu
+\begin{itemize}[nosep]
+  \item[--] nefunguje v $L^p$ prostorech: \quad $(L^p)^* \equiv L^q$, \ kde $\frac1p + \frac1q = 1$
+\end{itemize}
+
+\subsubsection*{Diracova $\delta$-funkce}
+jako limita \quad $\delta = \lim_{\varepsilon\to 0^+}\delta_\varepsilon(x)$ \quad \dots\ není def.\ v $\mathcal{H}$
+
+\underline{DK:}
+\begin{itemize}[nosep]
+  \item[--] jako bodová konvergence: $\delta = 0$ skoro všude, tj.\ $\int\delta = 0$
+  \item[--] jako lim v $\mathcal{H}$ \dots\ není Cauchyovská posl.
+\end{itemize}
+
+\begin{minipage}{0.6\textwidth}
+\pozn{podrobněji: $\delta_n \equiv \delta_{\varepsilon = \frac1n}(x)$} \\
+\pozn{platí \quad $\|\delta_n - \delta_{2n}\| = \sqrt n \to\infty$}
+\end{minipage}
+\begin{minipage}{0.38\textwidth}
+\begin{tikzpicture}[gray,scale=0.7]
+  \draw[->] (-1,0) -- (2,0);
+  \draw (0,0) -- (0,2) -- (0.6,2) -- (0.6,0);
+  \node[left] at (0,2) {\small $n$};
+  \node[below] at (0.3,0) {\small $\frac1n$};
+  \node[right] at (1,1.2) {\small $\int|\cdot|^2 = n^2\cdot\frac1n = n$};
+\end{tikzpicture}
+\end{minipage}
+
+\underline{$\delta$-fce jako lin.\ funkcionál:} \quad $F_\varepsilon[\psi] = \int\delta_\varepsilon(x)\psi(x)\,\dd x$ \\
+\quad \dots\ není spojitý na $\mathcal{H}$ $\to$ nedefinuje spoj.\ funkcionál v lim $\varepsilon\to 0$
+
+\begin{minipage}{0.65\textwidth}
+\textbf{PŘ:} posloupnost \quad $\phi_n(x) = \dfrac{1}{1 + e^{-nx}} \xrightarrow{\ n\to\infty\ } \Theta(x)$ \\[3pt]
+\quad přitom \quad $F_\varepsilon[\phi_n] \to \frac12$ \quad ($\varepsilon\to 0$, fixní $n$) \\
+\quad ale \quad $F_\varepsilon[\phi_\infty] = 1$ \quad $\forall\varepsilon > 0$
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+\begin{tikzpicture}[scale=0.8]
+  \draw[gray,->] (-2,0) -- (2.2,0);
+  \draw[gray] (0,-0.4) -- (0,1.5);
+  \draw[thick] (-2,0.05) -- (-0.1,0.05);
+  \draw (0,0.05) circle (2pt);
+  \draw[thick] (0.1,1) -- (2,1);
+  \draw (0,1) circle (2pt);
+  \fill (0,0.5) circle (2pt);
+\end{tikzpicture}
+\end{minipage}
+
+Problém $\to$ příliš velký def.\ obor. \quad $F_\varepsilon[\psi]$ je spojitý funkcionál na prostoru spojitých funkcí
+
+\begin{definice}[$\delta$-funkce]
+$\delta$ jako spojitý lin.\ funkcionál na $\psi\in\mathcal{H}$; $\psi$ spojité
+\[
+  \vzorec{F_\delta[\psi] \equiv \int\delta(x)\psi(x)\,\dd x \overset{\text{def}}{\equiv} \psi(0)}
+\]
+\end{definice}
+podobně \quad $\delta(x - x_0)$ \quad \dots \quad $F_{\delta_{x_0}}[\psi] \equiv \int\delta(x - x_0)\psi(x)\,\dd x = \psi(x_0)$
+
+%----------------------------------------------------------------------
+\strana{QM-I-22}
+\noindent\rule{\linewidth}{0.4pt}
+\subsubsection*{ODBOČKA -- VZOREČKY PRO $\delta$-funkci}
+
+\underline{$\delta$-limity:}
+
+\begin{minipage}{0.7\textwidth}
+\begin{itemize}
+  \item $\delta_\alpha(x) = \dfrac{1}{\pi}\dfrac{\alpha}{x^2 + \alpha^2} \xrightarrow{\ \alpha\to 0\ } \delta(x)$
+  \item $\delta_\alpha(x) = \dfrac{\alpha}{\sqrt\pi}e^{-\alpha^2x^2} \xrightarrow{\ \alpha\to\infty\ } \delta(x)$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.28\textwidth}
+\begin{tikzpicture}[gray,scale=0.6]
+  \draw[thin] (0,0) -- (0,1.6);
+  \draw[thick,domain=-2.5:2.5,samples=80] plot (\x,{1.4*0.3^2/(\x*\x+0.3^2)});
+  \begin{scope}[yshift=-2cm]
+    \draw[thin] (0,0) -- (0,1.6);
+    \draw[thick,domain=-2.5:2.5,samples=80] plot (\x,{1.4*exp(-6*\x*\x)});
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+základ F.T.:
+\begin{itemize}
+  \item $\displaystyle\int e^{ikx}\,\dd k$ \quad přesněji \quad
+        $\displaystyle\int_{-\alpha}^{\alpha}e^{ikx}\,\dd k = \frac{e^{i\alpha x} - e^{-i\alpha x}}{ix} = \frac{2\sin\alpha x}{x} \xrightarrow{\ \alpha\to\infty\ } 2\pi\delta(x)$
+\end{itemize}
+
+\begin{minipage}{0.65\textwidth}
+tj. \quad $\bullet$ \ $\delta_\alpha(x) = \dfrac{\sin\alpha x}{\pi x} \xrightarrow{\ \alpha\to\infty\ } \delta(x)$
+
+\medskip
+tj. \quad $\vzorec{\displaystyle\int_{-\infty}^{\infty}e^{2\pi ikx}\,\dd k = \delta(x)}$ \quad $\delta$ je F.T.\ funkce $f(x) = 1$
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+\begin{tikzpicture}[gray,scale=0.6]
+  \draw[thin] (-3,0) -- (3,0);
+  \draw[thin] (0,-0.4) -- (0,1.8);
+  \draw[thick,domain=-3:3,samples=150] plot (\x,{(abs(\x)<0.001) ? 1.5 : 1.5*sin(5*\x r)/(5*\x)});
+\end{tikzpicture}
+\end{minipage}
+
+\underline{Další užitečné vztahy:}
+\begin{itemize}
+  \item $\delta(x) = \Theta'(x)$ \quad \dots\ lze chápat z \quad $\Theta(x) = \displaystyle\int_{-\infty}^{x}\delta(y)\,\dd y$
+
+  \begin{minipage}{0.45\textwidth}
+  nebo jako limitu:
+  \[ \delta_\varepsilon(x) \equiv \tfrac{1}{\varepsilon}\chi_{\langle 0,\varepsilon\rangle} = \Theta_\varepsilon'(x) \]
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[->] (-2,0) -- (3.5,0);
+    \draw[->] (0,0) -- (0,1.5);
+    \node[left] at (0,1) {$1$};
+    \draw[thick] (-2,0) -- (0,0) -- (0.8,1) -- (3,1) node[right] {$\Theta_\varepsilon(x)$};
+    \draw[gray,thin] (0.8,0) -- (0.8,1);
+    \node[below] at (0.8,0) {$\varepsilon$};
+  \end{tikzpicture}
+  \end{minipage}
+  \item $\delta(\alpha x) = \dfrac{1}{|\alpha|}\delta(x)$ \quad \dots\ ze subst.\ v \ $\int\delta(\alpha x)\,\dd x = \frac1\alpha\int\delta(y)\,\dd y$
+  \item $\delta\big(f(x)\big) = \displaystyle\sum_{x_k}\frac{\delta(x - x_k)}{|f'(x_k)|}$ \quad kde $x_k$ kořeny $f(x_k) = 0$
+  \item $\delta(-x) = \delta(x)$
+\end{itemize}
+\noindent\rule{\linewidth}{0.4pt}
+
+%======================================================================
+% Další části (každý dokument zvlášť v parts/)
+%======================================================================
+\newpage
+\input{parts/PoznQMI-4}
+\newpage
+\input{parts/PoznQMI-5}
+\newpage
+\input{parts/PoznQMI-6}
+\newpage
+\input{parts/PoznQMI-7}
+\newpage
+\input{parts/Poznamky_1_stacionarni_poruchy}
+\newpage
+\input{parts/Poznamky_2_variacni_metody}
+\newpage
+\input{parts/Poznamky_4_skladani_ang_mom}
+\newpage
+\input{parts/Poznamky_7_identicke_castice}
+
+\end{document}

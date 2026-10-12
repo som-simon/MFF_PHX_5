@@ -1,0 +1,439 @@
+%======================================================================
+% Poznamky_1_stacionarni_poruchy.pdf
+%======================================================================
+\section{Stacionární poruchová teorie}
+\strana{PT-1}
+\hfill (Rayleigh--Schrödinger)
+
+\underline{cíl:}
+\begin{itemize}[nosep]
+  \item přesně řešitelný problém
+  \item[$\hookrightarrow$] najít, jak se změní energie a vln.\ fce vázaných stavů
+\end{itemize}
+
+\begin{tabular}{@{}ll}
+problém: & $H = H_0 + \lambda H_1$ \qquad\qquad $\lambda H_1$ \uv{\kw{malá porucha}} \\
++ známe & $H_0\ket{n} = E_n^{(0)}\ket{n}$ \hspace{2.6cm} upřesníme později
+\end{tabular}
+
+$\lambda$ \dots\ v principu může být kontrolovatelné vnější pole, \\
+\quad ale většinou se vkládá pro usnadnění matem.\ analýzy a nakonec $\lambda = 1$
+\quad ($\nearrow$ umožňuje rozlišit řády)
+
++ Formální rozvoj do řady: \qquad $(H_0 + \lambda H_1)\ket{\psi_n} = E_n\ket{\psi_n}$ \hfill $(*)$
+\begin{align*}
+  E_n &= E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2E_n^{(2)} + \dots && (RE) \\
+  \ket{\psi_n} &= \ket{\psi_n^{(0)}} + \lambda\ket{\psi_n^{(1)}} + \lambda^2\ket{\psi_n^{(2)}} + \dots && (R\psi)
+\end{align*}
++ dosazení do $(*)$, srovnání stejných řádů $\lambda$:
+\begin{align*}
+  (P0):&\quad \big[H_0 - E_n^{(0)}\big]\ket{\psi_n^{(0)}} = 0 \\
+  (P1):&\quad \big[H_0 - E_n^{(0)}\big]\ket{\psi_n^{(1)}} = \big(E_n^{(1)} - H_1\big)\ket{\psi_n^{(0)}} \\
+  (P2):&\quad \big[H_0 - E_n^{(0)}\big]\ket{\psi_n^{(2)}} = \big(E_n^{(1)} - H_1\big)\ket{\psi_n^{(1)}} + E_n^{(2)}\ket{\psi_n^{(0)}} \\
+  &\qquad\vdots \\
+  (PS):&\quad \big[H_0 - E_n^{(0)}\big]\ket{\psi_n^{(s)}} = \big(E_n^{(1)} - H_1\big)\ket{\psi_n^{(s-1)}} + E_n^{(2)}\ket{\psi_n^{(s-2)}} + \dots + E_n^{(s)}\ket{\psi_n^{(0)}}
+\end{align*}
+\hfill $\swarrow$ má formu rekur.\ relací: $\ket{\psi_n^{(s)}}$ pomocí $\ket{\psi_n^{(s')}}$, \ $s' < s$
+
+rovnice $(*)$ neurčuje $\ket{\psi}$ jednoznačně $\to$ normalizace a fáze
+
+je výhodné volit \kw{intermediální normalizaci}: \qquad $\braket{n}{\psi_n} = 1$ \hfill $(**)$ \\
+\quad (to je povoleno, pokud $\braket{n}{\psi_n}\neq 0$; dá se předp., že pro $H_1$ malé nebude $\ket{\psi_n}$ ortogonální k $\ket{n}$), navíc fixuje i fázi
+
+$(**)$ + dosazení $(R\psi)$ \quad $\Rightarrow$ \quad $\braket{n}{\psi_n^{(0)}} = 1$; \quad $\braket{n}{\psi_n^{(s)}} = 0 \quad \forall s > 0$
+
+řešení hledáme ve tvaru rozvoje \quad $\ket{\psi_n} = \sum_{n'}\ket{n'}\braket{n'}{\psi_n}$ \\
+\quad tj. \quad $\ket{\psi_n^{(s)}} = \sum_{n'}\ket{n'}\braket{n'}{\psi_n^{(s)}}$ \quad \dots\ $n'\neq n$ pro $s > 0$
+
+(výhoda $(**)$ \dots\ projekce $(PS)$ na $\bra{n}$ \dots\ spousta členů zmizí)
+\[
+  \to\quad \bra{n}(PS):\quad
+  \underbrace{\mel{n}{H_0 - E_n^{(0)}}{\psi_n^{(s)}}}_{0} = -\mel{n}{H_1}{\psi_n^{(s-1)}} + 0 + \dots + E_n^{(s)}\underbrace{\braket{n}{\psi_n^{(0)}}}_{1}
+\]
+\quad $\hookrightarrow$ neboť $(P0)$: řešení \quad $E_n^{(0)} = \varepsilon_n$, \quad $\ket{\psi_n^{(0)}} = \ket{n}$ \quad $\leftarrow$ kvůli $(**)$
+
+tj.\ obecně
+\[
+  \vzorec{E_n^{(s)} = \mel{n}{H_1}{\psi_n^{(s-1)}}}
+\]
+\quad \dots\ stačí vln.\ fci o řád nižší
+
+%----------------------------------------------------------------------
+\strana{PT-2}
+\underline{vlnové funkce:} \quad \tikz[baseline=(c.base)]\node[draw,rounded corners=5pt,inner sep=1.5pt](c){\small 0.ř.}; \quad $\ket{\psi_n^{(0)}} = \ket{n}$
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\tikz[baseline=(c.base)]\node[draw,rounded corners=5pt,inner sep=1.5pt](c){\small 1.ř.}; \quad $E_n^{(1)} = \mel{n}{H_1}{\psi_n^{(0)}} = \mel{n}{H_1}{n}$
+\begin{align*}
+  \bra{m}(P1):&\quad (\varepsilon_m - \varepsilon_n)\braket{m}{\psi_n^{(1)}} = \mel{m}{E_n^{(1)} - H_1}{n} = -\mel{m}{H_1}{n}; \quad m\neq n \\
+  \to&\quad \braket{m}{\psi_n^{(1)}} = -\frac{\mel{m}{H_1}{n}}{\varepsilon_m - \varepsilon_n} \quad\text{pro } m\neq n; \qquad \braket{n}{\psi_n^{(1)}} = 0 \text{ podle } (**)
+\end{align*}
+\[
+  \text{tj.}\quad \vzorec{\ket{\psi_n^{(1)}} = \sum_{m\neq n}\frac{\ket{m}\mel{m}{H_1}{n}}{\varepsilon_n - \varepsilon_m}} \qquad (\psi 1)
+\]
+\underline{diskuse:} výraz $\uparrow$ umožňuje odhadnout podmínky platnosti rozvoje \\
+\quad \dots\ aby $\ket{\psi_n^{(1)}}$ malé, musí být \quad $|\mel{m}{H_1}{n}| \ll |\varepsilon_n - \varepsilon_m| \quad \forall m,n$
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\tikz[baseline=(c.base)]\node[draw,rounded corners=5pt,inner sep=1.5pt](c){\small 2.ř.}; \quad
+\[
+  \vzorec{E_n^{(2)} = \mel{n}{H_1}{\psi_n^{(1)}} = \sum_{m\neq n}\frac{\mel{n}{H_1}{m}\mel{m}{H_1}{n}}{\varepsilon_n - \varepsilon_m}} \qquad (E2)
+\]
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection*{Případ degenerovaného spektra}
+formule $(\psi 1)$ a $(E2)$ \pozor{divergují!} \\
+Problém souvisí s tím, že neplatí $\ket{\psi_n^{(0)}} = \ket{n}$, ale lin.\ kombinace $\ket{n}$-ek se stejnou energií (ale nevíme jaká lin.\ kombinace). \\
+Je výhodné změnit značení: \qquad $H_0\ket{m,r} = \varepsilon_m\ket{m,r}$ \hfill $(\bullet)$
+
+\underline{Problém:} i \tikz[baseline=(c.base)]\node[draw,rounded corners=5pt,inner sep=1.5pt](c){\small 0-tý řád}; v jistém smyslu závisí na poruše; konkrétně \\
+\quad plné řešení pro $H = H_0 + \lambda H_1$ je \quad
+$\ket{\psi_{m,t}(\lambda)} \xrightarrow{\ \lambda\to 0\ } \ket{\psi_{m,t}^{(0)}}$, \quad $E_{m,t}\xrightarrow{\ \lambda\to 0\ }\varepsilon_m$ \\
+podle $(P0)$ je $\ket{\psi_{m,t}^{(0)}}$ řešením $(\bullet)$, ale nyní to neznamená $\ket{\psi_{m,t}^{(0)}} = \ket{m,r}$! \\
+(NA PŘEDNÁŠCE ZMÍNIT, JAK VYPADÁ ZOBEC.\ $(Pi)$ \dots\ V PODST.\ TOTOŽNÉ) \\
+může obecně být: \quad $\ket{\psi_{m,t}^{(0)}} = \sum_r C_r^{(t)}\ket{m,r}$ \\
+\quad rovnice $(\bullet)$ nedává žádnou restrikci na $C_r^{(t)}$ \dots\ (podobná situace v časové poruch.\ teorii (ME)) \\
+\quad $\to$ nutno z vyšších řádů \dots\ pochopitelné
+
+\tikz[baseline=(c.base)]\node[draw,rounded corners=5pt,inner sep=1.5pt](c){\small 1.\ řád}; \quad $(P1)\ \to\ \big[H_0 - \underbrace{E_m^{(0)}}_{\varepsilon_m}\big]\ket{\psi_{m,t}^{(1)}} = \big[E_{m,t}^{(1)} - H_1\big]\underbrace{\ket{\psi_{m,t}^{(0)}}}_{\sum_r C_r^{(t)}\ket{m,r}}$ \quad (+ dosazení)
+\[
+  \bra{m,r'}(P1):\quad \underbrace{[\varepsilon_m - \varepsilon_m]}_{=0}\braket{m,r'}{\psi_{m,t}^{(1)}} = \sum_r\Big\{E_{m,t}^{(1)}\delta_{r'r} - \mel{m,r'}{H_1}{m,r}\Big\}C_r^{(t)}
+\]
+\begin{veta}[Zobecnění formule pro 1.\ řád opravy energie -- současně udává 0.\ ř.\ vln.\ fce]
+\[
+  \text{tj.}\qquad \vzorec{\sum_r\mel{m,r'}{H_1}{m,r}\,C_r^{(t)} = E_{m,t}^{(1)}\,C_{r'}^{(t)}}
+\]
+\end{veta}
+umožňuje definovat \uv{správné} vektory 0.\ řádu: \quad $\ket{m,t} \equiv \ket{\psi_{m,t}^{(0)}} = \sum_r C_r^{(t)}\ket{m,r}$
+
+zobecnění normalizační podm.\ $(**)$: \quad $\braket{m,t}{\psi_{m,t}(\lambda)} = 1$ \\
+\quad $\to$ v 0.ř. \quad $\braket{m,t'}{\psi_{m,t}^{(0)}} = \delta_{tt'}$ \qquad
+$\hookrightarrow$ implikuje $\braket{m,t}{\psi_{m,t}^{(s)}} = 0 \quad \forall s > 0$ \\
+\hspace*{6.3cm} neříká nic o $\braket{m,t'}{\psi_{m,t}^{(s)}}$; $s > 0$; $t\neq t'$
+
+%----------------------------------------------------------------------
+\strana{PT-3}
+\underline{1.\ řád vlnové funkce:} \\
+Nyní již budeme používat bázi $\ket{m,t}$, v níž \quad $\mel{m,t}{H_1}{m,t'} = E_{m,t}^{(1)}\delta_{tt'}$ \\
+\hspace*{6cm} \pozor{pozor} $\mel{m,t}{H_1}{m',t'}$ není omezené $\lrcorner$
+\[
+  \begin{array}{l}\bra{m',t'}(P1):\\ (m'\neq m)\end{array}\quad
+  (\varepsilon_{m'} - \varepsilon_m)\braket{m',t'}{\psi_{m,t}^{(1)}} = E_m^{(1)}\underbrace{\braket{m',t'}{m,t}}_{0} - \underbrace{\mel{m',t'}{H_1}{m,t}}_{\neq 0\ \dots\ \text{viz}\ \uparrow}
+\]
+\[
+  \text{tj.}\quad \vzorec{\braket{m',t'}{\psi_{m,t}^{(1)}} = \frac{\mel{m',t'}{H_1}{m,t}}{\varepsilon_m - \varepsilon_{m'}}} \qquad m'\neq m
+\]
+\pozor{pozor:} $\nearrow$ nefixuje $\braket{m,t'}{\psi_{m,t}^{(1)}}$ \textcircled{?} \ (dá se určit z (P1) projekt.\ $\bra{m,t'}$, $t'\neq t$) \\
+\hspace*{5.6cm} ale může přispět i (P2)
+
+obecně pro korekce energie vyšších řádů platí stále: \quad $E_{m,t}^{(s)} = \mel{m,t}{H_1}{\psi_{m,t}^{(s-1)}}$ \\
+\quad díky tomu, že $\braket{m,t}{\psi_{m,t}^{(s)}} = 0 \quad \forall s > 0$; speciálně
+
+\underline{2.\ řád energie:} \pozn{přeškrtnutý první pokus o výpočet}
+\begin{align*}
+  E_{m,t}^{(2)} &= \mel{m,t}{H_1}{\psi_{m,t}^{(1)}} \\
+  &= \sum_{t'}\underbrace{\mel{m,t}{H_1}{m,t'}}_{E_{m,t}^{(1)}\delta_{tt'}}\underbrace{\braket{m,t'}{\psi_{m,t}^{(1)}}}_{=0\text{ pro } t = t'}
+   + \sum_{m'\neq m}\sum_{t'}\frac{\mel{m,t}{H_1}{m',t'}\mel{m',t'}{H_1}{m,t}}{\varepsilon_m - \varepsilon_{m'}}
+\end{align*}
+\hfill tj.\ členy, které neznáme \textcircled{?}, nepřispívají (totéž ve vyšších řádech)
+\[
+  \text{tj.\ opět platí}\qquad \vzorec{E_{m,t}^{(2)} = \sum_{t',\,m'\neq m}\frac{|\mel{m,t}{H_1}{m',t'}|^2}{\varepsilon_m - \varepsilon_{m'}}}
+\]
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{ZÁVĚR:} všechny problémy degenerovaného spektra se odstr.
+
+\underline{pozn.\ na okraj:} \quad $\bra{m,t'}(P1)$, \ $t'\neq t$:
+\begin{align*}
+  E_{m,t}^{(1)}\braket{m,t'}{\psi_{m,t}^{(1)}} &= \mel{m,t'}{H_1}{\psi_{m,t}^{(1)}} \\
+  &= \sum_{t''}\underbrace{\mel{m,t'}{H_1}{m,t''}}_{E_{m,t'}^{(1)}\delta_{t't''}}\braket{m,t''}{\psi_{m,t}^{(1)}}
+   + \sum_{m''\neq m}\sum_{t''}\mel{m,t'}{H_1}{m'',t''}\frac{\mel{m'',t''}{H_1}{m,t}}{\varepsilon_m - \varepsilon_{m''}}
+\end{align*}
+\[
+  \to\quad \big(E_{m,t}^{(1)} - E_{m,t'}^{(1)}\big)\braket{m,t'}{\psi_{m,t}^{(1)}} = \sum_{m''\neq m,\,t''}\frac{\mel{m,t'}{H_1}{m'',t''}\mel{m'',t''}{H_1}{m,t}}{\varepsilon_m - \varepsilon_{m''}}
+\]
+tato rovnice určuje $\braket{m,t'}{\psi_{m,t}^{(1)}}$, pokud $H_1$ snímá degeneraci \\
+\quad (není automatické, např.\ vodík \dots\ $E_n$; degenerace dle $l, m$; \\
+\quad porucha může sejmout jen $l$-degeneraci, např.\ korekce na jaderný potenciál) \\
+tento problém mohou vyřešit vyšší řády, nebo jde o princip.\ problém, že i $H_0 + H_1$ má degeneraci, a tudíž $\ket{\psi_{m,t}}$ nejsou určeny jednoznačně; je např.\ možné položit $\braket{m,t'}{\psi_{m,t}^{(1)}} = 0$, pokud $t$ je dobré kvantové číslo pro $H = H_0 + H_1$
+
+$\uparrow$ VŠE V TÉTO POZN.\ PODSTATNÉ JEN, POKUD NÁS ZAJÍMÁ: VLN.\ FCE \\
+vln.\ fci potřebujeme i do vyšších řádů korekcí $E_{m,t}^{(s)}$ \\
+\quad -- obecně stále komplikovanější výrazy, lepší $\lrcorner$
+
+%----------------------------------------------------------------------
+\subsection{Brillouin--Wignerova teorie poruch}
+\strana{PT-4}
+až dosud: Rayleigh--Schrödinger \dots\ poruchová teorie \underline{explicitní} \\
+\hspace*{5cm} \dots\ výrazy obsahující neporušené $E_n^{(0)} = \varepsilon_n$ \\
+nyní \underline{implicitní} výrazy obsahující $E_n$, ale jednodušší struktura vyšších ř.
+
+\begin{definice}[projekční operátory]
+\[ Q_n = \sum_{n'\neq n}\ket{n'}\bra{n'} = 1 - \ket{n}\bra{n} \]
+\end{definice}
++ stále používáme normalizaci $\braket{n}{\psi_n} = 1$, \quad tj.\ $\ket{\psi_n} = \ket{n} + Q_n\ket{\psi_n}$
+
+rovnici pro přesné vl.\ v.\ píšeme ($\lambda = 1$):
+\begin{align*}
+  (E_n - H_0)\ket{\psi_n} &= H_1\ket{\psi_n} \qquad\qquad (I) \\
+  \underbrace{Q_n(E_n - H_0)}_{(E_n - H_0)Q_n}\ket{\psi_n} &= Q_nH_1\ket{\psi_n}
+  \qquad\to\ [H_0,Q_n] = 0 \text{ díky tomu, že mají stejné vl.\ v.}
+\end{align*}
+\[
+  \Rightarrow\quad Q_n\ket{\psi_n} = \underbrace{(E_n - H_0)^{-1}}_{\text{rozumíme ve vl.\ prostoru } Q_n \text{ odp.\ } \lambda = 1}Q_nH_1\ket{\psi_n}
+  \qquad \text{\pozor{!} nutno dobře def.\ inverzi}
+\]
+def \quad $R_n \equiv (E_n - H_0)^{-1}Q_n = Q_n(E_n - H_0)^{-1} \equiv Q_n(E_n - H_0)^{-1}Q_n$
+
+\dots\ lze psát \quad $\vzorec{\ket{\psi_n} = \ket{n} + R_nH_1\ket{\psi_n}}$ \quad \dots\ form.\ řeš.\ $= (I - R_nH_1)^{-1}\ket{n}$
+\pozn{geom.\ řada -- alternativní odvození} \\
+\dots\ podobnost s Lippmann--Schwingerovou rovnicí není náhodná \\
+$\to$ lze řešit iteracemi (podob.\ Born.\ řadě) \dots\ pro \uv{$H_1 \ll H_0$}
+\[
+  \ket{\psi_n} = \ket{n} + R_nH_1\ket{n} + (R_nH_1)^2\ket{n} + \dots
+\]
+\begin{itemize}
+  \item $\bra{n}(I)$: \quad $E_n = \varepsilon_n + \mel{n}{H_1}{\psi_n} = \varepsilon_n + \mel{n}{H_1}{n} + \mel{n}{H_1(R_nH_1)}{n} + \mel{n}{H_1(R_nH_1)^2}{n} + \dots$
+\end{itemize}
+\begin{veta}[Brillouin--Wignerova řada]
+\begin{align*}
+  \text{tj.}\quad
+  E_n = \underbrace{\varepsilon_n}_{(a)} &+ \underbrace{\mel{n}{H_1}{n}}_{(b)}
+  + \underbrace{\sum_{n'\neq n}\frac{\mel{n}{H_1}{n'}\mel{n'}{H_1}{n}}{E_n - \varepsilon_{n'}}}_{(c)} \\
+  &+ \underbrace{\sum_{n'\neq n}\sum_{n''\neq n}\frac{\mel{n}{H_1}{n'}\mel{n'}{H_1}{n''}\mel{n''}{H_1}{n}}{(E_n - \varepsilon_{n'})(E_n - \varepsilon_{n''})}}_{(d)} + \dots
+\end{align*}
+\end{veta}
+
+\underline{Poznámky:}
+\begin{enumerate}[label=\arabic*)]
+  \item implicitní rovnice \dots\ obsahuje $E_n$ na pravé straně. \\
+        použití: \quad A) iterace \\
+        \phantom{použití:} \quad B) dosazení $E_n$ přísl.\ řádu \dots\ např.\ ve III.\ ř.\ $E_n = \varepsilon_n + \langle H_1\rangle_n$ v (c) \\
+        \hspace*{8.6cm} a $E_n = \varepsilon_n$ v (d)
+  \item po dosazení $E_n = \sum E_n^{(s)}\lambda^s$ a rozvoji pravé strany do řady v $\lambda$ rekonstruujeme Rayleigh--Schrödingera.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\subsection{Stacionární poruchová teorie -- řešené příklady}
+\strana{PT-5}
+
+\begin{priklad}[\textcircled{1} Lineární harm.\ oscilátor s lin.\ poruchou]
+\[
+  H_0 = \frac{p^2}{2m} + \frac12 m\omega^2x^2; \qquad H_1 = \lambda x
+\]
+\underline{přesné řešení:} \quad $H = H_0 + H_1 = \frac12 m\omega^2(x + x_0)^2 + \bar\varepsilon_0$
+\qquad $x_0 = \dfrac{\lambda}{m\omega^2}$, \quad $\bar\varepsilon_0 = -\dfrac12\dfrac{\lambda^2}{m\omega^2}$
+
+tj.\ spektrum \quad $\varepsilon_n = \hbar\omega(n + \frac12)$ \quad $\longrightarrow$ \quad $E_n = \hbar\omega(n + \frac12) + \bar\varepsilon_0$
+
+\underline{stacionární p.t.:} \quad platí \quad $H_1 = \lambda x = \lambda\sqrt{\dfrac{\hbar}{2m\omega}}\,(a + a^\dagger) \equiv A(a + a^\dagger)$
+\begin{align*}
+  E_n^{(1)} &= \mel{n}{H_1}{n} = A\mel{n}{a + a^\dagger}{n} = 0 \\
+  E_n^{(2)} &= \sum_{n'\neq n}\frac{|\mel{n}{H_1}{n'}|^2}{\varepsilon_n - \varepsilon_{n'}}
+   = A^2\sum_{n'\neq n}\frac{|\mel{n}{a + a^\dagger}{n'}|^2}{\varepsilon_n - \varepsilon_{n'}}
+   = \frac{A^2}{\hbar\omega}\Big\{|\mel{n}{a^\dagger}{n-1}|^2 - |\mel{n}{a}{n+1}|^2\Big\} \\
+  &= \frac{A^2}{\hbar\omega}\big\{n - (n+1)\big\} = -\frac{\lambda^2}{2m\omega^2}
+\end{align*}
+\[
+  \text{tj.}\quad \vzorec{E_n = \varepsilon_n + E_n^{(1)} + E_n^{(2)} + \mathcal{O}(\lambda^3) = \hbar\omega(n + \tfrac12) - \frac{\lambda^2}{2m\omega^2}}
+  \quad\dots\ \text{přesný výsledek}
+\]
++ zdůvodnit proč \ + otázka do publika: vlnové funkce?
+
+vln.\ fce do 1.ř.:
+\[
+  \ket{\psi_n} = \ket{n} + \sum_{n'\neq n}\frac{\ket{n'}\mel{n'}{H_1}{n}}{\varepsilon_n - \varepsilon_{n'}}
+  = \ket{n} + \frac{A}{\hbar\omega}\Big\{\sqrt n\,\ket{n-1} - \sqrt{n+1}\,\ket{n+1}\Big\}
+\]
+\end{priklad}
+
+\begin{priklad}[\textcircled{2} Matice $2\times2$ (diagonální s mimodiag.\ poruchou)]
+\[
+  H_0 = \begin{pmatrix}\varepsilon_1 & 0\\ 0 & \varepsilon_2\end{pmatrix} \qquad
+  H_1 = \begin{pmatrix}0 & v\\ v^* & 0\end{pmatrix}
+\]
+$\to$ přesné řešení \quad $E = \frac12(\varepsilon_1 + \varepsilon_2) \pm \frac12\sqrt{(\varepsilon_1 - \varepsilon_2)^2 + 4|v|^2}$ \\
+\quad degenerace: $\varepsilon_1 = \varepsilon_2 \equiv \varepsilon$ \quad \dots \quad $E = \varepsilon \pm |v|$
+
+B-W teorie: \quad
+$\left.\begin{aligned}
+  E_1 &= \varepsilon_1 + \frac{|v|^2}{E_1 - \varepsilon_2} \\
+  E_2 &= \varepsilon_2 + \frac{|v|^2}{E_2 - \varepsilon_1}
+\end{aligned}\right\}$
+\quad $\Longleftrightarrow$ \quad $(E - \varepsilon_1)(E - \varepsilon_2) = |v|^2$ \quad $\to$ přes.\ řešení $\uparrow$
+
+R-S teorie: \quad $E_1 = \varepsilon_1 + \dfrac{|v|^2}{\varepsilon_1 - \varepsilon_2}$ \qquad OK za předp.\ $\dfrac{|v|}{|\varepsilon_1 - \varepsilon_2|} \ll 1$
+
+\dots\ na CV ověřit rozvojem přesného výrazu
+\end{priklad}
+
+\dots\ tj.\ \kw{B-W teorie nemá problém s degenerací ani blízkostí degenerace} \\
+\quad (formalismus nezávisí na degeneraci)
+
+\dots\ alternativa \dots\ viz Formánkova učebnice \dots\ R-S teorie formulovaná pomocí proj.\ operátorů.
+
+%----------------------------------------------------------------------
+\strana{PT-6}
+\subsubsection*{\textcircled{3} Indukovaný el.\ dipól atomu v E-poli}
+
+\underline{Elektrický dipól:} \dots\ rozložení náboje \quad $\rho(\vec r) = -|\psi(\vec r)|^2\cdot e$
+\[
+  \vec d \equiv \int\rho(\vec r)\cdot\vec r\,\dd^3r = -\int\psi^*(\vec r)\,e\vec r\,\psi(\vec r)\,\dd^3r \equiv -\langle e\hat{\vec r}\rangle_\psi
+\]
+\quad operátor el.\ dipólu: \quad $\hat{\vec d} = -e\hat{\vec r}$ \quad (vektor)
+
+\begin{definice}[Polarizovatelnost atomu $\alpha$]
+\begin{tabular}{@{}p{0.55\linewidth}l}
+$\langle|\hat{\vec d}|\rangle = \alpha|\vec E|$ \quad \dots\ konst.\ úměrnosti v záv.\ vel.\ indukov.\ dipólu na E-poli & (D) \\[4pt]
+energie dipólu v E-poli: \quad $-\frac12\alpha|\vec E|^2$ & (E)
+\end{tabular}
+\end{definice}
+
+\begin{priklad}[Příklad: H(1s) v poli E]
+\dots\ $H_0$ \dots\ Hamilt.\ atomu vodíku
+\begin{align*}
+  H_1 &= -\vec d\cdot\vec E = e\vec E\cdot\vec r \qquad + \text{volba } \vec E \text{ ve směru osy } z \\
+  &= e|E|\,r\cos\theta
+\end{align*}
+0-tý řád: \dots\ $H_0\ket{nlm} = E_n\ket{nlm}$ \\
+\quad \dots\ degenerované spektrum, ale pro začátek se budeme zajímat o H v zákl.\ stavu \dots\ nedegenerovaná 1s hladina $\ket{100}$
+
+1.ř.: \quad $E_{100}^{(1)} = \mel{100}{H_1}{100} = 0$ \quad ze symetrie, neboť $|\psi|^2$ je invar.\ vůči $r\to -r$, \\
+\hspace*{5.5cm} ale $H_1$ není invariantní při $\nearrow$ \\
+\quad \dots\ platí dokonce ve $\forall$ stavech: \quad $\mel{nlm}{H_1}{nlm} = 0$
+
+\begin{itemize}
+  \item \underline{polarizovatelnost lze zjistit ze vzorce (E):}
+  \[
+    E_{100}^{(2)} = \sum_{n'lm}\frac{|\mel{n'lm}{H_1}{100}|^2}{\varepsilon_1 - \varepsilon_{n'}}
+    \quad\Rightarrow\quad
+    \alpha = 2e\sum_{n'lm}\frac{|\mel{n'lm}{r\cos\theta}{100}|^2}{-\varepsilon_1 + \varepsilon_{n'}}
+  \]
+  \pozn{znaménko $-$ ve vzorci (E) zakroužkováno a spojeno čarou se jmenovatelem}
+
+  později uvidíme, že výběrová pravidla dovolí jen $\mel{n'10}{r\cos\theta}{100}$; ostatní jsou 0. \\
+  (Zde teď je vidět, že $m = m'$ a v podstatě i $l = 1$), neboť $r\cos\theta\ket{100}$ je úměrné $Y_{10}(\theta,\varphi)$
+  \[
+    \text{tj.}\quad \alpha = 2e\sum_{n'}\frac{|\mel{n'10}{r\cos\theta}{100}|^2}{\varepsilon_1 - \varepsilon_{n'}}
+  \]
+  \dots\ \pozor{problém} \dots\ obsahuje $\forall$ vázané $+$ kontinuum \\
+  \quad (na předn.\ napsat i vzorec s $\int\dd E$)
+
+  \item \underline{polariz.\ z (D):}
+  \[
+    \ket{\psi_{100}} \doteq \ket{100} + \ket{\psi_{100}^{(1)}} \quad\dots\quad \braket{\psi_{100}}{\psi_{100}} = 1 + \mathcal{O}(E^2) \quad\text{díky } \braket{n}{\psi_n^{(1)}} = 0
+  \]
+  \[
+    \langle d\rangle = \frac{\mel{\psi_{100}}{d}{\psi_{100}}}{\braket{\psi_{100}}{\psi_{100}}}
+    = \mel{100}{d}{\psi_{100}^{(1)}} + \mel{\psi_{100}^{(1)}}{d}{100} + \mathcal{O}(E^2) \equiv \alpha|E|
+  \]
+  \underline{pozn:} vzorec pro $\ket{\psi_{100}^{(1)}}$ pomocí báze $\ket{nlm}$ vede ke stejnému výrazu ($\uparrow$ problém), \\
+  tj.\ problémy s kontinuem, ale nikdo nás nenutí hledat $\ket{\psi_n^{(1)}}$ v bázi $\ket{n}$ \dots\ můžeme přímo řešit (P1)
+
+  \item \underline{Přímé řešení (P1)} \\
+  \dots\ hodí se obecně pro výpočet \ $E_n^{(2)} = \mel{n}{H_1}{\psi_n^{(1)}}$ \ v systémech obsahujících kontinuum.
+\end{itemize}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{PT-7}
+$(P1)$: \quad $\big[H_0 - E_n^{(0)}\big]\ket{\psi_n^{(1)}} = \big(E_n^{(1)} - H_1\big)\ket{\psi_n^{(0)}}$ \\
+v našem případě: \quad $E_{100}^{(1)} = 0$
+\[
+  \text{tj.}\quad \Big[-\frac{\hbar^2}{2m}\nabla^2 + V(r) - \varepsilon_1\Big]\psi^{(1)}(\vec r) = -e|E|\,r\cos\theta\;\underbrace{\psi^{(0)}(\vec r)}_{\text{nezávisí na } \theta,\varphi}
+\]
+levou stranu známe z řešení atomu vodíku. \quad Předp.: \quad $\psi^{(1)}(\vec r) = f(r)\,Y_{lm}(\theta,\varphi)$
+\[
+  \to\quad Y_{lm}(\theta,\varphi)\Big\{-\frac{\hbar^2}{2\mu}\frac{1}{r^2}\dv{r}r^2\dv{r}f(r) + \Big[\frac{\hbar^2(l+1)l}{2\mu r^2} + V(r) - \varepsilon_1\Big]f(r)\Big\}
+\]
+\dots\ na pravé str.\ je výraz úměrný $Y_{10}\sim\cos\theta$ \dots\ tj.\ $l = 1$, $m = 0$
+\[
+  \text{tj.}\quad -\frac{\hbar^2}{2\mu}\frac{1}{r^2}\dv{r}r^2\dv{r}f(r) + \Big[\frac{\hbar^2}{\mu r^2} + V(r) - \varepsilon_1\Big]f(r) = -e|E|\,r\,\psi^{(0)}(r)
+\]
+pro atom vodíku: \quad $V(r) = -\dfrac{e^2}{r}$; \quad $\varepsilon_1 = -\dfrac{e^2}{2a_0}$; \quad
+$\psi^{(0)}(r) = (\pi a_0^3)^{-1/2}e^{-r/a_0}$; \quad $a_0 = \dfrac{\hbar^2}{\mu e^2}$
+
++ hledání řešení ve tvaru \quad $f(r) = p(r)\,e^{-r/a_0}$ \qquad $p(r)$ -- polynom \\
+vede na \quad $p(r) = -(\pi a_0^3)^{-1/2}\Big(\dfrac{|E|}{e}\Big)\big(a_0r + \tfrac12 r^2\big)$
+\quad (druhé řešení $\infty$ řada, která nevede na $L^2$ řeš.)
+
+dosazení do
+\begin{align*}
+  E_{100}^{(2)} &= \mel{100}{H_1}{\psi_{100}^{(1)}} = -|E|^2(\pi a_0^3)^{-1}\int(\cos\theta)^2(a_0r^2 + r^3)\,e^{-2r/a_0}\,\dd^3r \\
+  &= -\frac94|E|^2a_0^3 = -\frac12\alpha|E|^2
+\end{align*}
+\[
+  \text{tj.}\quad \vzorec{\alpha = \frac92 a_0^3} \quad\dots\ \text{polarizovatelnost zákl.\ stavu H-atomu}
+\]
+
+\begin{priklad}[\textcircled{4} Lineární Starkův efekt v H-atomu]
+stejný problém, ale $n = 2$ \dots\ $p$ stavy H-atomu:
+\[
+  \ket{\psi^{(0)}} = c_1\ket{200} + c_2\ket{211} + c_3\ket{210} + c_4\ket{21{-1}}
+\]
+$(c_1,c_2,c_3,c_4)$ \dots\ vl.\ stavy poruchy $H_1 = e|E|\,r\cos\theta$ v bázi $\uparrow$
+
+$\mel{2l'm'}{H_1}{2lm}$ nenulové jen pro $m = m'$ \quad $\Rightarrow$ \quad matice
+\[
+  \begin{pmatrix} 0 & 0 & -v & 0\\ 0 & 0 & 0 & 0\\ -v & 0 & 0 & 0\\ 0 & 0 & 0 & 0\end{pmatrix}
+  \qquad\text{kde}\quad \mel{210}{H_1}{200} = -3e|E|a_0 \equiv -v
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{cc}
+vl.\ v. & vl.\ č. \\ \hline
+$\tfrac{1}{\sqrt2}(1,0,-1,0)$ & $v$ \\
+$\tfrac{1}{\sqrt2}(1,0,1,0)$ & $-v$ \\
+$(0,1,0,0)$ & $0$ \\
+$(0,0,0,1)$ & $0$
+\end{tabular}
+\qquad
+\begin{minipage}{0.4\textwidth}
+tj.\ \kw{přetrvává degenerace} pro $\pm m = \pm1$, \\
+\kw{snímá se} pro $l = 0,1$; $m = 0$
+\end{minipage}
+\end{center}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{PT-8}
+\begin{priklad}[\textcircled{5} Van der Waalsova interakce]
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \draw[->] (-0.5,0) -- (5.5,0) node[below right] {$z$};
+  \node[draw,circle,inner sep=0.5pt] (p1) at (0,0) {\scriptsize$+$};
+  \node[draw,circle,inner sep=0.5pt] (p2) at (3.8,0) {\scriptsize$+$};
+  \node[below] at (1.9,0) {$r$};
+  % elektron 1
+  \fill (1.2,0.8) circle (1.5pt) node[above right=-1pt] {\scriptsize$-$};
+  \draw[->] (p1) -- (1.15,0.77) node[midway,above left=-2pt] {$\vec r_1$};
+  % elektron 2
+  \fill (3.0,0.9) circle (1.5pt) node[above=1pt] {\scriptsize$-$};
+  \draw[->] (p2) -- (3.03,0.86) node[midway,right=1pt] {$\vec r_2$};
+\end{tikzpicture}
+\end{center}
+\[
+  H = H_0 + V \qquad H_0 = -\frac{\hbar^2}{2m}\big(\nabla_1^2 + \nabla_2^2\big) - \frac{e^2}{r_1} - \frac{e^2}{r_2}
+\]
+\[
+  V = \frac{e^2}{r} + \frac{e^2}{|\vec r + \vec r_2 - \vec r_1|} - \frac{e^2}{|\vec r + \vec r_2|} - \frac{e^2}{|\vec r - \vec r_1|}
+\]
+\quad $\hookrightarrow$ rozvinout \quad $(1 + x)^\alpha = 1 + \alpha x + \frac12\alpha(\alpha - 1)x^2 + \dots$
+\[
+  V = \frac{e^2}{r^3}\big(x_1x_2 + y_1y_2 - 2z_1z_2\big) + \mathcal{O}\Big(\frac{1}{r^4}\Big) \qquad r\to\infty
+\]
+
+1.\ řád \quad $\mel{\psi_0}{V}{\psi_0}$ \ ?
+
+$\ket{\psi_0} = \ket{nlm}_1\ket{nlm}_2$ \quad \dots\ zákl.\ stav $n = 1$, $l = 0$, $m = 0$ \\
+\dots\ první řád vymizí \dots\ $\sim \underbrace{\mel{nlm}{x_1}{nlm}_1}_{0\text{ v zákl.\ stavu}}\underbrace{\mel{nlm}{x_2}{nlm}_2}_{0}$
+\quad ($x\sim Y_{1m}$)
+
+korekce 2.\ řádu:
+\[
+  \vzorec{E^{(2)}(r) = \frac{e^4}{r^6}\sum_{k\neq 0}\frac{|\mel{\psi_k}{x_1x_2 + y_1y_2 - 2z_1z_2}{\psi_0}|^2}{E_0^{(0)} - E_k^{(0)}} = -\frac{C}{r^6} < 0}
+\]
+\end{priklad}
+

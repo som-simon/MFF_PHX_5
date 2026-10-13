@@ -1,0 +1,58 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathmorphing,decorations.pathreplacing,patterns,positioning,babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage[skins,breakable,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage[colorlinks=true,linkcolor=NavyBlue,urlcolor=NavyBlue]{hyperref}
+
+%======================================================================
+% Barvy
+%======================================================================
+\definecolor{hlavni}{RGB}{0,70,140}      % nadpisy
+\definecolor{defbarva}{RGB}{30,100,200}  % definice
+\definecolor{vetabarva}{RGB}{190,40,40}  % věty, postuláty
+\definecolor{prbarva}{RGB}{20,130,70}    % příklady
+\definecolor{vzorbarva}{RGB}{220,120,0}  % důležité vzorce
+
+\titleformat{\section}{\color{hlavni}\Large\bfseries}{\thesection}{1em}{}[{\color{hlavni}\titlerule[1pt]}]
+\titleformat{\subsection}{\color{hlavni}\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\color{hlavni!80!black}\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+%======================================================================
+% Zvýraznění
+%======================================================================
+% Definice (modrý box)
+\newtcolorbox{definice}[1][]{enhanced,breakable,colback=defbarva!6,colframe=defbarva,
+  boxrule=0.6pt,left=4pt,right=4pt,top=2pt,bottom=2pt,arc=2pt,
+  fonttitle=\bfseries\small,coltitle=white,title={Definice\ifx&#1&\else: #1\fi}}
+% Věta / postulát / lemma / klíčové tvrzení (červený box)
+\newtcolorbox{veta}[1][Věta]{enhanced,breakable,colback=vetabarva!5,colframe=vetabarva,
+  boxrule=0.6pt,left=4pt,right=4pt,top=2pt,bottom=2pt,arc=2pt,
+  fonttitle=\bfseries\small,coltitle=white,title={#1}}
+% Příklad (zelený proužek vlevo)
+\newtcolorbox{priklad}[1][Příklad]{enhanced,breakable,colback=prbarva!4,colframe=prbarva,
+  boxrule=0pt,leftrule=2.5pt,left=5pt,right=3pt,top=2pt,bottom=2pt,sharp corners,
+  fonttitle=\bfseries\small,coltitle=prbarva!80!black,colbacktitle=prbarva!12,title={#1}}
+% Důležitý vzorec v rámečku (v matematice):  \vzorec{E = mc^2}
+\newcommand{\vzorec}[1]{\tcbhighmath[colback=vzorbarva!8,colframe=vzorbarva,boxrule=0.8pt,arc=2pt,left=3pt,right=3pt,top=2pt,bottom=2pt]{#1}}
+% Klíčový pojem v textu
+\newcommand{\kw}[1]{\textbf{\color{hlavni}#1}}
+% Upozornění / pozor
+\newcommand{\pozor}[1]{{\color{vetabarva}\bfseries #1}}
+
+% Poznámky psané tužkou (v originále slabě, šedě)
+\newcommand{\pozn}[1]{\relax\ifmmode\text{\color{gray}\small\itshape [#1]}\else{\color{gray}\small\itshape [#1]}\fi}
+% Číslo strany originálních poznámek
+\newcommand{\strana}[1]{\marginpar{\colorbox{hlavni!10}{\small\texttt{\color{hlavni}#1}}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}

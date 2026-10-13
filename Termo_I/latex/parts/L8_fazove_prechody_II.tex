@@ -1,0 +1,340 @@
+%======================================================================
+% L8_fazove_prechody_II.pdf
+%======================================================================
+\providecommand{\gmini}[3]{% inset s G(V): #1 = poloha, #2 = pole bodů křivky, #3 = poloměr
+  \begin{scope}[shift={#1}]
+    \draw[fill=white] (0,0) circle (#3);
+    \draw ({-0.55*#3},{0.5*#3}) -- ({-0.55*#3},{-0.45*#3}) -- ({0.6*#3},{-0.45*#3});
+    \node[font=\tiny\bfseries\itshape] at ({-0.7*#3},{0.2*#3}) {G};
+    \node[font=\tiny\bfseries\itshape] at ({0.05*#3},{-0.65*#3}) {V};
+    \draw[thick,scale=#3] plot[smooth] coordinates {#2};
+  \end{scope}}
+
+\section{Fázové přechody II.\ druhu \& kritické jevy}
+\strana{L8-1}
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+  % levý diagram
+  \draw[thick] (0,4.2) -- (0,0) -- (4.6,0);
+  \node[rotate=90] at (-0.4,2.2) {\small\bfseries\itshape p $\longrightarrow$};
+  \node at (2.2,-0.35) {\small\bfseries\itshape T $\longrightarrow$};
+  \draw[thick] (0.8,1.2) .. controls (1.0,1.6) and (1.1,1.8) .. (1.2,1.9) .. controls (1.1,2.2) and (0.9,2.5) .. (0.8,2.6);
+  \draw[thick] (1.2,1.9) .. controls (2.2,2.3) and (3.4,2.9) .. (4.0,3.8);
+  \fill (2.4,2.6) circle (2pt); \fill (2.6,2.35) circle (2pt); \fill (2.55,2.48) circle (2pt);
+  \gmini{(1.0,3.2)}{(-0.35,0.3) (-0.2,-0.15) (-0.05,0.1) (0.15,-0.15) (0.35,0.3)}{0.6}
+  \gmini{(4.0,2.4)}{(-0.35,0.3) (-0.2,-0.15) (-0.05,0.1) (0.15,-0.15) (0.35,0.3)}{0.6}
+  \gmini{(2.0,0.9)}{(-0.35,0.35) (-0.2,-0.1) (-0.02,0.1) (0.17,-0.2) (0.35,0.3)}{0.65}
+  \draw[->] (1.45,2.8) -- (2.35,2.6);
+  \draw[->] (3.4,2.48) -- (2.62,2.48);
+  \draw[->] (2.2,1.55) -- (2.55,2.3);
+  % pravý diagram
+  \begin{scope}[xshift=6cm]
+    \draw[thick] (0,4.2) -- (0,0) -- (4.6,0);
+    \node[rotate=90] at (-0.4,2.2) {\small\bfseries\itshape p $\longrightarrow$};
+    \node at (2.2,-0.35) {\small\bfseries\itshape T $\longrightarrow$};
+    \draw[thick] (0.6,0.6) .. controls (0.75,1.0) and (0.85,1.2) .. (0.9,1.3) .. controls (0.85,1.6) and (0.75,1.8) .. (0.65,1.9);
+    \draw[thick] (0.9,1.3) .. controls (1.8,1.8) and (2.8,2.5) .. (3.3,3.0);
+    \fill (1.3,1.5) circle (2pt); \fill (2.5,2.3) circle (2pt); \fill (3.3,3.0) circle (2pt);
+    \gmini{(1.3,3.3)}{(-0.35,0.3) (-0.2,-0.1) (-0.02,0.08) (0.15,-0.1) (0.35,0.3)}{0.6}
+    \gmini{(2.4,0.65)}{(-0.4,0.35) (-0.3,-0.12) (0,-0.05) (0.3,-0.12) (0.4,0.35)}{0.75}
+    \gmini{(4.1,1.5)}{(-0.3,0.35) (-0.15,-0.15) (0.15,-0.15) (0.3,0.35)}{0.6}
+    \draw[->] (1.7,2.85) -- (2.45,2.35);
+    \draw[->] (1.75,1.05) -- (1.35,1.45);
+    \draw[->] (3.9,2.1) .. controls (3.7,2.6) .. (3.35,3.0);
+    \node[align=left,font=\scriptsize] at (4.4,3.8) {ploché minimum\\ $\Rightarrow$ V podléhá\\ velkým fluktuacím};
+    \draw[->] (4.4,3.25) -- (4.15,1.6);
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{minipage}[t]{0.48\textwidth}
+Chování Gibbsova potenciálu v okolí křivky koexistence páry a kapaliny
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+Chování $G$ na křivce koexistence směrem ke krit.\ bodu.
+\end{minipage}
+\begin{center}(Převzato z Callen: Thermodynamics \& \dots)\end{center}
+
+\begin{itemize}
+  \item kritická izoterma vdW plynu:
+  \[ \exists p:\ \Big(\pdv{p}{V}\Big)_{T_c} = 0 \quad\Rightarrow\quad \vzorec{\kappa_T(T\to T_c,\ p\to p_c)\to+\infty} \]
+  $\Rightarrow$ vdW model předpovídá v okolí kritického bodu obrovské fluktuace objemu
+  \begin{itemize}[nosep]
+    \item[--] uvidíme později ve stat.\ fyzice, jak zobecněné susceptibility souvisí s fluktuacemi/rozptylem středních hodnot pozorovatelných
+    \item[--] již teď je ale intuitivně zřejmé, že $\kappa_T\to\infty$ znamená velké změny objemu při sebemenších změnách tlaku
+    \item[--] skutečně pozorováno -- \kw{kritická opalescence} -- fluktuace hustoty kapaliny se výrazně projevují v optických vlastnostech
+  \end{itemize}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L8-2}
+\subsection{Landauova teorie kritických jevů}
+\begin{itemize}[nosep]
+  \item[--] rozvoj TD potenciálu v blízkosti kritického bodu v mocninách $(T - T_c)$ a obecněji $(X - X_c)$, kde $X$ je vhodný TD parametr -- \underline{param.\ uspořádání}
+  \item[$\Rightarrow$] studium analytických vlastností susceptibilit v okolí kritického bodu
+  \item[$\Rightarrow$] \kw{kritické exponenty}
+  \[ X \propto (\underbrace{\xi}_{\mathclap{\text{parametr uspořádání}}} - \xi_c)^{\overbrace{\beta}^{\mathclap{\text{krit.\ exponent}}}} \]
+\end{itemize}
+
+\begin{priklad}[Př: vdW a přechod pára -- kapalina]
+\begin{itemize}
+  \item roli parametru uspořádání může hrát molární objem -- je různý v plynné a kapalné fázi
+  \item tlak v okolí krit.\ bodu pro $T > T_c$:
+  \[
+    p(T,v) = p(T,v_c) + \Big(\pdv{p}{v}\Big)_T(v - v_c) + \frac12\Big(\pdv[2]{p}{v}\Big)_T(v - v_c)^2 + \frac16\Big(\pdv[3]{p}{v}\Big)_T(v - v_c)^3 + \dots
+  \]
+  \item $\big(\pdv{p}{v}\big)_T$ i $\big(\pdv[2]{p}{v}\big)_T$ jsou pro $T = T_c$ nulové $\Rightarrow$ mohu je rozvíjet kolem $T_c$
+\end{itemize}
+
+\begin{minipage}{0.55\textwidth}
+\begin{enumerate}[label=\roman*)]
+  \item $p(T,v_c) = p_c + \alpha(T - T_c) + \mathcal{O}\big((T - T_c)^2\big)$
+  \item $\big(\pdv{p}{v}\big)_T\big|_{v_c} = -a_1(T - T_c) + \mathcal{O}(\Delta T^2)$
+  \item $\big(\pdv[2]{p}{v}\big)_T\big|_{v_c} = a_2(T - T_c) + \mathcal{O}(\Delta T^2)$
+  \item $\big(\pdv[3]{p}{v}\big)_T\big|_{v_c} = -a_3 + \mathcal{O}(\Delta T)$
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.42\textwidth}
+\underline{NB:} Tento rozvoj je v pořádku pouze pro $T > T_c$; pro $T < T_c$ \pozor{stabilní izoterma není analytická!}
+\end{minipage}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{L8-3}
+\begin{itemize}
+  \item podmínky stability: $\delta p\,\delta v < 0$ \\
+  $\Rightarrow$ $a_1 > 0$ \ ($\kappa_T > 0$) \ \& \ $a_3 > 0$ \ ($T = T_c$, $v = v_c$) \\
+  $\Rightarrow$ na $a_2$ nemáme žádné omezení
+\end{itemize}
+$\Rightarrow$ obecný tvar rozvoje izotermy $p = p(T,v)$ kolem krit.\ bodu:
+\[
+  p(T,v) = p_c + \alpha(T - T_c) - a_1(T - T_c)(v - v_c) + \frac{a_2}{2}(T - T_c)(v - v_c)^2 - \frac{a_3}{6}(v - v_c)^3
+\]
+\begin{enumerate}[label=\roman*)]
+  \item \[ \lim_{T\to T_c^+}\kappa_T(T,v_c) = -\frac{1}{v_c}\Big[\Big(\pdv{p}{v}\Big)_T\Big]^{-1} = \frac{1}{v_ca_1(T - T_c)}
+        \quad \vzorec{\propto (T - T_c)^{-1}} \]
+  \item kritická izoterma: $p = p_c - \dfrac{a_3}{6}(v - v_c)^3 + \mathcal{O}\big((v - v_c)^4\big)$
+  \[ \Rightarrow\quad \vzorec{v - v_c \propto (p_c - p)^{1/3}} \]
+\end{enumerate}
+
+\underline{Alternativně:}
+\[ \tilde p = \frac{8\tau}{3\nu - 1} - \frac{3}{\nu^2} = \frac83\,\frac{\tau}{\nu - 1/3} - \frac{3}{\nu^2} \]
+$\bullet$ \ $\tilde p = 1 + \hat p$, \quad $\tau = 1 + \hat\tau$, \quad $\nu = 1 + \hat\nu$ \quad $\Rightarrow$ $\hat x$ je malé
+\[
+  \Rightarrow\ 1 + \hat p = \frac83\,\frac{1 + \hat\tau}{\hat\nu + \frac23} - \frac{3}{(1 + \hat\nu)^2} = \frac{4(1 + \hat\tau)}{\frac32\hat\nu + 1} - \frac{3}{(1 + \hat\nu)^2}
+\]
+\begin{align*}
+  \Rightarrow\ 1 + \hat p &\simeq 4(1 + \hat\tau)\Big(1 - \frac32\hat\nu + \frac94\hat\nu^2 - \frac{27}{8}\hat\nu^3\Big) - 3\big(1 - 2\hat\nu + 3\hat\nu^2 - 4\hat\nu^3\big) \\
+  {\color{Red}\sout{1}} + \hat p &\simeq {\color{Red}\sout{1}} + 4\hat\tau - 6(\hat\tau\hat\nu) - \frac32\hat\nu^3
+     \ {\color{NavyBlue}+\ 9(\hat\tau\hat\nu^2) + \mathcal{O}(\epsilon^4)} \qquad {\color{NavyBlue}(\hat\tau\sim\hat\nu^2)}
+\end{align*}
+\[ \Downarrow \]
+\[ \boxed{\hat p = 4\hat\tau - 6(\hat\tau\hat\nu) - \frac32\hat\nu^3} \]
+$\bullet$ \ $\Big(\pdv{\hat p}{\hat\nu}\Big) = -6\hat\tau - \dfrac92\hat\nu^2$ \ $\Rightarrow$ \
+$\displaystyle\lim_{\hat\tau\to0}\Big(\pdv{\hat\nu}{\hat p}\Big)_{\hat\tau}\Big|_{\nu = \nu_c} \sim -\frac1{\hat\tau}$ \ $\Rightarrow$ \
+$\vzorec{\kappa_T = -\frac1{V_c}\Big(\pdv{V}{p}\Big)_{T = T_c} \sim (T - T_c)^{-1}}$
+
+%----------------------------------------------------------------------
+\strana{L8-4}
+\pozor{!} nyní dostáváme $\kappa_T\sim(T - T_c)^{-1}$ bez ohledu na \uv{směr přibližování} -- i pro $T\to T_c^-$
+\ {\small; zanedbali jsme ovšem \uv{nefyzikálnost} vdW izotermy}
+
+\begin{itemize}
+  \item \underline{chování parametru uspořádání} $(v_g - v_l)$
+  \[
+    v_g - v_l \begin{cases} > 0 & T < T_c \\ = 0 & T > T_c \end{cases}
+  \]
+\end{itemize}
+
+\underline{NB:} Maxwellova konstrukce stabilní izotermy $\Rightarrow$ křivka koexistence:
+
+\begin{minipage}{0.4\textwidth}
+\[ \boxed{\int_1^2\hat\nu\,\dd\hat p = 0}\ (*) \]
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+1 \dots\ plyn (bod C) \\
+2 \dots\ kapalina (bod G) \qquad $\hat p_1 = \hat p_2$
+\end{minipage}
+\[
+  \dd\hat p = -\Big(6\hat\tau + \frac92\hat\nu^2\Big)\dd\hat\nu
+  \qquad
+  (*)\ \int_1^2 v\,\dd p = \int_1^2(1 + \hat\nu)\,\dd\hat p = 0 \ \overset{\hat p_1 = \hat p_2}{\Leftrightarrow}\ \int_1^2\hat\nu\,\dd\hat p
+\]
+\[ \Rightarrow\ -3\hat\tau\big(\hat\nu_2^2 - \hat\nu_1^2\big) - \frac98\big(\hat\nu_2^4 - \hat\nu_1^4\big) = 0 \]
+$\Rightarrow$ pro $\hat\tau\to0$ dostáváme $|\hat\nu_1| = |\hat\nu_2|$ \quad $\Leftrightarrow$ \quad $|v_g - v_c| = |v_l - v_c|$
+
+$\Rightarrow$ v okolí krit.\ bodu blízko pod krit.\ teplotou musí pro koexistující fáze ($p_g = p_l$) platit $\hat\nu_g = -\hat\nu_l$
+\[ \Rightarrow\ 4\hat\tau - 6\hat\tau\hat\nu_g - \frac32\hat\nu_g^3 = 4\hat\tau - 6\hat\tau\hat\nu_l - \frac32\hat\nu_l^3 \]
+\[
+  \Rightarrow\ 6\hat\tau(\hat\nu_g - \hat\nu_l) = \frac32\big(\hat\nu_l^3 - \hat\nu_g^3\big)
+  \ \Leftrightarrow\ 4\hat\tau = \hat\nu_l^2 + \hat\nu_g\hat\nu_l + \hat\nu_g^2 \overset{\hat\nu_l = -\hat\nu_g}{=} \hat\nu_g^2
+\]
+\[ \Rightarrow\quad \vzorec{v_g - v_l \sim (T - T_c)^{1/2}} \]
+
+\begin{itemize}
+  \item \underline{krit.\ izoterma:} \ $\hat\tau = 0$ $\Rightarrow$ $\hat p\sim-\hat\nu^3$ $\Rightarrow$ $(v - v_c)\sim(p_c - p)^{1/3}$ \\
+  {\small $\tilde p = 1 + \hat p$, $\nu = 1 + \hat\nu$ $\Rightarrow$ $(\tilde p - 1)\sim-(\nu - 1)^3$ $\Rightarrow$ $\big(\frac{p}{p_c} - 1\big) = -\big(\frac{v}{v_c} - 1\big)^3$ \\
+  $\Rightarrow$ $(p - p_c)\frac1{p_c} = -\frac1{v_c^3}(v - v_c)^3$ $\Rightarrow$ $(v - v_c)\sim(p_c - p)^{1/3}$}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L8-5}
+\begin{veta}[Kritické chování vdW plynu]
+$\Rightarrow$ celkem máme pro vdW plyn:
+\begin{enumerate}[label=\roman*),nosep]
+  \item $v_g - v_l \sim (T - T_c)^{1/2}$
+  \item $v - v_c \sim (p_c - p)^{1/3}$ \ na krit.\ izotermě $T = T_c$
+  \item $\kappa_T \sim (T - T_c)^{-1}$
+\end{enumerate}
+\end{veta}
+
+\underline{NB:} $\bullet$ tento postup vychází z předpokladu analytičnosti TD potenciálů, \pozor{který je zde porušen!}
+
+$\bullet$ chování $\kappa_T$, $c_p$ na křivce koexistence (CC):
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[->] (-0.3,0) -- (5.4,0) node[below] {$T,p$};
+  \draw[->] (0,-0.3) -- (0,2.8) node[left] {$c_p,\kappa_T$};
+  \draw[->,thin] (1.5,0) -- (1.5,2.8) node[above] {\small $+\infty$};
+  \draw[Orange,thick] (0.3,0.35) .. controls (0.8,0.4) and (1.2,0.45) .. (1.5,0.6);
+  \node[Orange] at (0.6,0.75) {\small liq.};
+  \draw[NavyBlue,thick] (1.55,1.5) .. controls (2.2,1.5) and (2.8,1.7) .. (3.2,2.1);
+  \node[NavyBlue] at (3.45,1.9) {\small gas};
+\end{tikzpicture}
+\hspace{0.6cm}
+\begin{minipage}[b]{0.4\textwidth}
+$\bullet$ směrem ke krit.\ bodu se skok zmenšuje, avšak formální divergence na CC zůstává
+\vspace{0.8cm}
+\end{minipage}
+\end{center}
+
+\subsection{Landau}
+{\color{NavyBlue}\small check Tong -- SP (chap.\ 5)}
+\begin{itemize}
+  \item \kw{parametr uspořádání}: $\phi$
+  \begin{itemize}[nosep]
+    \item[--] TD parametr charakterizující kritický přechod
+    \item[--] lze volit \quad $\phi \begin{cases} = 0 & T > T_c \\ \neq 0 & T < T_c \end{cases}$ \qquad (mol.\ objem, perm.\ mg.\ moment, \dots)
+  \end{itemize}
+  \item \kw{kritické exponenty}
+  \begin{definice}[Kritické exponenty]
+  \[ \phi\sim(T_c - T)^{\beta} \quad\&\quad \phi\sim(\underbrace{p}_{\mathclap{\text{nebo jiný vhodný param.\ ($B$ pro mg.\ moment)}}} - p_c)^{1/\delta}\ \text{ na CC} \]
+  \vspace{4pt}
+  \begin{minipage}{0.45\textwidth}
+  \begin{align*}
+    \chi_T &\sim (T - T_c)^{-\gamma} & T &> T_c \\
+           &\sim (T_c - T)^{-\gamma'} & T &< T_c
+  \end{align*}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+  $\Big\}$ zobec.\ susceptibilita spojená s param.\ uspořádání {\color{NavyBlue}\small (ie, $\kappa_T$ pro $\phi = \Delta v$)}
+  \end{minipage}
+  \begin{align*}
+    c_\phi &\sim (T - T_c)^{-\alpha} & T &> T_c \\
+    c_\phi &\sim (T_c - T)^{-\alpha'} & T &< T_c
+  \end{align*}
+  \end{definice}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L8-6}
+\begin{itemize}
+  \item studujme chování Gibbsova potenciálu
+  \[ G = G(T,p,\phi,N_1,\dots,N_k) \]
+  \item $\phi$ malé kolem krit.\ bodu $\Rightarrow$ \quad $\vzorec{G = G_0 + G_1\phi + G_2\phi^2 + \dots}$ \\
+        \hspace*{2em} $G_\alpha$ -- fce $T,p,N_j$
+  \item symetrie systému a další úvahy omezují nenulovost/znaménka $G_\alpha$
+  \item na CC: $p = p(T)$ $\to$ $G = G(T,\phi)$ \ \& \ $G_\alpha = G_\alpha(T)$
+  \item kritická teplota: $G_2(T) = 0$
+  \[ \Downarrow \]
+  předpovídá univerzální krit.\ exponenty
+  \[ \vzorec{\beta = \tfrac12,\quad \gamma = \gamma' = 1,\quad \delta = 3} \quad\Leftrightarrow\quad \text{viz vdW} \]
+  \[ \alpha = \alpha' = 0 \quad \text{(neověřili jsme)} \]
+  \item \pozor{výsledek je ve sporu s experimentem!}
+  \begin{itemize}[nosep]
+    \item[--] krit.\ exp.\ nejsou univerzální, typicky neodpovídají hodnotám výše
+    \item[--] obecně $\alpha\neq\alpha'$ \ \& \ $\gamma\neq\gamma'$: cf.\ \uv{lambda bod} v He (tekutost $\to$ supratekutost):
+  \end{itemize}
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[->] (-0.3,0) -- (4.8,0) node[below] {$T$};
+  \draw[->] (0,-0.3) -- (0,2.6) node[left] {$c$};
+  \draw[dotted] (2.4,0) -- (2.4,2.6);
+  \draw[NavyBlue,thick] (0.3,0) .. controls (1.2,0.15) and (2.0,0.6) .. (2.25,1.3) .. controls (2.35,1.7) and (2.38,2.1) .. (2.39,2.5);
+  \draw[NavyBlue,thick] (2.42,1.1) .. controls (2.5,0.85) and (2.8,0.8) .. (3.2,0.85) .. controls (3.7,0.95) and (4.1,1.2) .. (4.4,1.35);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+  \item selhání klasické TD souvisí s přítomností velkých fluktuací, které jsou ve sporu s postulátem maxima entropie;
+  \begin{itemize}[nosep]
+    \item[] SF: \ $\bullet$ $p(E)\propto e^{S(E)/k_B}$
+    \item[] \hspace*{2.3em}$\bullet$ TD: $\langle E\rangle \leftrightarrow \max p(E)$ \\
+            \hspace*{3.5em} -- pro velké fluktuace nemusí platit!
+  \end{itemize}
+  \item přesto měřené exponenty vykazují vysokou míru univerzality!
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L8-7}
+\begin{itemize}
+  \item kritické jevy jsou příkladem \underline{fázových přechodů II.\ druhu} (\underline{spojité fázové přechody})
+  \begin{itemize}[nosep]
+    \item[--] $s,v,h,\dots$ spojité mol.\ veličiny $\Rightarrow$ $l = 0$ (latentní teplo)
+    \item[--] nespojitosti/divergence nastávají ve vyšších derivacích $G$
+    \item[--] para$\leftrightarrow$feromagnet, supratekuté/supravodivé přechody
+    \item[--] změna symetrie krystal.\ mřížky
+  \end{itemize}
+  \item pro spojité fázové přechody neplatí Clapeyronova rce ($\Delta s = \Delta v = 0$) $\Rightarrow$ je třeba jít do vyšších řádů rozvoje $\mu(T,p)$
+\end{itemize}
+$\Delta\mu = \mu_2 - \mu_1$ $\Rightarrow$
+\begin{align*}
+  \dd(\Delta\mu) = -\Delta s\,\dd T + \Delta v\,\dd p &+ \frac12\Delta\Big(\pdv[2]{\mu}{T}\Big)_p(\Delta T)^2 \\
+  &+ \Delta\Big(\frac{\partial^2\mu}{\partial T\,\partial p}\Big)\Delta T\Delta p + \frac12\Delta\Big(\pdv[2]{\mu}{p}\Big)_T(\Delta p)^2
+\end{align*}
+\begin{itemize}
+  \item koexistence při fáz.\ přechodu II.\ druhu $\Rightarrow$ $\Delta\mu,\Delta s,\Delta v = 0$
+\end{itemize}
+\[
+  \Rightarrow\ 0 = -\frac12\frac{\Delta C_p}{T}(\Delta T)^2 + \Delta\Big(\pdv{v}{T}\Big)_p\Delta T\Delta p + \frac12\Delta\Big(\pdv{v}{p}\Big)_T(\Delta p)^2 = 0 \quad \Big/\frac{1}{(\Delta T)^2}
+\]
+\[
+  \xrightarrow{\Delta T\to\dd T}\quad \frac12\Delta\Big(\pdv{v}{p}\Big)_T\Big(\frac{\dd p}{\dd T}\Big)^2 + \Delta\Big(\pdv{v}{T}\Big)_p\frac{\dd p}{\dd T} - \frac12\frac{\Delta C_p}{T} = 0 \qquad (*)
+\]
+\begin{itemize}
+  \item aby tato kvadr.\ rovnice jednoznačně určila křivku koexistence $\big(\frac{\dd p}{\dd T}\big)_{CC}$, musí mít jediné řešení
+\end{itemize}
+\[
+  \Rightarrow\quad v^2T\Big[\frac1v\Delta\Big(\pdv{v}{T}\Big)_p\Big]^2 - \Delta C_p\,v\Big[-\frac1v\Delta\Big(\pdv{v}{p}\Big)_T\Big] = 0
+  \qquad {\color{NavyBlue}\Rightarrow\ \frac{\dd p}{\dd T} = -\frac{\text{\uv{b}}}{\text{\uv{2a}}}}
+\]
+\pozn{poslední rovnice je v originále částečně přepisovaná}
+
+%----------------------------------------------------------------------
+\strana{L8-8}
+\begin{enumerate}[label=\alph*)]
+  \item $\Delta C_p \underset{\Delta v = 0}{=} \dfrac{(\Delta\alpha)^2}{\Delta\kappa_T}\,Tv$
+        \ $\Rightarrow$ \ $\dfrac{\dd p}{\dd T} = -\dfrac{\Delta\big(\pdv{v}{T}\big)_p}{\Delta\big(\pdv{v}{p}\big)_T}$
+        \ $\Rightarrow$ \ $\boxed{\dfrac{\dd p}{\dd T} = \dfrac{\Delta\alpha}{\Delta\kappa_T}}$ \quad $(*)$
+  \item $\Delta\kappa_T = \dfrac{(\Delta\alpha)^2}{\Delta C_p}\,Tv$
+        \ $\Rightarrow$ \ $\boxed{\dfrac{\dd p}{\dd T} = \dfrac{\Delta C_p}{Tv\Delta\alpha}}$ \quad $(+)$
+\end{enumerate}
+\begin{veta}[Ehrenfestovy rovnice]
+\[ \vzorec{\frac{\dd p}{\dd T} = \frac{\Delta\alpha}{\Delta\kappa_T}} \qquad\qquad \vzorec{\frac{\dd p}{\dd T} = \frac{\Delta C_p}{Tv\,\Delta\alpha}} \]
+\end{veta}
+
+\begin{itemize}
+  \item $(+)$ lze dostat ihned ze spojitosti $s$:
+  \begin{align*}
+    \dd s &= \frac{C_p}{T}\dd T + \Big(\pdv{s}{p}\Big)_T\dd p = /\dd g = -s\,\dd T + v\,\dd p/ \\
+    &= \frac{C_p}{T}\dd T - \Big(\pdv{v}{T}\Big)_p\dd p \quad \& \quad \Delta s = 0:
+  \end{align*}
+  \[ 0 = \Delta C_p - Tv\Delta\alpha\frac{\dd p}{\dd T} \quad \checkmark \]
+  \item $(*)$ \ $v = v(T,p)$ $\Rightarrow$ $\dd v = \big(\pdv{v}{T}\big)_p\dd T + \big(\pdv{v}{p}\big)_T\dd p$ \ \& \ $\Delta v = 0$
+  \[ \Rightarrow\ \frac{\dd p}{\dd T} = \frac{\Delta\alpha}{\Delta\kappa_T} \quad \checkmark \]
+  \item další 2 Ehrenfestovy rovnice lze odvodit ze spojitosti $s = s(T,v)$ \& $s = s(v,p)$
+  \item Ehrenfestovy rce jsou samozřejmě \pozor{neplatné pro spojité fázové přechody doprovázené krit.\ jevy} (divergence $c_p,\dots$ -- viz výše)
+\end{itemize}
+

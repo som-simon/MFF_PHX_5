@@ -1,0 +1,449 @@
+% T1_1TDZ.pdf -- Cvičení 1: 1. termodynamický zákon
+\providecommand{\dbar}{{\mathchar'26\mkern-12mu d}}
+
+\section{Cvičení: 1.\ TDZ}
+\strana{T1-1}
+
+\begin{itemize}
+  \item \kw{rovnovážný stav} \dots\ makroskopicky statický, charakterizovaný malým počtem TD parametrů \\
+  \underline{Př:} jednoduchý systém: \quad $p, V, N$ \\
+  \hspace*{2cm} 0.TDZ \quad $\Rightarrow$ \quad $\vartheta$ \\
+  \hspace*{2cm} 1.TDZ \quad $\Rightarrow$ \quad $U$ \qquad $(\Delta U = W^{ad} = W + Q)$
+  \item ne $\forall$ nezávislé (svázány stav.\ rovnicemi) $\Rightarrow$ \underline{stavový prostor} \\
+  \underline{Př:} uzavřený jednoduchý systém ($N = $ konst) \\
+  \hspace*{2cm} $\underline{p, V}$ \quad \& \quad $U = U(p,V)$ \quad \& \quad $\vartheta = \vartheta(p,V)$
+  \item \kw{kvazistat.\ proces} \dots\ posloupnost infinit.\ blízkých rovnovážných stavů
+  \[
+    \underset{\textcolor{NavyBlue}{\text{úplný dif.}}}{\dd U} = \underset{\textcolor{OliveGreen}{\text{neúplné dif.}}}{\dbar W + \dbar Q}
+  \]
+  \underline{Př:} \quad $\dbar W = -p\,\dd V$ \hfill
+  $\begin{aligned}
+    \dbar W < 0 &\ \dots\ \text{systém práci koná} \\
+    \dbar W > 0 &\ \dots\ \text{systém práci přijímá}
+  \end{aligned}$
+  \item \underline{klasifikace dějů} \hfill
+  \begin{tabular}[t]{lll}
+    isochorický & \dots & $V = $ konst $\Leftrightarrow \dd V = 0$ \\
+    isobarický & \dots & $p = $ konst $\Leftrightarrow \dd p = 0$ \\
+    isotermický & \dots & $\vartheta = $ konst $\Leftrightarrow \dd\vartheta = 0$ \\
+    adiabatický & \dots & $\dbar Q = 0$
+  \end{tabular}
+\end{itemize}
+
+\begin{priklad}[Příklad 1.*]
+rovnice adiabaty pro plyn popsaný stavovou rovnicí $U = cpV + \alpha$
+\end{priklad}
+
+\begin{priklad}[Příklad 3.*]
+Určete práci a teplo podél libovolné trajektorie mezi dvěma body ve stavovém prostoru, ležícími na téže adiabatě. Rovnice adiabaty systému je $p^3V^5 = \text{konst}$. [Callen str.\ 21, cv.\ 1]
+\end{priklad}
+
+\begin{priklad}[1) $k = 2$]
+$\dd\omega = (x^2 + y)\,\dd x - x\,\dd y = 0$
+\begin{enumerate}[label=\alph*)]
+  \item ukažte, že lze hledat int.\ faktor ve tvaru $\mu = \mu(x)$
+  \item ukažte, že $\mu = \dfrac{1}{x^2}$
+  \item ukažte $\dd\sigma = \mu\,\dd\omega \ \Rightarrow\ \sigma = x + \dfrac{y}{x^2} + C$
+\end{enumerate}
+\end{priklad}
+
+\begin{priklad}[2) $k = 3$]
+$\dd\omega = yz\,\dd x + xz\,\dd y + xyz\,\dd z$
+\begin{enumerate}[label=\alph*)]
+  \item ukažte, že $\exists\,\mu$ \quad (rce 4)
+  \item ověřte $\mu = \dfrac{1}{xyz}$
+  \item ukažte $\sigma = \log x + \log y + z$
+\end{enumerate}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{T1-2}
+\subsection*{1) TD stav (rovnovážný)}
+\begin{itemize}
+  \item \underline{ext.\ veličiny}/parametry \qquad $U/S, V, N, P, M, \dots$
+  \item \underline{int.\ \quad --\,{}"\,--} \qquad\qquad\quad\ $T, p, \mu, \mathcal{E}, H, \dots$
+  \item \underline{úplný popis} \dots\ úplná sada $k$ ext.\ parametrů (typ.\ $U, V, N_i$) \\
+  \hspace*{2.2cm} \dots\ (později uvidíme) lze téměř lib.\ jinou kombinací $k$ parametrů
+  \begin{itemize}[nosep]
+    \item[--] $k$ \dots\ \# TD st.\ volnosti
+    \item[--] alesp.\ 1 param.\ musí být extenzivní
+  \end{itemize}
+  \item stav TD \underline{rovnováhy} \dots\ tranzitivní (0.TDZ) \\
+  \quad \dots\ stac.\ stav (neměnnost parametrů) bez stac.\ proudů
+  \pozn{šipka: odkaz z bodu 1) na tento bod}
+  \item \underline{kvazistat.\ proces} \dots\ efektivně \uv{nekonečně} pomalý vzhledem k mikroskop.\ čas.\ škálám (ie, relax.\ časům) \\
+  \quad $\Rightarrow$ lze popisovat jako \underline{posloupnost rovn.\ stavů} \\
+  \quad (\pozor{NB: v TD popisu obvykle nevystupuje čas!})
+\end{itemize}
+
+\subsection*{2) TD systém}
+\begin{itemize}
+  \item popsán \underline{stav.\ rovnicemi} -- závislost vnitřních stav.\ proměnných ($U, p, \mu, P, M$) na vnějších a $T$
+  \begin{itemize}[nosep]
+    \item \underline{vnější} -- externě kontrolovatelné
+  \end{itemize}
+  \item kalor.\ stav.\ rce \quad $U = U(T, V, N, \dots)$ \\
+        termická \hspace*{1.55cm} $p = p(T, V, N, \dots)$, \ $\mu = \mu(T, V, N, \dots)$, \dots
+\end{itemize}
+
+\subsection*{3) práce}
+změna vnitřní energie \underline{spojená} se (kontrolovatelnou) \underline{změnou vnějších parametrů}
+\begin{enumerate}[label=\alph*)]
+  \item mech: \quad $W = -p\,\dd V$
+  \item chem: \quad $W = \mu\,\dd N$ \quad $(= \sum\mu_i\,\dd N_i)$
+  \item elstat: \quad $W = \mathcal{E}\,\dd P$
+  \item mg: \quad $W = H\,\dd M$
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{T1-3}
+\begin{veta}[1.\ TDZ]
+\[ \vzorec{\dd U = \dbar Q + \dbar W} \]
+\begin{itemize}[nosep]
+  \item znam.\ notace: \quad $> 0 \Rightarrow$ systém energii přijal \\
+        \hspace*{2.75cm} $< 0 \Rightarrow$ \quad --\,{}"\,-- \quad odevzdal
+\end{itemize}
+\end{veta}
+
+$U$ \dots\ stav.\ veličina, \ $\dd U$ úplný diferenciál \\
+$Q, W$ \dots\ dějové veličiny, \ $\dbar Q, \dbar W$ neúplné dif.
+
+\pozor{!} \quad $A\to B$: \quad $\Delta U$, \ ale $Q_{AB}, W_{AB}$
+
+$\Rightarrow$ \kw{operační definice $Q$}: \quad
+$\dbar Q = \underset{\substack{\uparrow\\ \text{umím \uv{určit}}\\ \text{(použitím vhodných stěn)}}}{\dd U} - \underset{\substack{\uparrow\\ \text{umím měřit}\\ \text{(spojeno se změnou vnějš.\ parametru)}}}{\dbar W}$
+
+\begin{itemize}
+  \item \underline{konkrétně:} umím měřit práci $\Rightarrow$ umím určit $\Delta U$ v adiabat.\ procesu, $U$ urč.\ až na adit.\ konstantu
+  $\Rightarrow$ zvolím ref.\ \sout{bod} stav $A$ s $U_A = 0$ a v principu znám $U$ všech stavů, které lze spojit s $A$ adiabat.\ procesem (\& nejsou $\forall$ stavy \dots\ $\nexists$ -- potřebujeme ještě např.\ $\Delta U$ v isochor.\ procesu \dots)
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\begin{itemize}[label=$\Rightarrow$]
+  \item Úloha č.\ 1 -- Callen p.\ 21, exercise 1
+  \item adiabata pro \quad $U = \frac52 pV + \alpha$ \quad $\leftarrow$ kalorická stav.\ rovnice
+  \item $\Delta$ cyklus pro \quad $\downarrow$
+  \item integrace 2D formy / 3D formy?
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{T1-4}
+\subsection*{Stavové rovnice}
+\begin{itemize}[nosep]
+  \item[--] obecně rovnice typu \quad $f_\alpha(T, V, N_i, \mu_i, p, \dots) = 0$ \\
+  $=$ závislosti vnitřních stav.\ proměnných na $T$ a vnějších parametrech
+  \begin{itemize}[nosep]
+    \item vnější -- externě kontrolovatelné \dots\ $V, N_i, E, H, \dots$
+    \item vnitřní \hspace*{4.2cm} $U, p, \mu_i, P, M, \dots$ \\
+    \pozn{$\Rightarrow$ tato je spíše fenomenologická definice, obecně jsou stav.\ rce parc.\ derivace fund.\ rovnice (TD potenciálů)}
+  \end{itemize}
+\end{itemize}
+\begin{tabular}{@{}ll}
+kalorická rovnice: & $U = U(T, V, N)$ \\
+termické \quad\ : & $p = p(\dots)$, \ $\mu_i = \mu_i(\dots)$
+\end{tabular}
+
+\begin{itemize}
+  \item id.\ plyn: \quad $pV = Nk_BT$ \hfill $\bullet$ vdW \quad $\left(p + \dfrac{a}{v^2}\right)(v - b) = k_BT$ \\
+  \hspace*{1.6cm} $U = c_VNk_BT$ \hfill $u = ?$\hspace*{2.2cm}
+  \item \kw{koeficienty lin.\ odezvy}: derivace stav.\ parametrů (stav.\ rcí) \\
+  \quad $\Leftrightarrow$ druhé derivace fundamentální rovnice
+\end{itemize}
+\begin{align*}
+  \alpha &= \frac1V\left(\pdv{V}{T}\right)_p && \text{koef.\ tepl.\ roztažnosti} \\
+  \beta &= -\frac1V\left(\pdv{V}{p}\right)_T \equiv \kappa_T && \text{izoterm.\ stlačitelnost} \\
+  \gamma &= \frac1p\left(\pdv{p}{T}\right)_V && \text{koef.\ teplotní tuhosti}
+\end{align*}
+\[
+  \Rightarrow\quad \vzorec{\alpha = p\beta\gamma} \qquad \text{(to teď nechci dělat)}
+\]
+
+\pozor{!} \quad $\vzorec{C_X = T\left(\pdv{S}{T}\right)_X = \left(\frac{\dbar Q}{\dd T}\right)_X}$ \\
+\hspace*{4.3cm} $\updownarrow$ \\
+Toto je jen zkrácený zápis \quad $\dfrac{\partial S(T,X)}{\partial T}$
+\begin{itemize}[nosep]
+  \item $S(T,X)$ \uv{$=$} $S(T,Y)$ \quad z fyz.\ hlediska -- jedná se o tutéž veličinu
+  \item z mat.\ hlediska je to jiná funkce $\Rightarrow$ $\left(\pdv{S}{T}\right)_X \neq \left(\pdv{S}{T}\right)_Y$ \\
+        ale $S(T,X) = S(T, Y(X,T))$
+\end{itemize}
+\pozn{vzhůru nohama v rohu: 0--5 \quad 5 nejlepší}
+
+%----------------------------------------------------------------------
+\strana{T1-5}
+\begin{priklad}[Adiabata (pro id.\ plyn) -- \pozor{není stav.\ rovnice!}]
+Mějme kalor.\ stav.\ rci $U = \frac52 pV + \alpha$. Najděte rovnici adiabaty (křivka v $p$-$V$, $V$-$T$, \dots\ diagramu, odpovídající ději $\dbar Q = 0$)
+\end{priklad}
+\[
+  \text{1.TDZ}\ \Rightarrow\ \dbar Q = \dd U - \dbar W = 0 = \underbrace{\tfrac52 p\,\dd V + \tfrac52 V\,\dd p}_{\dd U} + p\,\dd V
+\]
+\begin{align*}
+  &\Rightarrow\ \tfrac72 p\,\dd V + \tfrac52 V\,\dd p = 0 \\
+  &\Rightarrow\ \tfrac75\frac{\dd V}{V} = -\frac{\dd p}{p}
+   \ \Rightarrow\ \tfrac75\log V = -\log p + A \\
+  &\Rightarrow\ \log\big(V^{7/5}p\big) = A \ \Rightarrow\ \vzorec{V^{7/5}p = \text{konst}} \\
+  &\Leftrightarrow\ pV^\kappa = \text{konst} \qquad \kappa = \tfrac75 = \frac{c_p}{c_V}
+\end{align*}
+(je to 2-atom.\ id.\ plyn)
+
+%----------------------------------------------------------------------
+\strana{T1-6}
+\begin{priklad}[Adiabata vs.\ izoterma]
+Určete podmínky, za kterých adiabata splývá s izotermou (pro jednoduchý systém, charakt.\ $p, V, T$ (resp.\ 2 z nich))
+\end{priklad}
+
+\begin{minipage}{0.6\textwidth}
+\underline{adiabata}: \quad $\dbar Q = 0 = \dd U + p\,\dd V$
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\fbox{$\begin{aligned} \&\ U &= U(T,V) \\ p &= p(T,V)\end{aligned}$}
+\end{minipage}
+\begin{align*}
+  \Rightarrow\ 0 &= \left(\pdv{U}{T}\right)_V\dd T + \left[\left(\pdv{U}{V}\right)_T + p\right]\dd V \\
+  &= C_V\,\dd T + \left[\left(\pdv{U}{V}\right)_T + p\right]\dd V
+\end{align*}
+
+\underline{izoterma}: \quad $\dd T = 0$, $\dd V \neq 0$ \\
+\quad $\Rightarrow$ aby to platilo zároveň, musí být ($C_V\neq 0$)
+\[
+  \vzorec{\left(\pdv{U}{V}\right)_T + p = 0} \qquad \dots\ \text{rce pro } \left(\pdv{U}{V}\right)_T \quad (p = p(V,T))
+\]
+\underline{NB:} nelze splnit pro id.\ plyn \dots\ tam je $\left(\pdv{U}{V}\right)_T \equiv 0$ jinde než pro $T = 0$
+
+\underline{vdW}:
+\[
+  \left(\pdv{u}{v}\right)_T = \frac{a}{v^2}
+  \ \Rightarrow\ \frac{a}{v^2} + \frac{RT}{v-b} - \frac{a}{v^2} = 0
+  \ \Rightarrow\ \frac{RT}{v-b} = 0 \ \Leftrightarrow\ T = 0
+\]
+
+\begin{veta}[3.\ zákon]
+Za absolutní nuly \sout{izoentropické} jsou izotermické procesy zároveň adiabatické
+\[ \lim_{T\to 0}\left(\pdv{S}{X}\right)_T = 0 \]
+\end{veta}
+\underline{id.\ plyn} \quad $\left(\pdv{u}{v}\right)_T = 0 \ \Rightarrow\ p = 0 = \dfrac{NRT}{V} \ \Rightarrow$ opět OK
+
+%----------------------------------------------------------------------
+\strana{T1-7}
+\begin{priklad}[$\left(\pdv{T}{V}\right)_p\left(\pdv{V}{p}\right)_T\left(\pdv{p}{T}\right)_V = -1$]
+(viz teorie implic.\ fcí)
+\end{priklad}
+\begin{itemize}
+  \item uvažujme stav.\ rovnici \quad $f(T, V, p) = \text{konst}$ \quad \sout{$\Leftrightarrow p = p(T,V)$}
+  \[
+    \Rightarrow\ \dd f = \left(\pdv{f}{T}\right)\dd T + \left(\pdv{f}{V}\right)\dd V + \left(\pdv{f}{p}\right)\dd p = 0
+  \]
+\end{itemize}
+1) $\Leftrightarrow p = p(T,V)$ \quad \& izobara \quad $\Rightarrow T = T(V) \Rightarrow \dd T = \frac{\dd T}{\dd V}\dd V$ \quad \sout{$T = T(V)$}
+\begin{align*}
+  &\Rightarrow\ \left(\pdv{f}{T}\right)\dd T + \left(\pdv{f}{V}\right)\dd V = 0 \\
+  &\Rightarrow\ \left(\pdv{f}{T}\right)_{V,p}\left(\pdv{T}{V}\right)_p + \left(\pdv{f}{V}\right)_{T,p} = 0 \\
+  &\Rightarrow\ \vzorec{\left(\pdv{T}{V}\right)_p = -\frac{\left(\pdv{f}{V}\right)_{T,p}}{\left(\pdv{f}{T}\right)_{V,p}}}
+\end{align*}
+\pozn{v originále je ve jmenovateli napsáno $(\partial f/\partial V)_{V,p}$ -- zřejmě překlep za $(\partial f/\partial T)_{V,p}$}
+
+2) $T = T(p,V)$ \quad \& \quad $\dd T = 0$ \\
+3) $V = V(T,p)$ \quad \& \quad $\dd V = 0$
+\[
+  \Rightarrow\ \vzorec{\left(\pdv{T}{V}\right)_p\left(\pdv{V}{p}\right)_T\left(\pdv{p}{T}\right)_V = -1}
+\]
+
+%----------------------------------------------------------------------
+\strana{T1-8}
+\textbf{1.TDZ:} \quad $\dd U = \dbar Q + \dbar W$ \qquad
+$\dbar W = \underset{\text{mech}}{-p\,\dd V} \ \big/\ \underset{\text{el}}{+\mathcal{E}\,\dd P} \ \big/\ \underset{\text{mg}}{+H\,\dd M}$
+
+\begin{itemize}
+  \item umím měřit práci $\Rightarrow$ umím měřit $\Delta U$ v adiabat.\ procesu $\Rightarrow$ umím měřit $Q$ mezi týmiž dvěma stavy v neadiabat.\ procesu ($U$ stavová veličina, $W/Q$ \uv{dějové})
+  \item adiabat.\ izol.\ systém: stav nelze změnit jinak, než změnou vnějších parametrů
+\end{itemize}
+
+\begin{priklad}[Př.\ č.\ 1]
+\begin{itemize}[nosep]
+  \item válec s pístem, ve kterém je uzavřen 1-komp.\ plyn
+  \item experimentem zjistím (systém uzavřu adiabat.\ stěnami), že v adiabat.\ procesu platí
+  \[ p^3V^5 = \text{konst.} \qquad (\text{pro } Q = 0) \text{ -- odpovídá 1-atom.\ ideálnímu plynu} \]
+\end{itemize}
+\end{priklad}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=1.1]
+  \draw[->] (-0.3,0) -- (6,0) node[right] {$V$};
+  \draw[->] (0,-0.3) -- (0,3.6) node[left] {$p$};
+  \coordinate (A) at (1.2,3); \coordinate (D) at (5,3);
+  \coordinate (C) at (1.2,0.5); \coordinate (B) at (5,0.5);
+  \draw (0,3) node[left] {$p_A$} -- (0.1,3);
+  \draw (0,0.5) node[left] {$p_B$} -- (0.1,0.5);
+  \draw (1.2,0) node[below] {$V_A$} -- (1.2,0.1);
+  \draw (5,0) node[below] {$V_B$} -- (5,0.1);
+  \node[above left] at (A) {$A$}; \node[right] at (D) {$D$};
+  \node[left] at (C) {$C$}; \node[right] at (B) {$B$};
+  \draw[thick] (A) -- (D) node[midway,above] {$(Q>0)$};
+  \draw[thick] (D) -- (B) node[midway,right] {$(Q<0)$};
+  \draw[->,thick] (5,2) -- (5,1.6);
+  \draw[thick] (A) -- (C);
+  \draw[->,thick] (1.2,2) -- (1.2,1.6);
+  \draw[thick] (C) -- (B);
+  \draw[->,thick] (2.9,0.5) -- (3.3,0.5);
+  \draw[->,thick] (2.9,3) -- (3.3,3);
+  % přímka AB
+  \draw[thick] (A) -- (B);
+  \draw[->,thick] (3.0,1.82) -- (3.2,1.71);
+  % adiabata
+  \draw[thick] (A) .. controls (2,1.6) and (3.3,0.9) .. (B) node[pos=0.45,below left] {\small $Q=0$};
+  \draw[->,thick] (2.6,1.4) -- (2.8,1.3);
+  \node[align=center] at (8,2.2) {$A, B$ leží na\\ 1 adiabatě};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=\alph*)]
+  \item (kvazi-statické) práce a teplo podél trajektorií \sout{AB}, \fbox{ADB}, ACB, \fbox{AB (přímka)} \\
+  \hspace*{4cm} $\hookrightarrow p = p_A + \dfrac{V - V_A}{V_B - V_A}(p_B - p_A) \Rightarrow W = \frac12(p_A + p_B)(V_A - V_B)$
+\end{enumerate}
+\begin{enumerate}[label=\alph*),start=2]
+  \item $\Delta U$ ($V = $ konst, $p\nearrow$) -- isochor.\ proces
+  \item umíme již projít $\forall$ stavy?
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{T1-9}
+\textbf{a) I)} \quad $\Delta U_{AB}$ -- zjistíme z adiabat.\ procesu \hfill
+\begin{minipage}[t]{0.33\textwidth}\small
+\underline{NB:} $A, B$ musí ležet na adiabatě (netriv.\ požadavek)
+\end{minipage}
+\begin{align*}
+  p_AV_A^{5/3} &= p_BV_B^{5/3} = pV^{5/3} \\
+  \Rightarrow\ p &= p_A\left(\frac{V_A}{V}\right)^{5/3} \\
+  W_{AB}^{ad} &= -\int_{V_A}^{V_B} p_A\left(\frac{V_A}{V}\right)^{5/3}\dd V = \frac32 p_AV_A^{5/3}\Big[V^{-2/3}\Big]_A^B \\
+  &= \frac32 p_AV_A^{5/3}\Big[V_B^{-2/3} - V_A^{-2/3}\Big] = \Delta U_{AB} < 0
+\end{align*}
+
+\textbf{II)} \quad \underline{ADB:} \quad $\Delta U = \Delta U_{AB} < 0$
+\begin{align*}
+  W_{ADB} &= W_{AD} = p_A(V_A - V_B) < 0 \\
+  \Delta U_{AB} &= W_{ADB} + Q_{ADB}
+\end{align*}
+\begin{minipage}{0.22\textwidth}\small
+\pozor{!} neznám $Q_{AD}$ a $Q_{DB}$ samostatně
+\end{minipage}
+\begin{minipage}{0.76\textwidth}
+\[
+  \Rightarrow\ \vzorec{Q_{ADB} = \tfrac32 p_AV_A^{5/3}\Big[V_B^{-2/3} - V_A^{-2/3}\Big] + p_A(V_B - V_A)}
+\]
+\end{minipage}
+
+\underline{NB:}
+\begin{itemize}[nosep]
+  \item výsledek jen zdánlivě nezávisí na $p_B$, neboť $p_B$ je \sout{dáno} určeno $V_B$ skrze adiabatu
+  \item umíme říct, jestli se teplo dodá nebo odevzdá? (zde $Q > 0$, ale jak je to s tou plochou v $pV$-diagramu u cyklu? OK -- uzavřu cyklus, plyn koná práci při větším tlaku, je stlačován při menším $\boxtimes$)
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{T1-10}
+\textbf{b)} alias \uv{co se stavy, které neleží na adiabatě} \\
+Do válce umístíme lopatku (vrtulku), kterou umíme nějak bezkontaktně (mg) pohánět, přičemž známe moment síly (tzv.\ kroutivý moment) motorku $M$.
+\begin{itemize}
+  \item \underline{naměříme:} \quad $V = $ konst \ $\Rightarrow$ \ $\dfrac{\dd p}{\dd t} = \dfrac23\dfrac{\omega}{V}M$
+\end{itemize}
+$\Rightarrow$ ukažte, že takto umíme změřit $\Delta U$ pro lib.\ 2 stavy při stejném objemu \\
+\quad (avšak pouze v procesu s rost.\ tlakem -- proč?)
+
+\rule{3cm}{0.4pt}
+
+\underline{řeš:} \quad výkon motorku: \quad $\dfrac{\dd U}{\dd t} = M\omega > 0$
+
+\begin{minipage}{0.06\textwidth}\Huge\pozor{!}\end{minipage}
+\begin{minipage}{0.9\textwidth}
+(předanou en.\ nelze klasif.\ jako práci nebo teplo -- z hlediska plynu -- nejedná se o kvazistac.\ proces)
+\end{minipage}
+\begin{align*}
+  &\Rightarrow\ \frac{\dd p}{\dd t} = \frac{2}{3V}\frac{\dd U}{\dd t} \ \Rightarrow\ \dd U = \frac32 V\,\dd p \geq 0 \\
+  &\Rightarrow\ U_A - U_C = \frac32 V_A(p_A - p_B)
+\end{align*}
+
+\textbf{c)} libovolné 2 stavy lze vždy spojit adiabatou a isochorou (z nichž jedna je ve správném směru) $\Rightarrow$ umíme určit $\Delta U$ \sout{mezi} mezi lib.\ 2 stavy
+
+\begin{minipage}[t]{0.3\textwidth}\small
+\fbox{\parbox{0.9\linewidth}{\underline{NB:} může to být možné jen 1 směrem s adiabatou mezi stavy}}
+\end{minipage}
+\begin{minipage}[t]{0.65\textwidth}
+(\underline{NB:} Joule -- právě toto experimentálně potvrdil)
+\end{minipage}
+
+%----------------------------------------------------------------------
+\strana{T1-11}
+\begin{priklad}[Př.\ 2]
+Mějme \sout{systém} plyn, pro který platí $U = \frac52 pV + \alpha$, uzavřený ve stejném pístu a projedeme cyklus
+\end{priklad}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=1.1]
+  \draw[->] (-0.3,0) -- (6.2,0) node[right] {$V$};
+  \draw[->] (0,-0.3) -- (0,4) node[left] {$p$};
+  \coordinate (A) at (1,0.6); \coordinate (B) at (5.2,0.6); \coordinate (C) at (1,3.4);
+  \draw (0,3.4) node[left] {$p_C$} -- (0.1,3.4);
+  \draw (0,0.6) node[left] {$p_A$} -- (0.1,0.6);
+  \draw (1,0) node[below] {$V_A$} -- (1,0.1);
+  \draw (5.2,0) node[below] {$V_B$} -- (5.2,0.1);
+  \node[below left] at (A) {$A$}; \node[below right] at (B) {$B$}; \node[above] at (C) {$C$};
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \draw[->,thick] (2.9,0.6) -- (3.2,0.6);
+  \draw[->,thick] (3.4,1.8) -- (3.1,2.0);
+  \draw[->,thick] (1,2.2) -- (1,1.9);
+  \node[align=left] at (8.3,2.6) {$\sum W, Q$ na $\forall$\\ úsecích};
+  \node at (8.3,1) {$\Rightarrow$ účinnost?};
+\end{tikzpicture}
+\end{center}
+
+\underline{AB:}
+\[
+  \left.\begin{aligned}
+    \Delta U_{AB} &= \tfrac52 p_A(V_B - V_A) > 0 \\
+    W_{AB} &= -p_A(V_B - V_A) < 0
+  \end{aligned}\right\}
+  \ \Rightarrow\ Q_{AB} = \tfrac72 p_A(V_B - V_A) > 0
+\]
+
+\underline{BC:}
+\begin{align*}
+  &\vzorec{\Delta U_{BC} = \tfrac52(p_CV_A - p_AV_B)} \gtrless 0 \\
+  W_{BC} &= -\int_{V_B}^{V_A} p\,\dd V = \Big/\, p = p_A + \frac{(p_C - p_A)(V - V_B)}{V_A - V_B} \,\Big/ \\
+  &= p_A(V_B - V_A) - \frac12\frac{p_C - p_A}{V_A - V_B}\Big[(V_A - V_B)^2 - (V_B - V_B)^2\Big] \\
+  &= p_A(V_B - V_A) + \frac12(p_C - p_A)(V_B - V_A) \\
+  &\vzorec{W_{BC} = \tfrac12(p_A + p_C)(V_B - V_A)} > 0
+\end{align*}
+\[
+  \Rightarrow\ \vzorec{Q_{BC} = \Delta U_{BC} - W_{BC}} \gtrless 0 = \tfrac12\big(p_AV_A - 6p_AV_B - p_CV_B + 6p_CV_A\big)
+\]
+\hfill \fbox{$Q_{BC} > 0 \Leftrightarrow (p_A + 6p_C)V_A > (6p_A + p_C)V_B$}
+
+%----------------------------------------------------------------------
+\strana{T1-12}
+\begin{minipage}{0.62\textwidth}
+\underline{CA:}
+\begin{align*}
+  \Delta U_{CA} &= \tfrac52 V_A(p_A - p_C) < 0 \\
+  W_{CA} &= 0 \\
+  \Rightarrow Q_{CA} &= \tfrac52 V_A(p_A - p_C) < 0
+\end{align*}
+\underline{celkem:} \quad $W > 0$, \ $\Delta U = 0$, \ $Q < 0$
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\pozor{!} \quad $W_{tot} = \frac12(V_A - V_B)(p_A - p_C)$ \\
+\quad $\Rightarrow$ obsah $\Delta$!
+\end{minipage}
+
+$\Rightarrow$ můžeme doplnit znaménko u BC? \\ ačkoli na AB a CA neumíme jednoduše porovnat. \quad \sout{$Q_{AB} = \frac72 p_A$}
+
+\begin{priklad}[Př.\ 3]
+adiabata $p = p(V)$ pro daný systém
+\end{priklad}
+\begin{align*}
+  \dd U &= \tfrac52 p\,\dd V + \tfrac52 V\,\dd p = -p\,\dd V \qquad \Leftarrow (\dbar Q = 0) \\
+  &\Rightarrow\ \tfrac72 p\,\dd V = -\tfrac52 V\,\dd p \\
+  &\Rightarrow\ 7\frac{\dd V}{V} = -5\frac{\dd p}{p} \ \Rightarrow\ 7\log V = -5\log p + K \\
+  &\Rightarrow\ V^7 = \tilde Kp^{-5} \ \Rightarrow\ \vzorec{pV^{7/5} = \text{konst}} \\
+  &\Rightarrow\ \text{2-atom.\ id.\ plyn}
+\end{align*}
+(\underline{NB:} $pV = Nk_BT \Rightarrow U = \frac52 Nk_BT$)
+

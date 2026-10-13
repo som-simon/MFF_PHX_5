@@ -1,0 +1,230 @@
+%======================================================================
+% L04c_Extremum_principles.pdf
+%======================================================================
+\section{Energetická reprezentace}
+\strana{L04c-1}
+
+\begin{itemize}
+  \item z postulátů vyplývá význačná role $S = S(U,\vec X)$ jako \underline{fundamentální rovnice}
+  \begin{enumerate}[label=\roman*)]
+    \item v izolovaném složeném systému definuje rovnovážný stav skrze \underline{princip maxima}:
+    \[
+      \dd S = 0 \quad\&\quad \dd^2S > 0
+    \]
+    \textcolor{NavyBlue}{\small protože $S(U,V,N;\vec\xi) = \sum_{\text{podsyst.}}S_i(U_i,\vec X_i)$ \qquad
+    $\nwarrow$ tyto lze relaxovat; volné $\xi_i$ nemusí být ext.; obvykle jsou}
+
+    \begin{veta}[Princip maxima entropie]
+    \textcolor{Red}{Rovnovážné hodnoty volných vnitřních \textcolor{NavyBlue}{(}extenzivních\textcolor{NavyBlue}{)} parametrů jsou takové, aby \underline{maximalizovaly entropii} \underline{pro danou hodnotu celkové vnitřní energie}} \
+    \textcolor{Red}{\small (a ostatních vnějších ext.\ param.)}
+    \end{veta}
+
+    \item derivacemi podle extenzivních parametrů dostáváme stavové rovnice
+    \[
+      -\frac{y_i}{T}(U,\vec X) = \pdv{S}{X_i}
+    \]
+  \end{enumerate}
+\end{itemize}
+
+\underline{Motivace} pro hledání alternativních reprezentací fundamentální rovnice:
+\begin{enumerate}[label=\arabic*)]
+  \item ne vždy jsou extenzivní proměnné ideální jako nezávislé parametry k popisu rovn.\ stavu -- v praxi často kontrolujeme $T$ anebo $p$\dots\ \textcolor{NavyBlue}{($\Leftarrow$ \uv{náš systém} nemusí být izolovaný)}
+  \item z 1 vyplývá, že ne vždy hledáme rovnováhu v izolovaném systému\dots
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{L04c-2}
+\subsection*{1) Energetická reprezentace}
+\begin{itemize}
+  \item ukázali jsme, že $U = U(S,\vec X)$ je kandidát na \uv{energetickou fund.\ rovnici} ve smyslu, že
+  \[ \dd U = T\dd S + \sum y_i\dd X_i \]
+  $\Rightarrow$ parciální derivace $U = U(S,\vec X)$ také definují stavové rovnice pro intenzivní parametry
+  \item ukážeme, že platí \underline{princip minima energie}
+\end{itemize}
+
+\begin{veta}[Princip minima energie]
+\textcolor{Red}{Rovnovážné hodnoty volných vnitřních extenzivních parametrů jsou takové, aby \underline{minimalizovaly vnitřní} \underline{energii pro danou hodnotu entropie}.}
+\end{veta}
+$\Rightarrow$ $U = U(S,\vec X)$ je plnohodnotnou fundamentální rovnicí
+
+\underline{Dk:}
+\begin{itemize}
+  \item studujme vztahy mezi diferenciály $S = S(U,\vec X,\vec\xi)$ a $U = U(S,\vec X,\vec\xi)$ \\
+  $\to$ zde $\vec X$ jsou externí fixované a $\vec\xi$ interní parametry
+  \[
+    \dd S = \left(\pdv{S}{\xi_j}\right)_{U,X}\dd\xi_j = 0 \quad \forall\,\dd\xi_j \text{ nezávislé}
+    \qquad\Rightarrow\quad \boxed{\left(\pdv{S}{\xi_j}\right) = 0} \quad\forall j
+  \]
+  \begin{align*}
+    \dd U = \left(\pdv{U}{\xi_j}\right)_{S,X}\dd\xi_j
+      &= -\frac{\left(\pdv{S}{\xi_j}\right)_{U,X}}{\left(\pdv{S}{U}\right)_{X,\xi}}\dd\xi_j \\
+      &= -T\left(\pdv{S}{\xi_j}\right)_{U,X}\dd\xi_j = \big/\,\dd S = 0\,\big/ = 0
+  \end{align*}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L04c-3}
+\[
+  \Rightarrow\quad \vzorec{\left(\pdv{S}{\xi_j}\right) = 0 \ \Leftrightarrow\ \left(\pdv{U}{\xi_j}\right) = 0}
+\]
+má-li $S$ extrém, potom má i $U$ extrém
+
+\begin{itemize}
+  \item platí $\dd^2S < 0 \Leftrightarrow \dd^2U > 0$\,?
+  \begin{itemize}[nosep]
+    \item[$\to$] pro budoucí potřeby pojďme počítat zcela obecně úplný $\dd^2$ bez ohledu na $\dd S = \dd\vec X = 0$ resp.\ $\dd U = \dd\vec X = 0$:
+  \end{itemize}
+\end{itemize}
+\begin{align*}
+  \dd^2U &= \left(\frac{\partial^2U}{\partial\zeta_i\partial\zeta_j}\right)\dd\zeta_i\dd\zeta_j
+          = \Big/\,\dd U = \textstyle\sum y_i\zeta_i\,\Big/ \\
+         &= \left(\pdv{y_j}{\zeta_i}\right)\dd\zeta_i\dd\zeta_j = \dd y_j\,\dd\zeta_j
+          \ \Rightarrow\ \Big/\,\begin{array}{l} y_1 = T \\ \zeta_1 = S\end{array}\Big/
+\end{align*}
+\[
+  \Rightarrow\quad \vzorec{\dd^2U = \dd T\,\dd S + \sum_i\dd y_i\,\dd X_i}
+\]
+\textcolor{NavyBlue}{\underline{NB:} v lib.\ procesu tak pro druhou variaci $U$ dostáváme
+\[
+  \boxed{\delta^2U = \delta T\,\delta S + \sum_i\delta y_i\,\delta X_i}
+\]
+kde ovšem ne všechny variace na RHS jsou nezávislé \\
+$\to$ bude se hodit při studiu stability}
+\begin{align*}
+  \delta^2S &= \left(\frac{\partial^2S}{\partial\zeta_i\partial\zeta_j}\right)\dd\zeta_i\dd\zeta_j
+             = -\pdv{\zeta_i}\left(\frac{y_j}{T}\right)\dd\zeta_i\dd\zeta_j
+             &&\textcolor{NavyBlue}{\dd S = \tfrac1T\dd U - \tfrac{y_i}{T}\dd X_i} \\
+            &= -\frac1T\dd y_j\,\dd\zeta_i + \frac{1}{T^2}y_j\,\dd T\,\dd\zeta_j
+             = \Big/\,y_1 = -1,\ \zeta_1 = U \ \to\ \dd y_1 = 0\,\Big/ \\
+            &= -\frac1T\dd y_i\,\dd X_i - \frac{1}{T^2}\dd T\,\dd U + \frac{1}{T^2}\dd T\,(y_i\,\dd X_i) \\
+            &= -\frac1T\dd y_i\,\dd X_i - \frac{1}{T^2}\dd T\,(\dd U - y_i\,\dd X_i)
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{L04c-4}
+\begin{align*}
+  \phantom{\delta^2S} &= -\frac1T\left[\dd y_i\,\dd X_i + \frac1T\dd T\,(T\dd S)\right] \\
+  \Rightarrow\ \delta^2S &= -\frac1T\Big[\dd T\,\dd S + \sum_i\dd y_i\,\dd X_i\Big] = -\frac1T\dd^2U
+\end{align*}
+\[
+  \textcolor{NavyBlue}{\boxed{\dd^2U = -T\,\dd^2S}}
+\]
+\begin{itemize}
+  \item platí zcela obecně \& $T > 0$ $\Rightarrow$ \qquad
+  $\textcolor{NavyBlue}{\boxed{\dd^2S < 0 \Leftrightarrow \dd^2U > 0}}$
+  \item spec.\ \checkmark \quad $[\dd^2S]_{U,X} < 0 \Leftrightarrow [\dd^2U]_{S,X} > 0$ \quad $\Rightarrow$
+  \textcolor{NavyBlue}{\small (pro kandidáty stabil.\ rovnováhy $[\dd S]_{U,X} = 0 \Leftrightarrow [\dd U]_{S,X} = 0$)} \\
+  matematicky jsou tedy zcela ekvivalentní charakterizace rovnovážného stavu v entropické a energetické reprezentaci;
+\end{itemize}
+
+\begin{veta}[Ekvivalence principů]
+\[
+  \begin{array}{lll}
+    {}[\dd S]_{U,X} = 0 & \&\ \ [\dd^2S]_{U,X} < 0 & \qquad S = S(U,X;\xi) \\
+    \multicolumn{1}{c}{\Updownarrow} & & \\
+    {}[\dd U]_{S,X} = 0 & \&\ \ [\dd^2U]_{S,X} > 0 & \qquad U = U(S,X;\xi)
+  \end{array}
+\]
+\end{veta}
+\begin{itemize}
+  \item $[S,U]$, $X$ jsou fixované \underline{vnější extenzivní} parametry
+  \item $\xi$ jsou volné vnitřní parametry, které jsou přirozeně také extenzivní, ale tento požadavek není striktní; stavový prostor při fixním $S/U$, $X$ lze parametrizovat libovolně a odpovídajícím způsobem vyjádřená $U/S$ stále nabývá extrém
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L04c-5}
+\subsection*{Fyzikální interpretace}
+\begin{itemize}
+  \item ekvivalenci charakteristiky rovnováhy jako $\dd S = 0\ \&\ \dd^2S < 0 \Leftrightarrow \dd U = 0\ \&\ \dd^2U > 0$ lze nahlédnout z \kw{Clausiovy nerovnosti}:
+  \[
+    \oint\frac{\dd Q}{T'} \leq 0 \ \Rightarrow\ \int_A^B\frac{\dd Q}{T'} + \int_{B\,(\text{rev})}^{A}\frac{\dd Q}{T} \leq 0 \quad\&\quad B\to A
+  \]
+  \[
+    \Rightarrow\ \dd Q \leq T\dd S \quad\Rightarrow\quad \vzorec{T\dd S \geq \dd U - \dd W}
+  \]
+  $\to$ izol.\ systém $\Rightarrow$ $\dd U = 0$, $\dd X = 0$ $\Rightarrow$ $T\dd S \geq 0$
+  \[
+    \Rightarrow\ \boxed{[\dd S]_{U,\vec X} \geq 0 \ \text{ v nevratném procesu}}
+  \]
+  $\to$ systém v rovnováze tento stav již samovolně neopustí $\Rightarrow$ za daných externích podmínek již neexistuje spontánní nevratný proces
+\end{itemize}
+
+\begin{veta}[Rovnováha izolovaného systému]
+$\Leftrightarrow$ neexistují fluktuace $[\delta S]_{U,\vec X_{\text{ext}}} > 0$
+
+\smallskip
+\textbf{\small i) For the equilibrium of any isolated system it is necessary and sufficient that in all possible variations of the state of the system which do not alter its energy, the variation of its entropy shall either vanish or be negative.} \hfill \textsc{Gibbs}
+\end{veta}
+
+\begin{itemize}
+  \item ekvivalentně dostáváme, že $\dd U \leq T\dd S + \dd W$
+  \[
+    \Rightarrow\ [\dd U]_{S,\vec X} \leq 0 \qquad (+)
+  \]
+  $\to$ zde ovšem již nepracujeme s izol.\ systémem:
+  \[
+    \begin{aligned}
+      &\vec X = \text{konst} \ \Rightarrow\ \dd W = 0 \ \Rightarrow\ \dd U = \dd Q \\
+      &\dd S = 0 \ \Rightarrow\ \Big/\,\dd S - \frac{\dd Q}{T}\geq 0\,\Big/ \ \Rightarrow\ \dd Q \leq 0
+    \end{aligned}
+  \]
+  $\Rightarrow$ (+) je \quad $\vzorec{[\dd Q]_{S,\vec X} \leq 0}$
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L04c-6}
+neboli \uv{v nevratném procesu při konst.\ entropii odchází teplo ze systému}
+\begin{itemize}
+  \item v rovnováze neexistují spontánní nevratné procesy, tedy
+\end{itemize}
+\begin{veta}[Rovnováha při konst.\ entropii]
+neexistují fluktuace\textcolor{Red}{???} \quad $[\delta U]_{S,\vec X} < 0$
+
+\smallskip
+\textbf{\small For the equilibrium of any \colorbox{Red!40}{isolated} system it is necessary and sufficient that in all possible variations in the state of the system which do not alter its entropy, the variation of its energy shall either vanish or be positive.} \hfill \textsc{Gibbs}
+\end{veta}
+
+\textcolor{NavyBlue}{\underline{Př:} mechanická rovnováha -- nevratný vs.\ vratný přechod k rovnováze}
+
+\begin{center}
+\begin{tikzpicture}[NavyBlue,>=Stealth,scale=0.75]
+  % a)
+  \node at (-0.6,2.4) {a)};
+  \draw (0,0) rectangle (6,2.4);
+  \draw (2.4,0) -- (2.4,2.4);
+  \node at (2.4,2.6) {\small $(-)$};
+  \draw[<->] (1.9,1.5) -- (2.9,1.5);
+  \node at (3.2,1.7) {$Q$};
+  % b) -- v originále celé přeškrtnuto červeně
+  \begin{scope}[yshift=-3.6cm]
+    \node at (-0.6,2.4) {b)};
+    \draw (0,0) rectangle (6,2.4);
+    \draw (2.4,0) -- (2.4,2.4);
+    \draw (2.4,1.2) -- (6.4,1.2);
+    \draw[<->] (6.2,1.45) -- (6.8,1.45);
+    \node at (6.5,1.75) {$W$};
+    \draw[<->] (1.9,0.7) -- (2.9,0.7);
+    \node[right] at (2.9,0.7) {$Q$ vratně};
+  \end{scope}
+  \draw[Red] (-0.2,-0.6) -- (12,-4.2);
+  \draw[Red] (0.2,-3.9) -- (11,-0.5);
+\end{tikzpicture}
+\end{center}
+
+\textcolor{NavyBlue}{
+\begin{itemize}[nosep]
+  \item[a)] píst uvolníme $\Rightarrow$ za konst.\ $U$ se v nevratném procesu ($\dd S_i\geq 0$) ustaví rovnováha tak, že $S$ je maximální
+  \item[b)] \textcolor{gray}{\sout{přechod do mech.\ rovnováhy probíhá vratně (kvazistat., systém koná práci) $\Rightarrow$ při $\dd S = 0$ se rovnováha ustaví na minimu $U$ -- srov.\ MWT: $\max W \Leftrightarrow \Delta S = 0$}} \pozn{přeškrtnuto červeně}
+\end{itemize}}
+\textcolor{Red}{\small celé nesmysl; $\Delta S/_{U=\text{konst}}$ je fyz.\ nevrat.\ proces, v rovn.\ je potom $U(S,\vec X;\vec\xi)$ v minimu, ale nic jiného to neznamená)}
+
+\fbox{\parbox{0.6\textwidth}{\small $\bullet$ definice TD rovnovážného stavu je tedy analogická definici kruhu skrze: \\
+\hspace*{1cm} a) max.\ obsah při daném obvodu \\
+\hspace*{1cm} b) min.\ obvod při daném obsahu}}
+
+\textcolor{NavyBlue}{a) vs b): pokud je v b) v počátečním stavu entropie stejná jako v a) na konci, potom bude výsledný rovnovážný stav stejný}
+
+\begin{itemize}
+  \item energetická reprezentace je zjevně v porovnání s entropickou \uv{kostrbatá}, ukáže se nicméně jako velmi užitečná v situacích, kdy místo $S, X$ kontrolujeme nějaké sdružené intenzivní parametry
+\end{itemize}
+

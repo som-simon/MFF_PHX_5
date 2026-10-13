@@ -1,0 +1,114 @@
+%======================================================================
+% T9_mg_cooling.pdf
+%======================================================================
+\section{Cvičení: Aplikace Maxwellových relací -- magnetické chlazení}
+\strana{T9mg-1}
+
+\begin{priklad}[Příklad 1 -- Magnetické chlazení]
+Paramagnetická látka $\big[M(H=0) = 0,\ \dd W = H\,\dd M\big]$ je charakterizována kalorickou rovnicí $U = BT^4$
+a izotermickou susceptibilitou $\chi_T = \dfrac{A}{T}$, $A > 0$. \quad ($\chi_T$ $\updownarrow$ id.\ paramagnet)
+\begin{enumerate}[label=\arabic*)]
+  \item Kolik tepla přiteče do systému, pokud izotermicky zapneme pole $H = 0 \to H = H_0$?
+  \item Jak se změní teplota, pokud následně adiabaticky mg.\ pole vypneme?
+\end{enumerate}
+\end{priklad}
+
+\underline{Pozn:}
+\begin{itemize}[nosep]
+  \item $T = \text{konst} \Leftrightarrow$ pomalé zapínání (vibrační a mg.\ stupně volnosti stihají interagovat, tep.\ interakce
+        s okolím dostatečně rychlá k udržení konst.\ teploty)
+  \item $\dd Q = 0 \Leftrightarrow$ rychlé vypnutí (teplo přitéct nestihne)
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection*{Řešení}
+{\color{NavyBlue}
+1) \ $U = BT^4 \Rightarrow \dd T = 0 \Leftrightarrow \dd U = 0 \Rightarrow Q = -W$
+\[
+  Q = -\int_0^{H_0}H\,\dd M = -\int_0^{H_0}H\Big(\frac{\partial M}{\partial H}\Big)_T\dd H = -\frac{A}{T}\int_0^{H_0}H\,\dd H = -\frac{AH_0^2}{T}
+\]
+\quad $\Rightarrow$ zapnutím pole jsme teplo ze systému odčerpali (orientace spinů $\Rightarrow$ pokles entropie)
+\pozn{v originále takto; $\int_0^{H_0}H\,\dd H = H_0^2/2$}
+}
+
+%----------------------------------------------------------------------
+\strana{T9mg-2}
+{\color{NavyBlue}
+2) \
+\[
+  \Delta T = \int_{H_0}^{0}\Big(\frac{\partial T}{\partial H}\Big)_S\dd H
+  = \int_0^{H_0}\frac{\big(\frac{\partial S}{\partial H}\big)_T}{\big(\frac{\partial S}{\partial T}\big)_H}\,\dd H
+\]
+\quad $\Rightarrow$ potřebujeme nalézt $S = S(T,H)$ \\
+\quad $\Rightarrow$ potom ale lze $T_f$ určit ze vztahu \quad $S(T_f, 0) = S(T_i, H_0)$
+
+a) \ FR je $U = U(S,M)$, přitom známe \quad $U(T,M) = U\big(S(T,M),M\big) = BT^4$
+\[
+  \Rightarrow\ \Big(\frac{\partial U}{\partial M}\Big)_T = 0
+  = \Big(\frac{\partial U}{\partial S}\Big)_M\Big(\frac{\partial S}{\partial M}\Big)_T + \Big(\frac{\partial U}{\partial M}\Big)_S
+  = T\Big(\frac{\partial S}{\partial M}\Big)_T + H
+  \qquad\Rightarrow\ \boxed{\Big(\frac{\partial S}{\partial M}\Big)_T = -\frac{H}{T}}
+\]
+
+b) \ $S(T,M) = S\big(T, H(T,M)\big)$
+\[
+  \Rightarrow\ \Big(\frac{\partial S}{\partial M}\Big)_T = \Big(\frac{\partial S}{\partial H}\Big)_T\Big(\frac{\partial H}{\partial M}\Big)_T
+  = \Big(\frac{\partial S}{\partial H}\Big)_T\Big(\frac{A}{T}\Big)^{-1}
+  \qquad\Rightarrow\ \vzorec{\Big(\frac{\partial S}{\partial H}\Big)_T = -\frac{AH}{T^2}}\ \checkmark
+\]
+
+c) \ $\Big(\dfrac{\partial S}{\partial T}\Big)_H = \dfrac{C_H}{T}$ \quad \& \quad
+$C_M = \Big(\dfrac{\partial U}{\partial T}\Big)_M = 4BT^3$ \\
+\quad $\Rightarrow$ potřebuji Meyerův vztah
+\begin{align*}
+  C_H = T\Big(\frac{\partial S}{\partial T}\Big)_H &= \Big/\,S(T,H) = S\big(T, M(T,H)\big)\Big/ \\
+  &= T\Big(\frac{\partial S}{\partial T}\Big)_M + T\Big(\frac{\partial S}{\partial M}\Big)_T\Big(\frac{\partial M}{\partial T}\Big)_H
+   = \Big/\,\dd F = -S\,\dd T + H\,\dd M\Big/
+\end{align*}
+}
+
+%----------------------------------------------------------------------
+\strana{T9mg-3}
+{\color{NavyBlue}
+\[
+  = C_M - T\Big(\frac{\partial H}{\partial T}\Big)_M\Big(\frac{\partial M}{\partial T}\Big)_H
+  = C_M + \frac{\big(\frac{\partial M}{\partial T}\big)_H^2}{\big(\frac{\partial M}{\partial H}\big)_T}
+  = C_M + \frac{T\big(\frac{\partial M}{\partial T}\big)_H^2}{\chi_T}
+\]
+\begin{itemize}[nosep]
+  \item $\chi_T = \dfrac{A}{T}$; \quad $C_M = 4BT^3$
+  \item $\Big(\dfrac{\partial M}{\partial T}\Big)_H = \Big/\,\dd G = -S\,\dd T - M\,\dd H\Big/ = \Big(\dfrac{\partial S}{\partial H}\Big)_T = -\dfrac{AH}{T^2}$ \\
+        $\to$ samozřejmě není náhoda, že se \uv{kruh uzavírá}, neboť $\big(\frac{\partial S}{\partial H}\big)_T$ a
+        $\big(\frac{\partial S}{\partial T}\big)_H$ nejsou zcela nezávislé -- $\dd S(H,T)$ je úplný diferenciál
+\end{itemize}
+
+$\Rightarrow$ i) \ $\Big(\dfrac{\partial S}{\partial T}\Big)_H = 4BT^2 + \dfrac{A^2H^2}{T^4}\,\dfrac{T}{A} = 4BT^2 + \dfrac{AH^2}{T^3}$
+
+\phantom{$\Rightarrow$} ii) \ $\Big(\dfrac{\partial S}{\partial H}\Big)_T = -\dfrac{AH}{T^2}$
+\hfill $\Big(\dfrac{\partial^2S}{\partial T\partial H}\Big) = \dfrac{2AH}{T^3} \overset{?}{=} \Big(\dfrac{\partial^2S}{\partial H\partial T}\Big) = \dfrac{2AH}{T^3}\ \checkmark$
+
+\phantom{$\Rightarrow$} ii) \ $S = -\dfrac{AH^2}{2T^2} + f(T)$
+
+\qquad $\Big(\dfrac{\partial S}{\partial T}\Big) = \dfrac{AH^2}{T^3} + f'(T) = \dfrac{AH^2}{T^3} + 4BT^2$
+
+\begin{minipage}{0.55\textwidth}
+\[
+  \Rightarrow\ \vzorec{S = \frac43BT^3 - \frac{AH^2}{2T^2} + S_0}
+\]
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+$\bullet$ vypadá rozumně: \\
+\quad $H\nearrow \Leftrightarrow S\searrow$ \\
+\quad $T\nearrow \Leftrightarrow S\nearrow$
+\end{minipage}
+\[
+  \Rightarrow\ \frac43BT_f^3 = \frac43BT_i^3 - \frac{AH_0^2}{2T_i^2}
+  \quad\Rightarrow\quad \vzorec{T_f^3 = T_i^3 - \frac{3AH_0^2}{8BT_i^2}\ \Rightarrow\ T_f < T_i}
+\]
+\begin{itemize}
+  \item princip chlazení je, že po vypnutí pole jsou spiny uspořádanější, než by odpovídalo \uv{vibrační} teplotě \\
+        $\Rightarrow$ směrem k rovnováze spiny odčerpají teplo z vibrací \\
+        (resp.\ v a) teplo odteklo a v b) už se zpět nedostalo; b může probíhat i kvazistat.\ při $\dd S = 0$)
+\end{itemize}
+}

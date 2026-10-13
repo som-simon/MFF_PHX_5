@@ -1,0 +1,343 @@
+%======================================================================
+% L12_Fermi_Bose.pdf
+%======================================================================
+\section{Fermiho a Boseho plyn}
+\strana{L12-1}
+\subsection{Odbočka: kvantová statistická mechanika}
+\pozn{v originále je celá odbočka (str.\ L12-1, L12-2) psaná zeleně}
+
+\begin{itemize}
+  \item v QM je čistý stav popsán vlnovou funkcí $\ket{\psi}$
+  \item analog $w(p,q)$ je \kw{matice hustoty} (operátor hustoty)
+  \[
+    \vzorec{\hat\rho = \sum_k p_k\ket{\psi_k}\bra{\psi_k}} \qquad \sum_k p_k = 1
+  \]
+  \begin{itemize}
+    \item $\ket{\psi_k}$ nemusí být vl.\ stavy $\hat H$, jsou to vl.\ stavy operátoru hustoty
+    \item ve \underline{smíšeném stavu} popsaném $\hat\rho$ je čistý stav $\ket{\psi_k}$ zastoupen s pravděpodobností $p_k$
+  \end{itemize}
+  \item \underline{čistý stav} \quad $\hat\rho = \ket{\psi}\bra{\psi}$ \quad $\Rightarrow$ \quad $\langle F\rangle = \mel{\psi}{\hat F}{\psi}$
+  \item \underline{smíšený stav} \quad
+        $\langle F\rangle = \sum_k p_k\mel{\psi_k}{\hat F}{\psi_k} = \sum_k\mel{\psi_k}{\hat\rho\hat F}{\psi_k}$
+        \quad ($\uparrow$ $\braket{\psi_k}{\psi_l} = \delta_{kl}$)
+  \[
+    \Rightarrow\quad \vzorec{\langle F\rangle = \Tr(\hat\rho\hat F)}
+  \]
+  NB: tento vztah nezávisí na bázi
+  \item \underline{QM mikrokanonický soubor}
+  \begin{itemize}
+    \item[--] celková energie fixována $\Rightarrow$ dostupné jsou pouze čisté stavy $\ket{\psi_n}$ s energií $E_n = E$:
+    \[ \hat H\ket{\psi_n} = E_n\ket{\psi_n} \]
+    \item[--] princip stejných pravděpodobností $\Rightarrow$
+    \[
+      p_n = \frac{1}{\Sigma(E)}; \quad \Sigma(E) = \sum_n\delta_{E,E_n}
+      \ \Rightarrow\ \hat\rho = \frac{1}{\Sigma(E)}\sum_{E_n = E}\ket{\psi_n}\bra{\psi_n}
+    \]
+    \[ \vzorec{\Rightarrow [\hat\rho,\hat H] = 0} \]
+  \end{itemize}
+  $\to$ $\Sigma(E)$ je počet stavů s energií $E$ $\Leftrightarrow$ stupeň degenerace hladiny $E$ \\
+  $\to$ $S(E) = k_B\log\Sigma(E) = -k_B\sum_n\log p_n$ \\
+  $\to$ situace je zde v jistém smyslu jednodušší, definice $\Sigma(E)$ je jasnější (např.\ nerozlišitelnost je \uv{zakódována} v Hilb.\ prostoru)
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L12-2}
+\subsubsection*{Kanonický soubor v kvantové stat.\ mechanice}
+\begin{itemize}
+  \item operátor hustoty: \quad $\hat\rho_C = \dfrac{1}{Z_C}\,e^{-\beta\hat H}$
+  \[
+    \vzorec{Z_C = \Tr\big(e^{-\beta\hat H}\big)} = \underbrace{\sum_k e^{-\beta E_k}}_{\text{suma přes stavy}}
+    = \sum_{E_n}\Sigma(E_n)\,e^{-\beta E_n}
+  \]
+  \hfill $\uparrow$ suma přes hladiny, $\Sigma(E_n)$ je degenerace $E_n$ ($\sim$ hustota stavů, je-li spektrum spojité)
+  \item ostatní vztahy stejné:
+  \[
+    F = -k_BT\log Z_C, \qquad \langle E\rangle = -\pdv{\beta}\log Z_C
+  \]
+  \item \uv{Gibbs}: \quad $\hat\rho = \dfrac{1}{Z_C}e^{-\beta\hat H}$ \quad $\Rightarrow$ \quad $p(E_n) = \dfrac{1}{Z_C}e^{-\beta E_n}$
+  \[
+    \Rightarrow\quad \vzorec{S = -k_B\sum_n p(E_n)\log p(E_n)}
+    \qquad
+    \fbox{\parbox{5cm}{\small viz také Shannon / von Neumann \& entropie informace}}
+  \]
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L12-3}
+\subsection{Kvantové plyny}
+\underline{Základní východiska:}
+\begin{enumerate}[label=\arabic*)]
+  \item \underline{Formalismus kvant.\ statistické fyziky:}
+  \begin{itemize}
+    \item[$\to$] $\hat\rho = \sum p_n\ket{\psi_n}\bra{\psi_n}$ \quad $\Leftrightarrow$ \quad Liouville/von Neumann \quad
+                 $\dot{\hat\rho} = [\hat H,\hat\rho]$
+                 \quad \textcolor{OliveGreen}{($i\hbar\dot\psi = H\psi$ $\Downarrow$)}
+    \item[$\to$] $\Tr\hat\rho = 1$ \& $\Tr\rho^2 \leq 1$
+    \item[] \textcolor{NavyBlue}{\small $\ket{\varphi} = \sum c_k\ket{\psi_k} \Rightarrow \mel{\varphi}{\hat A}{\varphi} = \sum_k|c_k|^2\mel{\psi_k}{A}{\psi_k} + \sum_{k\neq l}c_k^*c_l\mel{\psi_k}{A}{\psi_l}$ \\
+                 vs \ $\rho = \sum|c_k|^2\ket{\psi_k}\bra{\psi_k} \Rightarrow \langle A\rangle = \Tr(\hat\rho A) = \sum_k|c_k|^2\mel{\psi_k}{A}{\psi_k}$ ?}
+    \item[$\to$] $\langle A\rangle = \Tr(\hat\rho\hat A)$
+    \item[$\to$] $p_n = \delta_{nk}$ $\Rightarrow$ $\hat\rho = \ket{\psi_k}\bra{\psi_k}$ \quad \dots\ čistý stav \textcolor{OliveGreen}{$\Rightarrow \Tr\rho^2 = 1$ ?}
+    \item[$\to$] pro rovn.\ $\hat\rho$ je $[\hat H,\hat\rho] = 0$ $\Rightarrow$ $\hat H\ket{\psi_n} = E_n\ket{\psi_n}$ jsou vl.\ stavy $\hat H$
+  \end{itemize}
+  \item \underline{Grandkanon.\ soubor}
+  \begin{itemize}
+    \item $\hat\rho = \dfrac{1}{Z_G}e^{-\beta\hat H + \alpha\hat N}$ \qquad
+          $Z_G = \underbrace{\Tr}_{\textcolor{OliveGreen}{\sum_{\text{stavy}}\bra{\psi_k}\dots\ket{\psi_k}}}\big(e^{-\beta\hat H + \alpha\hat N}\big) = \sum_N e^{\alpha N}\Tr_N\big(e^{-\beta\hat H}\big)$
+    \item $Z_G = Z_G(\beta,V,\alpha)$ \qquad
+          $\vzorec{\Phi(T,V,\mu) = -k_BT\log Z_G\Big(\beta = \tfrac{1}{k_BT}, V, \alpha = \tfrac{\mu}{k_BT}\Big)}$
+  \end{itemize}
+\end{enumerate}
+\noindent\rule{0.35\linewidth}{0.4pt}
+
+\begin{enumerate}[label=\arabic*)]
+  \item \underline{Fockův prostor}
+  \[
+    \vzorec{\mathcal{H}_F = \mathcal{H}^{(0)}\oplus\mathcal{H}^{(1)}\oplus\mathcal{H}^{(2)}\oplus\dots}
+  \]
+  \[
+    \mathcal{H}^{(N)} = \underset{A}{\overset{S}{\Big\}}}\big(\mathcal{H}^{(1)}\otimes\mathcal{H}^{(1)}\otimes\dots\otimes\mathcal{H}^{(1)}\big)
+    \quad\dots\ N\text{-část.\ Hilb.\ prostor}
+  \]
+  \textcolor{NavyBlue}{$\uparrow$ sym.\ operátor -- podle typu nerozliš.\ částic}
+  \begin{itemize}
+    \item \textcolor{NavyBlue}{z kvant.\ teorie pole vyplývá, že $N$-část.\ vln.\ funkce je plně sym/anti-sym vůči lib.\ permutaci částic; záleží na spinu částic} \textcolor{OliveGreen}{(vztah nicméně osvětlí až relat.\ QM!)}
+  \end{itemize}
+  \item \underline{Hamiltonián}
+  \begin{itemize}
+    \item jednočást.\ Hamiltonián \quad $H_1\ket{q} = \epsilon_q\ket{q}$ \\
+          $\Rightarrow$ $\mathcal{H}^{(1)} = \sum_q\ket{q}\bra{q}$ \quad \dots\ báze 1-část.\ prostoru
+    \item $H_N = \sum_i H_1(i) + \textcolor{Red}{\text{\sout{$\sum_{i<j}V(i,j)$}}}$
+          \qquad \textcolor{NavyBlue}{$H_1(i)$ \dots\ kin.\ energie + ext.\ pole (+ maybe mean field)}
+  \end{itemize}
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{L12-4}
+\begin{enumerate}[label=\arabic*),start=3]
+  \item \underline{báze Fockova prostoru}
+  \[
+    \ket{\{q_1,\dots,q_N\}} = \underset{A}{S}\big(\ket{q_1}\otimes\ket{q_2}\otimes\dots\otimes\ket{q_N}\big)
+    = \frac{1}{N!}\underbrace{\sum_\pi}_{\sum\text{ přes }\forall\text{ permutace}}
+      \underbrace{\textcolor{NavyBlue}{(\operatorname{sign}\pi)}}_{\textcolor{NavyBlue}{\text{Fermiony}}}
+      \ket{q_{\pi(1)}}\otimes\dots\otimes\ket{q_{\pi(N)}}
+  \]
+  \textcolor{NavyBlue}{\underline{NB:} \quad $\ket{q}\ket{q}\ket{q'} \neq \ket{q}\ket{q'}\ket{q}$ \\
+  \hspace*{1.3cm} $\underset{A}{S}\ket{q}\ket{q}\ket{q'} = \underset{A}{S}\ket{q}\ket{q'}\ket{q}$}
+
+  \item \underline{\uv{druhé kvantování}}
+  \[
+    \underset{A}{S}\ket{q}\ket{q}\ket{q'} = \ket{2,1,0,\dots}
+  \]
+  \hspace*{4.5cm}{\small $\uparrow$ 2 částice v zákl.\ 1-částic.\ stavu, \ 1 částice v 1.\ excit.\ stavu\dots}
+
+  $\Rightarrow$ mám vektory $\ket{\cdot,\cdot,\cdot,\dots,\cdot}$ \\
+  \quad $\hookrightarrow$ typ.\ nekonečně dlouhé -- jednotlivé komponenty odpovídají jednočásticovým stavům
+  \begin{align*}
+    \mathcal{H}^{(0)} &= \ket{0,0,\dots,0} \quad\dots\ \text{vakuum} \\
+    \mathcal{H}^{(1)} &= \{\ket{1,0,\dots,0},\ \ket{0,1,\dots,0},\ \dots\} \\
+    &\ \,\vdots \\
+    \mathcal{H}^{(N)} &= \Big\{\ket{n_1,n_2,\dots,\dots} = \ket{\{n_q\}},\ \textstyle\sum n_q = N\Big\}
+  \end{align*}
+  \hspace*{6.5cm}\textcolor{Red}{$\uparrow$ \kw{obsazovací čísla}}
+
+  \textcolor{NavyBlue}{$\hookrightarrow$ $\ket{\{n_q\}}$ není nutně vl.\ stav $H$, pokud se jedná o interagující částice, ale je to dobrá báze}
+
+  \item \underline{operátory ve 2.\ kvantování}
+  \begin{itemize}
+    \item kreační/anihilační
+    \begin{align*}
+      \hat c_q\ket{n_1,\dots,n_q,\dots} &= \sqrt{n_q}\,\ket{n_1,\dots,n_q - 1,\dots} \\
+      \hat c_q^\dagger\ket{\dots} &= \sqrt{n_q + 1}\,\ket{n_1,\dots,n_q + 1,\dots}
+    \end{align*}
+  \end{itemize}
+  $\Rightarrow$ op.\ počtu částic ve stavu $q$: \quad $\hat n_q = c_q^\dagger c_q$ \\
+  $\Rightarrow$ op.\ celk.\ počtu částic: \quad $\vzorec{\hat N = \sum_q\hat n_q = \sum\hat c_q^\dagger\hat c_q}$ \\
+  $\Rightarrow$ $\hat H$ pro neinteragující částice: \quad $\vzorec{\hat H = \sum_q\epsilon_q\hat c_q^\dagger\hat c_q}$
+
+  \textcolor{NavyBlue}{\underline{Interagující:} \quad
+  $\hat H = \sum_q\epsilon_q\hat c_q^\dagger\hat c_q + \sum_{p,q}w_{pq}c_p^\dagger c_q + \frac12\sum_{pqrs}V_{pqrs}c_p^\dagger c_q^\dagger c_rc_s$ \\
+  \hspace*{2.6cm} $V_{pqrs} = \text{\uv{}}\mel{pq}{V(1,2)}{sr}\text{\uv{}}$}
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{L12-5}
+{\color{NavyBlue}
+\begin{itemize}
+  \item \underline{komutační relace:}
+\end{itemize}
+\textbf{F:} \quad $\vzorec{\{c_p^\dagger,c_q\} = \delta_{pq}}$ \quad $\Rightarrow$ \quad $c_p^\dagger c_p = \hat1 - c_p^\dagger c_p$ \\
+\hspace*{0.95cm} $\{c_p^\dagger,c_q^\dagger\} = \{c_p,c_q\} = 0$
+\pozn{v originále $c_p^\dagger c_p = \hat 1 - c_p^\dagger c_p$; správně $c_pc_p^\dagger = \hat1 - c_p^\dagger c_p$}
+\begin{align*}
+  \hat n_p\hat c_p^\dagger\ket{0} &= c_p^\dagger c_p\big(c_p^\dagger\ket{0}\big) = \big(c_p^\dagger - c_p^\dagger c_p^\dagger c_p\ket{0}\big) = c_p^\dagger\ket{0} = 1\,c_p^\dagger\ket{0} \\
+  \hat n_p c_p^\dagger c_p^\dagger\ket{0} &= c_p^\dagger c_pc_p^\dagger c_p^\dagger\ket{0} = c_p^\dagger\big(1 - c_p^\dagger c_p\big)c_p^\dagger\ket{0} = c_p^\dagger c_p^\dagger\ket{0} \\
+  &\quad - c_p^\dagger c_p^\dagger c_pc_p^\dagger\ket{0} = c_p^\dagger c_p^\dagger\ket{0} - c_p^\dagger c_p^\dagger\big(1 - c_p^\dagger c_p\big)\ket{0} = 0
+\end{align*}
+\[ \Rightarrow\quad \vzorec{n_p = 0,1} \]
+
+\textbf{B:} \quad $\vzorec{[c_p^\dagger,c_q] = \delta_{pq}}$ \qquad $[c_p^\dagger,c_q^\dagger] = [c_p,c_q] = 0$
+\[
+  \Rightarrow\ n_pc_p^\dagger c_p^\dagger\ket{0} = 2c_p^\dagger c_p^\dagger\ket{0}
+  \qquad\Rightarrow\ \vzorec{n_p = 0,1,\dots}
+\]
+}
+
+%----------------------------------------------------------------------
+\strana{L12-6}
+\begin{enumerate}[label=\arabic*),start=6]
+  \item \underline{Rovnovážné stavy}
+  \begin{align*}
+    Z_G &= \Tr\big(e^{-\beta\hat H + \alpha\hat N}\big)
+         = \sum_{\{n_q\}}\bra{\{n_q\}}e^{-\beta\sum_q\epsilon_q\hat n_q + \alpha\sum_q\hat n_q}\ket{\{n_q\}} \\
+        &= \sum_{\{n_q\}}\prod_q e^{-\beta\epsilon_qn_q + \alpha n_q}
+        \quad\Rightarrow\quad
+        \vzorec{Z_G = \prod_q\Big[\sum_{n_q}\big(e^{-\beta\epsilon_q + \alpha}\big)^{n_q}\Big]}
+  \end{align*}
+\end{enumerate}
+
+\begin{veta}[Partiční funkce ideálních kvantových plynů]
+\begin{align*}
+  \textbf{F:}\ n_q = 0,1 \quad&\Rightarrow\quad Z_G^{(-)} = \prod_q\big(1 + e^{-\beta\epsilon_q + \alpha}\big) \\
+  \textbf{B:}\ n_q = 0,1,\dots \quad&\Rightarrow\quad Z_G^{(+)} = \prod_q\big(1 - e^{-\beta\epsilon_q + \alpha}\big)^{-1}
+     = \Big(\prod_q\big(1 - e^{\cdots}\big)\Big)^{-1}
+\end{align*}
+\hfill\textcolor{Red}{$\alpha < \beta\epsilon_q \ \Rightarrow\ \mu < \epsilon_0 \equiv 0$}
+\end{veta}
+
+\begin{itemize}
+  \item v obou případech máme
+  \[
+    Z_G^{(\pm)} = \prod_q Z_q^{(\pm)} \quad\dots\ Z_q^{(\pm)} = \text{part.\ funkce na stavu } q; \quad
+    Z_q^{(\pm)} = \sum_{n_q}e^{-\beta\epsilon_qn_q + \alpha n_q}
+  \]
+  \[
+    \Rightarrow\quad \langle n_q\rangle = \nu_q^{(\pm)}(\beta,\alpha) = \pdv{\log Z_q}{\alpha}
+  \]
+  \[
+    \boxed{\nu_{q(\beta,\alpha)}^{(-)} = \frac{e^{-\beta\epsilon_q + \alpha}}{1 + e^{-\beta\epsilon_q + \alpha}}
+    = \frac{1}{1 + e^{\beta\epsilon_q - \alpha}} = \frac{1}{1 + e^{\beta(\epsilon_q - \mu)}}}
+  \]
+  \[
+    \log Z_q^{+} = -\log\big(1 - e^{-\beta\epsilon_q + \alpha}\big) \ \Rightarrow\
+    \nu^{+}(\beta,\alpha) = -\frac{1}{1 - e^{-\beta\epsilon_q + \alpha}}\big(-e^{-\beta\epsilon_q + \alpha}\big)
+  \]
+  \[
+    \Rightarrow\quad \nu_q^{(+)}(\beta,\alpha) = \frac{1}{e^{\beta\epsilon_q - \alpha} - 1} = \frac{1}{e^{\beta(\epsilon_q - \mu)} - 1}
+  \]
+\end{itemize}
+
+\begin{veta}[Fermiho--Diracovo a Boseho--Einsteinovo rozdělení]
+\[
+  \vzorec{\nu_q^{(\pm)}(\beta,\alpha) = \frac{1}{e^{\beta(\epsilon_q - \mu)} \mp 1}}
+  \qquad\qquad
+  \begin{aligned}
+    &\nu_q^{(-)} \leq 1 \\
+    &\nu_q^{(+)} \in \langle 0,+\infty)
+  \end{aligned}
+\]
+\pozn{v originále argument $(\beta,q)$}
+\end{veta}
+
+\[
+  \left.\begin{aligned}
+    &\Rightarrow\ \langle N\rangle = \sum\nu_q^{(\pm)} \\
+    &\Rightarrow\ \langle U\rangle = \sum\epsilon_q\nu_q^{(\pm)} \\
+    &\Rightarrow\ \Phi^{(-)} = -\frac1\beta\sum_q\log\big(1 + e^{-\beta\epsilon_q + \alpha}\big) \\
+    &\phantom{\Rightarrow\ }\ \Phi^{(+)} = \frac1\beta\sum_q\log\big(1 - e^{-\beta\epsilon_q + \alpha}\big)
+  \end{aligned}\right\}\ \text{\underline{sumace přes stavy}}
+\]
+\[
+  \textcolor{NavyBlue}{\Phi^{(\pm)} = \pm\frac1\beta\sum_q\log\big(1 \mp e^{-\beta\epsilon_q + \alpha}\big)}
+\]
+
+%----------------------------------------------------------------------
+\strana{L12-7}
+\begin{itemize}
+  \item $D(\epsilon) = \sum_q\delta(\epsilon - \epsilon_q)$ \quad \dots\ \kw{hustota stavů} \\
+        $\Rightarrow$ $\nu_q^{(\pm)}\to\nu^{(\pm)}(\epsilon)$ \quad \dots\ $\nu_{q'}^{\pm} = \nu_q^{\pm}$ pro $\epsilon_q = \epsilon_{q'}$
+\end{itemize}
+
+\begin{minipage}{0.6\textwidth}
+\[
+  \Rightarrow\ \vzorec{\begin{aligned}
+    \langle N\rangle &= \int\dd\epsilon\,D(\epsilon)\,\nu^{(\pm)}(\epsilon) \\
+    \langle U\rangle &= \int\dd\epsilon\,\epsilon\,D(\epsilon)\,\nu^{(\pm)}(\epsilon) \\
+    \Omega^{(\pm)} &= \pm\frac1\beta\int\dd\epsilon\,D(\epsilon)\log\big(1 \mp e^{-\beta\epsilon + \alpha}\big)
+  \end{aligned}}
+\]
+\end{minipage}
+\begin{minipage}{0.38\textwidth}
+\underline{Spec.\ id.\ plyn} \quad $H_1 = \dfrac{p^2}{2m}$
+\begin{align*}
+  D(\epsilon) &= (2s+1)\frac{V}{h^3}\int\dd^3p\,\delta\Big(\epsilon - \frac{p^2}{2m}\Big) \\
+  &= \frac{2s+1}{4\pi^2}\Big(\frac{2m}{\hbar^2}\Big)^{3/2}\epsilon^{1/2}
+\end{align*}
+\end{minipage}
+
+\subsubsection*{Fermi:}
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[scale=0.9,>=Stealth]
+  \draw[->] (-0.2,0) -- (4.3,0);
+  \draw[->] (0,-0.2) -- (0,2.4) node[left] {$\nu^{(-)}$};
+  \node[left] at (0,1.8) {$1$};
+  \node[left] at (0,0) {$0$};
+  \draw[dashed] (2.1,-0.1) -- (2.1,2.3);
+  \draw[very thick,blue] (0,1.8) -- (2.1,1.8);
+  \draw[very thick,blue] (2.1,0.02) -- (3.6,0.02);
+  \node[blue,above] at (1,1.8) {$T = 0$};
+  \draw[thick,OliveGreen] (1.6,1.8) .. controls (2.0,1.75) and (1.9,0.8) .. (2.1,0.7)
+        .. controls (2.3,0.5) and (2.3,0.05) .. (2.7,0.02);
+  \node[OliveGreen] at (2.85,1.0) {$T > 0$};
+  \node[below] at (2.1,-0.1) {\small $\epsilon_F = \mu(T=0)$};
+  \draw[<->,OliveGreen] (1.6,-0.75) -- (2.6,-0.75);
+  \node[OliveGreen] at (2.1,-1.1) {\small $\epsilon_F \pm 2k_BT$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+\[
+  \nu^{(-)}(\epsilon) = \vartheta(\epsilon_F - \epsilon); \qquad \int_0^{\epsilon_F}D(\epsilon) = N
+\]
+\begin{itemize}
+  \item fyzikálních procesů (přeskoky mezi hladinami) se účastní jen částice v okolí Fermiho meze
+  \item velmi často $T_F = \dfrac{\epsilon_F}{k_B} \gg T$ \\
+        $\Rightarrow$ \kw{degenerovaný Fermiho plyn} \\
+        (měď: $T_F\sim 10^4$\,K $\Leftrightarrow$ $v_F = \sqrt{\frac{2k_BT_F}{m_e}}\sim 10^6\,\mathrm{ms^{-1}}$)
+\end{itemize}
+\end{minipage}
+
+\subsubsection*{Bose:}
+\begin{itemize}
+  \item $\mu < \epsilon_0 \overset{\text{BÚNO}}{=} 0$
+  \item $\displaystyle \langle N\rangle = \sum\nu_q^{(+)} = \frac{1}{e^{-\beta\mu} - 1} + \sum_{\epsilon_q > 0}\frac{1}{e^{\beta(\epsilon_q - \mu)} - 1}$
+  \[
+    \beta\mu\to 0:\ \underbrace{\frac{1}{e^{-\beta\mu} - 1}\sim -\frac{1}{\beta\mu}}_{(\mu < 0!)} \gg \sum_{\epsilon_q > 0}\frac{1}{e^{\beta(\epsilon_q - \mu)} - 1}
+  \]
+  $\Rightarrow$ makroskopická populace zákl.\ stavu $\equiv$ \kw{Boseho kondenzace}
+  \item typicky $\exists\,T_\lambda\Leftrightarrow\beta_\lambda$ takové, že rovnice
+        $\dfrac{N}{V} = \dfrac1V\int\dd\epsilon\,D(\epsilon)\,\nu^{+}(\epsilon,\beta_\lambda,\alpha)$
+        implikuje $\alpha = 0$ $\Rightarrow$ $\beta_\lambda$ je teplota fáz.\ přechodu
+\end{itemize}
+
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[scale=0.9,>=Stealth]
+  \draw[->] (0,0) -- (4.2,0) node[below right] {$T$};
+  \draw[->] (0,0) -- (0,2.6) node[left] {$C_V$};
+  \draw[dashed] (1.8,0) -- (1.8,2.5);
+  \draw[thick] (0,0) .. controls (0.9,0.5) and (1.5,1.0) .. (1.8,1.9);
+  \draw[thick] (1.8,1.9) .. controls (2.1,1.4) and (2.8,1.2) .. (3.6,0.9);
+  \node[below] at (1.8,0) {$T_\lambda$};
+  \node[NavyBlue,below] at (1.8,-0.45) {\small $\uparrow$ tohle je pro interag.\ částice!};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+{\color{NavyBlue}
+\begin{itemize}
+  \item vše pro id.\ plyny = neinteragující (kvazi-částice)
+  \item reálné plyny
+  \begin{itemize}
+    \item[] Fermi: $V(i,j)$ porucha (částice k sobě nechtějí blízko), v deg.\ plynu Pauli ind.\ dominuje
+    \item[] Bose: $V(i,j)$ v principu velké $\Rightarrow$ problém
+  \end{itemize}
+\end{itemize}}
+\end{minipage}
+

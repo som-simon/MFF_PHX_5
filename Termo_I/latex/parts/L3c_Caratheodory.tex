@@ -1,0 +1,243 @@
+%======================================================================
+% L3c_Caratheodory.pdf
+%======================================================================
+\section{Pfaffovy formy, Carathéodory a $T$ jako integrační faktor}
+\strana{L3c-1}
+\providecommand{\dbar}{\text{đ}}
+\providecommand{\xcancel}[1]{\text{\tikz[baseline=(X.base)]{\node[inner sep=0pt] (X) {$\displaystyle #1$}; \draw[NavyBlue] (X.south west) -- (X.north east);}}}
+
+\begin{definice}[Pfaffova forma]
+\kw{Pfaffova forma} -- lin.\ forma v diferenciálech nezávislých proměnných (1-forma)
+\[
+  \dbar\omega(X_1,\dots,X_k) = \sum_{i=1}^k A_i(X_1,\dots,X_k)\,\dd X_i \qquad (1)
+\]
+\end{definice}
+\begin{itemize}
+  \item $\exists\,\omega = \omega(X_1,\dots,X_k)$ taková, že (1) je její úplný diferenciál? \\
+  \quad $\Updownarrow$ \\
+  \quad \uv{$\dd\omega$ je přímo integrabilní}
+  \item pokud ano, potom
+  \begin{enumerate}[label=\alph*)]
+    \item $A_i = (\nabla\omega)_i \ \Leftrightarrow\ \vec A = \nabla\omega$
+    \item $\displaystyle\Big(\pdv{A_i}{X_j}\Big) = \Big(\pdv{A_j}{X_i}\Big)$ \quad \dots\ $\binom k2 = \frac12k(k-1)$ \kw{podmínek integrability} \quad $(i,j = 1,\dots,k)$
+  \end{enumerate}
+  \item srov.\ 3D: \quad $\vec A = \nabla\omega \ \Rightarrow\ \nabla\times\vec A = \nabla\times(\nabla\omega)\equiv 0$
+  \item pokud $\dbar\omega$ není úplný diferenciál, může existovat \kw{integrační faktor} -- funkce $\lambda = \lambda(X_1,\dots,X_k)$ taková, že
+  \[ \vzorec{\dd\sigma = \lambda\,\dbar\omega} \]
+  je úplný diferenciál funkce $\sigma = \sigma(X_1,\dots,X_k)$ \quad ($\dbar\omega$ integrabilní -- \underline{holonomní})
+\end{itemize}
+
+\underline{Pozn:} význam $\sigma$: \quad $\dd\sigma = 0 \Leftrightarrow \dbar\omega = 0$
+\begin{itemize}
+  \item pokud je tedy $\dbar\omega = \dbar Q$ a $\sigma = S$, potom $S = $ konst.\ definuje \kw{adiabaty} (iso-entropy), po kterých platí $\dbar Q = 0$
+\end{itemize}
+
+\begin{itemize}
+  \item \underline{podmínky pro existenci $\lambda$} \pozn{v originále napsáno $\mu$}
+  \[
+    \Big(\pdv{(\lambda A_i)}{X_j}\Big) = \Big(\pdv{(\lambda A_j)}{X_i}\Big)
+    \ \Rightarrow\
+    \boxed{A_i\pdv{\log\lambda}{X_j} - A_j\pdv{\log\lambda}{X_i} = \pdv{A_j}{X_i} - \pdv{A_i}{X_j} \equiv F_{ij}\neq 0}
+  \]
+  \begin{itemize}
+    \item[--] celkem $\frac12k(k-1)$ parc.\ diferenciálních rovnic pro $\lambda(X_1,\dots,X_k)$
+    \item[--] $\lambda$, pokud $\exists$, není určeno jednoznačně: \\
+    $\lambda$ je int.\ faktor a $\dd\sigma = \lambda\,\dbar\omega$ $\Rightarrow$ $\bar\lambda = \lambda f(\sigma)$ je také int.\ faktor:
+    \[ \bar\lambda\,\dbar\omega = f(\sigma)\,\dd\sigma = \dd\Big(\int^\sigma f(\sigma')\,\dd\sigma'\Big) \]
+  \end{itemize}
+\end{itemize}
+%----------------------------------------------------------------------
+\strana{L3c-2}
+\subsection*{Holonomní vs.\ anholonomní formy}
+\begin{itemize}
+  \item \kw{holonomní} $\equiv$ integrovatelné (přímo nebo prostřednictvím $\lambda$)
+\end{itemize}
+\begin{priklad}[Př.]
+\begin{enumerate}[label=\arabic*)]
+  \item holonomní \\
+  $\dd\omega = x_1\dd x_1 + x_2\dd x_2 + x_3\dd x_3 = 0 \ \Leftrightarrow\ x_1^2 + x_2^2 + x_3^2 = r^2$ \quad (sféra)
+  \begin{itemize}[nosep]
+    \item pokud se nacházíme na sféře o poloměru $r$, není možné ji opustit po trajektorii splňující $\dd\omega = 0$
+  \end{itemize}
+  \item anholonomní \\
+  $\dbar\omega = x_2\dd x_1 + \dd x_2 + \dd x_3 = 0$ \quad isoplochu nedefinuje
+  \begin{enumerate}[label=\alph*)]
+    \item ověřte, že forma není integrabilní: $\vec A\cdot\operatorname{rot}\vec A\neq 0$
+    \item rozmyslete, že libovolné dva body v $\mathbb{R}^3$ lze spojit po trajektorii $\dbar\omega = 0$ \\
+    {[hint: spec.\ je možné se do libovolného bodu dostat z počátku $(0,0,0)$]}
+  \end{enumerate}
+\end{enumerate}
+\end{priklad}
+
+\begin{veta}[$\Rightarrow$ Carathéodoryho teorém]
+Vektorové pole $\vec A$ asociované s Pfaffovou formou $\dbar\omega = \vec A\cdot\dd\vec r$ je integrovatelné právě tehdy, pokud v libovolném okolí bodu $P$ příslušného prostoru existují body nedosažitelné po (adiabatické) trajektorii $\dbar\omega = 0$.
+\end{veta}
+\begin{flushright}\small
+DK: $\bullet$ Viz např.\ Luscombe $\leftarrow$ Born, \emph{Natural Philosophy of Cause and Chance}, Oxford, 1949 \\
+(str.\ 145, dostupné na archive.org) \\
+$\bullet$ Boyling, Commun.\ math.\ Phys.\ \textbf{10}, 52--68 (1968) (dostupné z domény MFF)
+\end{flushright}
+
+\begin{itemize}
+  \item 2.\ TDZ implikuje integrabilitu $\dbar Q$ s integračním faktorem majícím vlastnosti teploty $\Rightarrow$ lze ekvivalentně zformulovat
+\end{itemize}
+\begin{veta}[2.\ TDZ podle Carathéodoryho]
+V okolí libovolného bodu stavového prostoru existují body adiabaticky nedosažitelné.
+\end{veta}
+%----------------------------------------------------------------------
+\strana{L3c-3}
+\subsection*{Integrabilita tepla ve 3D stavovém prostoru}
+\begin{itemize}
+  \item uvažme dva 1-komp.\ plyny v tep.\ rovnováze
+\end{itemize}
+\begin{enumerate}[label=\alph*)]
+  \item $U(p_A,V_A;p_B,V_B) = U_A(p_A,V_A) + U_B(p_B,V_B)$
+  \item \underline{tep.\ rovnováha} $\Rightarrow$ problém má o 1 st.\ volnosti méně \\
+  \quad $\vartheta = \phi(p_A,V_A) = \phi(p_B,V_B)$ \quad je empir.\ teplota \\
+  \quad $\Rightarrow$ lze volit parametrizaci \fbox{$\vartheta, V_A, V_B$}
+\end{enumerate}
+\begin{align*}
+  \dbar Q &= \dd U_A + p_A\dd V_A + \dd U_B + p_B\dd V_B \\
+  &= \Big[\Big(\pdv{U_A}{\vartheta}\Big)_{V_A} + \Big(\pdv{U_B}{\vartheta}\Big)_{V_B}\Big]\dd\vartheta
+   + \Big[\Big(\pdv{U_A}{V_A}\Big)_\vartheta + p_A\Big]\dd V_A
+   + \Big[\Big(\pdv{U_B}{V_B}\Big)_\vartheta + p_B\Big]\dd V_B
+\end{align*}
+\begin{enumerate}[label=\alph*),start=3]
+  \item \underline{podmínky integrability} \\
+  $\dbar\omega = \sum A_i\dd X_i$ je integrabilní $\Leftrightarrow$ $\vec A\cdot\operatorname{rot}\vec A = 0$
+  \begin{align*}
+    F_i &= (\operatorname{rot}\vec A)_i = \varepsilon_{ijk}\pdv{A_k}{x_j} \\
+    F_1 &= \pdv{A_3}{x_2} - \pdv{A_2}{x_3} \equiv 0 \\
+    F_2 &= \pdv{A_3}{x_1} - \pdv{A_1}{x_3} = \Big(\frac{\partial^2U_B}{\partial\vartheta\,\partial V_B}\Big) + \Big(\pdv{p_B}{\vartheta}\Big)_{V_B} - \Big(\frac{\partial^2U_B}{\partial V_B\,\partial\vartheta}\Big) = \Big(\pdv{p_B}{\vartheta}\Big)_{V_B} \\
+    F_3 &= \pdv{A_1}{x_2} - \pdv{A_2}{x_1} = \Big(\frac{\partial^2U_A}{\partial V_A\,\partial\vartheta}\Big) - \Big(\frac{\partial^2U_A}{\partial\vartheta\,\partial V_A}\Big) - \Big(\pdv{p_A}{\vartheta}\Big)_{V_A} = -\Big(\pdv{p_A}{\vartheta}\Big)_{V_A}
+  \end{align*}
+\end{enumerate}
+\[
+  \Rightarrow\ \vec A\cdot\operatorname{rot}\vec A = \Big[\Big(\pdv{U_A}{V_A}\Big)_\vartheta + p_A\Big]\Big(\pdv{p_B}{\vartheta}\Big)_{V_B}
+  - \Big[\Big(\pdv{U_B}{V_B}\Big)_\vartheta + p_B\Big]\Big(\pdv{p_A}{\vartheta}\Big)_{V_A}
+\]
+\begin{itemize}
+  \item podmínka integrability dává
+  \[
+    \vzorec{\frac{\big(\pdv{p_A}{\vartheta}\big)_{V_A}}{\big(\pdv{U_A}{V_A}\big)_\vartheta + p_A}
+    = \frac{\big(\pdv{p_B}{\vartheta}\big)_{V_B}}{\big(\pdv{U_B}{V_B}\big)_\vartheta + p_B} = f(\vartheta)}
+  \]
+  je \underline{univerzální} funkce empirické teploty, neboť nemůže záviset na $p_A,V_A;p_B,V_B$ ani na fyz.\ vlastnostech (stav.\ rovnicích) systémů $A$ nebo $B$ \\
+  $\Rightarrow$ \pozor{integrabilita $\dbar Q$ implikuje existenci \underline{absolutní teploty}}
+  \item uvažme ideální plyn a jeho stavové rovnice vyjádřené pro obecnou empirickou teplotu:
+  \textcolor{NavyBlue}{(je-li $f(\vartheta)$ univerzální, lze k jejímu určení využít libovolný systém)}
+  \[
+    p = \frac NV g(\vartheta) \quad\&\quad U = cNg(\vartheta)
+    \qquad \textcolor{NavyBlue}{\leftarrow\ \text{\small\begin{tabular}{l}to, co experiment dává, je skutečnost,\\ že $g(\vartheta)$ je stejná fce empirické\\ teploty v kalor.\ i termické rovnici\end{tabular}}}
+  \]
+\end{itemize}
+%----------------------------------------------------------------------
+\strana{L3c-4}
+\[
+  \Rightarrow\ \frac{g'(\vartheta)}{g(\vartheta)} = f(\vartheta) \ \Leftrightarrow\ \boxed{f(\vartheta) = \dv{\vartheta}\log g(\vartheta)}
+  \quad\dots\ \text{\small vztah absolutní teploty a stav.\ rce id.\ plynu}
+\]
+\begin{itemize}
+  \item spec.\ pokud budeme empirickou teplotu měřit právě s pomocí id.\ plynu, potom
+  \[ \vartheta = T \ \&\ g(\vartheta) = T \ \Rightarrow\ \vzorec{f(\vartheta) = \frac1T} \]
+  $\to$ přitom účinnost Carnotova cyklu s id.\ plynem je $\eta_C(T_H,T_C) = 1 - \dfrac{T_C}{T_H}$ \\
+  \quad $\Rightarrow$ ona univerzální funkce je převrácená absolutní teplota
+\end{itemize}
+\begin{enumerate}[label=\alph*),start=4]
+  \item \underline{integrační faktor k $\dbar Q$}
+  \begin{itemize}
+    \item je-li $\dbar Q$ integrovatelná forma, co je potom integrační faktor?
+  \end{itemize}
+  \[
+    \dd\omega = \lambda\,\dbar Q = \lambda\sum A_i\dd X_i
+    \ \Rightarrow\ A_i\pdv{\log\lambda}{X_j} - A_j\pdv{\log\lambda}{X_i} = \pdv{A_j}{X_i} - \pdv{A_i}{X_j}
+  \]
+  \begin{itemize}
+    \item spec.\ $X_{i=1} = \vartheta$ \& $X_{j=2} = V_A$
+    \[
+      \Big(\pdv{U_A}{\vartheta} + \pdv{U_B}{\vartheta}\Big)\pdv{\log\lambda}{V_A} - \Big(\pdv{U_A}{V_A} + p_A\Big)\pdv{\log\lambda}{\vartheta}
+      = \xcancel{\Big(\frac{\partial^2U_A}{\partial\vartheta\,\partial V_A}\Big)} + \pdv{p_A}{\vartheta} - \xcancel{\frac{\partial^2U_A}{\partial V_A\,\partial\vartheta}}
+    \]
+    \item předp.\ $\lambda = \lambda(\vartheta)$
+    \[
+      \Rightarrow\ \pdv{\log\lambda}{\vartheta} = -\frac{\pdv{p_A}{\vartheta}}{\big(\pdv{U_A}{V_A}\big) + p_A} = -f(\vartheta)
+      \overset{\text{id.\ plyn}}{=} -\pdv{\log g(\vartheta)}{\vartheta}
+    \]
+    \[
+      \Rightarrow\ \pdv{\log\lambda^{-1}(\vartheta)}{\vartheta} = \pdv{\log g(\vartheta)}{\vartheta}
+      \ \Rightarrow\ \lambda(\vartheta)^{-1} = g(\vartheta)
+    \]
+    $\Rightarrow$ \underline{integračním faktorem je skutečně} \underline{inverzní absolutní teplota}
+    \[ \vzorec{\lambda = \frac1T} \]
+  \end{itemize}
+\end{enumerate}
+$\Rightarrow$ Carathéodoryho postulát také vede k definici entropie
+\[ \vzorec{\dd S = \frac1T\,\dbar Q} \]
+%----------------------------------------------------------------------
+\strana{L3c-5}
+\begin{priklad}[Př.: plyn magnetických částic]
+\[ \dd U = \dbar Q - p\dd V + H\dd M \]
+\begin{align*}
+  \Rightarrow\ \dbar Q &= \dd U + p\dd V - H\dd M \quad\&\quad U = U(T,V,M) \\
+  &= \Big(\pdv{U}{T}\Big)\dd T + \Big[\Big(\pdv{U}{V}\Big) + p\Big]\dd V + \Big[\Big(\pdv{U}{M}\Big) - H\Big]\dd M
+\end{align*}
+$\Rightarrow$ stejným postupem dostáváme z $\vec A\cdot\operatorname{rot}\vec A = 0$
+\[
+  \frac{-\big(\pdv{H}{T}\big)_{V,M}}{\big(\pdv{U}{M}\big)_{T,V} - H}
+  = \frac{\big(\pdv{p}{T}\big)_{V,M}}{\big(\pdv{U}{V}\big)_{T,M} + p} \overset{(\dagger)}{=} \frac1T
+\]
+($\dagger$) zde potřebujeme analog rovnice integrability pro $\dd S = \frac1T\dd U - \frac HT\dd M$ \\
+\quad a navíc Maxwellovu relaci vycházející z integrability volné energie $\dd F(T,V,M) = -S\dd T - p\dd V + H\dd M$, což zatím neumíme \dots
+\end{priklad}
+%----------------------------------------------------------------------
+\strana{L3c-6}
+\subsection*{Integrabilita tepla ve 2D prostoru}
+-- triviální tvrzení, ale dává samozřejmě také správný faktor $\lambda$
+
+\textbf{Př:} \quad $\dbar Q = \dd U + p\dd V$ \ \& \ $U = U(p,V)$
+\[ \Rightarrow\ \dbar Q = \Big[\Big(\pdv{U}{V}\Big)_p + p\Big]\dd V + \Big(\pdv{U}{p}\Big)_V\dd p \]
+\begin{enumerate}[label=\alph*)]
+  \item je možné nahlédnout, že $\dbar Q = 0$ jednoznačně definuje adiabatickou trajektorii $p = p(V)$:
+  \[
+    \dbar Q = 0 \ \Rightarrow\ \dv{p}{V}\Big)_{\text{ad}} = \Big[\Big(\pdv{U}{V}\Big)_p + p\Big]\Big(\pdv{U}{p}\Big)_V^{-1}
+  \]
+  $\Rightarrow$ obyčejná diferenciální rovnice, řešení existuje za velmi obecných podmínek
+  \item podmínka integrability:
+  \[
+    \Big(\frac{\partial^2U}{\partial p\,\partial V}\Big) + \Big(\pdv{p}{p}\Big)_V \neq \Big(\frac{\partial^2U}{\partial V\,\partial p}\Big)
+    \ \Leftrightarrow\ 1\neq 0
+  \]
+  \item integrační faktor
+  \[ \dd\sigma = \lambda\Big[\Big(\pdv{U}{V}\Big)_p + p\Big]\dd V + \lambda\Big(\pdv{U}{p}\Big)_V\dd p \]
+  \[
+    \Rightarrow\ \Big(\pdv{\lambda}{p}\Big)_V\Big[\Big(\pdv{U}{V}\Big)_p + p\Big] + \xcancel{\lambda\Big(\frac{\partial^2U}{\partial p\,\partial V}\Big)} + \lambda
+    = \Big(\pdv{\lambda}{V}\Big)_p\Big(\pdv{U}{p}\Big)_V + \xcancel{\lambda\Big(\frac{\partial^2U}{\partial V\,\partial p}\Big)}
+  \]
+  \begin{itemize}
+    \item vydělím $\big(\pdv{\lambda}{p}\big)_V$: \quad
+    $\Big[\Big(\pdv{\lambda}{p}\Big)_V\Big]^{-1} = \Big(\pdv{p}{\lambda}\Big)_V$
+    \quad \textcolor{NavyBlue}{$\leftarrow$ viz derivování implicitních funkcí}
+  \end{itemize}
+  \[
+    \Rightarrow\ p + \lambda\Big(\pdv{p}{\lambda}\Big)_V = \Big(\pdv{U}{p}\Big)_V\underbrace{\Big(\pdv{\lambda}{V}\Big)_p\Big(\pdv{p}{\lambda}\Big)_V}_{} - \Big(\pdv{U}{V}\Big)_p
+  \]
+  \textcolor{NavyBlue}{\small
+  $\Big(\pdv{\lambda}{V}\Big)_p\Big(\pdv{p}{\lambda}\Big)_V = \dfrac{\big(\pdv{\lambda}{V}\big)_p}{\big(\pdv{\lambda}{p}\big)_V} = -\Big(\pdv{p}{V}\Big)_\lambda$
+  \qquad
+  $\pdv{V}\,U\big(V,p(V,\lambda)\big) = \Big(\pdv{U}{V}\Big)_\lambda$}
+  \[
+    \Rightarrow\ \lambda\Big(\pdv{p}{\lambda}\Big)_V + p = -\Big[\Big(\pdv{U}{V}\Big)_p + \Big(\pdv{U}{p}\Big)_V\Big(\pdv{p}{V}\Big)_\lambda\Big] = -\Big(\pdv{U}{V}\Big)_\lambda
+  \]
+  \textcolor{Red}{\small ! ještě to není ona známá podmínka integrability $\downarrow$}
+  \[
+    \Rightarrow\ \Big(\pdv{U}{V}\Big)_\lambda + p = -\lambda\Big(\pdv{p}{\lambda}\Big)_V
+    = -\lambda\Big(\pdv{p}{(\lambda^{-1})}\Big)_V\Big(\pdv{(\lambda^{-1})}{\lambda}\Big)_V
+    = \lambda^{-1}\Big(\pdv{p}{(\lambda^{-1})}\Big)_V
+  \]
+  \[
+    \Rightarrow\ \vzorec{\Big(\pdv{U}{V}\Big)_{\frac1\lambda} + p = \lambda^{-1}\Big(\pdv{p}{(\lambda^{-1})}\Big)_V
+    \ \Leftrightarrow\ \Big(\pdv{U}{V}\Big)_T + p = T\Big(\pdv{p}{T}\Big)_V}
+    \quad \textcolor{Red}{\Leftrightarrow\ \lambda = \frac1T}
+  \]
+\end{enumerate}
+

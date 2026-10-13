@@ -1,0 +1,337 @@
+%======================================================================
+% L11b_SF_grandcanon_annotated.pdf
+%======================================================================
+\section{Velký kanonický soubor}
+\strana{L11b-1}
+
+\begin{itemize}
+  \item chceme popisovat (pod)systém, který může s rezervoárem kromě energie (tepla) vyměňovat i \kw{částice}
+  \item opět uvažujeme složený systém
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \draw (0,0) rectangle (6.5,3.5);
+  \draw (1,1.7) rectangle (3.1,2.85);
+  \node[anchor=north west] at (1,2.85) {$E,V,N$};
+  \node[anchor=north east] at (6.5,3.5) {$E_R,V_R,N_R$};
+  \draw[<->] (3.0,2.3) -- (3.6,2.65) node[right] {$\dd Q$};
+  \draw[<->] (3.0,2.0) -- (3.6,1.6) node[right] {$\dd N$};
+\end{tikzpicture}
+\qquad
+\raisebox{2cm}{$\begin{aligned}
+  E_T &= E + E_R, & E_R &\gg E \\
+  N_T &= N + N_R, & N_R &\gg N
+\end{aligned}$}
+\end{center}
+
+\begin{itemize}
+  \item \underline{termodynamická rovnováha:} \quad $T = T_R$ \ \& \ $\mu = \mu_R$
+  \begin{itemize}
+    \item velký (grand) kanon.\ potenciál:
+    \[
+      \vzorec{\Phi(T,V,\mu) = U - TS - \mu N}
+      \qquad
+      \textcolor{gray}{\begin{aligned}
+        &\dd U = T\dd S - p\dd V + \mu\dd N \\
+        &\Rightarrow \dd S = \tfrac{\dd U}{T} + \tfrac{p}{T}\dd V - \tfrac{\mu}{T}\dd N
+      \end{aligned}}
+    \]
+    \textcolor{NavyBlue}{\small obvykle se značí $\Omega$, ale to už je zabráno}
+    \[
+      S\Big[\tfrac1T,\tfrac{\mu}{T}\Big]\Big(\tfrac1T,V,\tfrac{\mu}{T}\Big) = S - \frac{E}{T} + \frac{\mu}{T}N
+    \]
+  \end{itemize}
+  \item opakujeme postup odvození kanonického souboru:
+\end{itemize}
+
+\begin{enumerate}[label=\arabic*)]
+  \item pst nalezení systému v makrostavu $M(E,V,N)$: \quad \textcolor{NavyBlue}{\small(konst.\ $V$ \& $V_R$ nepíšu)}
+  \[
+    w(E,N;E_T,N_T) = \frac{\Sigma(E,N)\,\Sigma_R(E_T - E, N_T - N)}{\Sigma_T(E_T,N_T)}
+  \]
+  \item $\log w = \dots$
+  \item $\displaystyle \log\Sigma_R(E_T - E, N_T - N) = \log\Sigma_R(E_T,N_T) - E\,\pdv{\log\Sigma_R}{E_R} - N\,\pdv{\log\Sigma_R}{N_R} + \mathcal{O}\Big(\frac{N^2}{N_T}\Big)$
+  \item $\displaystyle \beta_R \equiv \pdv{\log\Sigma_R}{E_R}$ \quad \& \quad $\displaystyle -\alpha_R \equiv -\beta_R\mu_R \equiv \pdv{\log\Sigma_R}{N_R}$
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{L11b-2}
+\begin{veta}[Velký kanonický soubor]
+\[
+  \Rightarrow\qquad
+  w(E,V,N;\underbrace{\beta,\alpha}_{\text{stav rezervoáru}}) = \frac{1}{Z_G}\,\Sigma(E,V,N)\,e^{-\beta E + \alpha N}
+\]
+\[
+  \vzorec{Z_G(\beta,V,\alpha) \equiv \sum_{N=0}^{\infty}\int\dd\varepsilon_N\,\Sigma(E,V,N)\,e^{-\beta E + \alpha N}
+  = \sum_{N=0}^{\infty} Z_C^{(N)}\,e^{\alpha N}}
+\]
+\end{veta}
+
+\begin{itemize}
+  \item GK partiční funkce je dvojitou Laplaceovou transformací
+  \item definice sdružených veličin $\beta = \frac{1}{k_BT}$ \& $\alpha \equiv \beta\mu$ je motivována \underline{korespondencí s termodynamikou:}
+\end{itemize}
+\[
+  \log Z_G \doteq \log\Sigma(E^*,V,N^*) - \beta E^* + \alpha N^*
+  \qquad \text{\textcolor{NavyBlue}{\small $*$: max $w$ $\to$ mikrokanon}}
+\]
+\quad $\uparrow$ zanedbávám $-\log w(E^*,V,N^*) \propto \log N^*$ (stejný argument, jako u kanon.\ souboru)
+\[
+  \Updownarrow
+\]
+\[
+  k_B\log Z_G = S(E,V,N) - \frac{E}{T} + \frac{\mu}{T}N = S\Big[\frac1T,\frac{\mu}{T}\Big] = -\frac{\Phi}{T}
+\]
+\[
+  \Downarrow
+\]
+\[
+  \vzorec{-k_BT\log Z_G = E - TS - \mu N = \Phi(T,V,\mu)}
+\]
+
+\underline{NB:}
+\begin{itemize}
+  \item pro extenzivní systém bez dalších TD stupňů volnosti platí
+  \[ \Phi(T,V,\mu) = -pV \qquad \big(p = p(T,V,\mu)\big) \]
+  \item \underline{$w$} závisí pouze na zachovávajících se veličinách -- viz Liouville (ve smyslu $\{H,A\} = 0$)
+  \item $Z_G = \exp\Big(\frac{1}{k_B}S\Big[\frac1T,\frac{\mu}{T}\Big]\Big)$ \quad \dots\ srov.\ $\mu$-kanon \& kanon: \\
+        \hspace*{5cm} $\Sigma = \exp(S/k_B)$ \ \& \ $Z_C = \exp\Big(\frac{1}{k_B}S\Big[\frac1T\Big]\Big)$
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L11b-3}
+\begin{itemize}
+  \item $\vzorec{Z_G = \exp(-\beta\Phi)}$ \quad $\Rightarrow$ \quad
+        $w_G(E,N;\beta,\mu) = \Sigma(E,N)\,e^{\beta(\Phi - E + \mu N)}$ \quad ($\Phi$ \dots\ fce $\Phi(\beta,\mu)$)
+\end{itemize}
+
+\textcolor{NavyBlue}{%
+\begin{itemize}
+  \item k zamyšlení:
+  \begin{enumerate}[label=\arabic*)]
+    \item pro izolovaný systém \quad $\Sigma(E,N) = \exp\Big(\dfrac{S(E,N)}{k_B}\Big)$
+    \item $\Phi = E - TS - \mu N$ \quad $\Rightarrow$ \quad
+          $\exp\big[\beta(\Phi - E + \mu N)\big] = \exp\Big(-\dfrac{S}{k_B}\Big)$
+          \quad $\leftarrow$ entropie, nikoliv fce Massieu!
+  \end{enumerate}
+\end{itemize}}
+
+\begin{itemize}
+  \item \underline{hustota psti na \uv{fáz.\ prostoru}} \quad $\leftarrow$ zde se jedná o manifold fázových prostorů různé dimenze
+  \[
+    w(p,q;\beta,\alpha) = \frac{1}{Z_G}\,e^{-\beta H_N(p,q) + \alpha N}
+    \qquad (H_N \dots\ N\text{-částicový hamiltonián})
+  \]
+  \[
+    \left.\begin{aligned} \log Z_G &= -\beta\Phi \\ \alpha &= \beta\mu \end{aligned}\right\}
+    \ \Rightarrow\
+    \vzorec{w(p,q;\beta,\mu) = e^{\beta(\Phi - H_N(p,q) + \mu N)}}
+    \qquad (\Phi = \Phi(\beta,V,\mu))
+  \]
+  \item \underline{entropie v GK souboru:}
+  \begin{enumerate}[label=\arabic*)]
+    \item $\dd\Phi = -S\dd T + \dots$ \quad $\Rightarrow$ \quad
+          $\displaystyle S = \pdv{T}\Big(k_BT\log Z_G(T,V,\mu)\Big)$
+    \item Gibbs:
+    \begin{align*}
+      S &= -k_B\int\dd\varepsilon_N\,w_G\log w_G = -k_B\int\dd\varepsilon_N\,w_G\log\Big[\frac{1}{Z_G}e^{-\beta H + \alpha N}\Big] \\
+        &= k_B\log Z_G + k_B\beta\langle H\rangle - k_B\alpha\langle N\rangle
+    \end{align*}
+  \end{enumerate}
+  $\Rightarrow$ dostáváme (samozřejmě) Leg.\ trf.\ \quad $S = k_B\log Z_G + \dfrac{E}{T} - \dfrac{\mu N}{T}$
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L11b-4}
+\subsection*{Střední hodnoty a fluktuace pozorovatelných}
+\pozor{!} budeme pracovat s notací $Z_G = Z_G(\beta,\alpha)$ \\
+\quad $\to$ $Z_G = Z_G(\beta,\mu)$ komplikuje výpočet $\langle H\rangle$, $\langle(\Delta H)^2\rangle$ prostřednictvím derivací podle $\beta$
+
+\[
+  \vzorec{\langle H\rangle = -\pdv{\log Z_G}{\beta}} \quad\&\quad
+  \vzorec{\langle(\Delta H)^2\rangle = \pdv[2]{\log Z_G}{\beta}}
+\]
+\[
+  \vzorec{\langle N\rangle = \pdv{\log Z_G}{\alpha}} \quad\&\quad
+  \vzorec{\langle(\Delta N)^2\rangle = \pdv[2]{\log Z_G}{\alpha}}
+\]
+\quad $\to$ nakonec mohu položit $\alpha = \beta\mu$ \& $\beta = \frac{1}{k_BT}$
+
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+
+\begin{priklad}[Př: (cvičení)]
+\[
+  \langle(\Delta N)^2\rangle = Nk_BT\,\frac{\kappa_T}{v} \propto N
+  \quad\Rightarrow\quad \frac{\langle\Delta N\rangle}{\langle N\rangle} \xrightarrow{N\to\infty} 0
+\]
+\end{priklad}
+
+\begin{itemize}
+  \item opět vidíme, že fluktuace jsou svázány s koeficientem lin.\ odezvy
+  \item stejně jako v případě energie je i pravděpodobnostní rozdělení počtu částic (relativně) extrémně úzké
+        $\Rightarrow$ \kw{GK soubor je ekvivalentní kanonickému} (potažmo mikrokanonickému), pokud \uv{nastavíme} chemický potenciál tak, aby
+        \[ \langle N\rangle_{GK}(\mu,\beta) = N \quad \dots\ \text{poč.\ částic v kanon.\ souboru} \]
+  \item kritický bod: $\kappa_T\to+\infty$ $\Rightarrow$ velké fluktuace hustoty \\
+        $\Rightarrow$ \pozor{přestávají být splněny předpoklady rovnovážné TD!}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L11b-5}
+\underline{Řešení:}
+\begin{enumerate}[label=\arabic*)]
+  \item $\displaystyle \langle(\Delta N)^2\rangle = \pdv[2]{\alpha}\log Z_G = \pdv[2]{\alpha}\Big[-\beta\Phi\Big(\beta,V,\mu = \frac{\alpha}{\beta}\Big)\Big]
+        = -\frac1\beta\,\pdv[2]{\mu}\Phi(\beta,V,\mu)\Big|_{\beta,V = \text{konst}}$
+  \item $\beta = \frac{1}{k_BT}$, \ $\dd\Phi = -N\dd\mu$ \ \& redukce derivací:
+  \begin{align*}
+    \langle(\Delta N)^2\rangle &= -k_BT\Big(\pdv[2]{\Phi}{\mu}\Big)_{T,V} = k_BT\Big(\pdv{N}{\mu}\Big)_{T,V}
+      = k_BT\Big[\Big(\pdv{\mu}{N}\Big)_{T,V}\Big]^{-1} \\
+    &= k_BT\Big[-s\Big(\pdv{T}{N}\Big)_{T,V} + v\Big(\pdv{p}{N}\Big)_{T,V}\Big]^{-1}
+      = \big/\ \dd F = \dots - p\dd V + \mu\dd N\ \big/ \\
+    &= -k_BT\Big[v\Big(\pdv{\mu}{V}\Big)_{T,N}\Big]^{-1}
+      = -\frac{k_BT}{v^2}\Big[\Big(\pdv{p}{V}\Big)_{T,N}\Big]^{-1}
+      = -\frac{Nk_BT}{v}\,\frac1V\Big(\pdv{V}{p}\Big)_T
+  \end{align*}
+  \[
+    \Rightarrow\quad \vzorec{\langle(\Delta N)^2\rangle = Nk_BT\,\frac{\kappa_T}{v}} \quad \checkmark
+  \]
+\end{enumerate}
+
+\underline{Pozn:}
+\begin{itemize}
+  \item GK soubor je obzvláště užitečný v kvantové statistice k popisu \kw{bosonových a fermionových systémů}
+  \item formalismus GK souboru je užitečný také \underline{k popisu fotonového/fononového/\dots\ plynu}
+  \begin{itemize}
+    \item[--] jedná se o systémy, ve kterých se nezachovává počet \uv{kvazičástic} \\
+              ($\{N,H\}\neq 0$ resp.\ $[\hat N,\hat H]\neq 0$)
+    \item[$\Rightarrow$] již v (mikro)kanonickém souboru je třeba sčítat přes $N$:
+    \[
+      \int\dd\varepsilon_N \to \sum_N\int\dd\varepsilon_N \quad\text{ale}\quad
+      w(p,q) \propto e^{-\beta H\,\textcolor{Red}{\sout{+\alpha N}}}
+    \]
+  \end{itemize}
+  $\Rightarrow$ formálně se jedná o GK soubor s \underline{$\mu = 0$}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L11b-6}
+\subsection{Doplněk: Maxwellovo--Boltzmannovo rozdělení}
+\begin{itemize}
+  \item kanonická hustota pravděpodobnosti (id.\ plynu):
+  \[ w\big(\{\vec p_i,\vec q_i\}_{i=1}^N\big) = \frac{1}{Z_C}\,e^{-\beta H(\{p,q\})} \]
+  \item částice neinteragují (id.\ plyn) $\Rightarrow$ $H = \sum_{i=1}^N H_1(\vec p_i,\vec q_i)$ \\
+        $\Rightarrow$ faktorizace part.\ funkce $Z_C = (Z_1)^N$ \\
+        $\Rightarrow$ $w\big(\{\vec p_i,\vec q_i\}_{i=1}^N\big) = \prod_{i=1}^N w_1(\vec p_i,\vec q_i)$
+  \item hustota stavů v 6N-dim.\ jednočásticovém fáz.\ prostoru je
+  \[
+    w_1(\vec p,\vec q) = \underbrace{\int\dd\varepsilon_{N-1}\,w\big(\vec p,\vec q,\{\vec p_i,\vec q_i\}_{i=2}^N\big)}_{\text{platí obecně}}
+    = \frac{1}{Z_1}\,e^{-\beta H_1(\vec p,\vec q)}
+  \]
+  \item spec.\ id.\ plyn: \quad $H_1 = \dfrac{p^2}{2m}$ \quad $\Rightarrow$ \quad $Z_1 = V\Big(\dfrac{2\pi m}{h^2\beta}\Big)^{3/2}$
+  \[
+    \Rightarrow\quad w_1(\vec p,\vec q) = \frac1V\Big(\frac{h^2\beta}{2\pi m}\Big)^{3/2}e^{-\beta\frac{p^2}{2m}}
+    \qquad
+    \Big/\ \vec p = m\vec v \ \Rightarrow\ \dd^3\vec p = m^3\dd^3\vec v\ \Big/
+    \pozn{v originále $\vec p = \frac12 m\vec v$}
+  \]
+  \[
+    w_1(\vec v,\vec q) = \frac1V\Big(\frac{h^2m}{2\pi k_BT}\Big)^{3/2}e^{-\frac{mv^2}{2k_BT}}
+  \]
+  \item triviální integrace přes $\vec q$ a přechod ke sfér.\ souř.\ v rychlosti
+\end{itemize}
+
+\begin{veta}[Maxwellovo--Boltzmannovo rozdělení \quad {\normalfont\textcolor{white}{viz také DÚ č.~4}}]
+\[
+  \vzorec{w_1(v) = 4\pi\Big(\frac{m}{2\pi k_BT}\Big)^{3/2}v^2\,e^{-\frac{mv^2}{2k_BT}}}
+\]
+$w_1(v)\dd v$ je pravděpodobnost, že částice má rychlost ve $(v,v+\dd v)$
+\end{veta}
+
+\begin{itemize}
+  \item rozdělení je platné za přítomnosti \underline{libovolné interakce!} \\
+        (je vynuceno izotropií homog.\ systému -- viz např.\ Tong str.~43)
+  \begin{multline*}
+    F(v_x,v_y,v_z)\dd v_x\dd v_y\dd v_z \underset{\text{izotropie}}{=} \phi(v_x)\phi(v_y)\phi(v_z)\dd^3v \\
+    \underset{\text{izotropie znovu}}{=} F(v)\dd^3v
+    \ \Rightarrow\ \underbrace{\phi(v_i) = Ae^{-Bv_i^2}}_{\text{jediné řešení}} \ \checkmark
+  \end{multline*}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L11b-7}
+\subsection{Další témata \ {\normalfont\small(budou detailněji v příštím semestru)}}
+
+\subsubsection*{1) Obecný statistický soubor}
+\begin{itemize}
+  \item rovnovážné hustoty pravděpodobnosti lze odvodit také prostřednictvím \kw{variačního principu}, založeného na Gibbsově entropii
+  \[ S = -k_B\int\dd\varepsilon_N\,w(p,q)\log w(p,q) \]
+  \begin{itemize}
+    \item[--] požaduji $\delta S = 0$ při variaci $w\to w + \delta w$ a splnění relevantních vazeb
+  \end{itemize}
+\end{itemize}
+
+\begin{priklad}[Př 1: mikrokanonický soubor]
+\begin{itemize}
+  \item mám jedinou vazbu: \quad $\int\dd\varepsilon_N\,w = 1$ \quad (\& fáz.\ prostor je omezen na nadplochu $H = E$)
+  \item metoda Lag.\ multiplikátorů:
+  \begin{align*}
+    &\delta\Big[-k_B\int\dd\varepsilon_N\,w\log w - \lambda k_B\Big(\int\dd\varepsilon_N\,w - 1\Big)\Big] \\
+    &= -k_B\,\delta\Big[\int\dd\varepsilon_N\,(w\log w + \lambda w) - 1\Big] = -k_B\,\delta w\,\pdv{w}[\ \ ] \\
+    &= -k_B\,\delta w\int\dd\varepsilon_N\,\big[\log w + \lambda - 1\big] = 0
+  \end{align*}
+  \[
+    \Rightarrow\quad \log w = 1 - \lambda \quad\Rightarrow\quad \vzorec{w = e^{1-\lambda} \equiv \frac{1}{\Sigma}}
+  \]
+  \pozn{tak v originále; derivace $w\log w + \lambda w$ dává $\log w + 1 + \lambda$}
+  \item $w$ je na dostupné nadploše konstantní, neznámý multiplikátor $\lambda$ je určen z příslušné vazby (normalizace) \quad $\int\dd\varepsilon_N\,w = 1$
+\end{itemize}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{L11b-8}
+\begin{priklad}[Př 2: obecná situace s vazbami]
+\begin{enumerate}[label=\arabic*)]
+  \item $\int\dd\varepsilon_N\,w = 1$ \hfill $\leftrightarrow\ \lambda$
+  \item $\langle H\rangle = \int\dd\varepsilon_N\,wH = E$ \hfill $\leftrightarrow\ \beta$
+  \item $\langle A_i\rangle = \int\dd\varepsilon_N\,wA_i = a_i$ \hfill $\leftrightarrow\ \alpha_i$
+\end{enumerate}
+\begin{align*}
+  &\Rightarrow\ \delta S = 0 \\
+  &\Rightarrow\ -k_B\,\delta\Big[\int\dd\varepsilon_N\,w\Big(\log w + \lambda + \beta H + \sum_i\alpha_iA_i\Big) - \lambda - \beta E - \sum_i\alpha_ia_i\Big] = 0 \\
+  &\Rightarrow\ \log w = -\lambda + 1 - \beta H - \sum_i\alpha_iA_i \\
+  &\Rightarrow\ \vzorec{w = \frac1Z\,e^{-\beta H - \sum_i\alpha_iA_i}}
+\end{align*}
+\begin{itemize}
+  \item[--] $Z$ určíme z normalizace, hodnoty $\beta$ \& $\alpha_i$ z vazeb na střední hodnoty $H$ \& $A_i$
+  \item[--] interpretace parametrů $\beta$ \& $\alpha_i$ jako intenzivních TD veličin lze srovnáním Gibbsovy entropie
+  \[
+    S = -k_B\int\dd\varepsilon_N\,w\log w = -k_B\log Z + k_B\beta\langle H\rangle + \sum k_B\alpha_i\langle A_i\rangle
+  \]
+  s \uv{termodynamickou} entropií, resp.\ $-k_B\log Z$ s příslušnou Massieu funkcí \\
+  $\Rightarrow$ $\alpha_i$ jsou zjevně int.\ proměnné sdružené s $A_i$ (až na případné faktory $k_B$ \& $T$\dots)
+\end{itemize}
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{L11b-9}
+\begin{itemize}
+  \item derivováním $\log Z$ lze počítat střední hodnoty, variace a kovariance veličin $A_i$:
+  \[
+    \vzorec{\langle A_i\rangle = -\pdv{\log Z}{\alpha_i}} \qquad
+    \vzorec{\langle(\Delta A_i)^2\rangle = \pdv[2]{\log Z}{\alpha_i}}
+  \]
+  \[
+    \langle\Delta A_i\Delta A_j\rangle = \frac{\partial^2\log Z}{\partial\alpha_i\partial\alpha_j} \qquad \text{(Cv.)}
+  \]
+\end{itemize}
+
+\subsubsection*{2) Vnitřní stupně volnosti}
+\begin{itemize}
+  \item[--] viz Tong 2.4
+\end{itemize}
+
+\subsubsection*{3) Interagující částice \ {\normalfont(a van der Waalsova rovnice)}}
+\begin{itemize}
+  \item[--] viz Tong 2.5 -- 2.5.2
+\end{itemize}
+

@@ -1,0 +1,88 @@
+% T3_entropie.pdf -- Cvičení: Fundamentální rovnice
+\section{Cvičení: Fundamentální rovnice}
+\strana{T3-1}
+
+\begin{priklad}[Příklad 1 \ \textcolor{Red}{DCv}]
+Najděte entropickou fundam.\ rovnici fotonového plynu se stav.\ rovnicemi
+\[ U = bVT^4 \quad \& \quad p = \frac{U}{3V}\,; \qquad b > 0 \]
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item vyjádřete $\dd S = \frac1T\dd U - \frac{p}{V}\dd V$ pouze pomocí $U, V$
+  \pozn{v originále $-\frac{p}{V}\dd V$, správně $+\frac{p}{T}\dd V$}
+  \item integrujte výslednou dif.\ formu $\Rightarrow S = S(U,V)$
+  \item \underline{Pozn:} V tomto případě $N$ není TD proměnná, \uv{počet fotonů} se nezachovává. Na kvantově-mech.\ úrovni je to vidět z toho, že $[\hat{\mathcal{H}}, \hat N] \neq 0$, počet částic nekomutuje s hamiltoniánem a tedy není zachovávající se veličina. Fyzikálně to znamená, že stěny dutiny neustále absorbují a opět vyzařují fotony (obecně jiné frekvence) -- energie přechází ze záření na vibrační stupně volnosti a zpět.
+\end{enumerate}
+
+\begin{priklad}[Příklad 2]
+Najděte entropickou fundamentální rovnici vdW plynu se stavovou rovnicí
+\[ p = \frac{k_BT}{v - b} - \frac{a}{v^2} \quad \& \quad u(T,v) = ck_BT + \phi(v) \]
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item najděte vhodný tvar $\phi(v)$ z podmínek integrability $s = s(u,v)$, je-li $u = u(T,v)$
+  \item vyjádřete $\dd s = \frac1T\dd u + \frac{p}{T}\dd v$ pomocí $u, v$
+  \item integrujte $\Rightarrow s = s(u,v)$
+  \item dosaďte \quad $S(U,V,N) = Ns\left(\frac{U}{N}, \frac{V}{N}\right)$ \hfill $(*)$
+\end{enumerate}
+
+\begin{priklad}[Příklad 3* \ \textcolor{Red}{DCv}]
+Najděte chem.\ potenciál $\mu = \mu(S,V,N)$ nebo $\mu = \mu(T,V,N)$ pro vdW plyn
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item derivujte $(*)$ \quad $\left(\pdv{S}{N}\right)_{U,V} = -\dfrac{\mu}{T}$
+  \item umíme se zbavit $T$ nebo (ještě lépe) $S$?
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{T3-2}
+\begin{priklad}[Příklad 4]
+Najděte entropickou fundamentální rovnici vícesložkového id.\ plynu a identifikujte směšovací entropii \\
+\textcolor{Red}{V případě nutnosti viz řešení na utf.mff.cuni.cz/\textasciitilde kolorenc/TDSFI.2020/idgas.pdf}
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item $S_i = N_ik_B\log\left[\left(\dfrac{U_i}{U_{0i}}\right)^{c_i}\left(\dfrac{V_i}{V_{0i}}\right)\left(\dfrac{N_{0i}}{N_i}\right)^{c_i+1}\right] + N_is_{0i}$ \\
+        -- entropie $i$-té složky
+  \item entropie je aditivní: \quad $S = \sum_{i=1}^{\ell} S_i$
+  \item $\to$ v rovnováze mají $\forall$ složky stejnou teplotu $T$ \& energie je také aditivní, $U = k_BT\sum_i c_iN_i$
+  \begin{itemize}[label=$\to$]
+    \item pro $\forall$ složky volím ref.\ stav $(T_0, V_{0i}, N_{0i}) \leftrightarrow N_is_{0i}$ se stejnou teplotou $T_0$ a objemu na 1 částici $v_0 = \frac{V_{0i}}{N_{0i}}$ $\forall i$
+    \item $\forall$ složky se nacházejí ve stejném objemu $V$
+  \end{itemize}
+  \[ \Rightarrow\ S = \sum_{i=1}^{\ell} S_i = S(T, V, N_1, \dots, N_\ell) \]
+  \item
+  \begin{align*}
+    S &= \sum_i N_{0i}s_{0i} + \Big(\sum_i c_iN_i\Big)k_B\log\left(\frac{T}{T_0}\right) + k_B\sum N_i\log\left(\frac{V}{v_0N_i}\right) \\
+    &= /\text{upravte}/ =
+    \textcolor{OliveGreen}{\boxed{\textcolor{NavyBlue}{\sum_i N_{0i}s_{0i} + \Big(\sum_i c_iN_i\Big)k_B\log\left(\frac{T}{T_0}\right) + Nk_B\log\left(\frac{v}{v_0}\right)}}} \\
+    &\hspace*{4cm} \textcolor{Red}{\boxed{\textcolor{NavyBlue}{-k_B\sum N_i\log\left(\frac{N_i}{N}\right)}}}
+  \end{align*}
+  $\to$ interpretujte: \
+  \begin{minipage}[t]{0.75\textwidth}
+  \textcolor{OliveGreen}{$\Rightarrow$ jednokomp.\ plyn s tep.\ kapacitou $\bar c = \sum c_i\frac{N_i}{N}$ \\
+  $=$ entropie jednotlivých složek v oddělených objemech} \\
+  \textcolor{Red}{$\Leftrightarrow$ \kw{směšovací entropie}}
+  \end{minipage}
+  \item fundamentální rovnici dostaneme dosazením \quad $T = \dfrac{U}{k_B\sum_i c_iN_i}$
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{T3-3}
+\begin{priklad}[Příklad 5]
+Ukažte, že tlak vícesložkového id.\ plynu lze vyjádřit jako součet \underline{parciálních tlaků},
+\[ \vzorec{p = \sum_i p_i} \quad \& \quad p_i = \frac{N_ik_BT}{V} \]
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item derivujte \quad $\left(\pdv{S}{V}\right)_{U,N_1,\dots,N_\ell} \underset{\textcolor{Red}{\uparrow}}{=} \left(\pdv{S}{V}\right)_{T,N_1,\dots,N_\ell} = \dfrac{p}{T}$ \\
+  \hspace*{4.2cm}\textcolor{Red}{proč to lze? obecně neplatí!}
+\end{enumerate}
+
+\begin{priklad}[Příklad 6]
+Ukažte, že pro chemický potenciál $\mu_i$ složky id.\ plynu platí
+\[ \vzorec{\mu_i = k_BT\log p_i + f_i(T)} \]
+a najděte explic.\ tvar funkce $f_i(T)$
+\end{priklad}
+\begin{enumerate}[label=\arabic*),font=\color{NavyBlue}]\color{NavyBlue}
+  \item derivujte: \quad $\dfrac{\mu_i}{T} = \left(\pdv{S}{N_i}\right)_{U,V,N_{j\neq i}}$
+  \pozn{v originále bez znaménka minus; standardně $-\mu_i/T$}
+  \item dosaďte \quad $U = k_BT\sum_{i=1}^{\ell} c_iN_i$
+\end{enumerate}
+

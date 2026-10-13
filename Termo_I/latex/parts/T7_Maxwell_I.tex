@@ -1,0 +1,55 @@
+% T7_Maxwell_I.pdf -- Cvičení: Maxwellovy relace
+\section{Cvičení: Maxwellovy relace}
+\strana{T7-1}
+
+\begin{priklad}[Příklad 1: Joule--Thomsonův jev pro vdW plyn]
+\underline{NB:} \quad $\mu_{JT} = \dfrac{V}{C_p}(T\alpha - 1) = \left(\pdv{T}{p}\right)_H$ \qquad $\Delta T \simeq \mu_{JT}\Delta p$ \ \& \ $\Delta p < 0$
+\begin{enumerate}[label=\alph*)]
+  \item Najděte teplotu inverze pro vdW plyn $\left(p = \dfrac{RT}{v - b} - \dfrac{a}{v^2}\right)$ za předpokladu, že $\dfrac{b}{v} = \epsilon_1 \ll 1$ a $\dfrac{a}{RTv} = \epsilon_2 \ll 1$
+  \hfill \textcolor{NavyBlue}{$T_{inv} \simeq \dfrac{2a}{Rb}$}
+  \item Ukažte, že pro $T < T_{inv}$ se plyn dále chladí a pro $T > T_{inv}$ se naopak zahřívá
+\end{enumerate}
+\end{priklad}
+\begin{itemize}\color{NavyBlue}
+  \item $T = T_{inv} - \delta \ \Rightarrow\ T\alpha \simeq 1 + \dfrac{Rb^2}{2av}\delta > 1$
+  \item $\alpha \simeq \dfrac1T(1 - \epsilon_1 + 2\epsilon_2) = \dfrac{c_1}{T} + \dfrac{c_2}{T^2}$ \ ($c_i > 0$) $\Rightarrow$ $\alpha(T)$ klesá s $T$ rychleji než $\frac1T$ (srov.\ id.\ plyn) \\
+  $\Rightarrow\ T\downarrow\ \Leftrightarrow\ \alpha(T)T\nearrow$
+\end{itemize}
+
+\begin{priklad}[Příklad 2]
+Ukažte, že \quad $\vzorec{\kappa_S = \kappa_T - \dfrac{Tv\alpha^2}{c_p}} < \kappa_T$ \quad a odůvodněte fyzikálně
+\[ \kappa_X = -\frac1V\left(\pdv{V}{p}\right)_X \]
+\end{priklad}
+\textcolor{NavyBlue}{$\bullet$ viz odvození Meyerova vztahu}
+
+\begin{priklad}[Příklad 3]
+Diferenciál vnitřní energie magnetického systému je
+\[ \dd U = T\,\dd S - p\,\dd V + H\,\dd M \]
+Mg.\ susceptibilita je definována jako $\chi_X = \left(\pdv{M}{H}\right)_X$. \\
+Ukažte, že platí \quad $\vzorec{\dfrac{\chi_T}{\chi_S} = \dfrac{C_H}{C_M}}$\,, kde na pravé straně je podíl tep.\ kapacit za konst.\ pole resp.\ magnetizace.
+
+*Rozmyslete zobecnění pro $\dd U = \dots + \vec H\cdot\dd\vec M$.
+\end{priklad}
+\textcolor{NavyBlue}{$\bullet$ viz odvození $\dfrac{\kappa_T}{\kappa_S} = \dots$}
+
+\begin{priklad}[Příklad 4]
+Odvoďte \uv{Meyerův vztah} mezi $C_M$ a $C_H$.
+\end{priklad}
+
+%----------------------------------------------------------------------
+\strana{T7-2}
+\begin{priklad}[Příklad 5*]
+Ukažte, pro diferenciál entalpie platí v $T$-$p$ diagramu
+\[ \vzorec{\dd H = C_p\,\dd T + V(1 - T\alpha)\,\dd p} \]
+($H = H(T,p)$ samozřejmě není FR)
+\end{priklad}
+
+\begin{priklad}[Příklad 6*]
+Ukažte, že
+\[
+  \left(\pdv{C_V}{V}\right)_T = T\left(\pdv[2]{p}{T}\right)_V
+  \qquad \& \qquad
+  \left(\pdv{C_p}{p}\right)_T = -T\left(\pdv[2]{V}{T}\right)_p
+\]
+\end{priklad}
+

@@ -1,0 +1,939 @@
+%======================================================================
+% L02_2TDZ.pdf
+%======================================================================
+\providecommand{\dbar}{{\mathchar'26\mkern-12mu d}}
+\providecommand{\modreB}[1]{{\color{NavyBlue}\small\bfseries #1}}
+\providecommand{\cerveneB}[1]{{\color{Red}\small\bfseries #1}}
+\providecommand{\lightning}{\mathbin{\rotatebox[origin=c]{-60}{$\leadsto$}}}
+
+\section{Shrnutí -- empirická teplota, 1.\ TD zákon}
+\strana{L02-1}
+
+\begin{veta}[0) Termodynamická rovnováha]
+každý izolovaný systém dospěje po dostatečně dlouhém čase do termodynamické rovnováhy, ve kterém se žádné makroskopické veličiny (termodynamické/stavové proměnné/funkce/parametry) v čase nemění, který je charakterizovatelný malým počtem těchto parametrů. Ze stavu TD rovnováhy systém samovolně nevyjde, musí se změnit vnější podmínky/vlivy. Ve stavu TD rovnováhy si systém nepamatuje svoji historii.
+\end{veta}
+
+\subsection*{1) První termodynamický zákon}
+\begin{itemize}
+  \item \kw{práce} -- interakce systému s okolím (výměna energie), která je kontrolovatelná pozorovatelem, popsatelná a kvantifikovatelná v rámci existujících teorií; v kvazistac.\ procesu svázána se změnou nějaké extenzivní proměnné
+  \item \kw{adiabatická izolace} -- je možné systém izolovat tak, že \uv{objem} práce vykonané na systému při přechodu mezi dvěma definovanými rovnovážnými stavy nezávisí na způsobu konání práce \\
+  $\Rightarrow$ existence \underline{extenzivní} stavové veličiny \kw{vnitřní energie}
+  \[
+    \Delta U_{AB} = W_{AB}^{ad} \quad\Rightarrow\quad U(A) = U(0) + W_{0A}^{ad}
+  \]
+  $\Rightarrow$ existence \kw{kalorické stavové rovnice} \qquad $U = U(X_1,\dots,X_n)$
+  \item obecný proces bez adiabatické izolace \ $\Rightarrow$ \ $\Delta U \neq W$ \\
+  $\Rightarrow$ def.\ \kw{teplo}
+\end{itemize}
+
+\begin{minipage}{0.4\textwidth}
+\[ Q = \Delta U - W \quad\Rightarrow \]
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+\begin{veta}[1.\ termodynamický zákon]
+\[ \vzorec{\dd U = \dbar Q + \dbar W} \]
+\end{veta}
+\end{minipage}
+
+\hfill (pro \underline{kvazistatický proces}) \\
+\hspace*{0.62\textwidth}$\updownarrow$ \\
+\hspace*{0.45\textwidth}\parbox{0.55\textwidth}{sled infinitezimálních transformací mezi rovnovážnými stavy systému}
+
+\modreB{adiabata -- trajektorie, po které $Q = 0$} \\
+\hspace*{1.5em}\modreB{$\to$ na rozdíl od izoterm/izobar/izochor adiabaty nedefinují nadplochy, $Q$ není stavová veličina (zavedení entropie toto samozřejmě zásadně změní)}
+
+\begin{minipage}{0.48\textwidth}
+\fcolorbox{Red}{white}{\parbox{0.92\linewidth}{\color{Red}
+$\bullet$ požadavek na adiabat.\ izolaci v definici $U$ nás omezuje na \textbf{uzavřené systémy}!}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\fcolorbox{Red}{white}{$\color{Red}\dbar Q = \dd U - \sum_{i=1}^{n} y_i\,\dd X_i$}
+\end{minipage}
+
+\cerveneB{$\to$ v kvazistatickém procesu můžeme $\dbar W$ dále specifikovat pomocí $\dd X$} \\
+\hspace*{1.5em}\cerveneB{-- v nerovnovážném procesu to možné není -- viz míchání; žádná extenzivní proměnná (kromě $U$) se nemění a přesto energii dodáváme a její objem \uv{makroskopicky kontrolujeme} (výkon $\times$ čas)}
+
+\cerveneB{$\to$ základní vztahy pro práci}
+
+\subsection*{2) Tranzitivnost vzájemné termodynamické rovnováhy}
+$\Rightarrow$ existence nové \underline{intenzivní} stavové veličiny -- \kw{empirické teploty $\vartheta$} \\
+\hspace*{1.5em} a s ní spojené \kw{termické stavové rovnice} \qquad $\vartheta = \vartheta(X_1,\dots,X_n)$
+
+$\Rightarrow$ vzájemná rovnováha je charakterizována rovností teplot \\
+\hspace*{1.5em}(\pozor{rovnost teplot je nutná, ne postačující podmínka})
+
+\cerveneB{$\to$ základní termické stavové rovnice -- ideální a vdW plyn, viriálový rozvoj, ideální paramagnet, elmg.\ záření} \\
+\cerveneB{$\to$ izotermy -- nadplochy konstantní (zatím empirické) teploty}
+
+\cerveneB{$\to$ implicitně předpokládáme, že spojení/oddělení podsystémů ve vzájemné rovnováze nezmění jejich stav -- interakční energie tedy musí být zanedbatelná a celková energie aditivní $\Rightarrow$ POŽADAVEK NA KRÁTKODOSAHOVÉ MIKROSKOPICKÉ INTERAKCE}
+
+%----------------------------------------------------------------------
+\newpage
+\section{Druhý termodynamický zákon}
+\strana{L02-2}
+
+\subsection*{Cyklické procesy}
+\begin{itemize}[nosep]
+  \item[--] procesy, při kterých se systém vrátí do původního stavu (pro okolí to platit nemusí)
+\end{itemize}
+\[
+  \Rightarrow\ \Delta U = 0 = \oint\dbar Q + \oint\dbar W \quad\Rightarrow\quad
+  \vzorec{\oint\dbar Q = -\oint\dbar W}
+  \qquad \text{\color{NavyBlue}\small\itshape Není-li proces kvazistat., potom prostě $Q = -W$}
+\]
+\begin{itemize}[nosep]
+  \item[--] systém převádí teplo získané z okolí na práci a naopak
+\end{itemize}
+$\Downarrow$ \hfill {\color{NavyBlue}\kw{LÁZEŇ}: \uv{NEKONEČNĚ VELKÝ VRATNÝ ZDROJ TEPLA}} \\
+\hspace*{0.45\textwidth}{\color{NavyBlue}\small $\hookrightarrow$ interaguje pouze tepelnou výměnou} \\
+\hspace*{0.45\textwidth}{\color{NavyBlue}\small $\hookrightarrow$ bez ohledu na $|Q|$ jeho teplota zůstává konst.}
+
+\subsection*{Termodynamické stroje}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+  % ---- motor ----
+  \node at (0.6,4.3) {\textbf{motor}};
+  \draw (-0.8,3.6) -- (-0.8,3) -- (1.8,3) -- (1.8,3.6);
+  \node at (0.5,3.3) {Hot};
+  \draw (0.5,0) circle (0.5) node {$S$};
+  \draw[->] (0.5,3) -- (0.5,0.5) node[midway,right] {$Q_H$};
+  \draw[->] (1,0) -- (2,0) node[above] {\small $W = -W'$};
+  \draw[->] (0.5,-0.5) -- (0.5,-2.4) node[midway,right] {$Q_C = -Q_C'$};
+  \draw (-0.8,-3) -- (-0.8,-2.4) -- (1.8,-2.4) -- (1.8,-3);
+  \node at (0.5,-2.75) {Cold};
+  % ---- konvence ----
+  \begin{scope}[xshift=4.8cm,Red,every node/.style={font=\small}]
+    \draw (-1.7,-2.6) rectangle (1.9,3);
+    \node at (0.1,2.5) {\underline{Konvence}};
+    \node[align=left,text width=3.2cm] at (0.1,1.6) {$\bullet$ $Q,W$ vzhledem k $S$ (systému)};
+    \node[draw] at (0.1,0.3) {$\Delta U = Q_H + Q_C + W$};
+    \node[align=left,text width=3.2cm] at (0.1,-1.4) {$\bullet$ $Q_C < 0 \Rightarrow Q_C' = -Q_C$ \\ \quad $\Rightarrow Q_C' > 0$};
+    \node[align=center] at (3,1.4) {$\Delta U = 0$\\(cyklus)};
+    \draw[->] (2.5,0.9) -- (1.5,0.5);
+  \end{scope}
+  % ---- chladnička ----
+  \begin{scope}[xshift=10.4cm]
+    \node[align=center] at (0.5,4.4) {chladnička,\\ tepelné čerpadlo};
+    \draw (-0.8,3.6) -- (-0.8,3) -- (1.8,3) -- (1.8,3.6);
+    \node at (0.5,3.3) {H};
+    \draw (0.5,0) circle (0.5) node {$S$};
+    \draw[->] (0.5,0.5) -- (0.5,3) node[midway,right] {$Q_H\ {\color{Red}= -Q_H'}$};
+    \draw[->] (2,0) -- (1,0) node[above,pos=0.3] {$W$};
+    \draw[->] (0.5,-2.4) -- (0.5,-0.5) node[midway,right] {$Q_C$};
+    \draw (-0.8,-3) -- (-0.8,-2.4) -- (1.8,-2.4) -- (1.8,-3);
+    \node at (0.5,-2.75) {C};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{minipage}{0.45\textwidth}
+\[
+  \eta = \frac{|W|}{Q_H} = \frac{Q_H + Q_C}{Q_H}
+\]
+\[
+  {\color{Red}\Rightarrow}\quad \vzorec{\eta = 1 - \frac{Q_C'}{Q_H}}
+\]
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+\underline{chl:} \quad $\displaystyle \xi_r = \frac{Q_C}{W} = \frac{Q_C}{Q_H' - Q_C}$
+
+\medskip
+\underline{čerp:} \quad $\displaystyle \xi_p = \frac{|Q_H|}{W} = \frac{Q_H'}{Q_H' - Q_C}$
+\end{minipage}
+
+\medskip
+\underline{Pozn:}
+\begin{itemize}[nosep]
+  \item hrabě Rumford -- Benjamin Thomson (1753--1814)
+\end{itemize}
+\fbox{\parbox{0.6\textwidth}{
+$\bullet$ Lord Kelvin -- William Thomson (1824--1907) \\
+$\bullet$ Rudolf Clausius (1822--1888, GER) \\
+$\bullet$ Constantin Carathéodory (1873--1950, GER)}}
+
+%----------------------------------------------------------------------
+\strana{L02-3}
+\subsection*{Druhý termodynamický zákon}
+
+\begin{veta}[Clausius]
+Není možné realizovat proces, jehož \underline{jediným výsledkem} by byl přenos tepla z chladnějšího tělesa na teplejší.
+\end{veta}
+
+\underline{lepší formulace} (vyhneme se pojmu teplejší, chladnější, \dots)
+\begin{veta}[Clausius -- lepší formulace]
+Pokud teplo plyne samovolně z tělesa $A$ na těl.\ $B$, potom není možné realizovat proces, jehož jediným výsledkem by byl přenos tepla z $B$ na $A$.
+\end{veta}
+
+\begin{veta}[Kelvin]
+Není možné realizovat proces, \underline{jehož jediným výsledkem} by bylo získání \underline{tepla} z lázně a jeho \underline{úplná transformace na práci}.
+\end{veta}
+
+\begin{itemize}
+  \item aneb neexistuje \kw{perpetum mobile druhého druhu} -- mech.\ pohyb na teplo se 100\% účinností přeměnit lze, lázeň by tedy mohla trvale pohánět mech.\ stroj, aniž by se musela ochlazovat $\Rightarrow$ \uv{perpetual motion})
+\end{itemize}
+
+\underline{Pozn:}
+\begin{itemize}
+  \item důležitá je formulace \underline{\uv{jehož jediným výsledkem}} \\
+        $\Rightarrow$ zařízení, které zprostředkovává přenos tepla nebo mění teplo na práci se vrací do původního stavu -- koná cyklický proces, $\Delta U = 0$
+  \item Kelvinova formulace není v rozporu se vztahem
+  \[
+    \oint\dbar W = -\oint\dbar Q \quad\dots\ \dbar Q \text{ mění znaménko} \Leftrightarrow \text{systém odevzdává část tepla zpět okolí}
+  \]
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L02-4}
+\subsection*{Ekvivalence Kelvinovy a Clausiovy formulace}
+
+% lázně: horní (otevřená nahoru) a dolní (otevřená dolů)
+\tikzset{
+  lazenH/.pic={\draw (-1,0.5) -- (-1,0) -- (1,0) -- (1,0.5); \node at (0,0.25) {\tikzpictext};},
+  lazenC/.pic={\draw (-1,-0.5) -- (-1,0) -- (1,0) -- (1,-0.5); \node at (0,-0.28) {\tikzpictext};},
+}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  % Kelvin (zakázáno)
+  \node at (-2.2,1) {Kelvin:};
+  \pic[pic text=$H$] at (0,2.2) {lazenH};
+  \draw (0,0.6) circle (0.4);
+  \draw[->] (0,2.2) -- (0,1) node[midway,left] {$Q$};
+  \draw[->] (0.4,0.6) -- (1.5,0.6) node[above] {$W$};
+  \draw[Red,thick] (-1.5,-0.2) -- (1.8,2.4);
+  \draw[Red,thick] (-1,2.6) .. controls (0.4,1.6) and (0.8,0.4) .. (1.6,-0.3);
+  % Clausius (zakázáno)
+  \node at (4.2,1) {\underline{Clausius:}};
+  \pic[pic text=$H$] at (7,2.2) {lazenH};
+  \draw (7,1) circle (0.35);
+  \draw[->] (7,1.35) -- (7,2.2) node[midway,right] {$Q$};
+  \draw[->] (7,-0.2) -- (7,0.65) node[midway,right] {$Q$};
+  \pic[pic text=$C$] at (7,-0.2) {lazenC};
+  \draw[Red,thick] (5.5,-0.4) -- (8.8,2.4);
+  \draw[Red,thick] (6,2.8) -- (8.2,-0.2);
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+  \item pro spor: nechť neplatí Kelvinův princip:
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \pic[pic text=$H$] at (1,3) {lazenH};
+  \draw (0,1.2) circle (0.4);
+  \draw (2,1.2) circle (0.4);
+  \draw[->] (0,3) -- (0,1.6) node[midway,left] {$Q_1$};
+  \draw[->] (0.4,1.2) -- (1.6,1.2) node[midway,above] {$W$};
+  \draw[->] (2,1.6) -- (2,3) node[midway,right] {$Q_H$};
+  \draw[->] (2,-0.4) -- (2,0.8) node[midway,right] {$Q_C$};
+  \pic[pic text=$C$] at (1,-0.4) {lazenC};
+  % konvence červeně
+  \node[Red,align=left] at (4.9,2.7) {$\bullet$ $W = Q_1$ \\ $\bullet$ $Q_C + W = Q_H'$};
+  \node at (5,1.2) {$\Longleftrightarrow$};
+  \node[Red,align=left] at (4.9,-0.1) {$\Rightarrow Q_C + Q_1 = Q_H'$ \\ $\Rightarrow Q_C = Q_H' - Q_1$};
+  \node[Red] at (6.5,-1.3) {je teplo dodané do $H$ a zároveň odebrané z $C$};
+  % ekvivalent
+  \pic[pic text={}] at (8,3) {lazenH};
+  \draw (8,1.2) circle (0.4);
+  \draw[->] (8,1.6) -- (8,3) node[midway,right] {$Q_C$};
+  \draw[->] (8,-0.4) -- (8,0.8) node[midway,right] {$Q_C$};
+  \pic[pic text={}] at (8,-0.4) {lazenC};
+  \draw[Red,->,thick] (10.2,2.4) -- (10.4,1.6) -- (10.1,1.4) -- (10.3,0.4);
+  \node[Red] at (11.4,1.6) {\Large Clausius};
+\end{tikzpicture}
+\end{center}
+
+\hspace*{3cm} $\Rightarrow$ \underline{Clausius $\Rightarrow$ Kelvin}
+
+\begin{itemize}
+  \item nechť neplatí Clausiův princip:
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \pic[pic text=$H$] at (1,3) {lazenH};
+  \draw (0,1.2) circle (0.4);
+  \draw (2,1.2) circle (0.4);
+  \draw[->] (0,1.6) -- (0,3) node[midway,right] {$Q_C$};
+  \draw[->] (0,-0.4) -- (0,0.8) node[midway,right] {$Q_C$};
+  \draw[->] (2.1,3) -- (2,1.6) node[midway,right] {$Q_H$};
+  \draw[->] (2.4,1.2) -- (3.4,1.2) node[right] {$W$};
+  \draw[->] (2,0.8) -- (1.9,-0.4) node[midway,right] {$Q_C$};
+  \pic[pic text=$C$] at (1,-0.4) {lazenC};
+  \node at (5,1.4) {$\Longleftrightarrow$};
+  % ekvivalent
+  \pic[pic text=$H$] at (7.5,3) {lazenH};
+  \draw (7.5,1.2) circle (0.4);
+  \draw[->] (7.5,3) -- (7.5,1.6) node[midway,right] {$Q_H - Q_C'$};
+  \draw[->] (7.9,1.2) -- (9,1.2) node[right] {$W = Q_H - Q_C'$};
+  \pic[pic text=$C$] at (7.5,-0.4) {lazenC};
+  \draw[Red,->,thick] (12.2,2.8) -- (12.1,1.6) -- (12.4,1.4) -- (12.2,0.2);
+  \node[Red,rotate=-70] at (12.7,2.2) {Kelvin};
+\end{tikzpicture}
+\end{center}
+
+\[
+  \Rightarrow\quad \vzorec{\text{Kelvin} \iff \text{Clausius}}
+\]
+
+$\bullet$ \underline{Pozn:} $\bullet$ předpokládáme existenci motoru a tep.\ čerpadla, ale nic o jejich účinnosti
+
+%----------------------------------------------------------------------
+\strana{L02-5}
+\begin{definice}[Vratný proces]
+\kw{vratný proces} -- kvazistatický proces, který může proběhnout v opačném směru sledem stejných infinitezimálních transformací a \underline{systém {\color{Red}i okolí}} se vrátí do \underline{stejného rovnovážného stavu} \\
+\modreB{limit between natural \& unnatural processes}
+\end{definice}
+
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}[nosep]
+  \item tepelná výměna musí probíhat v tep.\ rovnováze s okolím (bez teplotního gradientu)
+  \item (zobecněné) síly musí být také v rovnováze, práce pouze skrze $\dd X_i$ $\Rightarrow$ {\color{Red}\underline{bez přítomnosti třecích sil}} \quad {\color{Red}$\leftarrow$ srov.\ zahřívání mícháním!}
+\end{itemize}
+\end{minipage}
+\hfill
+\fbox{\parbox{0.45\textwidth}{\small Nevratné procesy:
+$\bullet$ adiabat.\ expanze \\
+\hspace*{6.6em}$\bullet$ vypařování/kondenzace \\
+\hspace*{6.6em}$\bullet$ přenos tepla mezi lázněmi $\vartheta$}}
+
+\begin{veta}[Carnotův teorém]
+\modreB{vratný stroj: do původního stavu se vrací pracovní systém i okolí}
+
+\underline{Vratný stroj je} ze všech strojů pracujících mezi stejnými lázněmi ten \underline{nejúčinnější}.
+\end{veta}
+
+\underline{Dk:} $\bullet$ uvažujme dva stroje (motory):
+\begin{itemize}[nosep]
+  \item[] $R$ \dots\ vratný, lze použít jako motor i jako čerpadlo
+  \item[] $I$ \dots\ nevratný, funguje pouze jako motor
+\end{itemize}
+
+\begin{minipage}{0.48\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw (-0.6,3.8) -- (-0.6,3) -- (4.6,3) -- (4.6,3.8);
+  \node at (2,3.4) {$\vartheta_H$};
+  \draw (0.4,1.2) circle (0.45) node {$I$};
+  \draw (3.4,1.2) circle (0.45) node {$R$};
+  \draw[->] (0.5,3) -- (0.4,1.65) node[midway,right] {$Q_{IH}$};
+  \draw[->] (0.85,1.2) -- (2.95,1.2) node[midway,below] {$W_I' = W_R$};
+  \draw[->] (3.4,1.65) -- (3.4,3) node[midway,right] {$Q_{RH}'$};
+  \draw[->] (0.4,0.75) -- (0.3,-0.6) node[midway,right] {$Q_{IC}'$};
+  \draw[->] (3.3,-0.6) -- (3.4,0.75) node[midway,right] {$Q_{RC}$};
+  \draw (-0.6,-1.4) -- (-0.6,-0.6) -- (4.6,-0.6) -- (4.6,-1.4);
+  \node at (2,-1) {$\vartheta_C$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+$I$: \quad $Q_{IH} + Q_{IC} + W_I = 0$ \\
+\hspace*{5em}$\Updownarrow$ \\
+\hspace*{2em}$Q_{IH} - Q_{IC}' - W_I' = 0$
+\[ \Rightarrow\ \boxed{\eta_I = \frac{Q_{IH} - Q_{IC}'}{Q_{IH}}} \]
+$R$: \quad $-Q_{RH}' + Q_{RC} + W_R = 0$
+\[ \Rightarrow\ \boxed{\eta_R = \frac{Q_{RH}' - Q_{RC}}{Q_{RH}'}} \]
+\end{minipage}
+
+\begin{enumerate}[label=(\arabic*),nosep]
+  \item $W_I' = W_R$ \quad $\Rightarrow$ \quad $Q_{IH} - Q_{IC} = Q_{RH}' - Q_{RC}$
+  \item Clausius \quad $\Rightarrow$ \quad $Q_{IH} \geq Q_{RH}'$ \quad (jinak bychom celkově čerpali teplo $C\to H$)
+\end{enumerate}
+\[
+  \Rightarrow\ \eta_I = \frac{Q_{IH} - Q_{IC}'}{Q_{IH}} \overset{(1)}{=} \frac{Q_{RH}' - Q_{RC}}{Q_{IH}}
+  \overset{(2)}{\leq} \frac{Q_{RH}' - Q_{RC}}{Q_{RH}'} = \eta_R
+\]
+\[
+  \Rightarrow\quad \vzorec{\eta_I \leq \eta_R} \qquad\text{C.B.D.}
+\]
+
+%----------------------------------------------------------------------
+\strana{L02-6}
+\begin{veta}[Důsledek]
+Účinnost všech vratných strojů pracujících mezi stejnými lázněmi je stejná.
+\end{veta}
+\underline{Dk:} $\bullet$ nechť i $I$ je vratný $\Rightarrow$ v důkazu výše můžeme prohodit role $I\leftrightarrow R$
+$\Rightarrow$ $\eta_R \leq \eta_I$ $\Rightarrow$ $\eta_I = \eta_R$ \hfill C.B.D.
+
+\subsection*{Carnotův cyklus}
+\begin{itemize}[nosep]
+  \item realizace vratného stroje pracujícího mezi dvěma lázněmi -- probíhá po vratné kvazistatické trajektorii \\
+  \modreB{vratná trajektorie: kvazistatický proces, během kterého je systém v rovnováze s okolím}
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  \draw[->] (0,0) -- (6,0) node[below] {$V$};
+  \draw[->] (0,0) -- (0,5) node[left] {$p$};
+  % izotermy
+  \draw (0.7,4.1) .. controls (1.5,3.7) and (2.8,3.2) .. (4.6,3);
+  \node[right] at (4.6,3) {$\vartheta_H$};
+  \draw (0.6,1.2) .. controls (1.3,0.7) and (2.5,0.5) .. (4.6,0.4);
+  \node[right] at (4.6,0.4) {$\vartheta_C$};
+  % adiabaty
+  \draw (1,4.4) .. controls (1,2.5) and (1.2,1.5) .. (1.6,0.7);
+  \draw (3.1,3.6) .. controls (3.2,2.4) and (3.5,1.2) .. (3.9,0.3);
+  \fill (1,3.8) circle (1.5pt) node[below left] {$A$};
+  \node[above right] at (3.1,3.2) {$B$};
+  \node[below] at (3.6,0.4) {$C$};
+  \node[below left] at (1.5,0.75) {$D$};
+  % šipky
+  \draw[->] (2,3.48) -- (2.4,3.33);
+  \draw[->] (2.8,0.53) -- (2.4,0.56);
+  \draw[->] (3.42,1.7) -- (3.5,1.4) node[right] {$Q = 0$};
+  \draw[->] (1.08,2) -- (1.07,2.3) node[right] {$Q = 0$};
+  \draw[->] (1.9,4.3) .. controls (1.8,4) .. (1.85,3.6);
+  \node at (1.9,4.5) {$Q_H$};
+  \draw[->] (2.2,1.1) .. controls (2.15,0.6) .. (2.25,0.2);
+  \node[right] at (2.3,0.15) {$Q_C$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+-- vratný cyklus vyměňující teplo pouze se dvěma lázněmi je nutně Carnotův:
+\begin{enumerate}[label=\arabic*),nosep]
+  \item výměna tepla s lázní musí probíhat po příslušné izotermě, jinak by proces nebyl vratný
+  \item proces spojující dvě izotermy je nutně adiabata ($Q = 0$)
+\end{enumerate}
+\end{minipage}
+
+\begin{itemize}
+  \item Carnotův cyklus existuje (alesp.\ teoreticky):
+  \begin{enumerate}[label=\arabic*),nosep]
+    \item $\vartheta$ je stavová veličina $\Rightarrow$ každým bodem prochází právě jedna izoterma
+    \item \underline{adiabaty jsou také unikátní} -- neprotínají se
+  \end{enumerate}
+\end{itemize}
+
+\begin{minipage}{0.22\textwidth}
+Pro spor:
+
+\medskip
+\pozn{zobecnění argumentu do více dimenzí: viz Tong}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.75]
+  \draw[->] (0,0) -- (5.2,0) node[below] {$V$};
+  \draw[->] (0,0) -- (0,3.6) node[left] {$p$};
+  \draw (0.5,3.5) .. controls (1.5,2.3) and (3,1.9) .. (4.8,1.8) node[right] {$\vartheta_H$};
+  \draw (1.1,2.9) .. controls (1.3,1.6) and (1.6,0.9) .. (1.9,0.6);
+  \draw (1.9,2.6) -- (1.9,0.6);
+  \fill (1.9,0.6) circle (2pt);
+  \draw[->] (1.25,1.6) -- (1.3,1.75);
+  \draw[->] (1.9,1.8) -- (1.9,1.5);
+  \node[left] at (1.25,1.4) {\small $Q{=}0$};
+  \node[right] at (1.9,1.4) {\small $Q{=}0$};
+  \draw[->] (1.7,3.3) .. controls (1.5,2.9) .. (1.55,2.55);
+  \node at (1.9,3.4) {$Q_H$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+$\bullet$ tento cyklus koná práci $W = \oint p(V)\,\dd V$ a přitom pouze čerpá teplo z lázně $\vartheta_H$ \\[2pt]
+\hspace*{1em}$\lightning$ Kelvin
+\end{minipage}
+
+\underline{Pozn:} $\bullet$ lze ukázat, že v $p$--$V$ diagramu je sklon adiabaty větší než sklon izotermy:
+\[
+  \left|\left(\frac{\dd p}{\dd V}\right)_{ad}\right| > \left|\left(\frac{\dd p}{\dd V}\right)_{\vartheta}\right|
+  \qquad \text{(viz cvičení někdy v budoucnu)}
+\]
+
+%----------------------------------------------------------------------
+\strana{L02-7}
+\hfill\modreB{(Fermi, str.\ 22)}
+
+\underline{Pozn:} $\bullet$ pro id.\ plyn \quad $U(\vartheta,V) = U(\vartheta)$ \ $\Leftarrow$ \ $\left(\pdv{U}{V}\right)_\vartheta = 0$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % kalorimetr vlevo
+  \fill[pattern=north east lines] (-0.6,-0.6) rectangle (5.1,2.7);
+  \fill[white] (0,0) rectangle (4.5,2.1);
+  \draw (0,0) rectangle (4.5,2.1);
+  \draw (2.25,0) -- (2.25,2.1);
+  \node[below right] at (0,2.1) {$V_0,\vartheta_0$};
+  \node[below right] at (2.25,2.1) {$V_0$, vakuum};
+  \node[fill=white,inner sep=1pt] at (2.25,2.4) {kalorimetr $\vartheta_0$};
+  % šipka
+  \node[align=center] at (6.4,1.05) {odstraním\\ $\longrightarrow$ \\ přepážku};
+  % kalorimetr vpravo
+  \begin{scope}[xshift=7.8cm]
+    \fill[pattern=north east lines] (-0.6,-0.6) rectangle (5.6,2.7);
+    \fill[white] (0,0) rectangle (5,2.1);
+    \draw (0,0) rectangle (5,2.1);
+    \node at (2.5,1.05) {\Large $2V_0$, $\vartheta = ?$};
+    \node[fill=white,inner sep=1pt,align=center] at (2.5,2.45) {teplota kalorimetru se nezměnila!};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+{\color{NavyBlue}
+\begin{enumerate}[label=\arabic*),nosep]
+  \item na plynu nic nekonalo práci $\Rightarrow$ $\Delta U$ pouze skrze tep.\ výměnu s kalorimetrem
+  \item $\Delta\vartheta_{cal} = 0$ $\Rightarrow$ $Q = 0$ $\Rightarrow$ $\Delta U = 0$ \& $\Delta\vartheta = 0$ $\Rightarrow$ \fcolorbox{NavyBlue}{white}{$U(\vartheta,V) = U(\vartheta,2V)$}
+\end{enumerate}}
+
+\subsection*{Adiabata vs izoterma v $p$--$V$ diagramu}
+\[
+  \vzorec{-\left(\pdv{p}{V}\right)_{ad} > -\left(\pdv{p}{V}\right)_T}
+  \qquad \bullet\ \left(\pdv{p}{V}\right)_{ad} \text{ je trochu ohýbání notace, lépe } \left.\frac{\dd p}{\dd V}\right)_{ad} \text{ pro } p = p(V)
+\]
+
+-- toto nahlédneme úvahou: \quad \modreB{později uvidíme, že toto je podmínkou stability systému (\uv{systém samovolně nevyjde z rovnovážného stavu})}
+\begin{itemize}[nosep]
+  \item $V\nearrow$ $\Rightarrow$ $p\searrow$
+  \item plyn koná práci $\Rightarrow$ při adiabatické izolaci je také $V\nearrow$ $\Rightarrow$ $U\searrow$
+  \item Joule: $U = U(\vartheta)$: \quad $U\searrow$ $\Rightarrow$ $\vartheta\searrow$
+  \item jsme-li na izotermě, potom $\vartheta = $ konst $\Rightarrow$ $U = $ konst $\Rightarrow$ plyn konající práci musí přijímat teplo \\
+        $\Rightarrow$ tlak klesá pomaleji než po adiabatě, po které plyn navíc i chladne
+\end{itemize}
+-- později budeme umět tuto relaci ukázat obecně, dokonce najdeme explicitně poměr těchto derivací, zatím k tomu ale nemáme potřebné nástroje
+
+%----------------------------------------------------------------------
+\strana{L02-8}
+\subsection*{Carnotův cyklus pro id.\ plyn}
+
+\begin{minipage}{0.35\textwidth}
+$\bullet$ $pV = Nk_B\vartheta$ \\
+\hspace*{0.8em} $U = U(\vartheta)$ \qquad {\color{Red}\Large (cvičení!)}
+\end{minipage}
+\begin{minipage}{0.63\textwidth}
+{\color{NavyBlue}\small \textcircled{$*$} $C_V(\vartheta) \equiv \left.\dfrac{\dbar Q}{\dd\vartheta}\right)_{V = \text{konst}}$ \dots\ tepelná kapacita v procesu s konst.\ $V$; konstantnost $V$ je zde zřejmá, neboť (+) implicitně předpokládá $(\vartheta,V)$ jako nezávislé proměnné}
+\end{minipage}
+
+$\bullet$ jak vypadá adiabata ve $V$--$\vartheta$ diagramu?
+\[
+  {\color{NavyBlue}(+)}\quad \dbar Q = 0 = \dd U + p\,\dd V = \frac{\dd U}{\dd\vartheta}\dd\vartheta + p(\vartheta,V)\,\dd V
+  = \boxed{\frac{\dd U}{\dd\vartheta}\dd\vartheta + \frac{Nk_B\vartheta}{V}\dd V = 0}
+\]
+$\bullet$ obecně zatím $\dfrac{\dd U}{\dd\vartheta} = C(\vartheta)$ \ {\color{NavyBlue}\textcircled{$*$}}
+\[
+  \Rightarrow\ \frac{\dd\vartheta}{\dd V} = -\frac{Nk_B\vartheta}{C(\vartheta)V}
+  \quad\Rightarrow\ \text{pro nekonst.\ } C(\vartheta) \text{ neumím integrovat}
+\]
+
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw[->] (0,0) -- (6.2,0) node[below] {$V$};
+  \draw[->] (0,0) -- (0,4) node[left] {$\vartheta$};
+  \draw[dashed] (-0.1,3) -- (5.4,3); \node[left] at (0,3) {$\vartheta_H$};
+  \draw[dashed] (-0.1,0.6) -- (5.4,0.6); \node[left] at (0,0.6) {$\vartheta_C$};
+  \draw[thick] (0.4,3) -- (2.8,3); \draw[->] (1.4,3) -- (1.7,3);
+  \draw[thick] (1.1,0.6) -- (4.3,0.6); \draw[->] (2.6,0.6) -- (2.3,0.6);
+  \draw (0.4,3) .. controls (0.5,2) and (0.7,1.2) .. (1.1,0.6);
+  \draw (2.8,3) .. controls (3,2) and (3.5,1.2) .. (4.3,0.6);
+  \node[above] at (0.4,3) {$A$}; \node[above] at (2.8,3) {$B$};
+  \node[below] at (4.3,0.6) {$C$}; \node[below] at (1.1,0.6) {$D$};
+  \draw[->] (0.6,1.7) -- (0.55,1.95); \node[right] at (0.6,1.9) {\small $Q{=}0$};
+  \draw[->] (3.15,1.95) -- (3.25,1.7); \node[right] at (3.25,1.95) {\small $Q{=}0$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+$\bullet$ $A\to B$ \dots\ $U = $ konst $\Rightarrow$ $Q_{AB} = -W_{AB}$
+\[
+  W_{AB} = -\int_A^B p\,\dd V = -\int_{V_A}^{V_B}\frac{Nk_B\vartheta_H}{V}\dd V = -Nk_B\vartheta_H\log\frac{V_B}{V_A}
+\]
+\[
+  \Rightarrow\ Q_{AB} = Nk_B\vartheta_H\log\frac{V_B}{V_A} > 0
+\]
+$\bullet$ $B\to C$ \dots\ adiabata $\Rightarrow$ $Q_{BC} = 0$
+\end{minipage}
+
+$\bullet$ $C\to D$: izoterma $\vartheta_C$ $\Rightarrow$ $Q_{CD} = Nk_B\vartheta_C\log\dfrac{V_D}{V_C} < 0$
+\[
+  \Rightarrow\ \eta = 1 + \frac{Q_{CD}}{Q_{AB}} = 1 + \frac{\vartheta_C}{\vartheta_H}\,\frac{\log\frac{V_D}{V_C}}{\log\frac{V_B}{V_A}}
+  = 1 - \frac{\vartheta_C}{\vartheta_H}\left[\frac{\log\frac{V_C}{V_D}}{\log\frac{V_B}{V_A}}\right]
+\]
+
+$\bullet$ co umíme říci o poměrech $\dfrac{V_C}{V_D}$ a $\dfrac{V_B}{V_A}$?
+\begin{itemize}[nosep]
+  \item[--] $B,C$ a $A,D$ leží na dvou adiabatách, ovšem \uv{ve stejné vzdálenosti}
+  \item[--] rovnice adiabaty je \quad $\dfrac{\dd\vartheta}{\dd V} = -\dfrac{Nk_B\vartheta}{C(\vartheta)V}$
+\end{itemize}
+\[
+  \Rightarrow\ \frac{\dd V}{V} = -\frac{C(\vartheta)}{Nk_B\vartheta}\dd\vartheta
+  \ \Rightarrow\ \log V = f(\vartheta) + \tilde K \ \Rightarrow\ V = K e^{f(\vartheta)}
+  \qquad \text{\small $\nwarrow$ tato konstanta vybírá konkr.\ adiabatu}
+\]
+\[
+  \left.\begin{aligned}
+    \Rightarrow\ \frac{V_C}{V_D} &= \frac{K_{BC}}{K_{AD}}\frac{e^{f(\vartheta_C)}}{e^{f(\vartheta_C)}} = \frac{K_{BC}}{K_{AD}} \\
+    \Rightarrow\ \frac{V_B}{V_A} &= \frac{K_{BC}\,e^{f(\vartheta_H)}}{K_{AD}\,e^{f(\vartheta_H)}} = \frac{K_{BC}}{K_{AD}}
+  \end{aligned}\right\}
+  \ \Rightarrow \text{ faktory } \log\left(\frac{V_C}{V_D}\right) \text{ a } \log\left(\frac{V_B}{V_A}\right) \text{ se zkrátí}
+\]
+\[
+  \Rightarrow\ \vzorec{\eta = 1 - \frac{\vartheta_C}{\vartheta_H}}
+  \quad\Rightarrow\ \text{\parbox{0.45\textwidth}{teplota ve stavové rovnici id.\ plynu je absolutní TD teplota, jak uvidíme vzápětí}}
+\]
+$\bullet$ předpokládali jsme $U = U(\vartheta)$ \& $pV \propto N\vartheta$, výsledek tedy není zcela obecný \dots\ zatím
+
+%----------------------------------------------------------------------
+\strana{L02-9}
+\subsection*{Absolutní termodynamická teplota}
+\begin{itemize}
+  \item protože účinnost vratného stroje pracující mezi lázněmi o teplotách $\vartheta_H > \vartheta_C$ je jednoznačně určena, umožňuje definovat (absolutní) teplotu nezávislou na teploměrné látce \\
+  (předpokládám emp.\ teplotu, splňující $\vartheta_H > \vartheta_C \Rightarrow$ teplo teče $H\to C$)
+  \item účinnost vratného stroje musí být pouze funkcí $\vartheta_H$ a $\vartheta_C$,
+  \[
+    \eta_R = 1 - \frac{Q_C'}{Q_H} = \eta_R(\vartheta_H,\vartheta_C) \equiv 1 - f(\vartheta_H,\vartheta_C)
+  \]
+  (žádné jiné parametry v problému nevystupují, na konstrukci/pracovní látce stroje nezáleží)
+\end{itemize}
+\[
+  \Rightarrow\ \boxed{f(\vartheta_H,\vartheta_C) \equiv \frac{Q_C'}{Q_H} = -\frac{Q_C}{Q_H}}
+  \quad\Rightarrow\ Q_C' = Q_H\,f(\vartheta_H,\vartheta_C)
+  \qquad\qquad 0 \leq f \leq 1
+\]
+
+\begin{minipage}{0.55\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.8]
+  \draw (0,4) -- (7,4) node[right] {$\vartheta_1$};
+  \draw (4.5,2) -- (7,2) node[right] {$\vartheta_2$};
+  \draw (0,0) -- (7,0) node[right] {$\vartheta_3$};
+  % C
+  \draw (1.5,2) circle (0.6) node {$C$};
+  \draw[->] (1.5,4) -- (1.5,2.6) node[midway,right] {$Q_1$};
+  \draw[->] (0.9,2) -- (-0.2,2) node[above] {$W_C'$};
+  \node[below] at (-0.4,1.8) {\small $= W_A' + W_B'$};
+  \draw[->] (1.5,1.4) -- (1.5,0) node[midway,right] {$Q_3'$};
+  % A
+  \draw (5.5,3) circle (0.45) node {$A$};
+  \draw[->] (5.5,4) -- (5.5,3.45) node[midway,right] {$Q_1$};
+  \draw[->] (5.95,3) -- (6.8,3) node[right] {$W_A'$};
+  \draw[->] (5.5,2.55) -- (5.5,2) node[midway,right] {$Q_{2A}'$};
+  % B
+  \draw (5.5,0.9) circle (0.45) node {$B$};
+  \draw[->] (5.5,2) -- (5.5,1.35) node[midway,right] {$Q_{2B} = Q_{2A}'$};
+  \draw[->] (5.95,0.9) -- (6.8,0.9) node[right] {$W_B'$};
+  \draw[->] (5.5,0.45) -- (5.5,0) node[midway,right] {$Q_3'$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.43\textwidth}
+$A$: \ $Q_{2A}' = Q_1\,f(\vartheta_1,\vartheta_2)$ \\[3pt]
+$B$: \ $Q_3' = Q_{2A}'\,f(\vartheta_2,\vartheta_3)$ \\[3pt]
+$C$: \ $Q_3' = Q_1\,f(\vartheta_1,\vartheta_3)$
+\[ \Downarrow \]
+\[ \vzorec{f(\vartheta_1,\vartheta_3) = f(\vartheta_1,\vartheta_2)\,f(\vartheta_2,\vartheta_3)} \]
+\centering $\vartheta_1 > \vartheta_2 > \vartheta_3$
+\end{minipage}
+
+\underline{Totéž v $p$--$V$ diag:}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.75]
+  \draw[->] (0,0) -- (6,0) node[below] {$V$};
+  \draw[->] (0,0) -- (0,4.4) node[left] {$p$};
+  \draw (0.5,4) .. controls (1.5,3) and (3,2.5) .. (5.6,2.3) node[right] {$\vartheta_1$};
+  \draw (0.5,1.7) .. controls (1.5,0.9) and (3,0.5) .. (5.6,0.4) node[right] {$\vartheta_3$};
+  \draw (1.2,0.6) .. controls (1,2) and (1.1,3.4) .. (1.25,4.1);
+  \draw (4.4,0.4) .. controls (4.2,1.6) and (4.2,2.6) .. (4.3,3.4);
+  \draw[->] (1.05,2.4) -- (1.07,2.7);
+  \draw[->] (4.2,1.9) -- (4.2,1.6);
+  \draw[->] (2.6,2.85) -- (2.9,2.75);
+  \draw[->] (2.9,0.52) -- (2.6,0.56);
+  \node[draw,circle] at (2.6,1.6) {$C$};
+  \node at (7.3,2) {$\Longleftrightarrow$};
+  \begin{scope}[xshift=8.6cm]
+    \draw[->] (0,0) -- (6.2,0) node[below] {$V$};
+    \draw[->] (0,0) -- (0,4.4) node[left] {$p$};
+    \draw (0.5,4.1) .. controls (1.5,3.2) and (3,2.8) .. (5.6,2.6) node[right] {$\vartheta_1$};
+    \draw (0.5,3) .. controls (1.5,2.1) and (3,1.6) .. (5.6,1.3) node[right] {$\vartheta_2$};
+    \draw (0.5,1.6) .. controls (1.5,0.9) and (3,0.5) .. (5.6,0.4) node[right] {$\vartheta_3$};
+    \draw (1.3,0.6) .. controls (1.1,2) and (1.1,3.4) .. (1.2,4.2);
+    \draw (4.6,0.4) .. controls (4.3,1.6) and (4.3,2.6) .. (4.4,3.6);
+    \draw[->] (1.12,2.9) -- (1.12,3.2);
+    \draw[->] (1.17,1.3) -- (1.15,1.6);
+    \draw[->] (4.35,2.5) -- (4.35,2.2);
+    \draw[->] (4.4,1.2) -- (4.45,0.9);
+    \draw[->] (2.8,3.0) -- (3.1,2.92);
+    \draw[->] (2.3,2.0) -- (2.0,2.1);
+    \draw[->] (2.7,1.9) -- (3.0,1.8);
+    \draw[->] (3.0,0.53) -- (2.7,0.57);
+    \node[draw,circle,inner sep=1pt] at (2.3,2.6) {$A$};
+    \node[draw,circle,inner sep=1pt] at (3.2,1.2) {$B$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+%----------------------------------------------------------------------
+\strana{L02-10}
+\begin{itemize}
+  \item $\log f(\vartheta_1,\vartheta_3) = \log f(\vartheta_1,\vartheta_2) + \log f(\vartheta_2,\vartheta_3)$ \hfill $\Big/\ \pdv{\vartheta_1}$
+  \[
+    \Rightarrow\ \frac{1}{f(1,3)}\pdv{f(1,3)}{\vartheta_1} = \frac{1}{f(1,2)}\pdv{f(1,2)}{\vartheta_1}
+  \]
+  \item LHS nezávisí na $\vartheta_2$, RHS na $\vartheta_3$, tyto teploty jsou přitom nezávislé (jediná podmínka je $\vartheta_2 > \vartheta_3$)
+  \[
+    \Rightarrow\ f(\vartheta_i,\vartheta_j) = \alpha(\vartheta_i)\,\beta(\vartheta_j) < 1 \qquad \vartheta_i > \vartheta_j
+  \]
+  \item zpět k původnímu vztahu:
+  \[
+    \alpha(\vartheta_1)\beta(\vartheta_3) = \alpha(\vartheta_1)\beta(\vartheta_2)\,\alpha(\vartheta_2)\beta(\vartheta_3)
+    \quad\Rightarrow\quad \alpha(\vartheta) = \beta(\vartheta)^{-1}
+  \]
+\end{itemize}
+
+\begin{minipage}{0.62\textwidth}
+\[
+  \Rightarrow\ \vzorec{\eta_R(\vartheta_H,\vartheta_C) = 1 - \frac{\beta(\vartheta_C)}{\beta(\vartheta_H)} \equiv 1 - \frac{T_C}{T_H}}
+\]
+\end{minipage}
+\hfill
+\fcolorbox{NavyBlue}{white}{\parbox{0.32\textwidth}{\color{NavyBlue}\small
+\underline{Rychleji:} \\
+$f(2,3) = \dfrac{f(1,3)}{f(1,2)}$ \ \& \ $\vartheta_1 = 273{,}16$\,K \\[2pt]
+\& \ $T \equiv 273{,}16\,f(273{,}16,\vartheta)$ \\[2pt]
+$\Rightarrow f(\vartheta_2,\vartheta_3) = \dfrac{T_3}{T_2}$}}
+
+\begin{definice}[ABSOLUTNÍ TD.\ TEPLOTA $T$]
+\begin{itemize}[nosep]
+  \item definována jednoznačně prostřednictvím účinnosti vratného stroje, bez reference na konkrétní měřicí látku
+  \item \underline{volba stupnice}:
+  \begin{enumerate}[label=\arabic*),nosep]
+    \item referenčnímu stavu přidělím konkrétní teplotu $T_0$ \\
+          Kelvin: trojný bod vody \ $\vartheta_0 = 0{,}1\,^\circ$C \pozn{správně 0{,}01\,$^\circ$C} $\Leftrightarrow$ $T_0 = 273{,}16$\,K
+    \item $\boxed{\dfrac{T}{T_0} \equiv 1 - \eta_R(T_0,T)}$ \ $\Rightarrow$ \
+          $\vzorec{T = T_0\big(1 - \eta_R(T_0,T)\big)}$ \ $(T < T_0)$ \
+          \hspace*{2em}{\small $\Rightarrow \Delta\vartheta = 1^\circ\text{C} \Leftrightarrow \Delta T = 1\,\text{K}$}
+  \end{enumerate}
+\end{itemize}
+\end{definice}
+
+\begin{itemize}
+  \item pro $T_0 > 0$ je $T \geq 0$ \qquad ($T\geq 0$ je tedy konvence)
+  \item \pozor{!}\ \underline{existuje absolutní nula} -- jednoznačně určený stav lázně, ze kterého již nelze čerpat žádné teplo;
+  \begin{itemize}[nosep]
+    \item[--] stroje, které využívají lázeň $T = 0$ jako odpadní, mají 100\% účinnost \hfill {\color{Red}($\Leftarrow$ 2.\ TDZ Kelvin?)}
+    \item[--] absolutní nula je ovšem nedosažitelná ($\Leftarrow$ 3.\ TDZ) \\
+          {\color{NavyBlue}\small ! platnost 3.\ zákona a nedosažitelnost $T = 0$ je otevřený problém: DOI: 10.1038/ncomms14538}
+  \end{itemize}
+  \item existují záporné teploty: $T_1 < 0$, $T_2 > 0$ $\Rightarrow$ \textcircled{1} je \uv{teplejší} \\
+        (inverzní populace -- viz stat.\ fyzika)
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L02-11}
+\subsubsection*{Doplněk: odvození $f(\vartheta_1,\vartheta_3) = f(\vartheta_1,\vartheta_2)\,f(\vartheta_2,\vartheta_3)$ \ {\normalfont\small (ruční poznámky)}}
+
+{\color{NavyBlue}
+\begin{minipage}[t]{0.55\textwidth}
+\textcircled{$*$} $f(1,3) = f(1,2)\,f(2,3)$ \qquad chci 3 jako ref \\
+\hspace*{2em}$\Rightarrow$ zbavit se 2 $\Rightarrow$ 2 fix \\[3pt]
+$\Rightarrow f(1,3) = f(1,\cdot)\,f(\cdot,3)$ \\[6pt]
+$\log f(1,3) = \log f(1,2) + \log f(2,3)$
+\[
+  0 = \frac{1}{f(1,2)}\pdv{f(1,2)}{\vartheta_2} + \frac{1}{f(2,3)}\pdv{f(2,3)}{\vartheta_2}
+\]
+$\Big($ $\to f(1,2) = \alpha(1)\beta(2)$
+\[
+  \frac{\beta'(2)}{\beta(2)} + \frac{\alpha'(2)}{\alpha(2)} = 0 \ \Leftrightarrow\
+  \frac{\beta'(2)}{\beta(2)} = -\frac{\alpha'(2)}{\alpha(2)}
+\]
+$\Rightarrow \log\beta(2) = -\log\alpha(2)$ \ $\Rightarrow \beta(2) = \alpha(2)^{-1}$ \\[3pt]
+$\to f(1,2) = \dfrac{\alpha(1)}{\alpha(2)}$ \\[3pt]
+$\Rightarrow f(1,3) = \dfrac{\alpha(1)}{\alpha(3)}$ \quad \& \quad $\eta = 1 - f(1,2)$ \\
+\hspace*{3em}$\Rightarrow \alpha(\vartheta) = \dfrac{1}{T(\vartheta)}$
+\[
+  \Rightarrow \eta(T_H,T_C) = 1 - \frac{T_C}{T_H}
+\]
+\[
+  \Rightarrow T_H\big(1 - \eta(T_H,T_C)\big) = T_C
+\]
+\[
+  \Rightarrow \boxed{T_H = T_C\big[1 - \eta(T_H,T_C)\big]^{-1}}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+$\pdv{1}$ \ $\nearrow$
+\[
+  \frac{1}{f(x,y)}\pdv{f(x,y)}{x} = \frac{1}{f(x,y')}\pdv{f(x,y')}{x} = g(x)
+\]
+$\pdv{3}$ \ $\to$
+\[
+  \frac{1}{f(x,y)}\pdv{f(x,y)}{y} = \frac{1}{f(x',y)}\pdv{f(x',y)}{y} = h(y)
+\]
+\centering $\Downarrow$ \\
+\fcolorbox{NavyBlue}{white}{$\begin{aligned}
+  \partial_x\log f(x,y) &= g(x) \\
+  \partial_y\log f(x,y) &= h(y)
+\end{aligned}$} \\
+$\Downarrow$ \\
+$\log f(x,y) = \tilde G(x) + \tilde H(y)$ \\[3pt]
+$\to f(x,y) = G(x)\,H(y)$ \\
+$\Downarrow$ \textcircled{$*$} \\
+$H(y) = G(y)^{-1}$
+\end{minipage}
+}
+
+%----------------------------------------------------------------------
+\strana{L02-12}
+\subsection*{Clausiova nerovnost}
+\begin{itemize}
+  \item účinnost nevratného stroje pracujícího mezi 2 lázněmi $T_H, T_C$:
+  \[
+    \eta = 1 - \frac{Q_C'}{Q_H} \leq 1 - \frac{T_C}{T_H} \quad\Rightarrow\quad \frac{Q_C'}{T_C} \geq \frac{Q_H}{T_H}
+    \qquad {\color{NavyBlue}\to\ -\frac{Q_C}{T_C} = \frac{|Q_C|}{T_C} \geq \frac{Q_H}{T_H}\ !}
+  \]
+  \[
+    \Rightarrow\ \big/\, Q_C = -Q_C' < 0 \,\big/ \ \Rightarrow\ \vzorec{0 \geq \frac{Q_H}{T_H} + \frac{Q_C}{T_C}} \quad (1)
+    \qquad {\color{NavyBlue}\frac{Q_C}{Q_H} \leq -\frac{T_C}{T_H}\ \Rightarrow\ \frac{Q_C}{T_C} + \frac{Q_H}{T_H} \leq 0\ \checkmark}
+  \]
+  \item \pozor{!}\ \underline{$T_i$} je zde (konstantní) \underline{teplota lázní}, nikoliv pracovní látky cyklu -- nevratný cyklus typicky nepracuje v rovn.\ s lázněmi, neprobíhá-li cyklus kvazistaticky, potom ani nemusí být teplota prac.\ systému definována ($T/\vartheta$ jsou charakteristiky rovnovážného stavu!)
+  \item pro zobecnění uvažujme obecný cyklus (nekvazistatický) v jehož průběhu systém interaguje postupně s mnoha lázněmi o teplotách $T_1', T_2', \dots, T_n'$ \
+  ${\color{NavyBlue}\xrightarrow[Q_i\to\dbar Q_i]{n\to\infty} T' = T'(\xi)}$ \\
+  $\to$ v limitě budeme uvažovat interakci s okolím se spojitým průběhem teploty $T' = T'(\xi)$ \\
+  \hspace*{0.55\textwidth}$\nearrow$ parametrizuje \uv{fázi} cyklu
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.78,every node/.style={font=\small}]
+  % p-V diagram s cyklem
+  \draw[->] (0,0) -- (5.2,0);
+  \draw[->] (0,0) -- (0,4.6);
+  \draw[dashed] (2.2,1.6) ellipse (1.7 and 1.5);
+  \fill (2.1,3.1) circle (2pt) node[above left] {$A$};
+  \draw[->] (2.6,3.05) -- (3,2.9);
+  \node at (2.2,1.8) {\Large $S$};
+  \draw[->] (2,0.8) -- (2,-1.1) node[right] {$W_S$};
+  \node[align=center,font=\scriptsize] at (1.2,5.3) {potenciálně jediný rovn.\ stav -- počáteční i konečný};
+  \draw[->] (1.6,4.8) -- (2,3.3);
+  % lázně T' a toky Q_i do S
+  \foreach \y/\l/\q in {4.4/{T_n'}/{Q_n}, 3.4/{T_{n-1}'}/{Q_{n-1}}, 2.0/{T_i'}/{Q_i}, 0.9/{T_2'}/{Q_2}, -0.2/{T_1'}/{Q_1}} {
+    \draw (6.6,\y) -- (7.8,\y);
+    \node[above] at (7.2,\y) {$\l$};
+    \draw[->] (6.4,\y) -- (4.1,{1.6+(\y-1.6)*0.6}) node[above,pos=0.45] {$\q$};
+  }
+  \node at (7.2,2.8) {$\vdots$};
+  \node at (7.2,1.5) {$\vdots$};
+  % vratné stroje (modře)
+  \begin{scope}[NavyBlue]
+    \foreach \y/\l/\q in {4.4/n/{Q_n}, 3.4/{\scriptscriptstyle n-1}/{Q_{n-1}}, 2.0/i/{Q_i}, 0.9/2/{Q_2}, -0.2/1/{Q_1}} {
+      \draw (9.8,\y) circle (0.3) node {$\l$};
+      \draw[->] (9.5,\y) -- (8,\y) node[above,pos=0.5] {$\q$};
+    }
+    \draw[thick] (12.6,2.1) -- (14.4,2.1) node[above] {\Large $T_0$};
+    \foreach \y/\qo in {4.4/{Q_{0n}}, 3.4/{Q_{0n-1}}, 2.0/{Q_{0i}}, 0.9/{Q_{02}}, -0.2/{Q_{01}}} {
+      \draw[->] (12.6,2.1) -- (10.1,\y) node[pos=0.72,fill=white,inner sep=0.5pt,font=\scriptsize] {$\qo$};
+    }
+    \draw[->] (9.8,-0.5) -- (9.5,-1.4) node[below] {$W_1$};
+    \draw[->,dotted] (9.8,1.7) -- (8.7,-1.4) node[below] {$W_i$};
+    \node[align=center] at (11.2,-1.3) {$\uparrow$ vratné\ stroje};
+  \end{scope}
+  % Z
+  \draw[OliveGreen,decorate,decoration={brace,mirror,amplitude=8pt}] (-0.3,-2.1) -- (10.6,-2.1)
+    node[midway,below=9pt] {$Z$ (\uv{zařízení})};
+\end{tikzpicture}
+\end{center}
+
+%----------------------------------------------------------------------
+\strana{L02-13}
+\begin{itemize}
+  \item[$\to$] pro potřeby studia obecného cyklu jsme přidali \underline{$n$} vratných strojů, pracujících mezi ref.\ lázní $T_0$ a původními lázněmi $T_i'$ (okolím $S$)
+  \item[$\to$] stroj \textcircled{$i$} \underline{\uv{odebere}} $Q_{0i}$ z $T_0$ a \underline{\uv{vrátí}} $Q_i$ do $T_i'$ \quad {\color{NavyBlue}$\to$ !$Q_i, Q_{0i} \lessgtr 0$!} \\
+        (tj.\ přesně tolik, kolik z $T_i'$ \underline{odebere} \textcircled{$S$})
+  \item[$\to$] bilance lázní $T_i'$ je tedy nulová a efektivně náš složený stroj vypadá takto:
+\end{itemize}
+
+\begin{minipage}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw (-1,0.5) -- (-1,0) -- (1,0) -- (1,0.5);
+  \node at (0,0.25) {$T_0$};
+  \draw[->] (0,0) -- (0,-0.9) node[midway,right] {$Q_0$};
+  \draw (0,-1.4) circle (0.5);
+  \node[OliveGreen] at (0,-1.4) {$Z$};
+  \draw[->] (0.5,-1.4) -- (1.8,-1.4) node[above] {$W$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+\[ Q_0 = \sum_i Q_{0i} \]
+\[ W = W_S + \sum_i W_i \]
+\end{minipage}
+
+\begin{itemize}
+  \item[$\to$] pokud by ale tok tepla/práce skutečně odpovídal šipkám, bylo by zařízení ve sporu s (Kelvinovým) 2.\ TDZ
+  \hfill {\color{Red}\small $Q_i > 0$ z hlediska stroje \textcircled{$i$} $= Q_i$ z hlediska syst.\ \textcircled{$S$}}
+  \[ \Rightarrow\ Q_0 = \sum_i Q_{0i} \leq 0\ ! \]
+  \item[$\to$] pro \textcircled{$i$} platí: \quad $-\dfrac{Q_i}{Q_{0i}} = \dfrac{T_i'}{T_0}$ \ $\Rightarrow$ \
+        $\sum Q_{0i} = -T_0\sum\dfrac{Q_i}{T_i'} \geq 0$
+\end{itemize}
+
+\& $T_0 > 0$
+\[
+  \Rightarrow\ \boxed{\sum_i\frac{Q_i}{T_i'} \leq 0}
+  \quad\xrightarrow[\text{spojité } T' = T'(\xi)]{\text{limita}}
+\]
+{\color{Red}\small The integral is non-positive since the lower the efficiency of the cycle, the more heat is expelled at low temperatures.}
+\begin{veta}[Clausiova nerovnost]
+\[ \vzorec{\oint\frac{\dbar Q}{T'} \leq 0} \]
+\end{veta}
+
+\pozor{!}\ $T'$ v (CN) je teplota okolí -- teplota prac.\ látky \textcircled{$S$} je obecně jiná nebo není ani definována
+
+%----------------------------------------------------------------------
+\strana{L02-14}
+\subsection*{Vratné cykly}
+\begin{itemize}
+  \item je-li \textcircled{$S$} vratný, potom je vratné celé složené zařízení a musí platit $Q_0 = 0$:
+  \begin{itemize}[nosep]
+    \item[$\to$] pokud by jedním směrem bylo $Q_0 < 0$, mohu běh otočit \& $Q_0 > 0$ \ $\lightning$ 2.\ TDZ
+  \end{itemize}
+\end{itemize}
+
+\begin{veta}[Vratný cyklus]
+\[ \Rightarrow\ \vzorec{\oint_{(rev)}\frac{\dbar Q}{T} = 0} \]
+{\color{Red}
+$\to$ zde již $T$ je teplota $S$ = teplota okolí $T'$ -- ve vratném procesu musí tepelná výměna probíhat v rovnováze \\
+$\Rightarrow$ $T$ ve jmenovateli je tato společná teplota}
+\end{veta}
+
+\begin{itemize}
+  \item vratný \textcircled{$S$} lze také studovat přímo bez pomocných strojů: lib.\ kvazistac.\ uzavřenou trajektorii lze aproximovat Carnotovými cykly:
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.75]
+  \draw[->] (0,0) -- (7.2,0) node[below] {$V$};
+  \draw[->] (0,0) -- (0,6.2) node[left] {$p$};
+  % izotermy (zeleně)
+  \foreach \y in {0.6,1.4,2.2,3.0,3.8,4.6,5.4} {
+    \draw[OliveGreen] (0.4,\y+0.6) .. controls (2,\y) and (4,\y-0.3) .. (6.8,\y-0.4);
+  }
+  \node[OliveGreen,right] at (6.8,2.6) {\small $T_{i+1} > T_i$};
+  \node[OliveGreen,right] at (6.8,1.8) {\small $T_i$};
+  % adiabaty (modře)
+  \foreach \x in {0.5,1.4,2.3,3.2,4.1,5.0} {
+    \draw[NavyBlue] (\x,6) .. controls (\x+0.2,4) and (\x+0.6,2) .. (\x+1.6,-0.1);
+  }
+  \node[NavyBlue] at (5.6,6) {$Q = 0$};
+  % cyklus
+  \draw[thick] (3.6,5) .. controls (6,5) and (6.4,2.4) .. (4.8,1.6)
+               .. controls (3.6,1) and (1.6,1.4) .. (1.6,3)
+               .. controls (1.6,4.4) and (2.6,5) .. (3.6,5);
+  \draw[->,thick] (3.4,5) -- (3.7,5);
+  \draw[->,thick] (3.4,1.25) -- (3.1,1.27);
+  % malé cykly
+  \draw[Red,->] (2.6,3.9) -- (2.65,4.15); \draw[Red,->] (3,4.25) -- (3.3,4.2);
+  \draw[Red,->] (3.6,4) -- (3.55,3.75); \draw[Red,->] (3.2,3.5) -- (2.9,3.55);
+  \draw[green!60!black,->] (2.7,3.0) -- (2.75,3.25); \draw[green!60!black,->] (3.3,3.4) -- (3.6,3.35);
+  \draw[green!60!black,->] (3.75,3.1) -- (3.7,2.85); \draw[green!60!black,->] (3.3,2.7) -- (3,2.75);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+$\bullet$ {\color{OliveGreen}izotermy} a {\color{NavyBlue}adiabaty} tvoří souřadnicovou síť (každým bodem prochází právě jedna) \\
+$\Rightarrow$ lze aproximovat Carnotovými cykly (úseky probíhané opačnými směry se odečtou)
+\end{minipage}
+
+\begin{itemize}
+  \item pro každý \uv{malý} cyklus platí základní rovnost \quad $\dfrac{Q_i}{Q_{i+1}} = -\dfrac{T_i}{T_{i+1}}$
+  \[
+    \Rightarrow\ \sum_i\frac{Q_i}{T_i} = 0 \quad\to\ \big/\text{zjemňuji dělení}\big/ \ \Rightarrow\
+    \boxed{\oint_{(rev)}\frac{\dbar Q}{T} = 0}
+  \]
+\end{itemize}
+
+\pozor{!}\ rovnovážná výměna tepla probíhá nekonečně pomalu $\Rightarrow$ vratné stroje mají max.\ účinnost, ale \underline{nulový výkon} \\
+$\to$ maximalizace výkonu: \underline{endoreverzibilní stroje} (Carnot.\ cyklus, ale $T$-gradient mezi lázní a $S$ -- viz Callen)
+

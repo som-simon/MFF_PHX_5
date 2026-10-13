@@ -12,7 +12,7 @@ parts highlighted, so the notes are easier to read, search and study from.
 | Folder | Subject | Status |
 |--------|---------|--------|
 | [`QM_I/latex`](QM_I/latex) | Kvantová mechanika I (2014/2015) | done – [`QM_I.pdf`](QM_I/latex/QM_I.pdf) |
-| `Termo_I/latex` | Termodynamika a statistická fyzika I | not started yet |
+| [`Termo_I/latex`](Termo_I/latex) | Termodynamika a statistická fyzika I (NTMF043) – přednáška + cvičení | done – [`Termo_I.pdf`](Termo_I/latex/Termo_I.pdf) |
 
 ## Structure
 

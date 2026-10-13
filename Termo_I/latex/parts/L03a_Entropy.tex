@@ -1,0 +1,278 @@
+%======================================================================
+% L03a_Entropy.pdf
+%======================================================================
+\providecommand{\dbar}{{\mathchar'26\mkern-12mu d}}
+\providecommand{\modreB}[1]{{\color{NavyBlue}\small\bfseries #1}}
+\providecommand{\cancel}[1]{\text{\sout{$\displaystyle #1$}}}
+
+\section{Shrnutí -- druhý TD zákon, absolutní teplota}
+\strana{L03a-1}
+
+\begin{veta}[2.\ TD zákon]
+(Clausius) Pokud teplo samovolně přechází ze syst.\ $A$ do systému $B$, potom není možné realizovat proces, jehož jediným výsledkem by byl přenos tepla z $B$ do $A$.
+\[ \Updownarrow \]
+(Kelvin) Není možné realizovat proces, jehož jediným výsledkem by bylo získání tepla z lázně a jeho transformace na práci.
+\end{veta}
+
+\underline{Důsledky:}
+\begin{enumerate}[label=\arabic*)]
+  \item \underline{Carnotův teorém}: Vratný stroj je ze všech strojů pracujících mezi stejnými teplotami ten nejúčinnější.
+  \item[1b)] $\forall$ vratné stroje pracující mezi stejnými lázněmi mají stejnou účinnost \ $\eta_R = \eta_R(\vartheta_H,\vartheta_C)$
+  \item Carnotův cyklus -- realizace takového vratného stroje
+  \item lze zavést \underline{absolutní TD teplotu} $T$: \quad $\vzorec{\eta_R = 1 - \dfrac{T_C}{T_H}}$
+  \[
+    \Rightarrow\ (\text{Kelvinova stupnice}) \quad T = 273{,}16\,\big(1 - \eta_R(\vartheta\sim T,\ \vartheta_0\sim 273{,}16)\big)\ \text{K}
+  \]
+  $\Rightarrow$ $T \geq 0$ \\
+  $\Rightarrow$ $\exists$ jednoznačně def.\ \kw{absolutní nula} -- teplota lázně, ze které již není možné odebrat žádné teplo
+  \item \underline{Clausiova nerovnost}
+  \begin{itemize}
+    \item obecný cyklus mezi $T_H$ a $T_C$ $\to$ $\eta \equiv 1 + \dfrac{Q_C}{Q_H} \leq 1 - \dfrac{T_C}{T_H}$
+          \quad $\Rightarrow$ \ $\dfrac{Q_H}{T_H} + \dfrac{Q_C}{T_C} \leq 0$
+    \item obecný cyklus se spojitým průběhem teploty okolí $T'$:
+    \[
+      \vzorec{\oint\frac{\dbar Q}{T'} \leq 0}
+      \qquad \text{\parbox{0.5\textwidth}{$\to$ $\leq 0$ značí, že $\frac{\dbar Q}{T'}$ je v abs.\ hodnotě větší, pokud teplo odtéká do okolí než když přitéká do systému}}
+    \]
+    \item vratný cyklus
+    \[
+      \vzorec{\oint_{(rev)}\frac{\dbar Q}{T} = 0}
+    \]
+  \end{itemize}
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\strana{L03a-2}
+\begin{itemize}
+  \item \underline{pozorování}: \ $\dbar Q > 0$ $\Rightarrow$ teplo teče \underline{do} systému $\Leftrightarrow$ $T_S < T$
+  \[
+    \Rightarrow\ \frac{\dbar Q}{T_S} \geq \frac{\dbar Q}{T}
+    \qquad {\color{NavyBlue}\frac{Q_H}{T_H} \leq -\frac{Q_C}{T_C} \ \Rightarrow\ \fcolorbox{NavyBlue}{white}{$\dfrac{Q_H}{T_H} \leq \dfrac{|Q_C|}{T_C}$}}
+  \]
+  \hspace*{1.5em}$\dbar Q < 0$ $\Rightarrow$ teplo teče \underline{ze} systému \quad $T_S > T$
+  \[ \Rightarrow\ \frac{|\dbar Q|}{T_S} \leq \frac{|\dbar Q|}{T} \]
+  $\Rightarrow$ veličina $\dfrac{|\dbar Q|}{T}$ je v abs.\ hodnotě vždy větší v \uv{přijímajícím} systému \\
+  $\Rightarrow$ Clausiova nerovnost je odrazem tohoto přirozeného toku tepla
+\end{itemize}
+
+\[ \Longrightarrow \quad \text{\Large\color{hlavni}\underline{ENTROPIE}} \]
+
+\begin{itemize}
+  \item omezíme-li se na vratné procesy, potom $\displaystyle\int_{A(rev)}^{B}\frac{\dbar Q}{T}$ \underline{nezávisí na trajektorii} ve stav.\ prostoru \\
+  $\Rightarrow$ \underline{definuje stavovou veličinu} \quad $S = S(\xi_1,\dots,\xi_n)$: \quad {\color{NavyBlue}$\xi$: $U, X_1, \dots, X_n$}
+\end{itemize}
+
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw[->] (-0.2,0) -- (5.4,0) node[below] {$V$};
+  \draw[->] (0,-0.2) -- (0,3.6);
+  \draw (0.8,0.6) .. controls (0.2,1.2) and (0.4,2.4) .. (1.2,2.8)
+                 .. controls (2,3.2) and (2.8,2.8) .. (3.4,3.1)
+                 .. controls (3.8,3.2) and (3.6,2.6) .. (3.3,2.2)
+                 .. controls (3,1.6) and (3.4,0.8) .. (2.8,0.6)
+                 .. controls (2.2,0.4) and (1.4,0.4) .. (0.8,0.6);
+  \fill (0.8,0.6) circle (1.8pt) node[below left] {$O$};
+  \fill (3.55,2.85) circle (1.8pt) node[above right] {$A$};
+  \draw[->] (1.9,3.02) -- (2.1,3.0); \node at (1.8,3.35) {$I$};
+  \draw[->] (3.32,1.5) -- (3.35,1.75); \node at (3.7,1.6) {$II$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+\[
+  \int_{O(I)}^{A}\frac{\dbar Q}{T} - \int_{O(II)}^{A}\frac{\dbar Q}{T} = 0
+  \ \Rightarrow\ \int_{O(I)}^{A}\frac{\dbar Q}{T} = \int_{O(II)}^{A}\frac{\dbar Q}{T}
+\]
+\begin{definice}[Entropie]
+\[
+  \Rightarrow\ \vzorec{S(A) \equiv \int_{O(rev)}^{A}\frac{\dbar Q}{T}}
+\]
+\end{definice}
+\end{minipage}
+
+\begin{itemize}
+  \item $S$ def.\ až na aditivní konstantu \quad $S(O)$ \dots\ entropie ref.\ stavu (stejně jako pro $U$)
+
+  \underline{Pozn:} $\bullet$ tato aditivní konstanta může být fyzikálně významná pro procesy zahrnující látkovou výměnu při $T\to 0$ \\
+  \hspace*{2.5em}$\Rightarrow$ motivace pro 3.\ TDZ (chování entropie pro $T\to 0$) \\
+  \hspace*{2.5em}(viz Luscombe str.\ 125)
+  \item my se ovšem zatím stále omezujeme na \underline{uzavřené systémy} \pozor{!}
+  \begin{itemize}[nosep]
+    \item[--] celá konstrukce od začátku stojí na možnosti systém adiabaticky izolovat
+    \item[--] Clausiova nerovnost nezahrnuje výměnu částic, pouze tepla; s tokem částic je nevyhnutelně spojen také přenos energie, který nelze spojit s $\dbar Q$ \dots
+  \end{itemize}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{L03a-3}
+\begin{itemize}
+  \item $\dd S = \dfrac{\dbar Q}{T}$ je úplný diferenciál \& $T > 0$ \\
+  $\Rightarrow$ můžeme přeformulovat 1.\ TDZ
+\end{itemize}
+
+\begin{minipage}{0.4\textwidth}
+\begin{veta}[1.\ TDZ pomocí entropie]
+\[ \vzorec{\dd U = T\,\dd S + \sum_j y_j\,\dd X_j} \]
+\end{veta}
+\end{minipage}
+\hfill
+\begin{minipage}{0.56\textwidth}
+{\color{Red}\Large!}\ $\to$ stavový prostor je definovaný \uv{deformačními} extenzivními proměnnými $\{X_i\}_{i=1}^{N}$, spojenými s konáním práce v kvazistac.\ procesech, a jednou \uv{\underline{nedeformační}/tepelnou};
+\end{minipage}
+
+\hspace*{1.5em}$\to$ nedeformační souřadnice se mění při přenosu tepla nebo některých způsobech konání práce v nekvazistat.\ procesech (např.\ míchání)
+
+\medskip
+$\bullet$ \underline{Pozn:} \quad $\dfrac{T_i}{T_j} = -\dfrac{Q_i}{Q_j}$ \quad $\Rightarrow$ přirozený rozměr absolutní teploty je energie: \ $[T] = [U]$ \\
+\hspace*{9em}$\Rightarrow$ entropie je bezrozměrná veličina \\
+\hspace*{9em}$\Leftrightarrow$ $[k_B] = \mathrm{J\,K^{-1}}$ je bezrozměrná konstanta
+
+\begin{center}
+\fcolorbox{gray}{white}{\parbox{0.85\textwidth}{\small
+A system is to be taken from a particular initial state to a given final state while exchanging heat and work with reversible heat and work sources. To describe a particular process it is not sufficient merely to describe the path of the system in its thermodynamic configuration space. \emph{The critical features of the process concern the manner in which the extracted heat and work are conveyed to the reversible heat and work sources.} For that purpose auxiliary systems may be employed. The auxiliary systems are the \uv{tool} or \uv{devices} used to accomplish the task at hand, or, in a common terminology, they constitute the \emph{physical engines} by which the process is effected. \hfill \modreB{Callen str.\ 118}}}
+\end{center}
+
+\subsection*{Entropie a nevratné procesy}
+\begin{itemize}
+  \item $\dd S$ je úplný diferenciál $\Rightarrow$ i pro nevratný proces $A\to B$ platí
+  \[
+    \Delta S = S(B) - S(A) = \int_{A(rev)}^{B}\frac{\dbar Q}{T},
+  \]
+  kde integrál běží po libovolné vratné trajektorii spojující $A$ a $B$
+\end{itemize}
+
+{\color{Red}\small Je zřejmé, že samotná kvazistatičnost procesu nezajišťuje vratnost; důležitá je také \uv{(ne)rovnovážnost interakce s okolím}; není-li systém v rovnováze s okolím, potom musí interakce probíhat skrze vratné motory/čerpadla, která zajistí vratnou výměnu energie mezi systémem, okolím a vratnými rezervoáry tepla a práce.}
+
+\begin{minipage}{0.36\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \fill (0,0) circle (1.8pt) node[below] {$A$};
+  \fill (3.6,2.6) circle (1.8pt) node[right] {$B$};
+  \draw (0,0) .. controls (0.6,0.6) and (0,2) .. (1,2.5)
+              .. controls (1.8,2.9) and (2.8,2.5) .. (3.6,2.6);
+  \draw[->] (0.62,2.08) -- (0.75,2.25);
+  \node[align=center] at (-0.4,2.3) {$II$\\ \small(vratný)};
+  \draw[dotted,thick] (0,0) .. controls (2,0.1) and (3.3,1.2) .. (3.6,2.6);
+  \draw[->] (3.05,1.25) -- (3.15,1.42);
+  \node[align=center] at (3.6,0.8) {$I$\\ \small(nevratný)};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.62\textwidth}
+\[
+  \Rightarrow\ \oint\frac{\dbar Q}{T'} = \int_I\frac{\dbar Q}{T'} - \int_{II}\frac{\dbar Q}{T}\leq 0
+  \qquad {\color{NavyBlue}\text{\uv{$T'$}!}}
+\]
+\begin{veta}[Entropie v nevratném procesu]
+\[
+  \Rightarrow\ \vzorec{S(B) - S(A) \geq \int_I\frac{\dbar Q}{T'}} \quad (II)
+  \qquad {\color{NavyBlue}\to \text{úbytek } S \text{ v okolí?}}
+\]
+\end{veta}
+\end{minipage}
+
+\pozor{!}\ použili jsme (CN) $\Rightarrow$ $T'$ vpravo je teplota okolí! \hfill
+{\color{Red}\parbox{0.4\textwidth}{! lib.\ kvazistat.\ proces ale může být realizován jako vratný, pokud je syst.\ v jeho průběhu v rovnováze s okolím!}}
+
+$\Rightarrow$ vidíme, že v nevratném procesu je změna entropie větší, než odpovídá jejímu prostému toku z okolí; \pozor{entropie se tedy nezachovává!}
+
+%----------------------------------------------------------------------
+\strana{L03a-4}
+\hfill{\color{NavyBlue}\scriptsize\parbox{0.3\textwidth}{NB: \uv{víme/postulujeme}, že alespoň v jednom směru takový proces mezi libovol.\ dvěma body existuje\dots\ oběma zjevně nemusí}}
+
+\begin{itemize}
+  \item spec.\ nevratný proces $I$ nechť je adiabatický
+\end{itemize}
+\begin{veta}[Princip růstu entropie]
+\[
+  \to\ \vzorec{\Delta S \geq 0} \quad\Leftrightarrow\quad \text{entropie izolovaného systému nikdy neklesá} \qquad {\color{Red}\underline{šipka času}}
+\]
+\end{veta}
+\begin{itemize}[nosep]
+  \item[--] pokud je adiabatický proces $I$ navíc také vratný, potom $\Delta S = 0$ $\Rightarrow$ \uline{stavy spojené vratným adiabat.\ procesem mají stejnou entropii}
+\end{itemize}
+
+\begin{itemize}
+  \item nechť $A$ a $B$ v (II) jsou infinitezimálně blízké stavy (kvazistat.\ proces)
+  \[
+    \Rightarrow\ \vzorec{\dd S \geq \frac{\dbar Q}{T'}} \quad \text{(CN) v dif.\ tvaru}
+  \]
+  \begin{itemize}[nosep]
+    \item $\dfrac{\dbar Q}{T'}$ je úbytek entropie okolí \hfill
+          {\color{NavyBlue}\textcircled{$*$} \ $\dfrac{\dbar Q}{T} = \dfrac{\dbar Q}{T'} + \dd S_i$, \quad $\dd S_i \geq 0$}
+    \item $\dd S$ je nárůst entropie systému
+  \end{itemize}
+  \[
+    \Rightarrow\ \boxed{\dd S = \frac{\dbar Q}{T'} + \dd S_i}\ {\color{NavyBlue}\textcircled{$*$}} \quad \& \quad \dd S_i \geq 0
+  \]
+  \item zatímco první člen odpovídá \uv{toku entropie} z okolí, $\dd S_i$ je \underline{přírůstek entropie} v důsledku \underline{vnitřních nevratných procesů v systému} \\
+  {\color{NavyBlue}\small (typicky nějaká forma \uv{disipace} -- speciálně si to můžeme představovat jako přeměnu uspořádané energie na chaotický mikroskopický pohyb, přispívá ale např.\ i konvekce tepla -- vyrovnání teplot při přechodu do rovnováhy v rámci systému)}
+\end{itemize}
+
+\begin{priklad}[Př:]
+\begin{itemize}[nosep]
+  \item adiabatické míchání $\Rightarrow$ $\dd S = \dd S_i$
+  \item adiabat.\ expanze do vakua $\Rightarrow$ \quad -- \,''\, --
+  \item tření (disipace) -- teplo je generováno mech.\ pohybem (prací) $\Rightarrow$ nárůst entropie není kompenzován poklesem jinde \\
+        {\color{NavyBlue}\small -- zde vzrůstá vnitřní energie a tím i \uv{počet} možností, jak energii rozdělit mezi částice}
+  \item kvazistatický přenos tepla $\Rightarrow$ $\dd S = \dfrac{\dbar Q}{T_S} = \dfrac{\dbar Q}{T_{ext}} + \dd S_i$ \quad $(T_{ext} > T_S)$ \\
+        {\color{NavyBlue}\small $\uparrow$ toto je opravdu $\dd S$ -- za vratný proces definující entropii volíme rovnovážný přenos $Q$ (tedy takový, kdy stejný objem tepla přeneseme z lázně o teplotě $T_S$ místo $T_{ext}$)}
+\end{itemize}
+{\color{NavyBlue}\small v těchto procesech je nárůst entropie spojen se zánikem nehomogenit $\Downarrow$ nárůst počtu kompat.\ mikrostavů (\uv{konfigurací})}
+\end{priklad}
+
+\underline{Pozn:} $\bullet$ teplo skutečně teče přirozeně z teplejšího tělesa na chladnější:
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \draw (0,0) circle (0.5) node {$T_1$};
+  \draw (2.4,0) circle (0.5) node {$T_2$};
+  \draw[->] (0.45,0.25) .. controls (1,0.7) and (1.4,0.7) .. (1.95,0.25);
+  \node at (1.2,0.85) {$\dbar Q$};
+  \node[right] at (3.2,0) {$\Rightarrow\ \dfrac{\dbar Q}{T_2} - \dfrac{\dbar Q}{T_1} \geq 0 \ \Rightarrow\
+    \begin{cases} T_1 > T_2 \Rightarrow \dbar Q > 0 \\ T_2 > T_1 \Rightarrow \dbar Q < 0\end{cases}$};
+\end{tikzpicture}
+\end{center}
+\modreB{veličina $|\dbar Q|/T$ je vždy větší v přijímajícím systému}
+
+%----------------------------------------------------------------------
+\strana{L03a-5}
+\subsection*{Základní důsledky existence entropie}
+\begin{enumerate}[label=\arabic*)]
+  \item \underline{PODMÍNKA INTEGRABILITY ENTROPIE} $\Rightarrow$ vztah mezi termickou a kalorickou stavovou rovnicí
+\end{enumerate}
+
+\begin{itemize}
+  \item $\dd S$ je úplný diferenciál $\Rightarrow$ smíšené druhé derivace $S$ jsou záměnné:
+  \[
+    \left(\frac{\partial^2 S}{\partial\xi_i\,\partial\xi_j}\right) = \left(\frac{\partial^2 S}{\partial\xi_j\,\partial\xi_i}\right) \qquad (*)
+  \]
+  \item $\boxed{\dd S = \dfrac{1}{T}\dd U - \sum_i\dfrac{y_i}{T}\dd X_i}$ \ $\Leftarrow$ \ 1\&2 TDZ: $\dd U = T\,\dd S + \sum y_i\,\dd X_i$ \ {\color{NavyBlue}(+)}
+  \item $U = U(T,X_1,\dots,X_n)$ \ $\Rightarrow$ \
+        $\dd U = \left(\pdv{U}{T}\right)_{\{X_j\}}\dd T + \sum_i\left(\pdv{U}{X_i}\right)_{T,X_{j\neq i}}\dd X_i$ \\
+  {\color{NavyBlue}\small z (+) je $U$ přirozeně funkcí $S$ \& $X_i$, ale nic nám nebrání přejít k parametrizaci $T$ \& $X_i$ -- je to stejně jednoznačné určení stavu}
+\end{itemize}
+\[
+  \Rightarrow\ \boxed{\dd S = \frac{1}{T}\left(\pdv{U}{T}\right)_{\{X_j\}}\dd T + \sum_i\frac{1}{T}\left[\left(\pdv{U}{X_i}\right)_{T,X_{j\neq i}} - y_i\right]\dd X_i}
+  \qquad {\color{NavyBlue}\text{\small\parbox{0.18\textwidth}{$\swarrow$ následně je také $S = S(T,X_1,\dots)$}}}
+\]
+\[
+  \overset{(*)}{\Rightarrow}\ \cancel{\frac{1}{T}\left(\frac{\partial^2U}{\partial X_i\partial T}\right)_{X_{j\neq i}}}
+  = \cancel{\frac{1}{T}\left(\frac{\partial^2U}{\partial T\partial X_i}\right)_{T,X_{j\neq i}}}
+  - \frac{1}{T}\left(\pdv{y_i}{T}\right)_{\{X_j\}} - \frac{1}{T^2}\left[\left(\pdv{U}{X_i}\right)_{T,X_{j\neq i}} - y_i\right]
+\]
+\pozor{!}\ $\left(\pdv{T}{X_i}\right) = 0$ \dots\ nezávislé proměnné
+\[
+  \Rightarrow\ \vzorec{\left(\pdv{U}{X_i}\right)_{T,X_{j\neq i}} = -T\left(\pdv{y_i}{T}\right)_{\{X_j\}} + y_i}
+\]
+
+\begin{itemize}
+  \item spec.\ \underline{1-komponentní plyn}: \quad $U = U(T,V)$, \ $y_V = -p$
+  \[
+    \Rightarrow\ \vzorec{\left(\pdv{U}{V}\right)_T = T\left(\pdv{p}{T}\right)_V - p}
+    \qquad {\color{NavyBlue}\text{\small\parbox{0.32\textwidth}{$U_{id} = U(T)$ jsme věděli z kalorim.\ experimentů; nyní to dostáváme jako podmínku konzistence termodynamiky!}}}
+  \]
+  \item id.\ plyn: \quad $p = \dfrac{Nk_BT}{V}$ \ $\Rightarrow$ \ $\left(\pdv{U}{V}\right)_T = 0$ \ $\Rightarrow$ \ $U_{id} = U(T)$
+\end{itemize}
+$\to$ lze ukázat \quad $U_{id} = \dfrac{3}{2}Nk_BT$ \qquad ($\Leftarrow$ exp.\ nebo \underline{stat.\ fyzika}) \\
+\hspace*{1.5em}(vnitřní stupně volnosti částic $\Rightarrow$ faktor $\frac32$ nahrazen jinou konstantou nebo je dokonce funkcí teploty -- např.\ $\frac32\to\frac52$ pro dvou-atom.\ id.\ plyn)
+
+{\color{NavyBlue}\small \underline{Stat.\ fyzika}: $pV \propto NT$ platí pro $\forall$ id.\ plyny $\Rightarrow$ $U \neq U(V)$ je důsledek chybějící interakce mezi částicemi. ($\forall$ id.\ plyny $\Leftrightarrow$ nezávisle na disperzní relaci)}
+

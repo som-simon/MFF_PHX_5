@@ -1,0 +1,136 @@
+%======================================================================
+% T13_oscillator_canon.pdf
+%======================================================================
+\section{Cvičení: Kanonický soubor -- harmonické oscilátory}
+\strana{T13-1}
+
+\begin{priklad}[Příklad 1 -- Systém neinteragujících harm.\ oscilátorů]
+Najděte partiční sumu, volnou energii, entropii a tepelnou kapacitu systému $N$ neinteragujících harmonických oscilátorů
+a) klasicky, b) kvantově.
+\end{priklad}
+\pozn{zadání v originále jen nadpisem: \uv{1) systém neinteragujících harm.\ oscilátorů}}
+
+\subsection*{1a) klasicky}
+{\color{NavyBlue}
+\[
+  H(p,q) = \sum_{i=1}^{N}\frac{p_i^2}{2m} + \frac12m\omega^2q_i^2
+  \qquad \Big(\mathcal{L}_1 = \frac12m\dot q^2 - \frac12m\omega^2q^2\Big)
+\]
+\begin{align*}
+  \Rightarrow\ Z_c &= \int\dd\Gamma_N\,e^{-\beta H(p,q)} = \int\frac{\dd^Np\,\dd^Nq}{h^N}\,e^{-\beta(\sum\dots)}
+   = \Big(\int\frac{\dd p\,\dd q}{h}\,e^{-\beta\big(\frac{p^2}{2m} + \frac{m\omega^2}{2}q^2\big)}\Big)^N = (Z_1)^N \\
+  \Rightarrow\ Z_1 &= \frac1h\Big[\int_{-\infty}^{\infty}\dd p\,e^{-\frac{\beta}{2m}p^2}\Big]\Big[\int_{-\infty}^{\infty}\dd q\,e^{-\frac{\beta m\omega^2}{2}q^2}\Big]
+\end{align*}}
+{\color{OliveGreen}
+\[
+  \int_{-\infty}^{\infty}\dd x\,e^{-\alpha x^2}:\quad I^2 = \iint\dd x\,\dd y\,e^{-\alpha(x^2+y^2)} = \pi\int_0^\infty 2r\,e^{-\alpha r^2}\dd r
+  = \pi\int_0^\infty\dd y\,e^{-\alpha y} = \frac{\pi}{\alpha}
+\]
+\[
+  \Rightarrow\quad \int_{-\infty}^{\infty}\dd x\,e^{-\alpha x^2} = \sqrt{\frac{\pi}{\alpha}}
+\]}
+{\color{NavyBlue}
+\[
+  \Rightarrow\ Z_1 = \frac{\pi}{h}\sqrt{\frac{2m}{\beta}}\sqrt{\frac{2}{\beta m\omega^2}} = \frac{2\pi}{\beta h\omega} = \frac{1}{\beta\hbar\omega}
+\]
+\[
+  \Rightarrow\ Z_c = \Big(\frac{1}{\beta\hbar\omega}\Big)^N \ \Rightarrow\ F = -k_BT\log Z_c = -k_BTN\log\frac{k_BT}{\hbar\omega}
+\]
+\[
+  \to\ \vzorec{F(T,N) = Nk_BT\log\frac{\hbar\omega}{k_BT}}
+  \qquad \pozn{$= -k_BT\log T + k_BT\log\frac{\hbar\omega}{k_B}$}
+\]
+
+$\bullet$ \kw{entropie a tepelná kapacita:} \quad $\dd F = -S\,\dd T + \mu\,\dd N$
+\[
+  S = -\frac{\partial F}{\partial T} = -Nk_B\log\frac{\hbar\omega}{k_BT} + Nk_B = Nk_B\Big(1 + \log\frac{k_BT}{\hbar\omega}\Big)
+  \ \pozn{$\xrightarrow{T\to0} -\infty$\,!}
+\]
+\pozn{cf mikro: $S = Nk_B\big[1 + \log\big(\frac{E}{N\hbar\omega}\big)\big] + \mathcal{O}(\log N)$}
+\[
+  C = T\frac{\partial S}{\partial T} = Nk_B \ \Leftrightarrow\ \tfrac12k_B \text{ na 1 kvadr.\ stupeň volnosti v ham.}
+\]
+\quad $\Rightarrow$ spolu s rotací kolem dvou os kolmých k A--A vysvětluje tep.\ kapacitu 2-atom.\ plynu:
+\[
+  \underset{\text{translace}}{\tfrac32k_B} \longrightarrow \underset{\text{rotace}}{\tfrac52k_B} \longrightarrow \underset{\text{vibrace}}{\tfrac72k_B}
+\]}
+
+%----------------------------------------------------------------------
+\strana{T13-2}
+{\color{NavyBlue}
+\[
+  F = E - TS \ \Rightarrow\ E = F + TS = -\frac{\partial\log Z_c}{\partial\beta} = \frac{\partial}{\partial\beta}N\log\hbar\omega\beta
+  = \frac{N}{\beta} = Nk_BT
+\]
+\[
+  \Rightarrow\ \boxed{S = Nk_B\Big(1 + \log\frac{E}{N\hbar\omega}\Big)}\ \checkmark
+\]
+\[
+  \boxed{\langle(\Delta H)^2\rangle = \frac{\partial^2\log Z_c}{\partial\beta^2} = +\frac{N}{\beta^2} = +Nk_B^2T^2 = k_BT^2C}\ \checkmark
+\]}
+
+\subsection*{1b) kvantově}
+{\color{NavyBlue}
+$H = NH_1$ \qquad
+$H_1 = \dfrac{\hat p^2}{2m} + \dfrac12m\omega\hat x^2 \ \longrightarrow\ H_1\ket{\psi_n} = E_n\ket{\psi_n}$ \\
+\hspace*{4.2cm} $\ket{\psi_n}$ \dots\ Herm.\ polynomy \\
+\hspace*{4.2cm} $E_n = \hbar\omega\big(n + \frac12\big)$
+
+\begin{minipage}{0.62\textwidth}
+\[
+  Z_c = \sum_{\{n_i\}}e^{-\beta H} = \Big(\sum_n e^{-\beta\hbar\omega(n+\frac12)}\Big)^N = Z_1^N
+\]
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\small\uv{$+\frac12$} bychom klidně mohli vypustit a renorm.\ energii; kvůli klas.\ limitě to raději neděláme \dots
+\end{minipage}
+\begin{align*}
+  Z_1 &= \sum_n e^{-\beta\hbar\omega(n+\frac12)} = e^{-\frac12\beta\hbar\omega}\sum_{n=0}^\infty\big(e^{-\beta\hbar\omega}\big)^n \\
+  &= \frac{e^{-\frac12\beta\hbar\omega}}{1 - e^{-\beta\hbar\omega}} = \frac{1}{e^{\frac12\beta\hbar\omega} - e^{-\frac12\beta\hbar\omega}}
+   = \frac{1}{2\sinh\big(\frac12\beta\hbar\omega\big)}
+\end{align*}
+\[
+  \Rightarrow\ Z_c = (Z_1)^N \ \Rightarrow\ F = -Nk_BT\log Z_1 = \vzorec{Nk_BT\log\Big[2\sinh\Big(\frac{\hbar\omega}{2k_BT}\Big)\Big] = F(T,N)}
+\]
+
+\underline{Entropie}
+\begin{align*}
+  S = -\frac{\partial F}{\partial T} &= -Nk_B\log\Big[2\sinh\Big(\frac{\hbar\omega}{2k_BT}\Big)\Big]
+     + \frac{Nk_BT}{2\sinh\big(\frac{\hbar\omega}{2k_BT}\big)}\,2\cosh\Big(\frac{\hbar\omega}{2k_BT}\Big)\frac{\hbar\omega}{2k_BT^2} \\
+  &= Nk_B\Big[\frac{\hbar\omega}{2k_BT}\coth\Big(\frac{\hbar\omega}{2k_BT}\Big) - \log\Big(2\sinh\frac{\hbar\omega}{2k_BT}\Big)\Big]
+     \ \xrightarrow{T\to0}\ 0\ !
+\end{align*}
+\begin{align*}
+  \Rightarrow\ C = T\frac{\partial S}{\partial T} &= Nk_BT\Big[-\frac{\hbar\omega}{2k_BT^2}\coth\Big(\frac{\hbar\omega}{2k_BT}\Big)
+     + \frac{\hbar\omega}{2k_BT}\,\frac{-1}{\sinh^2\big(\frac{\hbar\omega}{2k_BT}\big)}\Big(-\frac{\hbar\omega}{2k_BT^2}\Big) \\
+  &\qquad - \frac{1}{2\sinh\frac{\hbar\omega}{2k_BT}}\,2\cosh\Big(\frac{\hbar\omega}{2k_BT}\Big)\Big(-\frac{\hbar\omega}{2k_BT^2}\Big)\Big]
+     \quad\pozn{1.\ a 3.\ člen se vyruší (přeškrtnuto)} \\
+  &= Nk_BT\frac{(\hbar\omega)^2}{4k_B^2T^3}\,\frac{1}{\sinh^2\big(\frac{\hbar\omega}{2k_BT}\big)}
+   = \vzorec{\frac14Nk_B\Big(\frac{\hbar\omega}{k_BT}\Big)^2\sinh^{-2}\Big(\frac{\hbar\omega}{2k_BT}\Big)}
+\end{align*}
+
+a) \ $\displaystyle\lim_{T\to\infty}$:
+\begin{align*}
+ &Nk_B\Big(\frac{\hbar\omega}{k_BT}\Big)^2\frac{1}{\big(e^{\frac{\hbar\omega}{2k_BT}} - e^{-\frac{\hbar\omega}{2k_BT}}\big)^2} \\
+ &= Nk_B\Big(\frac{\hbar\omega}{k_BT}\Big)^2\frac{1}{\Big[1 + \big(\frac{\hbar\omega}{2k_BT}\big) + \big(\frac{\hbar\omega}{2k_BT}\big)^2 - 1 + \frac{\hbar\omega}{2k_BT} - \big(\frac{\hbar\omega}{2k_BT}\big)^2\Big]^2}
+\end{align*}
+\[
+  = Nk_B\frac{\big(\frac{\hbar\omega}{k_BT}\big)^2}{\big(\frac{\hbar\omega}{k_BT}\big)^2} = Nk_B\ \checkmark
+\]}
+
+%----------------------------------------------------------------------
+\strana{T13-3}
+\pozn{b) $\lim_{T\to0}$: \ $\sinh(x\to\infty) \approx \frac12e^x \Rightarrow \sinh^{-2}x \sim 4e^{-2x}$ \
+$\Rightarrow C \sim 4Nk_Bx^2e^{-2x} \to 0$ \ ! důsledek $S(T\to0) = 0$}
+
+{\color{NavyBlue}
+\underline{klasická limita} \quad $\hbar\omega \ll k_BT$
+\[
+  \boxed{Nk_BT\log\Big[2\sinh\Big(\frac{\hbar\omega}{2k_BT}\Big)\Big] = F(T,N)}
+  \qquad Z_c = \Big(\frac{1}{2\sinh\big(\frac12\beta\hbar\omega\big)}\Big)^N
+\]
+$\bullet$ \ $\hbar\omega \ll k_BT \Rightarrow 2\sinh\Big(\dfrac{\hbar\omega}{2k_BT}\Big) = 2\sinh\Big(\dfrac{x}{2} \ll 1\Big)
+= e^{\frac x2} - e^{-\frac x2} = 1 + \dfrac x2 + \dfrac{x^2}{4} - 1 + \dfrac x2 - \dfrac{x^2}{4} \sim x$
+\[
+  \Rightarrow\ \vzorec{F \simeq Nk_BT\log\frac{\hbar\omega}{k_BT}} \ \Leftarrow\ \text{klasický výsledek!} \ \Rightarrow\ \text{ostatní zřejmé}
+\]}

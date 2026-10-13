@@ -1,0 +1,95 @@
+%======================================================================
+% T9_Maxwell_aplikace.pdf
+%======================================================================
+\section{Cvičení: Aplikace Maxwellových relací, chemická rovnováha}
+\strana{T9M-1}
+
+\subsection*{1) Aplikace Maxwellových relací}
+\begin{priklad}[Příklad 1 -- Maximální práce]
+\emph{Maximální práce:} Jeden mol plynu přejde ze stavu $(p_A, v_A, T_A)$ do stavu $(p_D < p_A,\ v_D > v_A,\ T_D = ?)$. Je přitom
+v kontaktu s lázní o teplotě $T_0 < T_A$. Jakou maximální práci můžeme během tohoto procesu získat? Známe rovnici adiabaty plynu
+$pv^2 = \text{konst.}$ a dále víme, že při konstantním tlaku $p = p_A$ platí pro jeho tepelnou kapacitu $c_p = Bv^{2/3}$ a pro
+koeficient tepelné roztažnosti $\alpha = 3/T$.
+\end{priklad}
+
+{\color{NavyBlue}
+\begin{enumerate}[label=\roman*)]
+  \item rce MWT jsou: \quad
+        $\begin{aligned}[t] \Delta U + \Delta U_L + W_{RWS} &= 0 \\ \Delta S + \Delta S_L &= 0 \end{aligned}$ \\[2pt]
+        \quad $\Rightarrow$ pro systém potřebujeme najít $\Delta U$ \& $\Delta S$
+  \item fund.\ rovnici nemáme, je proto třeba najít kvazistatickou trajektorii \\ $(p_A, v_A, T_A)\to(p_D, v_D, T_D = ?)$, pro kterou
+        $\Delta U$ \& $\Delta S$ umíme určit \\
+        $\to$ zjevně se bude skládat z adiabaty a izobary $p = p_A$; \\ \phantom{$\to$} o jiných procesech nemáme info
+  \item $\Delta U, \Delta S$ po zvolené trajektorii získáme integrací s použitím MR
+\end{enumerate}}
+{\color{Red}
+\begin{align*}
+  W_{RWS} &= -\Delta U + T_0\Delta S \\
+  \Delta S &= \tfrac12 B\Big(v_D^{2/3}\Big(\frac{p_D}{p_A}\Big)^{1/3} - v_A^{2/3}\Big) \\
+  \Delta U &= p_Dv_D\Big(1 - \sqrt{\frac{p_A}{p_D}}\Big) + \Big(\tfrac13BT_Av_A^{-1/3} - p_A\Big)\Big(v_D\sqrt{\frac{p_D}{p_A}} - v_A\Big)
+\end{align*}}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection*{2) Chemická rovnováha}
+\begin{priklad}[Příklad 2]
+Najděte rovnovážné koncentrace H$_2$, O$_2$ \& H$_2$O, probíhá-li chem.\ reakce
+\[
+  2\mathrm{H}_2 + \mathrm{O}_2 \rightleftarrows 2\mathrm{H}_2\mathrm{O} \quad\equiv\quad \sum\nu_iA_i = 0
+\]
+za konst.\ \textcolor{Red}{$U$ a $V$.} \quad \textcolor{Red}{$\to$ Praktičtější by bylo za konst.\ $T, p$ -- bude příště}
+
+\hfill\fcolorbox{Red}{white}{\parbox{6.3cm}{\color{Red}$\nu_i$ \dots\ stechiom.\ koeficienty \\ $A_i$ \dots\ chem.\ komponenty (H$_2$, \dots)}}
+\end{priklad}
+
+{\color{NavyBlue}
+1) \ $\dd S = 0 \Leftrightarrow -\frac1T\sum\mu_i\,\dd N_i = 0$ \quad \& \quad $\dd N_i = \nu_i\,\dd\tilde N$ \qquad
+$\dd\tilde N$ \dots\ \# proběhlých reakcí
+\[
+  \Rightarrow\quad -\frac{\dd\tilde N}{T}\sum_i\mu_i\nu_i = 0 \quad\Rightarrow\quad \vzorec{\sum_i\mu_i\nu_i = 0}
+  \qquad\text{-- jedna rovnice pro každou reakci}
+\]
+2) \ vazbami je zachování celk.\ počtu základních konstituentů (H$_2$ \& O)}
+
+%----------------------------------------------------------------------
+\strana{T9M-2}
+\subsection*{3) Podmínky rovnováhy při chemických reakcích}
+\begin{priklad}[Příklad 3]
+Najděte rovnovážné koncentrace směsi H$_2$, O$_2$ \& CO$_2$, mohou-li probíhat následující reakce:
+\begin{align*}
+  2\mathrm{H}_2 + \mathrm{O}_2 &\rightleftarrows 2\mathrm{H}_2\mathrm{O}
+     && \textcolor{NavyBlue}{\leftrightarrow\ 2\mu_{\mathrm{H}_2} + \mu_{\mathrm{O}_2} - 2\mu_{\mathrm{H}_2\mathrm{O}} = 0} \\
+  \mathrm{CO}_2 + \mathrm{H}_2 &\rightleftarrows \mathrm{CO} + \mathrm{H}_2\mathrm{O} \\
+  2\mathrm{CO} + \mathrm{O}_2 &\rightleftarrows 2\mathrm{CO}_2
+\end{align*}
+\end{priklad}
+
+{\color{NavyBlue}
+\begin{enumerate}[label=\arabic*)]
+  \item sestavte nezávislé rovnice
+  \begin{enumerate}[label=\alph*)]
+    \item $\sum_i\mu_i\nu_i$ pro každou reakci
+    \item ukažte, že pouze 2 ze 3 rovnic a) jsou nezávislé
+    \item vazby -- celk.\ počty $N_H$, $N_O$ a $N_C$ se zachovávají \\
+          $N_{\mathrm{H}_2} + N_{\mathrm{H}_2\mathrm{O}} = 4N_H$ \ atd.
+  \end{enumerate}
+  \item známe-li závislosti $\mu_\alpha = \mu_\alpha(U, V, N_{\mathrm{H}_2},\dots,N_{\mathrm{CO}_2})$, dostali jsme pět rovnic pro 5 neznámých:
+        $N_{\mathrm{H}_2}, N_{\mathrm{O}_2}, N_{\mathrm{H}_2\mathrm{O}}, N_{\mathrm{CO}}, N_{\mathrm{CO}_2}$
+  \item probíhá-li chem.\ reakce v plynné fázi, můžeme pro $\mu_\alpha$ použít chem.\ potenciál složky směsi ideálního plynu
+  \item chem.\ reakce typicky probíhají za konst.\ $T, p$ $\Rightarrow$ bude lepší pracovat v reprezentaci Gibbsova potenciálu \\
+        {[}viz také G-D relace: $\dd\mu = -s(T,p)\,\dd T + v(T,p)\,\dd p \Rightarrow \mu = \mu(T,p)${]}
+\end{enumerate}}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection*{4) Okolí kritického bodu}
+\begin{priklad}[Příklad 4]
+Studujte okolí kritického bodu rozvojem G.\ potenciálu $\tilde g = \tilde g(\tau,\hat p,\nu)$ z přednášky \uv{L12 -- fázové přechody}
+\end{priklad}
+{\color{NavyBlue}
+\begin{enumerate}[label=\arabic*)]
+  \item $\begin{aligned}[t] \nu &= 1 + \hat\nu \\ \tau &= 1 + \hat\tau \end{aligned}$
+        \quad $\Rightarrow$ \quad $\tilde g = \sum\tilde g_\alpha(\tau,\hat p)\,\hat\nu^\alpha$ \quad \& \quad
+        $\tilde g_\alpha\big(\hat\tau,\hat p(\hat\tau)\big) = \sum_\beta g_{\alpha\beta}\,\hat\tau^\beta$
+  \item Jaké obecné a konkrétní závěry můžeme vyvozovat?
+\end{enumerate}}

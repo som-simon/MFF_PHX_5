@@ -1,0 +1,213 @@
+% T2_cykly.pdf -- Cvičení 2: adiabata, izoterma, cykly
+\providecommand{\dbar}{{\mathchar'26\mkern-12mu d}}
+
+\section{Cvičení: Adiabata, izoterma a cykly}
+\strana{T2-1}
+\subsection*{Adiabata vs.\ isoterma v $p$-$V$ diagramu}
+
+\begin{minipage}{0.4\textwidth}
+\[
+  \vzorec{-\left(\pdv{p}{V}\right)_{ad} > -\left(\pdv{p}{V}\right)_T}
+\]
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+$\bullet$ \ $\left(\pdv{p}{V}\right)_{ad}$ je trochu ohýbání notace, lépe $\left.\dfrac{\dd p}{\dd V}\right)_{ad}$ pro $p = p(V)$
+\end{minipage}
+
+\begin{itemize}[label=--]
+  \item \sout{toto} nahlédneme úvahou:
+  \begin{itemize}
+    \item $V\nearrow \ \Rightarrow\ p\downarrow$
+    \item plyn koná práci $\Rightarrow$ při adiabatické izolaci je také $V\nearrow\ \Rightarrow U\downarrow$
+    \item Joule: $U = U(\vartheta)$: \quad $U\downarrow\ \Rightarrow\ \vartheta\downarrow$
+    \item jsme-li na izotermě, potom $\vartheta = $ konst $\Rightarrow U = $ konst $\Rightarrow$ plyn konající práci musí přijímat teplo \\
+    \quad $\Rightarrow$ tlak klesá pomaleji než po adiabatě, po které plyn navíc i chladne
+  \end{itemize}
+  \item později budeme umět tuto relaci ukázat obecně, dokonce najdeme explicitně poměr těchto derivací, zatím k tomu ale nemáme potřebné nástroje
+\end{itemize}
+
+\underline{Pozn:} \quad $\bullet$ pro id.\ plyn \quad $U(\vartheta, V) = U(\vartheta) \ \Leftarrow\ \left(\pdv{U}{V}\right)_\vartheta = 0$
+\quad \textcolor{NavyBlue}{(viz Fermi str.\ 22)}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % levá nádoba
+  \fill[pattern=north east lines,pattern color=black!60] (-0.6,-0.6) rectangle (5.4,3.6);
+  \fill[white] (0,0) rectangle (4.8,3);
+  \draw[thick] (0,0) rectangle (4.8,3);
+  \draw[thick] (2.4,0) -- (2.4,3);
+  \node at (0.6,2.6) {$V_0, \vartheta_0$};
+  \node at (3.3,2.6) {$V_0$, vakuum};
+  \node[fill=white,inner sep=1pt] at (2.4,3.35) {kalorimetr \ $\vartheta_0$};
+  % šipka
+  \draw[->,thick] (6,1.5) -- (7.2,1.5);
+  \node[above] at (6.6,1.8) {odstraním};
+  \node[below] at (6.6,1.2) {přepážku};
+  % pravá nádoba
+  \fill[pattern=north east lines,pattern color=black!60] (7.8,-0.6) rectangle (13.8,3.6);
+  \fill[white] (8.4,0) rectangle (13.2,3);
+  \draw[thick] (8.4,0) rectangle (13.2,3);
+  \node at (10.8,1.4) {\Large $2V_0,\ \vartheta = ?$};
+  \node[fill=white,inner sep=1pt,align=center] at (10.8,3.4) {teplota kalorimetru\\ se nezměnila \pozor{!}};
+\end{tikzpicture}
+\end{center}
+
+%----------------------------------------------------------------------
+\strana{T2-2}
+\subsection*{Carnotův cyklus pro id.\ plyn}
+
+\begin{minipage}{0.3\textwidth}
+$\bullet$ \ $pV = Nk_BT$ \\
+\hspace*{0.35cm} $U = U(T)$
+\end{minipage}
+\begin{minipage}{0.68\textwidth}
+$\bullet$ zatím bych měl psát $\vartheta$ místo $T$, chci ale ukázat, že stav.\ rovnice id.\ plynu obsahuje abs.\ teplotu
+\end{minipage}
+
+\begin{itemize}
+  \item jak vypadá adiabata ve $V$-$T$ diagramu?
+  \[
+    \dbar Q = 0 = \dd U + p\,\dd V = \frac{\dd U}{\dd T}\dd T + p(T,V)\,\dd V
+    = \vzorec{\frac{\dd U}{\dd T}\dd T + \frac{Nk_BT}{V}\dd V = 0}
+  \]
+  \item obecně zatím \quad $\dfrac{\dd U}{\dd T} = C(T)\,\dd T$
+  \[
+    \Rightarrow\ \frac{\dd T}{\dd V} = -\frac{Nk_BT}{C(T)V} \quad\Rightarrow\ \text{pro nekonst.\ } C(T) \text{ neumím integrovat}
+  \]
+\end{itemize}
+
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw[->] (-0.2,0) -- (6,0) node[below right] {$V$};
+  \draw[->] (0,-0.2) -- (0,3.9) node[left] {$T$};
+  \draw[dashed] (-0.3,3) node[left] {$T_H$} -- (5.6,3);
+  \draw[dashed] (-0.3,0.6) node[left] {$T_C$} -- (5.6,0.6);
+  \coordinate (A) at (0.4,3); \coordinate (B) at (2.9,3);
+  \coordinate (C) at (4.4,0.6); \coordinate (D) at (1.2,0.6);
+  \node[above] at (A) {$A$}; \node[above] at (B) {$B$};
+  \node[below] at (C) {$C$}; \node[below] at (D) {$D$};
+  \draw[very thick] (A) -- (B); \draw[->,thick] (1.5,3) -- (1.8,3);
+  \draw[very thick] (C) -- (D); \draw[->,thick] (2.9,0.6) -- (2.6,0.6);
+  \draw[thick] (B) .. controls (3.3,1.8) and (3.8,1) .. (C);
+  \draw[->,thick] (3.35,1.75) -- (3.45,1.55);
+  \node[right] at (3.45,1.8) {$Q=0$};
+  \draw[thick] (D) .. controls (0.8,1.2) and (0.5,2) .. (A);
+  \draw[->,thick] (0.66,1.7) -- (0.6,1.9);
+  \node[right] at (0.7,1.85) {$Q=0$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+\begin{itemize}
+  \item $A\Rightarrow B$ \dots\ $U = $ konst $\Rightarrow Q_{AB} = -W_{AB}$
+  \begin{align*}
+    W_{AB} &= -\int_A^B p\,\dd V = -\int_{V_A}^{V_B}\frac{Nk_BT_H}{V}\dd V \\
+    &= -Nk_BT_H\log\frac{V_B}{V_A}
+  \end{align*}
+  \[ \Rightarrow\ Q_{AB} = Nk_BT_H\log\frac{V_B}{V_A} > 0 \]
+  \item $B\to C$ \dots\ adiabata $\Rightarrow Q_{BC} = 0$
+\end{itemize}
+\end{minipage}
+
+\begin{itemize}
+  \item $C\to D$: izoterma $T_C$ \ $\Rightarrow$ \ $Q_{CD} = Nk_BT_C\log\dfrac{V_D}{V_C} < 0$
+\end{itemize}
+\[
+  \Rightarrow\ \eta = 1 + \frac{Q_{CD}}{Q_{AB}} = 1 + \frac{T_C}{T_H}\frac{\log\frac{V_D}{V_C}}{\log\frac{V_B}{V_A}}
+  = 1 - \frac{T_C}{T_H}\left[\frac{\log\frac{V_C}{V_D}}{\log\frac{V_B}{V_A}}\right]
+\]
+
+%----------------------------------------------------------------------
+\strana{T2-3}
+\begin{itemize}
+  \item co umíme říci o poměrech $\dfrac{V_C}{V_D}$ a $\dfrac{V_B}{V_A}$?
+  \begin{itemize}[label=--]
+    \item $B, C$ a $A, D$ leží na dvou adiabatách, ovšem \uv{ve stejné vzdálenosti}
+    \item rovnice adiabaty je \quad $\dfrac{\dd T}{\dd V} = -\dfrac{Nk_BT}{C(T)V}$
+  \end{itemize}
+\end{itemize}
+\[
+  \Rightarrow\ \frac{\dd V}{V} = -\frac{C(T)}{Nk_BT}\dd T \ \Rightarrow\ \log V = f(T) \ \Rightarrow\ V = \underset{\substack{\uparrow\\ \text{tato konstanta vybírá konkr.\ adiabatu}}}{K}\,e^{f(T)}
+\]
+\[
+  \left.\begin{aligned}
+    \Rightarrow\ \frac{V_C}{V_D} &= \frac{K_{BC}}{K_{AD}}\frac{e^{f(T_C)}}{e^{f(T_C)}} = \frac{K_{BC}}{K_{AD}} \\
+    \Rightarrow\ \frac{V_B}{V_A} &= \frac{K_{BC}\,e^{f(T_H)}}{K_{AD}\,e^{f(T_H)}} = \frac{K_{BC}}{K_{AD}}
+  \end{aligned}\right\}
+  \ \Rightarrow\ \text{faktory } \log\left(\frac{V_C}{V_D}\right) \text{ a } \log\left(\frac{V_B}{V_A}\right) \text{ se zkrátí}
+\]
+\[
+  \Rightarrow\ \vzorec{\eta = 1 - \frac{T_C}{T_H}} \qquad \Rightarrow\ \text{teplota ve stavové rovnici id.\ plynu je absolutní}
+\]
+
+%----------------------------------------------------------------------
+\strana{T2-4}
+\subsection*{Ottův cyklus (zážehový motor)}
+\begin{itemize}
+  \item adiabatické stlačení $\to$ izochorické zahřátí (hoření paliva) $\to$ adiabat.\ roztažení \\
+  $\to$ izochorické ochlazení (výfuk $\to$ sání)
+\end{itemize}
+
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+  \draw[->] (-0.1,0) -- (5.6,0) node[below right] {$V$};
+  \draw[->] (0,-0.1) -- (0,3.8) node[left] {$T$};
+  \coordinate (C) at (0.8,3.3); \coordinate (B) at (0.8,1.5);
+  \coordinate (D) at (3.3,2.4); \coordinate (A) at (3.3,0.55);
+  \draw (0,3.3) node[left] {$T_C$} -- (0.1,3.3);
+  \draw (0,0.55) node[left] {$T_A$} -- (0.1,0.55);
+  \draw (0.8,0) node[below] {$V_C$} -- (0.8,0.1);
+  \draw (3.3,0) node[below] {$V_A$} -- (3.3,0.1);
+  \fill (C) circle (1.5pt) node[above left] {$C$};
+  \fill (B) circle (1.5pt) node[left] {$B$};
+  \fill (A) circle (1.5pt) node[right] {$A$};
+  \node[right] at (D) {$D$};
+  \draw[thick] (B) -- (C);
+  \draw[thick] (C) .. controls (1.6,2.6) and (2.4,2.5) .. (D);
+  \draw[thick] (D) -- (A);
+  \draw[thick] (A) .. controls (2.4,0.6) and (1.6,1.0) .. (B);
+  \draw[->,thick] (1.9,2.55) -- (2.15,2.5);
+  \draw[->,thick] (1.85,0.9) -- (1.6,1.05);
+  \node[draw,circle,inner sep=0.5pt,font=\scriptsize] at (1.05,2.3) {2};
+  \node[draw,circle,inner sep=0.5pt,font=\scriptsize] at (2.0,2.95) {3};
+  \node[draw,circle,inner sep=0.5pt,font=\scriptsize] at (3.6,1.4) {4};
+  \node[draw,circle,inner sep=0.5pt,font=\scriptsize] at (2.0,1.25) {1};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+\begin{itemize}
+  \item známe $V_A, T_A$ \ \& \ $V_C, T_C$
+  \item zajímá nás účinnost jako funkce $\dfrac{V_C}{V_A} \equiv \epsilon$ (kompresní poměr)
+  \hfill \textcolor{Red}{$\eta = 1 - \epsilon^{1/c}$}
+  \item $pV = Nk_BT$ \ \& \ $U = cNk_BT$ \ \textcolor{NavyBlue}{$\leftarrow$ nechť jsme již proměřili $C(T) = $ konst\dots}
+\end{itemize}
+\end{minipage}
+
+\begin{minipage}{0.55\textwidth}
+\begin{itemize}
+  \item \underline{strategie}: \quad $\eta = 1 - \dfrac{|Q_{OUT}|}{Q_{IN}}$
+  \begin{tabular}{ll}
+    $Q_{IN} > 0$ & \dots\ teplo teče dovnitř \\
+    $Q_{OUT} < 0$ & \dots\ teplo teče ven
+  \end{tabular}
+  \begin{enumerate}[label=\arabic*),start=0]
+    \item dopočítat chybějící stavy $(V_B, T_B)$ \& $(V_D, T_D)$
+    \item[$\Rightarrow$ 1)] spočítat $Q_i$ pro $\forall$ úseky
+    \item rozhodnout, co je $Q_{IN}$ a co $Q_{OUT}$ $\Rightarrow \eta = \dots$
+  \end{enumerate}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.43\textwidth}\color{Red}
+Obecně je lepší ta strategie, kde se méně integruje a potřebné $Q, W$ lze vyjádřit z rozdílů stav.\ proměnných: např.\ práce po izobaře je $W = p\Delta V, \dots$
+\end{minipage}
+
+\begin{itemize}
+  \item \underline{alternativně}: \quad $\eta = \dfrac{|W|}{Q_{IN}}$ \quad $\Rightarrow$
+  \begin{enumerate}[label=\arabic*),start=0]
+    \item jako výše
+    \item spočítat $Q_i$ pouze pro úseky, kde teče dovnitř $\Rightarrow Q_{IN}$
+    \item spočítat práci pro $\forall$ úseky a $W = \sum W_i$ (bez ohledu na znaménko!)
+  \end{enumerate}
+\end{itemize}
+
+\fbox{\parbox{0.45\textwidth}{ad 0) -- stavy $B, D$ jsou určeny průsečíky příslušných izochor a adiabat}}
+

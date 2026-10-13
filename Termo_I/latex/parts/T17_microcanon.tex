@@ -1,0 +1,144 @@
+%======================================================================
+% T17_microcanon.pdf
+%======================================================================
+\section{Cvičení: Mikrokanonický soubor}
+\strana{T17-1}
+
+\begin{priklad}[Zadání]
+\begin{enumerate}[label=\arabic*)]
+  \item entropie id.\ plynu -- bylo na přednášce (konfigurační entropie, $p\to$ povrch $3N$-dim.\ koule)
+  \item dvouhladinový systém -- viz Tong / Kardar (Schottkyho anomálie, záporné teploty)
+  \item systém nezávislých 1D LHO
+  \begin{enumerate}[label=\alph*)]
+    \item klasicky
+    \item kvantově
+  \end{enumerate}
+  \item id.\ plyn -- pravděpodobnostní rozdělení rychlostí jedné částice (Maxwell-Boltzmann)
+\end{enumerate}
+\end{priklad}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+{\color{NavyBlue}
+\subsection*{3a) soubor klasických neinteragujících harm.\ oscilátorů (1D)}
+\begin{itemize}
+  \item $H(\{p_i,q_i\}) = \displaystyle\sum_{i=1}^{N}H_i(p_i,q_i) = \sum_{i=1}^{3N}\frac{p_i^2}{2m} + \frac12m\omega^2q_i^2$
+        \pozn{v originále horní mez nejprve $N$, pak $3N$; $p_i$ bez kvadrátu} \\
+        $\Big(\mathcal{L} = \dfrac12m\dot q^2 - \dfrac12m\omega^2q^2 \to H = \Big)$
+  \item $S = k_B\log\Omega(E)$
+\end{itemize}
+1) \ $\Omega(E) = \dfrac{1}{h^N}\displaystyle\int\dd^Np\,\dd^Nq\,\delta\big(E - H(p,q)\big)$
+\begin{itemize}[nosep]
+  \item $q$ nelze tentokrát vyintegrovat triviálně na \uv{objem}, v $H$ je v podobné roli jako $p$
+  \item jedná se o elipsoid $\Rightarrow$ vhodnou transf.\ převedeme na kouli $\Rightarrow$ stejný problém jako id.\ gas
+\end{itemize}}
+
+%----------------------------------------------------------------------
+\strana{T17-2}
+{\color{NavyBlue}
+\begin{itemize}
+  \item každá částice je \uv{zachycena} ve své potenc.\ jámě $\Rightarrow$ nemá smysl uvažovat jejich prohazování $\Rightarrow$
+        \pozor{žádný $\frac{1}{N!}$ z konfigurační entropie!} (ještě se k tomu vrátíme)
+\end{itemize}
+\[
+  \Omega(E) = \frac{1}{h^N}\int\limits_{H = E}\dd^Np\,\dd^Nq \ \Leftrightarrow\ \sum_i\frac{p_i^2}{2m} + \frac12m\omega^2q_i^2 = E
+\]
+\[
+  \Rightarrow\ \frac{p_i}{\sqrt{2m}} = x_i \quad\&\quad q_i\,\omega\sqrt{\frac m2} = x_{N+i}
+  \qquad\to\ \dd p_i = \dd x_i\sqrt{2m} \qquad \dd q_i = \dd x_{N+i}\sqrt{\frac{2}{m\omega^2}}
+\]
+\begin{align*}
+  \Rightarrow\ \Omega(E) &= \frac{1}{h^N}\frac{2^N}{\omega^N}\int\limits_{\sum_{i=1}^{2N}x_i^2 = E}\dd^{2N}x_i
+   = \Big(\frac{2}{h\omega}\Big)^N\int\dd^{2N}x_i\,\delta\Big(E - \sum_ix_i^2\Big) \\
+  &= \Big(\frac{2}{h\omega}\Big)^N S_{2N}(1)\int_0^\infty x^{2N-1}\delta(E - x^2)\,\dd x
+     \ = \Big/\,{\textstyle x^2 = t,\ 2x\,\dd x = \dd t \Rightarrow \dd x = \frac{\dd t}{2\sqrt t}}\Big/ = \\
+  &= \Big(\frac{2}{h\omega}\Big)^N\frac{S_{2N}(1)}{2}\int_0^\infty t^{N-1}\delta(E - t)\,\dd t
+   = \frac12\Big(\frac{2}{h\omega}\Big)^N S_{2N}(1)\,E^{N-1}
+\end{align*}
+\[
+  S_n \simeq \frac{n\,\pi^{\frac n2}}{\Gamma\big(\frac n2 + 1\big)} \ \Rightarrow\ S_{2N} = \frac{2N\pi^N}{N!}
+\]
+\[
+  \Rightarrow\ \Omega(E) = \frac{N\pi^N}{N!}\Big(\frac{2}{h\omega}\Big)^N E^{N-1} = \frac{E^N}{N!}\Big(\frac NE\Big)\Big(\frac{1}{\hbar\omega}\Big)^N
+\]
+\[
+  \Rightarrow\ S(E) \simeq k_B\log\Omega(E) \simeq Nk_B\log\Big(\frac{E}{N\hbar\omega}\Big) + N + \log\Big(\frac NE\Big) - \frac12\log(2\pi N)
+\]}
+
+%----------------------------------------------------------------------
+\strana{T17-3}
+{\color{NavyBlue}
+\[
+  \Rightarrow\ \vzorec{S(E) = Nk_B\log\Big(\frac{E}{N\hbar\omega}\Big) + N + \mathcal{O}(\log N)}
+\]
+$\bullet$ \kw{tepelná kapacita:}
+\[
+  \frac1T \equiv \frac{\partial S}{\partial E} = \frac{Nk_B}{E} \ \Rightarrow\ E = Nk_BT \quad\dots\ \text{cf.\ ekvipart.\ teorém}
+\]
+\[
+  \Rightarrow\ S(T) = Nk_B\log\Big(\frac{k_BT}{\hbar\omega}\Big) + Ns_0
+\]
+\[
+  C = T\Big(\frac{\partial S}{\partial T}\Big)_N = T\frac{Nk_B}{T} = Nk_B = \text{konst.}
+\]
+\hspace*{5cm}$\Rightarrow$ \pozor{další klasický model, který nesplňuje Nernstův postulát}
+
+\underline{NB:} \ $T\Big(\dfrac{\partial S}{\partial T}\Big)_N = T\Big(\dfrac{\partial S}{\partial E}\Big)_N\Big(\dfrac{\partial E}{\partial T}\Big)_N
+= \Big(\dfrac{\partial E}{\partial T}\Big)_N = C$
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection*{3b) soubor kvantových harm.\ oscilátorů}
+\begin{itemize}
+  \item $N \gg$ oscilátorů, každý se může nacházet ve stavech $\ket{\psi_n}$ s energiemi $E_n = \hbar\omega\big(n + \frac12\big)$
+  \item celková energie je \ $E = \dfrac N2\hbar\omega + \hbar\omega\displaystyle\sum_{i=1}^{N}n_i$
+\end{itemize}
+$\Rightarrow$ $\Omega(E) \equiv$ (počet způsobů, jak rozdělit $\mathcal{N} = \big(\frac{E}{\hbar\omega} - \frac N2\big)$ kvant mezi $N$ oscilátorů) \\
+$\Leftrightarrow$ \# permutací $\mathcal{N} + (N-1)$ objektů, kdy $\mathcal{N}$ a $(N-1)$ je nerozlišitelných
+\[
+  \Rightarrow\ \Omega(E) = \frac{(N + \mathcal{N} - 1)!}{\mathcal{N}!\,(N-1)!} \sim \frac{(N + \mathcal{N})}{N!\,\mathcal{N}!}
+\]
+\pozn{v originále takto, v čitateli patrně chybí faktoriál: $(N+\mathcal N)!$}}
+
+%----------------------------------------------------------------------
+\strana{T17-4}
+{\color{NavyBlue}
+\begin{align*}
+  \Rightarrow\ \frac{S(E)}{k_B} = \log\Omega(E) &\simeq (N + \mathcal N)\log(N + \mathcal N) - N\log N - \mathcal N\log\mathcal N \\
+  &= \Big(\frac{E}{\hbar\omega} + \frac N2\Big)\log\Big(\frac{E}{\hbar\omega} + \frac N2\Big)
+     - \Big(\frac{E}{\hbar\omega} - \frac N2\Big)\log\Big(\frac{E}{\hbar\omega} - \frac N2\Big) \\
+  &\quad - N\log N \qquad\qquad \epsilon = \frac EN \\
+  &= N\Big(\frac{\epsilon}{\hbar\omega} + \frac12\Big)\log\Big[N\Big(\frac{\epsilon}{\hbar\omega} + \frac12\Big)\Big]
+     - N\Big(\frac{\epsilon}{\hbar\omega} - \frac12\Big)\log\Big[N\Big(\frac{\epsilon}{\hbar\omega} - \frac12\Big)\Big] \\
+  &\quad - N\log N
+\end{align*}
+\begin{align*}
+  \frac{S(E)}{k_B} &= \frac{N\epsilon}{\hbar\omega}\log\Big[\frac{\epsilon/\hbar\omega + 1/2}{\epsilon/\hbar\omega - 1/2}\Big]
+     + \frac N2\log\Big[\underbrace{\Big(\frac{\epsilon}{\hbar\omega} + \frac12\Big)\Big(\frac{\epsilon}{\hbar\omega} - \frac12\Big)}_{\frac{\epsilon^2}{\hbar^2\omega^2} - \frac14}\Big] \\
+  &= \frac{N\epsilon}{\hbar\omega}\log\Big[\Big(1 + \frac{\hbar\omega}{2\epsilon}\Big)\Big(1 - \frac{\hbar\omega}{2\epsilon}\Big)^{-1}\Big]
+     + N\log\Big(\frac{\epsilon}{\hbar\omega}\Big) + \frac N2\log\Big[1 - \frac{\hbar^2\omega^2}{4\epsilon^2}\Big]
+\end{align*}
+
+\underline{Cv:} \ $\epsilon = \frac12\hbar\omega\coth\Big(\dfrac{\hbar\omega}{2T}\Big)$
+\[
+  \Rightarrow\ c = \frac{\dd\epsilon}{\dd T} = \Big(\frac{\hbar\omega}{2T}\Big)^2\Big(\sinh\Big(\frac{\hbar\omega}{2T}\Big)\Big)^{-2}
+\]
+\[
+  T\to0 \Rightarrow \sinh\Big(\frac{\hbar\omega}{2T}\Big) \sim e^{\frac{\hbar\omega}{2T}} \ \Rightarrow\ c \sim T^{-2}e^{-\frac{\hbar\omega}{T}} \to 0
+  \qquad\Rightarrow\ \text{Nernst OK}
+\]
+
+\underline{Klasická limita:} \quad \uv{$\hbar\to0$} $\Leftrightarrow \dfrac{\epsilon}{\hbar\omega} \gg 1 \Leftrightarrow \dfrac{\hbar\omega}{2\epsilon} \equiv x \to 0$
+
+\begin{minipage}{0.35\textwidth}
+\begin{itemize}[nosep]
+  \item $\log(1 - x^2) \sim -x^2$ \\
+        $\log\Big[\dfrac{(1+x)}{(1-x)}\Big] \sim 2x$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.62\textwidth}
+\[
+  \Rightarrow\ \vzorec{\frac{S(E)}{k_B} = N\log\Big(\frac{E}{N\hbar\omega}\Big) + N + \mathcal{O}\Big(\Big(\frac{\hbar}{\epsilon}\Big)^2\Big)}
+\]
+\quad $\Rightarrow$ přesně klasický výsledek
+\end{minipage}}

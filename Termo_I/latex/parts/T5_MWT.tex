@@ -1,0 +1,239 @@
+% T5_MWT.pdf -- Cvičení: Teorém maximální práce
+\section{Cvičení: Teorém maximální práce (MWT)}
+\strana{T5-1}
+
+\begin{priklad}[Otázka]
+Nechť systém $\mathcal{S}$ přechází ze specifického počátečního ($A$) do specifického koncového stavu $B$. V průběhu procesu je systém v kontaktu s jedním nebo více okolními systémy. Jaký maximální objem práce lze v takovém procesu získat?
+\end{priklad}
+
+\begin{veta}[Tvrzení (MWT)]
+Primární systém přechází ze specifického stavu $A$ do specifického stavu $B$. V průběhu procesu je v kontaktu s lázní ($L \equiv$ HS \textcolor{NavyBlue}{\small heat source}), se kterou může vyměňovat teplo, a s dalším systémem (RWS \textcolor{NavyBlue}{\small reversible work source}), na který může konat práci.
+
+Ze všech dostupných procesů je zisk práce nejvyšší pro \kw{vratný proces} a její objem je stejný pro $\forall$ vratné procesy.
+\end{veta}
+
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw[thick] (0.8,3.3) ellipse (1.1 and 0.85);
+  \node[align=center] at (0.8,3.3) {Systém\\ $A\to B$};
+  \draw[thick,dashed] (5,3.6) circle (1.2);
+  \node at (5,4.3) {RWS};
+  \draw[dashed] (0.4,1.6) circle (0.6);
+  \node at (0.4,1.6) {?};
+  \draw[thick] (0.4,-0.4) ellipse (1.3 and 0.75);
+  \node at (0.1,-0.2) {$T, C(T)$};
+  \node at (0.9,-0.65) {\small lázeň};
+  \draw[->,thick] (1.9,3.4) -- (3.8,3.5) node[midway,above] {$W$};
+  \draw[->,thick] (0.95,1.8) -- (3.9,3.0) node[midway,above] {$W$};
+  \draw[<->] (0.55,2.45) -- (0.5,2.2) node[right] {$Q_S$};
+  \draw[<->] (0.4,1.0) -- (0.4,0.35) node[midway,right] {$Q_L$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+\underline{Důkaz:}
+\begin{enumerate}[label=\arabic*)]
+  \item \underline{1.TDZ (ZZE)}
+  \[ \Delta U_S + \Delta U_L + \Delta U_{RWS} = 0 \]
+  \[ \Rightarrow\ \boxed{U_S(B) - U_S(A) + Q_L + W_{RWS} = 0} \]
+  \item \underline{bilance entropie} ($\Delta S_{RWS} = 0$)
+  \[ \boxed{\Delta S_S + \Delta S_L \geq 0} \]
+\end{enumerate}
+\end{minipage}
+
+\medskip
+(1) $\Rightarrow$ \ $W_{RWS} = -\Delta U_S - Q_L$ \ je největší, pokud je $Q_L$ pro daný proces $A\to B$ v prim.\ syst.\ nejmenší \\
+\quad $\Leftrightarrow$ pokud je nárůst entropie v lázni nejmenší možný $\Rightarrow$
+\[
+  \Delta S_L = -\Delta S_S = \underbrace{S_S(B) - S_S(A)}_{\substack{\text{je dáno stavy } A, B,\\ \text{nezávisí na vratnosti}\\ \text{nebo jiné charakt.\ procesu}}} \qquad \boxtimes
+\]
+\pozn{v originále $-\Delta S_S = S_S(B) - S_S(A)$ -- znaménko jak zapsáno}
+
+%----------------------------------------------------------------------
+\strana{T5-2}
+\providecommand{\dbar}{{\mathchar'26\mkern-12mu d}}
+\begin{itemize}
+  \item \underline{diferenciální tvar MWT}: -- jen pro interpretaci, obecně se nedoporučuje k počítání, pokud to není nezbytně nutné
+\end{itemize}
+\begin{minipage}{0.48\textwidth}
+\begin{align*}
+  \dd U_S + \dbar W_{RWS} + \dbar Q_L &= 0 \\
+  \frac{1}{T_S}\dbar Q_S + \frac{1}{T_L}\dbar Q_L &= 0
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{align*}
+  \dd U_S &= \dbar Q_S + \dbar W_S \quad \pozn{$= -\tfrac{T_S}{T_L}\dbar Q_L + \dbar W_S$} \\
+  \dbar Q_L &= -\frac{T_L}{T_S}\dbar Q_S
+\end{align*}
+\end{minipage}
+\[
+  \Rightarrow\ \vzorec{\dbar W_{RWS} = \underset{\substack{\nearrow\\ \text{práce přímo}\\ \text{konaná prim.\ systémem}}}{(-\dbar W_S)} + \underset{\substack{\nwarrow\\ \text{práce získaná \uv{řezáním} tepla}\\ \text{přenášeného mezi syst.\ a lázní}}}{\left(1 - \frac{T_L}{T_S}\right)(-\dbar Q_S)}}
+\]
+
+\textcolor{NavyBlue}{\small ($\circledast$ zde neplatí rovnost, neboť tok tepla dáme do cesty stroj a část přeměníme na práci)}
+\begin{itemize}
+  \item[\pozor{!}] \pozor{Neplatí} \quad $\dbar Q_S = -\dbar Q_L$ \ \& \ $\dbar W_S = -\dbar W_{RWS}$ \quad \textcolor{NavyBlue}{\small $\leftarrow$ zde neplatí rovnost, neboť $\circledast$} \\
+  a to ani v integrální formě $\Rightarrow$ $Q_S \neq -Q_L$, $W_S \neq -W_{RWS}$
+\end{itemize}
+\pozn{v originále napsáno $W_S = -W_{RWS}$; podle kontextu míněno $\neq$}
+
+\begin{itemize}
+  \item \underline{kuchařka:}
+  \begin{enumerate}[label=\arabic*),start=0]
+    \item obecně se procesu \uv{účastní} více podsystémů
+    \item vždy se snažit pracovat s rovnicemi v integ.\ formě
+    \item teorém lze zobecnit na $n$ obecných systémů, které mohou vyměňovat práci i teplo a 1 RWS, který čerpá získanou práci (je neentropický) $\Rightarrow$ MWT je reprezentován 2 rovnicemi:
+
+    \begin{minipage}{0.4\textwidth}
+    \begin{veta}[MWT]
+    \begin{enumerate}[label=\roman*)]
+      \item $\displaystyle\sum_{i=1}^n\Delta U_i + W_{RWS} = 0$
+      \item $\displaystyle\sum_{i=1}^n\Delta S_i = 0 \quad (\geq 0)$
+    \end{enumerate}
+    \end{veta}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+    \begin{itemize}
+      \item ii) typicky definuje konečný stav systémů, u kterých není a priori znám
+      \item i) následně ze znalosti $\forall$ konečných stavů dá $W_{RWS} = -\sum\Delta U_i$
+    \end{itemize}
+    \end{minipage}
+    \item samozřejmě lze zobecnit -- otázka může být odlišná než $W_{RWS}^{max} = ?$
+  \end{enumerate}
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{T5-3}
+\subsection*{Příklady}
+\begin{priklad}[Příklad 1]
+Mějme dva systémy s konst.\ tep.\ kapacitami $C_1, C_2$ a počátečními teplotami $T_1, T_2$. Systémy uvedeme do tep.\ kontaktu a z přenosu tepla čerpáme práci.
+\begin{enumerate}[label=\alph*)]
+  \item Jaký objem práce můžeme maximálně v procesu získat?
+  \item V jakém rozsahu teplot se může ustavit konečná rovnováha?
+\end{enumerate}
+\end{priklad}
+
+\begin{itemize}
+  \item proces se zastaví ve vzájemné rovnováze: \quad $T_1\to T_f\leftarrow T_2$
+  \item systémy nekonají práci, \quad $C \equiv \dfrac{\dbar Q}{\dd T}$ \quad
+        $\Rightarrow\ \dd U_i = C_i\,\dd T_i \ \Rightarrow\ \Delta U_i = C_i(T_f - T_i)$
+  \item $\dd S_i = \dfrac{\dbar Q_i}{T_i} \ \Rightarrow\ \Delta S_i = C_i\log\dfrac{T_f}{T_i}$
+\end{itemize}
+\begin{align*}
+  \Rightarrow\ \text{i)} &\quad C_1(T_f - T_1) + C_2(T_f - T_2) + W_{RWS} = 0 \\
+  \text{ii)} &\quad \Delta S = C_1\log\frac{T_f}{T_1} + C_2\log\frac{T_f}{T_2} \geq 0
+\end{align*}
+\textbf{a)} max.\ práci získáme pro $\Delta S = 0$ \ $\Rightarrow$ \ $T_f^{C_1+C_2} = T_1^{C_1}T_2^{C_2}$
+\[
+  \Rightarrow\ \vzorec{T_f = \big(T_1^{C_1}T_2^{C_2}\big)^{\frac{1}{C_1+C_2}}} \qquad (\text{spec.\ } C_1 = C_2 \Rightarrow T_f = \sqrt{T_1T_2})
+\]
+\[
+  \Rightarrow\ \vzorec{W_{RWS} = C_1T_1 + C_2T_2 - (C_1 + C_2)T_f}
+\]
+\textbf{b)}
+\begin{itemize}
+  \item min.\ konečná teplota odpovídá případu a) -- odčerpali jsme maximum energie, co odčerpat lze
+  \item max.\ teplota odpovídá $W_{RWS} = 0$
+  \[ \Rightarrow\ T_f^{max} = \frac{C_1T_1 + C_2T_2}{C_1 + C_2} \]
+\end{itemize}
+\noindent\rule{\linewidth}{0.4pt}
+
+%----------------------------------------------------------------------
+\strana{T5-4}
+\begin{priklad}[Př.\ 2]
+Předpokládejte v předchozím příkladu, že $T_1 > T_2$ a že neodčerpáváme žádnou práci. Jedná se tedy jen o samovolný přenos tepla a přechod do rovnováhy char.\ teplotou
+\[ T_f^{max} = \frac{C_1T_1 + C_2T_2}{C_1 + C_2} \]
+Ukažte, že celková změna entropie
+\[ \Delta S = C_1\log\frac{T_f}{T_1} + C_2\log\frac{T_f}{T_2} \]
+je nutně kladná.
+
+\hfill (dom.\ cvičení s bonusem ke zkoušce)
+\end{priklad}
+
+\begin{priklad}[Příklad 3]
+Uvažujme 3 stejná tělesa s kapacitami $C_i = C$ v počátečním stavu $T_1 < T_2 < T_3$. Koncový stav je charakterizován požadavkem, aby jedno z nich skončilo na nejvyšší možné teplotě. Jaká je tato max.\ teplota?
+\end{priklad}
+\begin{itemize}
+  \item práci určitě neodebíráme -- chceme max.\ teplotu
+  \item fin.\ stav je 1 těleso na $T_H$, 2 tělesa ve vzáj.\ rovnováze $T = T_C$ (jinak by mezi nimi mohlo téct teplo a čerpadlem bych mohl $T_H$ dále zvýšit)
+\end{itemize}
+\begin{align*}
+  \text{i)} &\quad C(T_H - T_3) + C(T_C - T_1) + C(T_C - T_2) = \sum\Delta U_i = 0 \\
+  &\quad\Rightarrow\ \boxed{T_H + 2T_C = \sum T_i \equiv A} \\
+  \text{ii)} &\quad \Delta S = C\log\left(\frac{T_HT_C^2}{\prod_i T_i}\right) \geq 0 \ \Rightarrow\ T_HT_C^2 \geq \prod_i T_i \\
+  &\overset{\text{i)}}{\Rightarrow}\ T_C^2 = \tfrac14(A - T_H)^2 \ \Rightarrow\ T_H(A - T_H)^2 \geq 4\prod_i T_i \equiv B \\
+  &\quad\Leftrightarrow\ \boxed{T_H(A - T_H)^2 \geq B}
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{T5-5}
+\begin{center}
+\begin{tikzpicture}[>=Stealth,x=1cm,y=1cm]
+  \draw[->] (-0.2,0) -- (11,0) node[below right] {$T_H$};
+  \draw[->] (0,-0.1) -- (0,3.2) node[left] {LHS};
+  \draw (-0.2,2.4) node[left] {$B$} -- (10.7,2.4);
+  % křivka T_H(A-T_H)^2, A = 5.6, max u A/3
+  \draw[thick,domain=0:7.6,samples=120] plot (\x,{0.111*\x*(5.6-\x)*(5.6-\x)});
+  \node at (9.1,3.0) {$T_H(A - T_H)^2$};
+  \draw (1.87,-0.1) -- (1.87,0.1); \node[below] at (1.87,-0.1) {$A/3$};
+  \draw (5.6,-0.1) -- (5.6,0.1); \node[below] at (5.6,-0.1) {$A$};
+  \draw[Red,thick] (2.9,-0.1) -- (2.9,0.1);
+  % průsečíky s B
+  \fill (1.02,2.4) circle (1.5pt); \fill (2.9,2.4) circle (1.5pt);
+  \draw (1.87,2.95) -- (1.87,2.8);
+  \draw[decorate,decoration={brace,mirror,amplitude=4pt}] (1.02,2.25) -- (2.9,2.25);
+  \node[align=center,font=\small] at (2.0,1.65) {povolený\\ rozsah teplot};
+  \node[Red,font=\scriptsize,align=right] at (-0.75,1.4) {1 těleso\\ studené,\\ dvě\\ teplá};
+  \draw[Red,->] (-0.4,2.15) -- (0.95,2.38);
+  \node[Red,font=\scriptsize,align=center] at (1.9,3.5) {$\forall$ 3 tělesa končí\\ na stejné $T$};
+  \node[Red,align=center] at (5.0,3.1) {hledaná\\ max.\ teplota};
+  \draw[Red,->] (4.3,2.95) -- (3.0,2.45);
+  \draw[Red,->] (5.6,-0.5) -- (10.5,-0.5);
+  \node[Red,font=\small,align=left] at (8.2,-1.05) {porušen ZZE (1.TDZ)\\ ($T_H = A = \sum T_i \Leftrightarrow \forall U$ je v horkém tělese)};
+\end{tikzpicture}
+\end{center}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\begin{priklad}[Příklad 4]
+1 mol 1-atom.\ id.\ plynu je uzavřen v nádobě o objemu $V_i$ a jeho teplota je $T_i$. Plyn je uveden do kontaktu s konečným zdrojem tepla s tep.\ kapacitou $C_\ell = R(2 + aT)$ ($a\ll 1$), jehož teplota je $T_\ell$.
+
+Plyn přejde do konečného stavu def.\ $V_f = 2V_i$ \& $T_f = T_i$ (teplota plynu se tedy nezmění, rovnováha s HS nenastává). Jakou max.\ práci můžeme z procesu získat?
+\end{priklad}
+\begin{itemize}
+  \item $s_{id} = R\log\left[\left(\frac{T}{T_0}\right)^c\left(\frac{V}{V_0}\right)\right] + s_0$ \hfill $c = \frac32$\hspace*{3cm}
+  \item $\Delta u_{id} = 0 \Leftarrow T = $ konst; \quad $\Delta s_{id} = R\log 2$
+  \item HS: \ $T_\ell\to T_\ell^f$
+  \[
+    \Delta S_\ell = \int_{T_\ell}^{T_\ell^f}\frac{C_\ell(T)}{T}\dd T = \int\frac{R(2 + aT)}{T}\dd T = 2R\log\left(\frac{T_\ell^f}{T_\ell}\right) + aR(T_\ell^f - T_\ell)
+  \]
+\end{itemize}
+$T_\ell^f$: \quad $\Delta s_{id} + \Delta S_\ell = 0 \ \Leftrightarrow\ \log 2 + 2\log\left(\frac{T_\ell^f}{T_\ell}\right) + a(T_\ell^f - T_\ell) = 0$ \quad \pozn{$R$ vykráceno}
+
+$T_\ell^f \equiv T_\ell + \delta$
+\[ \Rightarrow\ \log 2 + 2\log\left(1 + \frac{\delta}{T_\ell}\right) + a\delta = 0 \]
+\begin{itemize}
+  \item $a\ll 1 \Rightarrow a\delta \sim \log(1 + a\delta)$
+  \[
+    \Rightarrow\ \log\left[2\left(1 + \frac{\delta}{T_\ell}\right)^2(1 + a\delta)\right] = 0 = 2\log\left[\left(1 + \frac{\delta}{T_\ell}\right)\big(2(1 + a\delta)\big)^{1/2}\right]
+  \]
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{T5-6}
+\begin{itemize}
+  \item $(1 + \epsilon)^\alpha \approx 1 + \alpha\epsilon$
+  \[
+    \Rightarrow\ \vzorec{\left(1 + \frac{\delta}{T_\ell}\right)\left(1 + \frac{a\delta}{2}\right) = \frac{1}{\sqrt2}}
+    \quad \dots\ \text{rovnice pro } \delta = T_\ell^f - T_\ell \text{ do lin.\ řádu v } a
+  \]
+\end{itemize}
+\[
+  \Rightarrow\ \delta \ \Rightarrow\ T_\ell^f \ \Rightarrow\ W_{RWS} = -\Delta U_\ell(T_\ell\to T_\ell^f) = U(T_\ell) - U(T_\ell^f)
+\]
+\[
+  \Delta U_\ell = \int_{T_\ell}^{T_\ell^f} R(2 + aT)\,\dd T = \dots
+\]
+\noindent\rule{\linewidth}{0.4pt}
+

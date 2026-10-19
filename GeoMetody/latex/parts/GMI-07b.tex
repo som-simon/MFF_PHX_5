@@ -1,0 +1,251 @@
+%======================================================================
+% GMI-07b Vnejsi kalkulus.pdf
+%======================================================================
+\section{Vnější kalkulus}
+\strana{GMI-07b-1}
+\begin{itemize}[nosep]
+  \item Antisymetrické formy
+  \item Vnější derivace
+  \item Lieova derivace forem
+  \item Uzavřené a exaktní formy, kohomologie
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-2}
+\subsection{Antisymetrické formy}
+
+\begin{tabular}{@{}ll}
+prostor tečných $p$-forem & $\Lambda^p M = \mathbb{T}^0_{[p]}M$ \\
+prostor polí $p$-forem & $\mathcal{A}^p M = \mathcal{T}^0_{[p]}M$ \\
+vnější algebra -- nehomog.\ formy & $\Lambda M$ \\
+pole nehom.\ forem & $\mathcal{A} M$
+\end{tabular}
+
+\begin{vysvetleni}[Značení prostorů forem]
+$\mathbb{T}^0_{[p]}M$ označuje tenzory typu $(0,p)$ \emph{totálně antisymetrické} ve všech indexech (hranatá závorka = antisymetrie), tedy $p$-formy v jednom bodě; kaligrafické $\mathcal{A}^pM$, $\mathcal{T}M$ značí \emph{pole} těchto objektů na varietě. Vnější algebra $\Lambda M=\bigoplus_{p=0}^{d}\Lambda^pM$ obsahuje i součty forem různých stupňů (\uv{nehomogenní formy}) s vnějším součinem $\wedge$. Protože $p$-forma je určena složkami s uspořádanými indexy $a_1<\dots<a_p$, má $\Lambda^pM$ dimenzi $\binom{d}{p}$ a pro $p>d$ je nulový.
+Podtržené indexy (např.\ $\omega_{\underline{a}\underline{b}}$) jsou v těchto poznámkách \emph{abstraktní} indexy (označují typ tenzoru), nepodtržené jsou složky vůči bázi/souřadnicím.
+Viz Krtouš, odd.~4.1--4.3.
+\end{vysvetleni}
+
+Výhoda AS forem je, že se lze obejít bez indexů
+\begin{itemize}[nosep]
+  \item[] všechny indexy si jsou rovnocenné
+  \item[] pořadí mění jen znaménko
+\end{itemize}
+
+použití
+\begin{itemize}[nosep]
+  \item[] symplektick.\ geom.
+  \item[] Riemannovské geom.
+  \item[] reprez.\ Clifford.\ algeber $\to$ spinory
+  \item[] EM pole
+  \item[] Hodgeho teorie
+  \item[] kohomologie
+\end{itemize}
+diferencovatelnost a integrovatelnost
+\begin{itemize}[nosep]
+  \item[] možnost zavedení diferencování bez další struktury
+  \item[] možnost integrování
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-3}
+\subsection{Vnější derivace}
+
+\begin{definice}[Vnější derivace]
+\begin{align*}
+  &\mathrm{d}:\ \mathcal{A}^pM \to \mathcal{A}^{p+1}M \qquad \text{případně } \mathcal{A}M\to\mathcal{A}M \\
+  &\mathrm{d}(\omega + r\sigma) = \mathrm{d}\omega + r\,\mathrm{d}\sigma && r\in\mathbb{R} \\
+  &\vzorec{\mathrm{d}(\omega\wedge\sigma) = \mathrm{d}\omega\wedge\sigma + (-1)^p\,\omega\wedge\mathrm{d}\sigma} && \omega\in\mathcal{A}^pM \\
+  &\text{na } \mathcal{A}^0M = \mathcal{F}M \text{ působí } \mathrm{d} \text{ jako gradient} \\
+  &\vzorec{\mathrm{d}\mathrm{d}\omega = 0}
+\end{align*}
+\end{definice}
+
+\begin{vysvetleni}[Co je vnější derivace]
+Obecné tenzorové pole nelze derivovat bez dodatečné struktury (Lieova derivace potřebuje vektorové pole, kovariantní derivace paralelní přenos). Antisymetrické formy jsou výjimka: $\mathrm{d}$ je definována \emph{pouze} hladkou strukturou variety. Čtyři vlastnosti (linearita, Leibnizovo pravidlo se znaménkem $(-1)^p$, $\mathrm{d}f$ = gradient, $\mathrm{d}\mathrm{d}=0$) ji určují jednoznačně, jak ukazuje rozpis níže.
+V $\mathbb{R}^3$ s eukleidovskou metrikou odpovídá $\mathrm{d}$ na 0-, 1- a 2-formách postupně operacím $\operatorname{grad}$, $\operatorname{rot}$, $\operatorname{div}$ a $\mathrm{d}\mathrm{d}=0$ shrnuje identity $\operatorname{rot}\operatorname{grad}=0$, $\operatorname{div}\operatorname{rot}=0$.
+Viz Krtouš, def.~D4.3 a marginálie M4.4.
+\end{vysvetleni}
+
+\underline{Pozn.} Leibniz \\
+\quad užití abstr.\ indexů eliminuje znaménko
+\[
+  \mathrm{d}_a\big(\omega_{b\dots}\wedge\sigma_{c\dots}\big) = \big(\mathrm{d}_a\omega_{b\dots}\big)\wedge\sigma_{c\dots} + \omega_{b\dots}\wedge\mathrm{d}_a\sigma_{c\dots}
+\]
+\underline{Pozn.} fce \\
+\quad $\mathcal{A}^0M = \mathcal{F}M \ \Rightarrow\ \mathrm{d}(f\omega) = \mathrm{d}f\wedge\omega + f\,\mathrm{d}\omega$
+
+úplnost a jednozn.\ definice
+\begin{align*}
+  \mathrm{d}\omega &= \mathrm{d}\Big(\sum_{a_1<\dots<a_p}\omega_{a_1\dots a_p}\,\mathrm{d}x^{a_1}\wedge\dots\wedge\mathrm{d}x^{a_p}\Big) \\
+  &= \sum_{a_1<\dots<a_p}\mathrm{d}\omega_{a_1\dots a_p}\wedge\mathrm{d}x^{a_1}\wedge\dots\wedge\mathrm{d}x^{a_p}
+     && \text{\small vnitřní uspoř., rozderivování } \mathrm{d}\omega_{a\dots} \\
+  &= \frac{1}{p!}\sum_{a_0a_1\dots a_p}\omega_{a_1\dots a_p,a_0}\,\mathrm{d}x^{a_0}\wedge\mathrm{d}x^{a_1}\wedge\dots\wedge\mathrm{d}x^{a_p}
+     && \text{\small redukce sumy přes uspořádanou sumu} \\
+  &= (p+1)\sum_{a_0<a_1<\dots<a_p}\omega_{[a_1\dots a_p,a_0]}\,\mathrm{d}x^{a_0}\wedge\mathrm{d}x^{a_1}\wedge\dots\wedge\mathrm{d}x^{a_p}
+\end{align*}
+$\Rightarrow$ explicitní výraz pro $\mathrm{d}\omega$ \\
+$\Rightarrow$ souřadnice \quad $\vzorec{(\mathrm{d}\omega)_{a_0a_1\dots a_p} = (p+1)\,\omega_{[a_1\dots a_p,a_0]}}$
+
+nezávislost na volbě souř.
+\begin{align*}
+  \omega'_{a'_1\dots a'_p} &= X^{n_1}_{,a'_1}\cdots X^{n_p}_{,a'_p}\,\omega_{n_1\dots n_p}
+    \qquad\qquad T^n_{a'} = \frac{\partial x^n}{\partial x^{a'}} = x^n_{,a'} \\
+  \omega'_{a'_1\dots a'_p,a'_0} &= X^{n_0}_{,a'_0}X^{n_1}_{,a'_1}\cdots X^{n_p}_{,a'_p}\,\omega_{n_1\dots n_p,n_0}
+    + \big(\underbrace{X^{n_1}_{,a'_1a'_0}}_{\text{sym.}}X^{n_2}_{,a'_2}\cdots + X^{n_1}_{,a'_1}\underbrace{X^{n_2}_{,a'_2a'_0}}_{\text{sym.}}\cdots + \dots\big)\,\omega_{n_1\dots n_p} \\
+  \omega'_{[a'_1\dots a'_p,a'_0]} &= X^{n_0}_{,a'_0}X^{n_1}_{,a'_1}\cdots X^{n_p}_{,a'_p}\,\omega_{[n_1\dots n_p,n_0]}
+\end{align*}
+
+\begin{vysvetleni}[Složky $\mathrm{d}\omega$ a jejich tenzorovost]
+Rozpis ukazuje jednoznačnost: v libovolných souřadnicích stačí použít linearitu, Leibnize a $\mathrm{d}\mathrm{d}x^a=0$, takže $\mathrm{d}\omega$ je dána explicitně. Čárka značí parciální derivaci, $\omega_{a_1\dots a_p,a_0}=\partial\omega_{a_1\dots a_p}/\partial x^{a_0}$. Výsledek $(\mathrm{d}\omega)_{a_0\dots a_p}=(p+1)\,\omega_{[a_1\dots a_p,a_0]}$ je Krtoušovo lemma V4.1.
+Pozor: $\mathrm{d}_{a_0}\omega_{a_1\dots a_p}$ značí složky formy $\mathrm{d}\omega$, ne gradienty jednotlivých složek.
+Nezávislost na souřadnicích: parciální derivace složek se netransformuje tenzorově, protože vzniknou členy s druhými derivacemi $X^n_{,a'b'}$ (zde $X^n_{,a'}=\partial x^n/\partial x^{a'}$ je Jacobiho matice, v pravém sloupci značená $T^n_{a'}$). Ty jsou ale \emph{symetrické} v $a',b'$, a proto antisymetrizací vypadnou.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-4}
+\begin{priklad}[Př.]
+\begin{align*}
+  \mathrm{d}_af &= f_{,a} \\
+  \mathrm{d}_a\alpha_b &= 2\,\alpha_{[b,a]} = \alpha_{b,a} - \alpha_{a,b} \\
+  \mathrm{d}_a\sigma_{bc} &= 3\,\sigma_{[bc,a]} = \sigma_{bc,a} + \sigma_{ab,c} + \sigma_{ca,b}
+\end{align*}
+\end{priklad}
+
+\begin{vysvetleni}[K příkladům]
+U 2-formy se ze šesti členů antisymetrizace (s faktorem $\tfrac{3}{3!}=\tfrac12$) díky $\sigma_{bc}=-\sigma_{cb}$ vždy dva sečtou, takže zbude cyklický součet. Ve $\mathbb{R}^3$: pro $\alpha=\alpha_i\mathrm{d}x^i$ jsou složky $(\mathrm{d}\alpha)_{ij}=\partial_i\alpha_j-\partial_j\alpha_i$ složky $\operatorname{rot}\alpha$, a pro $\sigma=\tfrac12\sigma_{ij}\,\mathrm{d}x^i\wedge\mathrm{d}x^j$ má $\mathrm{d}\sigma$ jedinou složku $(\mathrm{d}\sigma)_{123}=\sigma_{23,1}+\sigma_{31,2}+\sigma_{12,3}$, což je divergence vektoru $(\sigma_{23},\sigma_{31},\sigma_{12})$.
+\end{vysvetleni}
+
+\subsubsection*{Zúžení vnější der.\ s vektory}
+\[
+  \vzorec{a\cdot(\mathrm{d}\underset{1}{\gamma})\cdot b = a\cdot\mathrm{d}(b\cdot\gamma) - b\cdot\mathrm{d}(a\cdot\gamma) - [a,b]\cdot\gamma}
+\]
+důkaz
+\begin{align*}
+  \gamma = \mathrm{d}f \ &\Rightarrow\ 0 = a\cdot\mathrm{d}(b\cdot\mathrm{d}f) - b\cdot\mathrm{d}(a\cdot\mathrm{d}f) - [a,b]\cdot\mathrm{d}f \\
+  &\qquad\ \uparrow\ \text{definice Lieovy záv.} \\
+  \gamma = h\,\mathrm{d}f \ &\Rightarrow\ a\cdot\big(\mathrm{d}(h\,\mathrm{d}f)\big)\cdot b = a\cdot(\mathrm{d}h\wedge\mathrm{d}f)\cdot b
+     = (a\cdot\mathrm{d}h)(b\cdot\mathrm{d}f) - (a\cdot\mathrm{d}f)(b\cdot\mathrm{d}h) \\
+  &\qquad a\cdot\mathrm{d}(b\cdot h\,\mathrm{d}f) - b\cdot\mathrm{d}(a\cdot h\,\mathrm{d}f) - [a,b]\cdot h\,\mathrm{d}f = \\
+  &\qquad\quad = (a\cdot\mathrm{d}h)(b\cdot\mathrm{d}f) - (b\cdot\mathrm{d}h)(a\cdot\mathrm{d}f) \qquad \text{O.K.}
+\end{align*}
+\quad + linearita vůči součtu
+
+\begin{vysvetleni}[Zúžení $\mathrm{d}\gamma$ s vektory]
+Zápis $a\cdot(\mathrm{d}\gamma)\cdot b$ znamená $a^m(\mathrm{d}_m\gamma_n)b^n$: vektor vlevo se zúží s prvním indexem, vektor vpravo s druhým. Vzorec vyjadřuje $\mathrm{d}\gamma$ bez souřadnic, jen pomocí derivací funkcí podél vektorových polí a Lieovy závorky (Krtouš, příklad P4.3).
+Logika důkazu: obě strany jsou lineární v $\gamma$, a navíc pravá strana je i pro $\gamma\mapsto h\gamma$ lineární vůči násobení funkcí (členy s $\mathrm{d}h$ se ukážou stejné jako vlevo). Každá 1-forma je lokálně součtem $\sum h_i\,\mathrm{d}x^i$, takže stačí ověřit případy $\gamma=\mathrm{d}f$ (pak levá strana je $0$ díky $\mathrm{d}\mathrm{d}f=0$ a pravá je definice $[a,b]$) a $\gamma=h\,\mathrm{d}f$.
+\end{vysvetleni}
+
+obecně
+\begin{align*}
+  \big(\mathrm{d}_{\underline{n}_0}\omega_{\underline{n}_1\dots\underline{n}_p}\big)\,a_0^{\underline{n}_0}a_1^{\underline{n}_1}\cdots a_p^{\underline{n}_p} =
+  &= \sum_{0\leq k\leq p}(-1)^k\,a_k^{\underline{n}_k}\,\mathrm{d}_{\underline{n}_k}\Big(\underbrace{\omega_{\underline{n}_0\dots\underline{n}_p}a_0^{\underline{n}_0}\cdots a_p^{\underline{n}_p}}_{\text{mimo } k\text{-člen}}\Big) \\
+  &\quad + \sum_{0\leq k<l\leq p}(-1)^{k+l}\,[a_k,a_l]^{\underline{n}}\,\underbrace{\omega_{\underline{n}\,\underline{n}_0\dots\underline{n}_p}a_0^{\underline{n}_0}\cdots a_p^{\underline{n}_p}}_{\text{mimo } k,l\text{-členy}}
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-5}
+\begin{veta}[Theorem]
+\begin{align*}
+  \big(\mathrm{d}_{\mu_0}\omega_{\mu_1\dots\mu_n}\big)\,a_0^{\mu_0}a_1^{\mu_1}\cdots a_n^{\mu_n} =
+  &= \sum_{0\leq k\leq n}(-1)^k\,a_k^{\mu}\,\mathrm{d}_\mu\Big(\underbrace{\omega_{\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k}\Big) + \\
+  &\quad + \sum_{0\leq k<l\leq n}(-1)^{k+l}\,[a_k,a_l]^\mu\,\underbrace{\omega_{\mu\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k\mu_l}
+\end{align*}
+\end{veta}
+
+\begin{vysvetleni}[Invariantní vzorec pro $\mathrm{d}\omega$]
+Jde o zobecnění předchozího vzorce na $n$-formy (Krtouš, marginálie M4.5, důkaz v dodatku 4.A). Popisek \uv{mimo $\mu_k$} znamená, že se z řetězce vynechá vektor $a_k$ (a jeho index), takže $\omega$ je zúžena se zbývajícími $n$ vektory; ve druhém součtu se vynechají $a_k$ i $a_l$ a na první místo $\omega$ se dosadí $[a_k,a_l]$. Bez indexů:
+$\mathrm{d}\omega(a_0,\dots,a_n)=\sum_k(-1)^k a_k\big[\omega(\dots\widehat{a_k}\dots)\big]+\sum_{k<l}(-1)^{k+l}\,\omega\big([a_k,a_l],\dots\widehat{a_k}\dots\widehat{a_l}\dots\big)$.
+Pro $n=1$ dostaneme vzorec z předchozí strany. Ve shodě s Krtoušem je zde $(\alpha\wedge\beta)_{ab}=\alpha_a\beta_b-\alpha_b\beta_a$ (bez faktoru $\tfrac12$), jinak by se vzorec lišil o kombinatorický faktor.
+\end{vysvetleni}
+
+\underline{Důkaz:}
+\begin{align*}
+  \omega &= \sum_{1\leq\mu_1<\dots<\mu_n\leq d}\omega_{\mu_1\dots\mu_n}\,\mathrm{d}x^{\mu_1}\wedge\dots\wedge\mathrm{d}x^{\mu_n} \\
+  \mathrm{d}_{\underline{\alpha}_0}\omega_{\underline{\alpha}_1\dots\underline{\alpha}_n}
+  &= \sum_{1\leq\mu_1<\dots<\mu_n\leq d}\mathrm{d}_{\underline{\alpha}_0}\omega_{\mu_1\dots\mu_n}\wedge\mathrm{d}_{\underline{\alpha}_1}x^{\mu_1}\wedge\dots\wedge\mathrm{d}_{\underline{\alpha}_n}x^{\mu_n} \\
+  &= \sum_{1\leq\mu_1<\dots<\mu_n\leq d}\ \sum_{0\leq k\leq n}(-1)^k\big(\mathrm{d}_{\underline{\alpha}_k}\omega_{\mu_1\dots\mu_n}\big)\underbrace{\mathrm{d}_{\underline{\alpha}_0}x^{\mu_1}\wedge\dots\wedge\mathrm{d}_{\underline{\alpha}_n}x^{\mu_n}}_{\text{mimo } \underline{\alpha}_k} \\
+  &= \sum_{0\leq k\leq n}(-1)^k\big(\mathrm{d}_{\underline{\alpha}_k}\omega_{\mu_1\dots\mu_n}\big)\underbrace{\mathrm{d}_{\underline{\alpha}_0}x^{\mu_1}\cdots\mathrm{d}_{\underline{\alpha}_n}x^{\mu_n}}_{\text{mimo } k}
+\end{align*}
+\begin{align*}
+  \big(\mathrm{d}_{\underline{\alpha}_0}\omega_{\underline{\alpha}_1\dots\underline{\alpha}_n}\big)\,a_0^{\underline{\alpha}_0}a_1^{\underline{\alpha}_1}\cdots a_n^{\underline{\alpha}_n} =
+  &= \sum_{0\leq k\leq n}(-1)^k\,a_k^\mu\big(\mathrm{d}_\mu\omega_{\mu_1\dots\mu_n}\big)\underbrace{a_0^{\mu_1}\cdots a_n^{\mu_n}}_{\text{mimo } k} = \\
+  &= \sum_{0\leq k\leq n}(-1)^k\,a_k^\mu\,\mathrm{d}_\mu\Big(\underbrace{\omega_{\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k}\Big) + \\
+  &\quad + \sum_{0\leq k<l\leq n}(-1)^{k+l}\Big(a_k^\nu\big(\mathrm{d}_\nu a_l^\mu\big) - a_l^\nu\,\mathrm{d}_\nu a_k^\mu\Big)\frac{\partial}{\partial x^\mu}\,\underbrace{\omega_{\mu\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k\mu_l} \\
+  &= \sum_{0\leq k\leq n}(-1)^k\,a_k^\mu\,\mathrm{d}_\mu\Big(\underbrace{\omega_{\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k}\Big) + \\
+  &\quad + \sum_{0\leq k<l\leq n}(-1)^{k+l}\,[a_k,a_l]^\mu\,\underbrace{\omega_{\mu\mu_0\dots\mu_n}a_0^{\mu_0}\cdots a_n^{\mu_n}}_{\text{mimo } \mu_k\mu_l}
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-6}
+\subsection{Uzavřené a exaktní formy}
+
+\begin{definice}[Uzavřené a exaktní formy]
+\begin{tabular}{@{}lll@{\qquad}l@{\quad}l}
+$\omega$ je \kw{uzavřená} & $\equiv$ & $\mathrm{d}\omega = 0$ & $\mathcal{A}^p_c M$ & $\mathcal{A}_c M$ \\
+$\omega$ je \kw{exaktní} & $\equiv$ & $\exists\sigma\ \ \omega = \mathrm{d}\sigma$ & $\mathcal{A}^p_e M$ & $\mathcal{A}_e M$
+\end{tabular}
+
+neboli \qquad $\mathcal{A}_c M = \ker\mathrm{d}$ \qquad $\mathcal{A}_e M = \operatorname{im}\mathrm{d}$
+\end{definice}
+
+platí
+\begin{itemize}[nosep]
+  \item[] $\omega$ exaktní $\Rightarrow$ $\omega$ uzavřená
+  \item[] platí i naopak -- pouze na top.\ triv.\ oblasti
+  \item[] na oblasti $U$ homeomorfní $B^n$ (tj.\ $\mathbb{R}^n$)
+\end{itemize}
+\begin{veta}[Poincarého lemma]
+na oblasti $U$ homeomorfní $B^n$: \quad $\omega$ exaktní $\Leftrightarrow$ $\omega$ uzavřená \\
+tj.\ \quad $\oprava{\mathrm{d}\omega = 0}{\mathrm{d}\omega} \ \Leftrightarrow\ \exists\sigma\ \ \omega = \mathrm{d}\sigma$
+\end{veta}
+obecně mohou být topologické obstrukce \\
+\quad $\to$ viz de Rhamova kohomologie
+
+\begin{vysvetleni}[Uzavřené vs.\ exaktní formy, Poincarého lemma]
+Exaktní $\Rightarrow$ uzavřená plyne přímo z $\mathrm{d}\mathrm{d}=0$. Opak platí jen lokálně, resp.\ na kontrahovatelné (\uv{topologicky triviální}) oblasti, např.\ hvězdicovité oblasti nebo oblasti homeomorfní s koulí $B^n\simeq\mathbb{R}^n$.
+Standardní protipříklad: na $\mathbb{R}^2\setminus\{0\}$ je $\omega=\frac{x\,\mathrm{d}y-y\,\mathrm{d}x}{x^2+y^2}$ uzavřená (lokálně $\omega=\mathrm{d}\varphi$), ale ne exaktní, protože $\oint\omega=2\pi$ po kružnici kolem počátku a úhel $\varphi$ nelze zavést globálně jednoznačně.
+Míru této obstrukce měří de Rhamovy kohomologické grupy $H^p(M)=\mathcal{A}^p_cM/\mathcal{A}^p_eM$ (uzavřené formy modulo exaktní); jejich dimenze jsou Bettiho čísla. Viz Krtouš, odd.~4.6 (def.~D4.4, D4.5, marginálie M4.6).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-07b-7}
+\subsubsection*{Holonomnost báze}
+na topologicky triv.\ okolí $U\subset M$ mějme \sout{zadané báze} bázi $e_k\in\mathcal{T}U$ a duální bázi $e^k\in\mathcal{T}^*U$ \\
+následující tvrzení jsou ekvivalentní:
+
+\begin{veta}[Holonomnost báze]
+\begin{enumerate}[label=(\roman*)]
+  \item $e_k$ je \kw{holonomní}, tj.\ $\exists$ souř.\ $x^k$ tak, že $e_k = \dfrac{\partial}{\partial x^k}$
+  \item $e^k$ tvoří exaktní formy \quad $e^k = \mathrm{d}x^k$ \quad $x^k$ souř.\ na $U$
+  \item $\mathrm{d}e^k = 0 \quad \forall k$
+  \item $[e_k,e_l] = 0 \quad \forall k,l$
+\end{enumerate}
+\end{veta}
+
+důk.:
+\begin{itemize}[nosep]
+  \item[(i, ii)] přímo def.\ holonomnosti a duálnost $\frac{\partial}{\partial x^k}$ a $\mathrm{d}x^k$
+  \item[(iii)] $\mathrm{d}e^k = 0$ na top.\ triv.\ $U$ $\Leftrightarrow$ $e^k = \mathrm{d}x^k$ \quad (Poincaré lemma)
+  \item[(iv)] $e_k\cdot(\mathrm{d}e^m)\cdot e_l = e_k\cdot\mathrm{d}\big(\overset{0}{e_l\cdot e^m}\big) - e_l\cdot\mathrm{d}\big(\overset{0}{e_k\cdot e^m}\big) - [e_k,e_l]\cdot e^m$ \\
+        $\Rightarrow$ \quad $\forall m\ \ \mathrm{d}e^m = 0$ \quad $\Leftrightarrow$ \quad $\forall k,l\ \ [e_k,e_l] = 0$
+\end{itemize}
+
+\begin{vysvetleni}[Holonomní a neholonomní báze]
+Báze je holonomní (souřadnicová), právě když se dá \uv{integrovat} na souřadnice. Test je čistě lokální: stačí spočítat komutátory $[e_k,e_l]$, nebo ekvivalentně vnější derivace duálních 1-forem. V (iv) jsou zúžení $e_l\cdot e^m=\delta^m_l$ konstanty, proto jejich derivace (nad nimi psaná $0$) vymizí a zbude $e_k\cdot(\mathrm{d}e^m)\cdot e_l=-[e_k,e_l]^m$.
+Příklad: ortonormální báze v polárních souřadnicích, $e_r=\partial_r$, $e_\varphi=\frac1r\partial_\varphi$, je neholonomní: $[e_r,e_\varphi]=-\frac1{r}e_\varphi$, resp.\ $e^\varphi=r\,\mathrm{d}\varphi$ a $\mathrm{d}e^\varphi=\mathrm{d}r\wedge\mathrm{d}\varphi\neq0$.
+Právě tyto komutátory se později objeví jako torze n-ádové derivace a určují Ricciho rotační koeficienty (kap.\ Metrické derivace; Krtouš, lemma V7.11).
+\end{vysvetleni}
+
+\pozn{část \uv{Lieova derivace forem} z obsahu na str.~1 v tomto souboru poznámek chybí}
+
+\begin{vysvetleni}[Lieova derivace forem (doplněno z Krtouše)]
+Chybějící část obsahu pokrývá Krtouš, odd.~4.5: vnější derivace komutuje s Lieovou derivací, $\mathrm{d}\,\mathcal{L}_a\omega=\mathcal{L}_a\,\mathrm{d}\omega$ (lemma V4.2), a platí \emph{Cartanova identita} (věta V4.3)
+\[
+  \mathcal{L}_a\omega_{n_1\dots n_p}=a^n\,\mathrm{d}_n\omega_{n_1\dots n_p}+\mathrm{d}_{n_1}\big(a^n\omega_{n n_2\dots n_p}\big),
+  \qquad\text{tj.}\qquad \mathcal{L}_a=i_a\mathrm{d}+\mathrm{d}\,i_a ,
+\]
+kde $i_a$ značí zúžení s vektorem $a$ do prvního indexu. Pro formy tedy Lieovu derivaci spočítáme bez znalosti derivací pole $a$ ve složkách, jen pomocí $\mathrm{d}$ a zúžení.
+\end{vysvetleni}
+

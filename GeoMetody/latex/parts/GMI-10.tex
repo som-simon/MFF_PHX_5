@@ -1,0 +1,298 @@
+%======================================================================
+% GMI-10 Metricke derivace.pdf
+%======================================================================
+\section{Metrické kovariantní derivace}
+\strana{GMI-10-1}
+\begin{center}(Levi-Civitova konexe)\end{center}
+
+\begin{veta}[Levi-Civitova konexe]
+\[ \vzorec{\nabla g = 0} \qquad\qquad \vzorec{T = 0} \]
+určuje $\nabla$ jednoznačně
+\end{veta}
+
+\begin{vysvetleni}[Základní věta riemannovské geometrie]
+Kovariantních derivací je na varietě nekonečně mnoho; tvoří afinní prostor, jehož zaměřením jsou tenzory typu $(1,2)$ (Krtouš, odd.~7.6). Metrika z nich vybere jedinou, která zachovává metriku, tj.\ paralelní přenos zachovává skalární součiny ($\nabla g=0$), a je beztorzní. Tato \emph{Levi-Civitova} derivace je základem obecné relativity.
+Důkaz je konstruktivní: zvolíme libovolnou referenční derivaci $\tilde\nabla$ (např.\ souřadnicovou) a obě podmínky přepíšeme na lineární rovnice pro rozdílový tenzor $\gamma$, které mají právě jedno řešení.
+(Kapitola~9 \uv{Metrická kovariantní derivace} je v dostupné verzi Krtouše jen nadpisem; potřebný aparát je v odd.~7.4--7.7.)
+\end{vysvetleni}
+
+zvolme \uv{souř.\ derivaci} $\tilde\nabla$ (libovolná kov.\ der.)
+\begin{align*}
+  \nabla &= \tilde\nabla + \gamma & &\gamma^{\underline{m}}{}_{\underline{ab}} & \gamma_{\underline{amb}} &= \gamma^{\underline{n}}{}_{\underline{ab}}\,g_{\underline{nm}} \\
+  \text{torze } &\tilde\nabla & &t^{\underline{n}}{}_{\underline{ab}} & t_{\underline{mab}} &= g_{\underline{mn}}\,t^{\underline{n}}{}_{\underline{ab}}
+\end{align*}
+platí
+\begin{align*}
+  -t_{\underline{mab}} &= \gamma_{\underline{amb}} - \gamma_{\underline{bma}} & &\Leftarrow\ -t^{\underline{n}}{}_{\underline{ab}} = 2\gamma^{\underline{m}}{}_{[\underline{ab}]} \quad T = 0 \\
+  \tilde\nabla_{\underline{m}}g_{\underline{ab}} &= \gamma_{\underline{mab}} + \gamma_{\underline{mba}} & &\Leftarrow\ \nabla g = 0
+\end{align*}
+
+\begin{vysvetleni}[Značení rozdílového tenzoru a odvození podmínek]
+$\gamma^{\underline{m}}{}_{\underline{ab}}$ je rozdílový tenzor, $\nabla_{\underline{a}}v^{\underline{m}}=\tilde\nabla_{\underline{a}}v^{\underline{m}}+\gamma^{\underline{m}}{}_{\underline{an}}v^{\underline{n}}$. \emph{První dolní index je směr derivace}, druhý se zúží s derivovaným vektorem (Krtouš píše $\Gamma_a{}^m{}_b$). Na 1-formách působí s minusem, $\nabla_a\alpha_b=\tilde\nabla_a\alpha_b-\gamma^n{}_{ab}\alpha_n$.
+Při snížení $\gamma_{\underline{amb}}=g_{\underline{mn}}\gamma^{\underline{n}}{}_{\underline{ab}}$ jde horní index na \emph{prostřední} místo. Stejně u torze: $t^{\underline{n}}{}_{\underline{ab}}$ je torze referenční derivace $\tilde\nabla$ a $t_{\underline{mab}}$ má snížený index první.
+První řádek: torze se mění o antisymetrickou část rozdílového tenzoru, $\operatorname{Tor}\nabla=t+2\gamma^{\underline{m}}{}_{[\underline{ab}]}$ (Krtouš, věta V7.12). Druhý řádek: rozepsáním $\nabla_mg_{ab}=\tilde\nabla_mg_{ab}-\gamma^n{}_{ma}g_{nb}-\gamma^n{}_{mb}g_{an}=0$.
+\end{vysvetleni}
+\[ \Downarrow \]
+
+\begin{minipage}{0.52\textwidth}
+\begin{align*}
+  \vzorec{\gamma^{\underline{m}}{}_{\underline{ab}}} &= \tfrac12 g^{\underline{mn}}\big(\tilde\nabla_{\underline{a}}g_{\underline{bn}} + \tilde\nabla_{\underline{b}}g_{\underline{an}} - \tilde\nabla_{\underline{n}}g_{\underline{ab}}\big) \\
+  &\quad + \tfrac12 g^{\underline{mn}}\big(t_{\underline{abn}} + t_{\underline{ban}} - t_{\underline{nab}}\big)
+\end{align*}
+\quad jednoznačnost
+\end{minipage}
+$\Leftarrow$
+\begin{minipage}{0.44\textwidth}
+\small
+$\left\{\begin{aligned}
+  \tilde\nabla_ag_{bc} &= \gamma_{abc} + \gamma_{acb} \\
+  \tilde\nabla_bg_{ca} &= \gamma_{bca} + \gamma_{bac} \\
+  -\tilde\nabla_cg_{ab} &= -\gamma_{cab} - \gamma_{cba} \\
+  \gamma_{(a|c|b)} &= \tfrac12\big(\tilde\nabla_ag_{bc} + \tilde\nabla_bg_{ac} - \tilde\nabla_cg_{ab}\big) \\
+    &\quad + \tfrac12\big(t_{abc} + t_{bac}\big) \\
+  \gamma_{[a|c|b]} &= -\tfrac12 t_{cab} \\
+  \gamma_{acb} &= \tfrac12\big(\tilde\nabla_ag_{bc} + \tilde\nabla_bg_{ac} - \tilde\nabla_cg_{ab}\big) \\
+    &\quad + \tfrac12\big(t_{abc} - t_{bca} - t_{cab}\big)
+\end{aligned}\right.$
+\end{minipage}
+
+\begin{vysvetleni}[Trik s cyklickou záměnou]
+Pravý sloupec je obvyklý postup (Koszulův vzorec): metricita určuje jen část $\gamma_{a(bc)}$ symetrickou v posledních dvou indexech, torze jen antisymetrickou část $\gamma_{[a|c|b]}$ v krajních indexech. Sečteme-li metricitu pro tři cyklické záměny indexů se znaménky $+,+,-$, zbude symetrická část $\gamma_{(a|c|b)}$ vyjádřená přes $\tilde\nabla g$ a $t$. Antisymetrickou část dá přímo torzní podmínka; součet obou částí je $\gamma_{acb}$.
+Protože výsledek je explicitní vzorec, dostáváme současně existenci i jednoznačnost Levi-Civitovy derivace. Při porovnání posledního řádku s levým vzorcem si všimněte, že $-t_{bca}=t_{bac}$ (antisymetrie torze v posledních dvou indexech).
+\end{vysvetleni}
+
+\kw{souřadnicová der.} $\partial$
+\[
+  x^n \ \leadsto\ \partial \ \leadsto\ \gamma = \Gamma \qquad t = 0
+\]
+\[
+  \vzorec{\Gamma^m{}_{ab} = \tfrac12 g^{mn}\big(g_{na,b} + g_{nb,a} - g_{ab,n}\big)}
+\]
+\quad \kw{Christoffelovy symboly} $=$ souřadnice metr.\ der.
+
+\begin{vysvetleni}[Christoffelovy symboly]
+Volba $\tilde\nabla=\partial$ (souřadnicová derivace souřadnic $x^n$, která má nulovou torzi a $\partial_ag_{bc}=g_{bc,a}$) dává klasický vzorec. $\Gamma^m{}_{ab}$ jsou složky rozdílového tenzoru $\nabla-\partial$ (Krtouš, def.~D7.12), samy ale tenzorem nejsou, protože závisejí na volbě souřadnic přes $\partial$. Jsou symetrické v $a,b$ (beztorznost).
+Příklad: rovina v polárních souřadnicích, $g=\mathrm{d}r^2+r^2\mathrm{d}\varphi^2$, má jediné nenulové $\Gamma^r{}_{\varphi\varphi}=-r$ a $\Gamma^\varphi{}_{r\varphi}=\Gamma^\varphi{}_{\varphi r}=\frac1r$.
+\end{vysvetleni}
+
+\kw{n-áďové der.\ ortonorm.\ báze} \pozn{\uv{repérové}?} \\
+\quad $e_m$ ortonormální $\leadsto$ $\partial$
+\begin{align*}
+  \partial g &= 0 & &\Leftarrow\ g_{ab} = \begin{pmatrix}1 & \\ & \ddots\end{pmatrix} \quad \text{(stačí konstanty)} \\
+  t^m{}_{ab} &= -[e_a,e_b]^m & t^m{}_{ab} &= \mathrm{d}_a e^m_b
+\end{align*}
+\[
+  \gamma^m{}_{ab} = \tfrac12 g^{mn}\big(t_{abn} + t_{ban} - t_{nab}\big)
+\]
+\quad \kw{Ricciho rotační koeficienty}
+
+\begin{vysvetleni}[n-ádová derivace a Ricciho rotační koeficienty]
+\uv{n-ádová} je Krtoušův termín pro derivaci spojenou s bází (n-ádou, reperem, \uv{frame}) $e_m$: je definována tak, že vektory $e_m$ i 1-formy $e^m$ jsou vůči ní konstantní, $\partial e_m=0$. Ve složkách vůči této bázi tedy derivuje jen složky (Krtouš, marginálie M7.5, lemma V7.11). Pro ortonormální bázi jsou složky $g_{ab}$ konstantní, takže $\partial g=0$.
+Na rozdíl od souřadnicové derivace má ale n-ádová derivace torzi, danou neholonomností báze: $t^m{}_{ab}=-[e_a,e_b]^m=(\mathrm{d}e^m)_{ab}$ (srv.\ holonomnost v kap.\ Vnější kalkulus). Dosazením do obecného vzorce zmizí členy s $\tilde\nabla g$ a Levi-Civitova derivace je určena \emph{jen komutátory báze}. Takto vzniklé $\gamma^m{}_{ab}$ jsou Ricciho rotační koeficienty, tj.\ Christoffelovy symboly vůči ortonormální bázi. Indexy se v ortonormální bázi zvedají a snižují pomocí $\operatorname{diag}(\pm1)$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-10-2}
+\subsubsection*{Torze n-áďové derivace}
+\[
+  \mathrm{d}_{\underline{a}}e^m_{\underline{b}} = \partial_{\underline{a}}\wedge e^m_{\underline{b}} + t^c{}_{\underline{ab}}\,e^m_{\underline{c}} = \oprava{t^m{}_{\underline{ab}}}{t^c{}_{\underline{ab}}}
+\]
+
+\kw{1-formy křivosti}
+\begin{align*}
+  \omega_{\underline{a}}{}^m{}_n &= \gamma_{\underline{a}}{}^m{}_n = \gamma_{\underline{a}}{}^{\underline{k}}{}_{\underline{l}}\,e^m_{\underline{k}}\,e^{\underline{l}}_n \\
+  \text{tj.}\quad \nabla_{\underline{a}}e^k_{\underline{b}} &= -\oprava{\omega_{\underline{a}}{}^k{}_n}{\omega_{\underline{a}}{}^m{}_n}\,e^n_{\underline{b}}
+\end{align*}
+
+\begin{vysvetleni}[Vnější derivace přes kovariantní; 1-formy konexe]
+První řádek je obecný vztah $\mathrm{d}\alpha=\nabla\wedge\alpha+T\cdot\alpha$ platný pro libovolnou derivaci s torzí $T$ (Krtouš, odd.~7.9), zde pro n-ádovou derivaci $\partial$. Protože $\partial e^m=0$, zbude jen torzní člen a $e^m_{\underline{c}}$ vybere $m$-tou složku, tedy $t^m{}_{\underline{ab}}$ (původně psaný index $c$ by nebyl vyvážen s levou stranou).
+$\omega_{\underline{a}}{}^m{}_n$ jsou pro každé $m,n$ 1-formy (abstraktní index $\underline{a}$), vzniklé z $\gamma$ zapsaného ve smíšených n-ádových složkách. Obvykle se nazývají \emph{1-formy konexe} (spinová konexe); \uv{křivost} popisují až 2-formy $\Omega^m{}_n=\mathrm{d}\omega^m{}_n+\omega^m{}_k\wedge\omega^k{}_n$ (2.~Cartanova rovnice). Pro ortonormální bázi plyne z metricity antisymetrie $\omega_{\underline{a}mn}=-\omega_{\underline{a}nm}$.
+Druhý řádek: na 1-formu $e^k$ působí $\gamma$ s minusem a $\partial e^k=0$, tedy $\nabla_{\underline{a}}e^k_{\underline{b}}=-\gamma^k{}_{\underline{ab}}=-\omega_{\underline{a}}{}^k{}_n e^n_{\underline{b}}$. Horní index na pravé straně proto musí být $k$.
+\end{vysvetleni}
+
+\begin{veta}[1.\ Cartanovy rovnice struktury]
+\[ \vzorec{\mathrm{d}e^k + \omega^k{}_l\wedge e^l = 0} \]
+\end{veta}
+ověření:
+\begin{align*}
+  \mathrm{d}e^k &= \nabla\wedge e^k = -\omega^k{}_l\wedge e^l \qquad\text{či} \\
+  \mathrm{d}_{\underline{a}}e^k_{\underline{b}} &= t^k{}_{\underline{ab}} = -2\gamma^k{}_{[\underline{ab}]} = -2\,\omega_{[\underline{a}}{}^k{}_l\,e^l_{\underline{b}]} = -\omega^k{}_l\wedge e^l
+\end{align*}
+
+\begin{vysvetleni}[Použití 1.\ Cartanovy rovnice]
+Rovnice $\mathrm{d}e^k=-\omega^k{}_l\wedge e^l$ spolu s antisymetrií $\omega_{kl}=-\omega_{lk}$ (ortonormální báze) určuje $\omega$ jednoznačně. V praxi je to nejrychlejší způsob výpočtu konexe: spočítá se $\mathrm{d}e^k$ a $\omega$ se \uv{uhodne}.
+Příklad, sféra: $e^1=\mathrm{d}\theta$, $e^2=\sin\theta\,\mathrm{d}\varphi$. Pak $\mathrm{d}e^1=0$, $\mathrm{d}e^2=\cos\theta\,\mathrm{d}\theta\wedge\mathrm{d}\varphi$, a odtud $\omega^2{}_1=-\omega^1{}_2=\cos\theta\,\mathrm{d}\varphi$ (ověření: $\omega^2{}_1\wedge e^1=-\cos\theta\,\mathrm{d}\theta\wedge\mathrm{d}\varphi$, $\omega^1{}_2\wedge e^2\propto\mathrm{d}\varphi\wedge\mathrm{d}\varphi=0$).
+Ve druhém řádku se použilo $t=-2\gamma_{[\,]}$ z beztorznosti $\nabla$ a $\alpha\wedge\beta=2\alpha_{[a}\beta_{b]}$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-10-3}
+\subsection{Metrické derivace}
+
+Levi-Civita \qquad $\nabla g = 0 \qquad \operatorname{Tor}[\nabla] = 0$
+
+obecné metrické der. \qquad $\bar\nabla g = 0 \qquad \operatorname{Tor}[\bar\nabla] = T$
+
+\kw{kontorze}
+\[
+  \bar\nabla = \nabla + \tfrac12\mathbf{C} \qquad \mathbf{C} \text{ generováno } C^{\underline{m}}{}_{\underline{ab}} \text{ -- kontorze} \qquad (\text{tj. } \bar\Gamma = \tfrac12 C)
+\]
+metricita $\bar\nabla$ vůči Levi-Civit.\ $\nabla$
+\[
+  0 = \bar\nabla_{\underline{a}}g_{\underline{mn}} = \underbrace{\nabla_{\underline{a}}g_{\underline{mn}}}_{0} - \tfrac12 C^{\underline{b}}{}_{\underline{am}}g_{\underline{bn}} - \tfrac12 C^{\underline{b}}{}_{\underline{an}}g_{\underline{mb}}
+  = -\tfrac12\big(C_{\underline{anm}} + C_{\underline{amn}}\big) = -C_{\underline{a}(\underline{mn})}
+\]
+\quad tj.\ antisymetrie $C^{\underline{m}}{}_{\underline{a}\underline{n}}$ v $\underline{n},\underline{m}$
+
+info v $C$ je stejné jako v $T$
+\[
+  C_{\underline{amn}} = C_{\underline{a}[\underline{mn}]} \qquad T_{\underline{amn}} = T_{\underline{a}[\underline{mn}]} \qquad \text{stejný počet komponent}
+\]
+viz vztah $\nabla$ a $\tilde\nabla$, kde $\tilde\nabla\to\bar\nabla$, $\gamma\to-\frac12 C$ a $\bar\nabla g = 0$
+\[
+  \vzorec{C_{\underline{abc}} = T_{\underline{abc}} - T_{\underline{bca}} - T_{\underline{cab}}} \qquad\qquad T_{\underline{abc}} = C_{[\underline{b}|\underline{a}|\underline{c}]}
+\]
+
+\begin{vysvetleni}[Kontorze]
+Metrických derivací (s torzí) je mnoho. Každá se od Levi-Civitovy liší o tenzor $\tfrac12C$, kde $C_{\underline{amn}}$ je antisymetrický v posledních dvou indexech. To je přesně podmínka, aby paralelní přenos zůstal \uv{rotací} (infinitezimální lorentzovskou/ortogonální transformací) a zachovával skalární součiny.
+Torze $T_{\underline{abc}}$ (antisymetrická v $b,c$) a kontorze $C_{\underline{abc}}$ (antisymetrická v $b,c$) mají oba $d\cdot\frac{d(d-1)}2$ složek a vzorce výše jsou navzájem inverzní. Metrická derivace je tedy jednoznačně určena svou torzí: $\bar\nabla=\nabla+\tfrac12\mathbf{C}(T)$. Vzorec pro $C$ je speciální případ obecného vzorce z první strany s $\tilde\nabla\to\bar\nabla$, $\gamma\to-\tfrac12C$, $t\to T$. Používá se např.\ v Einsteinově--Cartanově teorii.
+Pozn.: tučné $\mathbf{C}$ značí operaci (pseudoderivaci) generovanou tenzorem $C$, tj.\ $\bar\Gamma=\tfrac12C$.
+\end{vysvetleni}
+
+\subsubsection*{Derivace s $\nabla$-geodetikami}
+\begin{itemize}[nosep]
+  \item[] $z$ $\nabla$-geodetika \qquad $u = \frac{\mathrm{D}z}{\mathrm{d}\tau}$
+  \item[] $\hat\nabla = \nabla + \hat\Gamma$ \qquad $\operatorname{Tor}\hat\nabla = T$
+  \item[] $\hat\nabla$-geodetika
+\end{itemize}
+\[
+  0 = u^{\underline{n}}\hat\nabla_{\underline{n}}u^{\underline{a}} = \underbrace{u^{\underline{m}}\nabla_{\underline{m}}u^{\underline{a}}}_{0} + \hat\Gamma^{\underline{a}}{}_{\underline{mn}}u^{\underline{m}}u^{\underline{n}}
+  \qquad \forall u \ \Rightarrow\ \hat\Gamma^{\underline{a}}{}_{(\underline{mn})} = 0
+\]
+\pozor{$\hat\nabla$ má stejné geodetiky jako $\oprava{\nabla}{\Gamma}$, pokud se liší pouze o torzi}
+\[
+  \hat\nabla = \nabla + \tfrac12\mathbf{T} \qquad\qquad \hat\Gamma^{\underline{m}}{}_{\underline{ab}} = \tfrac12 T^{\underline{m}}{}_{\underline{ab}}
+\]
+
+\begin{vysvetleni}[Geodetiky vidí jen symetrickou část konexe]
+Rovnice geodetiky $u^n\nabla_nu^a=0$ obsahuje rozdílový tenzor jen ve tvaru $\hat\Gamma^a{}_{mn}u^mu^n$, a to vidí pouze symetrickou část $\hat\Gamma^a{}_{(mn)}$. Dvě derivace mají stejné geodetiky, právě když je jejich rozdílový tenzor antisymetrický v dolních indexech, tj.\ když se liší jen torzí. Mezi derivacemi s danou torzí $T$ a danými geodetikami je tedy $\hat\nabla=\nabla+\tfrac12\mathbf{T}$ jediná. Krtouš, lemma V7.15 a odd.~7.7.
+\end{vysvetleni}
+
+\subsubsection*{Metrické derivace s $\nabla$-geodetikami}
+\[
+  \mathring\nabla = \nabla + \tfrac12\mathbf{C} \qquad C_{\underline{amb}} = g_{\underline{mn}}C^{\underline{n}}{}_{\underline{ab}} \qquad T_{\underline{mab}} = g_{\underline{mn}}T^{\underline{n}}{}_{\underline{ab}} \qquad T = \operatorname{Tor}\mathring\nabla
+\]
+\[
+  \left.\begin{aligned}
+    \mathring\nabla g = 0 &\ \Leftrightarrow\ C_{\underline{abc}} = C_{\underline{a}[\underline{bc}]} \\
+    \mathring\nabla \text{ má } \nabla\text{-geodetiky} &\ \Leftrightarrow\ C_{\underline{abc}} = C_{[\underline{a}|\underline{b}|\underline{c}]}
+  \end{aligned}\right\}
+  \ \Leftrightarrow\
+  \begin{aligned}
+    C_{\underline{abc}} &= C_{[\underline{abc}]} = -\tau_{\underline{abc}} \\
+    T_{\underline{abc}} &= T_{[\underline{abc}]} = \tau_{\underline{abc}}
+  \end{aligned}
+\]
+
+\begin{vysvetleni}[Metrické derivace s Levi-Civitovými geodetikami]
+Obě podmínky dohromady: $C$ je antisymetrické v $(b,c)$ a zároveň v $(a,c)$, tedy \emph{totálně} antisymetrické. Taková derivace je metrická a má stejné geodetiky jako $\nabla$, právě když je její torze totálně antisymetrická 3-forma $\tau$; pak $C=-\tau$ a $\mathring\nabla=\nabla-\tfrac12\boldsymbol\tau$. Tato derivace se uplatňuje např.\ v teorii strun a u geometrií s Killingovými--Yanovými tenzory.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-10-4}
+\subsubsection*{Charakterizace kov.\ der.\ vzhledem k Levi-Civit.\ $\nabla$}
+
+\begin{minipage}{0.58\textwidth}
+\[ \tilde\nabla = \nabla + \tilde\Gamma \qquad \operatorname{Tor}\tilde\nabla = T \]
+lze rozštěpit na der.\ se stejnými geodet.\ a beztorzní opravu
+\[
+  \tilde\Gamma = \tfrac12 S + \tfrac12 T \qquad \tfrac12 S^{\underline{m}}{}_{\underline{ab}} = \tilde\Gamma^{\underline{m}}{}_{(\underline{ab})} \qquad \tfrac12 T^{\underline{m}}{}_{\underline{ab}} = \tilde\Gamma^{\underline{m}}{}_{[\underline{ab}]}
+\]
+\begin{align*}
+  \hat\nabla &= \nabla + \tfrac12\mathbf{T} && \text{der.\ se stej.\ geod.} \\
+  \overset{s}{\nabla} &= \nabla + \tfrac12\mathbf{S} && \text{beztorzní oprava}
+\end{align*}
+ale $\overset{s}{\nabla}$, $\hat\nabla$ nejsou metrické
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8,>=Stealth]
+  % rovina nabla-geod.
+  \draw (-2.2,-0.6) -- (1.4,-0.6) -- (2.4,0.6) -- (-1.2,0.6) -- cycle;
+  % osa Tor = 0
+  \draw[thick] (0,-2.2) -- (0,-0.6);
+  \draw[thick,->] (0,0) -- (0,2.2);
+  \node[above] at (0,2.2) {$\overset{s}{\nabla}$};
+  \fill (0,0) circle (2pt);
+  \node[below left] at (0,0) {$\nabla$};
+  \draw[->,thick] (0,0) -- (0.9,0) node[below right] {$\hat\nabla$};
+  \node[below] at (0.45,-0.05) {\tiny $\tfrac12 T$};
+  \node[left] at (0,0.9) {\tiny $\tfrac12 S$};
+  \draw[dashed] (0,1.8) -- (0.9,1.8) -- (0.9,0);
+  \draw[->] (0,0) -- (0.9,1.8) node[above right] {$\tilde\nabla$};
+  \draw[<-] (2.0,0.3) -- (2.6,0.3) node[right] {\small $\nabla$-geod};
+  \draw[<-] (0.05,-1.8) -- (0.6,-1.8) node[right] {\small Tor $= 0$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[Afinní prostor derivací kolem $\nabla$]
+Obrázek znázorňuje prostor všech kovariantních derivací jako afinní prostor s počátkem v Levi-Civitově $\nabla$. \uv{Vodorovná rovina} jsou derivace s $\nabla$-geodetikami: posun o antisymetrický tenzor $\tfrac12T$. \uv{Svislá osa} jsou beztorzní derivace: posun o symetrický tenzor $\tfrac12S$. Rozklad $\tilde\Gamma=\tfrac12S+\tfrac12T$ je rozklad tenzoru $(1,2)$ na část symetrickou a antisymetrickou v dolních indexech, je tedy jednoznačný. Odpovídá Krtoušovu rozdělení na beztorzní část a torzi (lemma V7.15).
+\end{vysvetleni}
+
+rozštěpení metrické $\bar\nabla$
+\[
+  \bar\nabla = \nabla + \bar\Gamma \qquad \operatorname{Tor}\bar\nabla = T \qquad \bar\nabla g = 0 \qquad \bar\Gamma = \tfrac12 C
+\]
+chceme rozštěpení na metrické der.
+\begin{align*}
+  C_{\underline{abc}} &= \alpha_{\underline{abc}} - \tau_{\underline{abc}} \\
+  \alpha_{\underline{amn}} &= \alpha_{\underline{a}[\underline{mn}]} \quad \text{ale}\quad \alpha_{[\underline{amn}]} = 0
+     \ \Rightarrow\ \alpha_{\underline{abc}} = \tfrac43 S_{\underline{a}[\underline{bc}]} \quad\text{kde } S_{\underline{abc}} = C_{(\underline{a}|\underline{b}|\underline{c})} \\
+  \Downarrow\quad \tau_{\underline{amn}} &= \tau_{\underline{a}[\underline{mn}]} \quad \text{ale}\quad \tau_{(\underline{ab})c} = 0
+     \ \Rightarrow\ \tau_{\underline{abc}} = \tau_{[\underline{abc}]} = -C_{[\underline{abc}]} \\
+  T_{\underline{abc}} &= \tfrac12\alpha_{\underline{abc}} + \tau_{\underline{abc}} \qquad S_{\underline{abc}} = \alpha_{(\underline{a}|\underline{b}|\underline{c})} \qquad S_{(\underline{abc})} = 0
+\end{align*}
+
+\begin{minipage}{0.52\textwidth}
+\begin{tikzpicture}[scale=0.85,>=Stealth]
+  % osa T = 0
+  \draw (0,-3) -- (0,3);
+  \draw[<-] (0.05,2.6) -- (0.7,2.8) node[right] {\small $T = 0$};
+  % rovina metrických der.
+  \draw[gray] (-2.4,-1.8) -- (2.4,-1.4) -- (2.4,1.4) -- (-2.4,1.0) -- cycle;
+  \node[right] at (1.6,2.1) {\small $\bar\nabla$ metrické};
+  \node[right] at (1.6,1.65) {\small $\bar\nabla g = 0$};
+  \draw[->] (1.6,1.75) -- (1.2,1.3);
+  % rovina nabla-geod
+  \draw[gray] (-2.8,-0.8) -- (1.6,-1.6) -- (3.0,0.4) -- (-1.4,1.2) -- cycle;
+  \draw[<-] (2.7,0.2) -- (3.2,0.1) node[right] {\small $\hat\nabla$ má};
+  \node[right] at (3.2,-0.35) {\small $\nabla$-geodetiky};
+  \draw (-3,0.2) -- (3.2,-0.4);
+  \fill (0,0) circle (2pt); \node[above left] at (0,0) {$\nabla$};
+  \draw[->,thick] (0,0) -- (0.9,-0.08) node[above] {\small $-\tau$};
+  \draw[->,thick] (0,0) -- (0.6,-0.6) node[right] {\small $T$};
+  \draw[->] (0,0) -- (0.6,-2.0) node[below right] {$\bar\nabla$};
+  \node at (0.25,-1.2) {\small $C$};
+  \node at (0.5,-1.1) {\small $S$};
+  \node at (-0.4,-0.9) {\small $\alpha$};
+  \node at (1.0,-1.1) {\small $\alpha$};
+  \draw (0.9,-0.08) -- (0.6,-2.0);
+  \draw[->] (0.6,-1.7) -- (-0.4,-1.7);
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.46\textwidth}
+\begin{align*}
+  &\nabla + \tfrac12\boldsymbol\alpha && \text{metrická} + \bar\nabla\text{-geod} \\
+  & && {}+ \oprava{\tau = 0}{T = 0} \\
+  &\nabla - \tfrac12\boldsymbol\tau && \text{metrická} + \nabla\text{-geod}
+\end{align*}
+\pozn{obrázek v originále tužkou, přibližně}
+\end{minipage}
+
+\begin{vysvetleni}[Rozštěpení metrické derivace]
+Kontorzi $C$ (antisymetrickou v posledních dvou indexech) rozložíme na totálně antisymetrickou část $-\tau=C_{[abc]}$ a zbytek $\alpha=C-C_{[abc]}$ s $\alpha_{[abc]}=0$. Obě části jsou samy antisymetrické v posledních dvou indexech, takže $\nabla+\tfrac12\boldsymbol\alpha$ i $\nabla-\tfrac12\boldsymbol\tau$ jsou opět \emph{metrické}. Počty složek: $\tau$ má $\binom d3$, $\alpha$ zbylých $d\binom d2-\binom d3$.
+$\nabla-\tfrac12\boldsymbol\tau$ má $\nabla$-geodetiky, protože se od $\nabla$ liší totálně antisymetrickým tenzorem. $\nabla+\tfrac12\boldsymbol\alpha$ má geodetiky jako $\bar\nabla$, protože se od ní liší o $-\tfrac12\boldsymbol\tau$. Její torze je ale $\tfrac12\alpha\neq0$ (podle vztahu $T=\tfrac12\alpha+\tau$ výše s $\tau\to0$). Nulová je jen její totálně antisymetrická část, $\tfrac12\alpha_{[abc]}=0$. Původní \uv{$T=0$} tedy nemůže platit: jediná metrická beztorzní derivace je $\nabla$ sama.
+$S=C_{(a|b|c)}$ je část kontorze měnící geodetiky; souvisí s $\alpha$ vztahy $S_{abc}=\alpha_{(a|b|c)}$, $\alpha_{abc}=\tfrac43S_{a[bc]}$.
+\end{vysvetleni}
+

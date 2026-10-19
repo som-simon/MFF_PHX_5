@@ -1,0 +1,597 @@
+%======================================================================
+% GMI-06b Toky, Lieova derivace.pdf
+%======================================================================
+\section{Toky a Lieova derivace}
+\strana{GMI-06b-1}
+\pozn{titulní strana v originále společná s předchozí kapitolou: Indukovaná zobrazení, difeomorfismy, toky a Lieova derivace}
+
+\begin{itemize}[nosep]
+  \item Indukované zobrazení na tenzorech
+  \item Diferenciál zobrazení
+  \item Indukované zobrazení na polích
+  \item Tok a jeho generátor
+  \item Lieova derivace
+  \item Interpretace Lieovy závorky
+\end{itemize}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-06b-2}
+\subsection{Tok a jeho generátor}
+
+\begin{minipage}{0.5\textwidth}
+\begin{definice}[tok na $M$]
+\kw{tok} na $M$, též \kw{1-param.\ grupa difeo}
+\[
+  \phi_\alpha\in\operatorname{Diff}M \qquad \alpha\in\mathbb{R}
+\]
+\[
+  \phi_\alpha\circ\phi_\beta = \phi_{\alpha+\beta}
+\]
+\[
+  \phi_0 = \mathrm{id} \qquad \phi_{-\alpha} = \phi_\alpha^{-1}
+\]
+\end{definice}
+všechny body na orbitě $\phi_\alpha x$ se pohybují po stejné orbitě
+\end{minipage}
+\hfill
+\begin{minipage}{0.46\textwidth}
+\begin{tikzpicture}[scale=0.85,>=Stealth]
+  % horní orbita s body
+  \draw[NavyBlue] (0,0) .. controls (1.5,1.6) and (3.5,2.4) .. (5.5,2.8);
+  \fill (0.6,0.6) circle (1.5pt) node[below right] {\small $x$};
+  \fill (2,1.6) circle (1.5pt) node[below right] {\small $y = \phi_\beta x$};
+  \fill (3.2,2.15) circle (1.5pt) node[below] {\small $\phi_\alpha x$};
+  \fill (4.4,2.55) circle (1.5pt) node[above] {\small $\phi_\alpha y = \phi_{\alpha+\beta}x$};
+  % prostřední orbita se šipkami
+  \draw[NavyBlue] (0.6,-0.4) .. controls (2,0.8) and (4,1.6) .. (6,1.9);
+  \draw[->,thick,NavyBlue] (0.6,-0.4) -- (1.2,0.1);
+  \draw[->,thick,NavyBlue] (2.2,0.65) -- (3,1.1);
+  \draw[->,thick,NavyBlue] (4,1.45) -- (5,1.75);
+  % spodní orbita
+  \draw[NavyBlue] (1,-1.1) .. controls (2.5,0) and (4.5,0.8) .. (6.4,1.1);
+  \draw[->,thick,NavyBlue] (1,-1.1) -- (1.6,-0.6);
+  \fill (2.2,-0.3) circle (1.5pt) node[below] {\small $z$};
+  \fill (4.3,0.65) circle (1.5pt) node[below] {\small $\phi_\alpha z$};
+  \draw[->,thick,NavyBlue] (5.2,0.9) -- (6.4,1.1) node[right] {$a$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[co je tok]
+Tok je „proudění“ celé variety: $\phi_\alpha$ posune \emph{každý} bod o „čas“ $\alpha$ podél jeho orbity (křivky $\alpha\mapsto\phi_\alpha x$).
+Grupová vlastnost $\phi_\alpha\circ\phi_\beta=\phi_{\alpha+\beta}$ říká, že posunout o $\beta$ a pak o $\alpha$ je totéž jako posunout rovnou o $\alpha+\beta$; proto orbity bodů téže orbity splývají (obrázek: $y=\phi_\beta x$ leží na orbitě $x$ a $\phi_\alpha y=\phi_{\alpha+\beta}x$ také).
+Příklady na $\mathbb{R}^2$: posunutí $\phi_\alpha(x,y)=(x+\alpha,y)$, rotace o úhel $\alpha$ kolem počátku.
+Viz Krtouš, odd.~3.2 (definice toku a značení $\phi_\alpha=\operatorname{diff}_\alpha[a]$).
+\end{vysvetleni}
+
+\begin{definice}[generátor toku]
+$a$ je \kw{generátor} $\phi_\alpha$ \quad $\equiv$
+\[
+  \vzorec{a\big|_x = \frac{D}{d\alpha}\phi_\alpha x\Big|_{\alpha=0}}
+  \qquad\qquad \phi_\alpha = \operatorname{diff}_\alpha[a]
+\]
+\end{definice}
+
+\begin{veta}[Tvrzení]
+tok a jeho generátor se vzájemně jednoznačně určují, \\
+tj.\ gen.\ $a$ definuje jedn.\ $\phi_\alpha$ \\
+$\Leftarrow$ věty o řešení dif.\ rov.\ 1.\ řádu
+\end{veta}
+
+platí:
+\[
+  \phi_{\alpha*}a = a
+\]
+\[
+  \Leftarrow\quad (\phi_{\alpha*}a)(\phi_\alpha x) = \phi_{\alpha*}\big(a(x)\big)
+  = \phi_{\alpha*}\Big(\frac{D}{d\varepsilon}\phi_\varepsilon x\Big|_{\varepsilon=0}\Big)
+  = \frac{D}{d\varepsilon}\phi_\varepsilon\phi_\alpha x\Big|_{\varepsilon=0} = a(\phi_\alpha x)
+\]
+
+\begin{vysvetleni}[generátor a jeho invariance]
+$\frac{D}{d\alpha}$ značí tečný vektor ke křivce $\alpha\mapsto\phi_\alpha x$ (ne derivaci čísla). Generátor $a$ je tedy vektorové pole „rychlostí“ toku.
+V souřadnicích je orbita řešením soustavy ODR $\frac{dx^i}{d\alpha}=a^i(x)$ s počáteční podmínkou $x(0)=x$ -- odtud vzájemná jednoznačnost toku a generátoru (obecně jen lokálně, pro malá $\alpha$; globálně pro tzv.\ úplná pole).
+Vztah $\phi_{\alpha*}a=a$: generátor se vlastním tokem přenáší sám na sebe (posunutím křivky $\varepsilon\mapsto\phi_\varepsilon x$ o $\alpha$ dostaneme křivku $\varepsilon\mapsto\phi_\varepsilon\phi_\alpha x$ a $\phi_{\alpha*}$ zobrazí tečné vektory křivek na tečné vektory obrazů).
+Příklad: rotace v rovině mají generátor $a=-y\,\partial_x+x\,\partial_y$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-3}
+\subsection{Lieova derivace}
+
+chceme charakteriz.\ derivaci tenz.\ pole $A$ ve směru $u$ \\
+formální výraz
+\[
+  \lim_{\varepsilon\to 0}\frac{1}{\varepsilon}\big(A(x+\varepsilon u) - A(x)\big)
+\]
+\begin{itemize}[nosep]
+  \item[] $A(x+\varepsilon u)\in\mathbf{T}_{x(\varepsilon)}M$, \ $A(x)\in\mathbf{T}_xM$ \quad -- \pozor{nelze porovnávat}
+  \item[] $x+\varepsilon u$ \dots\ nahradíme křivkou ve směru $u$
+\end{itemize}
+potřeba přenést tenzory do stejného bodu \\
+nelze provést pouze pomocí specifikace směru $u\in\mathbf{T}_xM$ \\
+potřeba dodatečné struktury -- tok
+
+\begin{minipage}{0.55\textwidth}
+\begin{definice}[Lieova derivace]
+\[
+  \vzorec{\mathcal{L}_uA\big|_x = \lim_{\varepsilon\to 0}\frac{1}{\varepsilon}\Big(\phi_{-\varepsilon*}\big(A(\phi_\varepsilon x)\big) - A(x)\Big)}
+\]
+kde $\phi_\alpha$ je tok generovaný $u$
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[scale=0.8,>=Stealth]
+  \foreach \s in {0,0.55,1.1,1.65}
+    \draw[NavyBlue!70] (0,-\s) .. controls (1.5,0.9-\s) and (3,1.5-\s) .. (5,1.8-\s);
+  \fill (1.3,0.05) circle (1.5pt) node[below] {\small $x$};
+  \draw[->,thick] (1.3,0.05) -- (1.2,0.95) node[above] {\small $A(x)$};
+  \draw[->,thick,Red] (1.3,0.05) -- (1.55,0.8) node[right] {\small $\phi_{\varepsilon}^{*}A(x(\varepsilon))$};
+  \draw[->,thick,NavyBlue] (1.3,0.05) -- (2.3,0.55) node[below right] {\small $u(x)$};
+  \fill (3.9,0.75) circle (1.5pt) node[below right] {\small $x(\varepsilon) = \phi_\varepsilon x$};
+  \draw[->,thick] (3.9,0.75) -- (4.0,1.7) node[above] {\small $A(x(\varepsilon))$};
+  \node at (4.4,-1.4) {$\phi_\varepsilon$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[myšlenka Lieovy derivace]
+Tenzory v různých bodech nelze odečíst. Tok $\phi_\varepsilon$ ale dává přirozené ztotožnění tečných prostorů: hodnotu $A(\phi_\varepsilon x)$ „odvezeme zpět“ do $x$ inverzním zobrazením $\phi_{-\varepsilon*}$ a teprve pak porovnáme s $A(x)$ (v obrázku červený vektor vs.\ $A(x)$).
+Značení: $\phi^*$ (pull-back) a $\phi_*$ (push-forward) se pro difeomorfismus rozšiřují na všechny tenzory vztahem $\phi^*=(\phi^{-1})_*$, tj.\ $\phi_\varepsilon^*=\phi_{-\varepsilon*}$ -- odtud alternativní zápisy níže.
+$\mathcal{L}_uA|_x$ závisí na poli $u$ v \emph{okolí} $x$, nejen na vektoru $u(x)$ (tok je určen celým polem) -- na rozdíl od derivace funkce ve směru.
+Viz Krtouš, odd.~3.3, def.~D3.11 a vztah (3.5); indukovaná zobrazení D3.9, D3.10.
+\end{vysvetleni}
+
+alternativní zápisy
+\begin{align*}
+  \mathcal{L}_uA\big|_x &= \frac{d}{d\varepsilon}\phi_{-\varepsilon*}\big(A(\phi_\varepsilon x)\big)\Big|_{\varepsilon=0}
+    = \frac{d}{d\varepsilon}\phi_\varepsilon^*\big(A(\phi_\varepsilon x)\big)\Big|_{\varepsilon=0} \\
+  \mathcal{L}_uA &= -\frac{d}{d\varepsilon}\phi_{\varepsilon*}A\Big|_{\varepsilon=0}
+    = \frac{d}{d\varepsilon}\phi_\varepsilon^*A\Big|_{\varepsilon=0}
+\end{align*}
+\[
+  \Leftarrow\quad \phi_{-\varepsilon*}\big(A(\phi_\varepsilon x)\big) = (\phi_{-\varepsilon*}A)(x) = (\phi_\varepsilon^*A)(x)
+\]
+
+\begin{veta}[Tvrzení]
+$\phi_\alpha$ tok s generátorem $a$ \\
+indukované zobr.\ $\phi^*$ na tenz.\ polích splňuje
+\[
+  \phi_0^* = \mathrm{id} \qquad \phi_\alpha^*\circ\phi_\beta^* = \phi_{\alpha+\beta}^* \qquad
+  \frac{d}{d\alpha}\phi_\alpha^*\Big|_{\alpha=0} = \mathcal{L}_a
+\]
+proto splňuje i
+\[
+  \frac{d}{d\alpha}\phi_\alpha^* = \phi_\alpha^*\mathcal{L}_a \qquad\Rightarrow\qquad
+  \vzorec{\phi_\alpha^* = \exp[\alpha\mathcal{L}_a]}
+\]
+\end{veta}
+důk.:
+\[
+  \phi_\alpha^*\mathcal{L}_aA = \phi_\alpha^*\frac{d}{d\varepsilon}\phi_\varepsilon^*A\Big|_{\varepsilon=0}
+  = \frac{d}{d\varepsilon}\phi_{\alpha+\varepsilon}^*A\Big|_{\varepsilon=0} = \frac{d}{d\alpha}\phi_\alpha^*A
+\]
+
+\begin{vysvetleni}[$\phi_\alpha^*=\exp(\alpha\mathcal{L}_a)$]
+$\alpha\mapsto\phi_\alpha^*$ je jednoparametrická grupa lineárních operátorů na tenzorových polích a $\mathcal{L}_a$ je její „infinitezimální generátor“. Diferenciální rovnice $\frac{d}{d\alpha}\phi_\alpha^*=\phi_\alpha^*\mathcal{L}_a$ s $\phi_0^*=\mathrm{id}$ má formální řešení $\exp(\alpha\mathcal{L}_a)=\sum_n\frac{\alpha^n}{n!}\mathcal{L}_a^n$ (Taylorova řada v $\alpha$; doslova platí např.\ pro analytická pole).
+Příklad: na $\mathbb{R}$ s $a=\partial_x$ je $\phi_\alpha x=x+\alpha$ a $\phi_\alpha^*f(x)=f(x+\alpha)=\sum_n\frac{\alpha^n}{n!}f^{(n)}(x)$ -- obyčejný Taylorův rozvoj.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-4}
+\subsubsection*{Vlastnosti Lieovy derivace}
+\begin{veta}[Vlastnosti $\mathcal{L}_u$]
+\begin{align*}
+  \mathcal{L}_u(A + \kappa B) &= \mathcal{L}_uA + \kappa\mathcal{L}_uB \qquad \kappa\in\mathbb{R} \\
+  \mathcal{L}_u(A\otimes B) &= (\mathcal{L}_uA)\otimes B + A\otimes(\mathcal{L}_uB) \\
+  \mathcal{L}_u\mathcal{C}A &= \mathcal{C}\,\mathcal{L}_uA \\
+  \mathcal{L}_uf &= u\cdot df \\
+  \mathcal{L}_u\,df &= d\mathcal{L}_uf \\
+  \mathcal{L}_u(a\cdot\omega) &= (\mathcal{L}_ua)\cdot\omega + a\cdot\mathcal{L}_u\omega \\
+  \mathcal{L}_uv &= \vzorec{[u,v]}
+\end{align*}
+\end{veta}
+
+důkazy
+\begin{itemize}[nosep]
+  \item[] převážně plyne z vlastností $\phi^*$
+  \begin{itemize}[nosep]
+    \item[--] záměna s $+,\otimes,\mathcal{C},d$
+    \item[] a převedení na obyčejnou der.\ $\frac{d}{d\varepsilon}\phi_\varepsilon^*A\big|_{\varepsilon=0}$
+  \end{itemize}
+  \item[] $\mathcal{L}_af = a[f]$ \quad -- přímo z def.
+\end{itemize}
+\begin{align*}
+  \mathcal{L}_u(v\cdot df) = u\cdot d(v\cdot df) &= (\mathcal{L}_uv)\cdot df + v\cdot\mathcal{L}_{\oprava{u}{a}} df
+    = (\mathcal{L}_uv)\cdot df + v\cdot d(u\cdot df) \\
+  \Rightarrow\quad (\mathcal{L}_uv)\cdot df &= u[v[f]] - v[u[f]] = [u,v][f]
+\end{align*}
+
+\begin{vysvetleni}[odkud vlastnosti plynou]
+Linearita, Leibniz, záměna se zúžením $\mathcal{C}$ a s gradientem $d$ platí už pro $\phi_\varepsilon^*$ (indukované zobrazení komutuje s $\otimes$, $\mathcal{C}$ a $d$); derivací podle $\varepsilon$ v nule se přenesou na $\mathcal{L}_u$. Na funkcích je $\phi_\varepsilon^*f=f\circ\phi_\varepsilon$, takže $\mathcal{L}_uf=u[f]=u\cdot df$.
+Vztah $\mathcal{L}_uv=[u,v]$ se odvodí „zkrácením“ $df$: obě strany dávají po zúžení s libovolným gradientem totéž a gradienty $dx^i$ tvoří bázi. Zápis $u\cdot df$ = zúžení vektoru s 1-formou = $u^n\partial_nf$.
+V souřadnicích: $(\mathcal{L}_uv)^a=u^b\partial_bv^a-v^b\partial_bu^a$, \ $(\mathcal{L}_u\omega)_a=u^b\partial_b\omega_a+\omega_b\partial_au^b$.
+Viz Krtouš, věty V3.5--V3.7.
+\end{vysvetleni}
+
+\begin{veta}[Tvrzení]
+Lieova der.\ $\mathcal{L}_a$ je tenz.\ derivace
+\begin{itemize}[nosep]
+  \item[] na $\mathbf{F}M$ určená vekt.\ polem $a$
+  \item[] na $\mathbf{T}M$ určená Lieovou závorkou s $a$
+\end{itemize}
+$\Downarrow$ jednoznačně fixovaná na tenz.\ polích
+\end{veta}
+
+\begin{vysvetleni}[tenzorová derivace]
+\emph{Tenzorová derivace} = operace na tenzorových polích zachovávající typ, lineární (nad $\mathbb{R}$), splňující Leibnizovo pravidlo pro $\otimes$ a komutující se zúžením. Taková operace je určena svým působením na funkce a na vektory: působení na 1-formy plyne z $\mathbb{D}(\omega\cdot v)=(\mathbb{D}\omega)\cdot v+\omega\cdot\mathbb{D}v$ a na obecný tenzor z rozkladu do báze $e_{a}\otimes\dots\otimes e^{b}\otimes\dots$ a Leibnize.
+Tento princip se dále opakovaně používá: chceme-li dokázat $\mathbb{L}=0$ pro nějakou kombinaci derivací, stačí ověřit, že je to tenzorová derivace nulová na funkcích a vektorech.
+(Krtouš podobný argument vede přes tzv.\ pseudoderivace, viz důkaz věty V3.9.)
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-5}
+\begin{veta}[Tvrzení: linearita (nad $\mathbb{R}$) ve směru]
+\[
+  \mathcal{L}_{u+\kappa v} = \mathcal{L}_u + \kappa\mathcal{L}_v \qquad \kappa\in\mathbb{R}
+\]
+\end{veta}
+důk.: \\
+\quad $\mathbb{L} = \mathcal{L}_{u+\kappa v} - \mathcal{L}_u - \kappa\mathcal{L}_v$ \quad je tenz.\ der.\ splňující
+\[
+  \mathbb{L}f = (u+\kappa v)[f] - u[f] - \kappa v[f] = 0 \qquad
+  \mathbb{L}w = [(u+\kappa v),w] - [u,w] - \kappa[v,w] = 0
+\]
+\quad $\Rightarrow\ \mathbb{L} = 0$ \quad c.b.d.
+
+\begin{veta}[Tvrzení]
+\[
+  \vzorec{\mathcal{L}_{[u,v]} = \mathcal{L}_u\mathcal{L}_v - \mathcal{L}_v\mathcal{L}_u}
+\]
+\end{veta}
+důk.: \\
+\quad $\mathbb{L} = \mathcal{L}_{[u,v]} - (\mathcal{L}_u\mathcal{L}_v - \mathcal{L}_v\mathcal{L}_u)$ \quad je tenz.\ der. \\
+\quad linearita zřejmá \\
+\quad Leibnitz
+\begin{align*}
+  [\mathcal{L}_u\mathcal{L}_v - \mathcal{L}_v\mathcal{L}_u](AB)
+  &= \mathcal{L}_u\big((\mathcal{L}_vA)B + A\mathcal{L}_vB\big) - (u\leftrightarrow v) \\
+  &= (\mathcal{L}_u\mathcal{L}_vA)B + A(\mathcal{L}_u\mathcal{L}_vB) + (\mathcal{L}_vA)(\mathcal{L}_uB) + (\mathcal{L}_uA)(\mathcal{L}_vB) - (u\leftrightarrow v) \\
+  &= \big([\mathcal{L}_u\mathcal{L}_v - \mathcal{L}_v\mathcal{L}_u]A\big)B + A\big([\mathcal{L}_u\mathcal{L}_v - \mathcal{L}_v\mathcal{L}_u]B\big)
+\end{align*}
+\quad $\Rightarrow\ \mathbb{L}(AB) = (\mathbb{L}A)B + A(\mathbb{L}B)$ \\
+\quad na funkcích \quad $\mathbb{L}f = [u,v][f] - \big(u[v[f]] - v[u[f]]\big) = 0$ \\
+\quad na vekt. \quad\ \ $\mathbb{L}w = [[u,v],w] - [u,[v,w]] \oprava{+[v,[u,w]]}{-[v[u,w]]} = 0$ \quad J.I. \\
+\quad $\Rightarrow\ \mathbb{L} = 0$ \quad c.b.d.
+
+\begin{vysvetleni}[linearita ve směru a komutátor]
+$\mathcal{L}_u$ je lineární v $u$ jen nad $\mathbb{R}$, \emph{ne} nad funkcemi: obecně $\mathcal{L}_{fu}\neq f\mathcal{L}_u$ (viz tvrzení o $\mathcal{L}_{fa}\omega$ na str.~GMI-06b-7), protože Lieova derivace „vidí“ i derivace pole $u$.
+Vztah $\mathcal{L}_{[u,v]}=[\mathcal{L}_u,\mathcal{L}_v]$ říká, že $u\mapsto\mathcal{L}_u$ zobrazuje Lieovu závorku vektorových polí na komutátor operátorů (reprezentace Lieovy algebry vektorových polí).
+Na vektorech: $\mathbb{L}w=[[u,v],w]-[u,[v,w]]+[v,[u,w]]$ (poslední člen je $-(-\mathcal{L}_v\mathcal{L}_uw)=+[v,[u,w]]$) a to je nula právě podle Jacobiho identity $[[u,v],w]=[u,[v,w]]-[v,[u,w]]$. Viz Krtouš, věta V3.9 a lemma V3.8.
+\end{vysvetleni}
+
+\begin{veta}[Tvrzení]
+\[
+  \mathcal{L}_w[u,v] = [\mathcal{L}_wu,v] + [u,\mathcal{L}_wv]
+\]
+\end{veta}
+důk.:
+\[
+  [w,[u,v]] = [[w,u],v] + [u,[w,v]] \quad\Leftarrow\ \text{J.I.} \qquad\text{c.b.d.}
+\]
+
+\begin{veta}[Tvrzení: souřadnicové vyjádření]
+\[
+  \vzorec{\Big(\mathcal{L}_{\frac{\partial}{\partial x^1}}A\Big)^{a\dots}{}_{b\dots} = A^{a\dots}{}_{b\dots,1}}
+  \qquad\text{kde } A^{a\dots}{}_{b\dots} \text{ jsou kom.\ vůči } x^a
+\]
+\end{veta}
+důk.:
+\[
+  \mathcal{L}_{\frac{\partial}{\partial x^1}}\frac{\partial}{\partial x^a} = 0 \qquad
+  \mathcal{L}_{\frac{\partial}{\partial x^1}}dx^a = d\frac{\partial x^a}{\partial x^1} = 0 \qquad
+  \mathcal{L}_{\frac{\partial}{\partial x^1}}\big(A^{a\dots}{}_{b\dots}\big) = A^{a\dots}{}_{b\dots,1}
+\]
+
+\begin{vysvetleni}[přizpůsobené souřadnice]
+Čárka v indexu značí parciální derivaci: $A^{a\dots}{}_{b\dots,1}=\partial A^{a\dots}{}_{b\dots}/\partial x^1$.
+V okolí bodu, kde $u\neq0$, lze vždy zvolit souřadnice s $u=\partial/\partial x^1$ ($x^1$ je parametr toku, $x^2,\dots,x^d$ jsou konstantní podél orbit). Souřadnicové vektory a gradienty $dx^a$ mají pak nulovou Lieovu derivaci (souřadnicová pole komutují), takže podle Leibnize zbude jen derivace komponent.
+Lieova derivace tedy měří, jak se pole mění vzhledem k bázi „unášené“ tokem. Viz Krtouš, vztah (3.6).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\providecommand{\gmIsestBskrt}[1]{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\displaystyle #1$};\draw[NavyBlue](X.south west)--(X.north east);}}
+
+\strana{GMI-06b-6}
+\subsection{Lieova derivace forem}
+
+Lieova der.\ na formách splňuje
+\begin{veta}[Vlastnosti $\mathcal{L}_a$ na formách]
+\begin{align*}
+  &\mathcal{L}_a: \Lambda^pM\to\Lambda^pM \\
+  &\mathcal{L}_a(\omega + \sigma) = \mathcal{L}_a\omega + \mathcal{L}_a\sigma \\
+  &\mathcal{L}_a(\omega\wedge\sigma) = (\mathcal{L}_a\omega)\wedge\sigma + \omega\wedge(\mathcal{L}_a\sigma) \\
+  &\mathcal{L}_af = a\cdot df \qquad\qquad f\in\mathbf{F}M = \Lambda^0M \\
+  &\mathcal{L}_a\,df = d\mathcal{L}_af
+\end{align*}
+tyto vlastnosti určují operaci na formách jednozn.
+\end{veta}
+důk.:
+\begin{itemize}[nosep]
+  \item[] Leibnitz plyne z Leibnitze pro $\otimes$ a vztahu $\omega\wedge\sigma = \bigcirc\,\mathcal{A}(\omega\otimes\sigma)$ + linearita
+  \item[] jednozn.\ plyne z rozkladu obecného $\omega$ na komp.
+\end{itemize}
+
+\begin{vysvetleni}[Lieova derivace jako derivace vnější algebry]
+Symbol $\bigcirc$ ve vztahu $\omega\wedge\sigma=\bigcirc\,\mathcal{A}(\omega\otimes\sigma)$ zřejmě zastupuje kombinatorický (číselný) faktor, pro $p$-formu $\omega$ a $q$-formu $\sigma$ je to $\frac{(p+q)!}{p!\,q!}$ (definice $\wedge$, viz GMI-07a-3). Protože $\mathcal{L}_a$ komutuje s $\mathcal{A}$ (permutace indexů) a splňuje Leibniz pro $\otimes$, splňuje Leibniz i pro $\wedge$.
+Pozor na rozdíl: $\mathcal{L}_a$ nemění stupeň a Leibniz platí \emph{bez} znamének, kdežto $d$ (stupeň $+1$) a $\iota_a$ (stupeň $-1$) jsou antiderivace se znaménkem $(-1)^p$.
+Jednoznačnost: každá forma je lokálně součtem členů $f\,dx^{a_1}\wedge\dots\wedge dx^{a_p}$ a na ně je $\mathcal{L}_a$ určeno uvedenými pravidly.
+\end{vysvetleni}
+
+\begin{veta}[Cartanova identita]
+\[
+  \vzorec{\mathcal{L}_a\omega = a\cdot d\omega + d(a\cdot\omega)}
+\]
+\[
+  \mathcal{L}_a = \iota_ad + d\iota_a \qquad\text{(homotopy id)}
+\]
+\end{veta}
+
+\begin{vysvetleni}[Cartanova identita]
+$\iota_a\omega=a\cdot\omega$ je dosazení vektoru $a$ do prvního slotu formy (GMI-07a-5). Identita převádí Lieovu derivaci forem (definovanou přes tok) na čistě „algebraicko-diferenciální“ operace $d$ a $\iota_a$ -- v praxi nejrychlejší způsob výpočtu.
+Pro 1-formu: $(\mathcal{L}_a\omega)_b=a^n(\partial_n\omega_b-\partial_b\omega_n)+\partial_b(a^n\omega_n)=a^n\partial_n\omega_b+\omega_n\partial_ba^n$, ve shodě se souřadnicovým vzorcem výše.
+Přeškrtnuté členy v důkazech níže (modrá šikmá čára) jsou členy, které se navzájem vyruší, resp.\ jsou nulové ($a\cdot f=0$, protože zúžení vektoru s 0-formou je z definice nula).
+Název „homotopy“ odkazuje na to, že $\iota_a$ hraje roli řetězcové homotopie v de Rhamově komplexu. Viz Krtouš, odd.~4.5, věta V4.3 (důkaz v dodatku 4.A).
+\end{vysvetleni}
+důkaz 1: indukcí přes stupeň
+\begin{itemize}[nosep]
+  \item[] $p = 0$ \quad $\mathcal{L}_af = a\cdot df + d(\gmIsestBskrt{a\cdot f}^{\,0})$ \quad \checkmark
+  \item[] $p\to p+1$ \quad $\alpha\in\Lambda^pM$, \ $\omega\in\Lambda^{p+1}$ -- suma členů typu $df\wedge\alpha$
+\end{itemize}
+\begin{align*}
+  \mathcal{L}_a(df\wedge\alpha) &= (d\mathcal{L}_af)\wedge\alpha + df\wedge\mathcal{L}_a\alpha = \\
+  &= \big(d(a\cdot df)\big)\wedge\alpha + df\wedge(a\cdot d\alpha) + df\wedge d(a\cdot\alpha) \\
+  &= d\big((a\cdot df)\wedge\alpha\big) - \gmIsestBskrt{(a\cdot df)\,d\alpha} - a\cdot(df\wedge d\alpha)
+     + \gmIsestBskrt{(a\cdot df)\,d\alpha} - d\big(df\wedge(a\cdot\alpha)\big) \\
+  &= d\big(a\cdot(df\wedge\alpha)\big) + \gmIsestBskrt{d\big(df\wedge(a\cdot\alpha)\big)} + a\cdot d(df\wedge\alpha)
+     - \gmIsestBskrt{d\big(df\wedge(a\cdot\alpha)\big)} \\
+  &= a\cdot d(df\wedge\alpha) + d\big(a\cdot(df\wedge\alpha)\big) \qquad\text{c.b.d.}
+\end{align*}
+důkaz 2: operace $\iota_ad + d\iota_a$ splňuje vlastnosti výše \\
+Leibnitz:
+\begin{align*}
+  a\cdot d(\omega\wedge\sigma) + d\big(a\cdot(\omega\wedge\sigma)\big)
+  &= a\cdot\big(d\omega\wedge\sigma + (-1)^p\omega\wedge d\sigma\big)
+     + d\big((a\cdot\omega)\wedge\sigma + (-1)^p\omega\wedge(a\cdot\sigma)\big) \\
+  &= \big(a\cdot d\omega + d(a\cdot\omega)\big)\wedge\sigma + \oprava{\omega}{(-1)^p\omega}\wedge\big(a\cdot d\sigma + d(a\cdot\sigma)\big) \\
+  &\quad + \gmIsestBskrt{(-1)^{p+1}d\omega\wedge(a\cdot\sigma)} + \gmIsestBskrt{(-1)^p(a\cdot\omega)\wedge d\sigma} \\
+  &\quad + \gmIsestBskrt{(-1)^p d\omega\wedge(a\cdot\sigma)} + \gmIsestBskrt{(-1)^{p-1}(a\cdot\omega)\wedge d\sigma}
+     \qquad\text{c.b.d.}
+\end{align*}
+
+\begin{vysvetleni}[důkaz 2 -- znaménka]
+Idea: $\iota_ad+d\iota_a$ je složení dvou antiderivací (stupňů $-1$ a $+1$), takže výsledek je derivace stupně $0$ bez znamének. Člen $\omega\wedge(\dots)$ dostane dvakrát faktor $(-1)^p$ (jednou z $d$ nebo $\iota_a$ na $\omega\wedge\sigma$, podruhé při průchodu druhé operace přes $p$-formu $\omega$), celkem $(-1)^{2p}=1$ -- proto opravené znaménko ve druhém řádku. Přeškrtnuté smíšené členy se ruší po dvojicích ($(-1)^{p+1}$ s $(-1)^p$ a $(-1)^p$ s $(-1)^{p-1}$).
+Splňuje-li $\iota_ad+d\iota_a$ všechny vlastnosti z předchozího tvrzení (na funkcích a gradientech je to zřejmé), musí se rovnat $\mathcal{L}_a$ díky jednoznačnosti.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-7}
+platí
+
+\begin{veta}[Tvrzení]
+\[
+  \vzorec{\mathcal{L}_a d = d\mathcal{L}_a} \qquad\text{na celé } \Lambda M
+\]
+\end{veta}
+důk.:
+\[
+  \mathcal{L}_ad\omega = a\cdot d\gmIsestBskrt{d\omega}^{\,0} + d(a\cdot d\omega)
+  = d\big(\mathcal{L}_a\omega - d(a\cdot\omega)\big) = d\mathcal{L}_a\omega \qquad\text{c.b.d.}
+\]
+
+\begin{veta}[Tvrzení]
+\[
+  \mathcal{L}_a\iota_b - \iota_b\mathcal{L}_a = \iota_{[a,b]}
+\]
+\end{veta}
+důk.:
+\[
+  \mathcal{L}_a(b\cdot\omega) = (\mathcal{L}_ab)\cdot\omega + b\cdot(\mathcal{L}_a\omega)
+  = [a,b]\cdot\omega + \iota_b\mathcal{L}_a\omega \qquad\text{c.b.d.}
+\]
+
+\begin{veta}[Tvrzení]
+\[
+  \mathcal{L}_{fa}\omega = f\mathcal{L}_a\omega + df\wedge(a\cdot\omega)
+\]
+\end{veta}
+důk.:
+\begin{align*}
+  \mathcal{L}_{fa}\omega &= fa\cdot d\omega + d(fa\cdot\omega) = \\
+  &= f\big(a\cdot d\omega + d(a\cdot\omega)\big) + df\wedge(a\cdot\omega) \\
+  &= f\mathcal{L}_a\omega + df\wedge(a\cdot\omega)
+\end{align*}
+
+\begin{vysvetleni}[důsledky Cartanovy identity]
+$\mathcal{L}_ad=d\mathcal{L}_a$: plyne jen z $dd=0$ (Krtouš, lemma V4.2); je to diferenciální verze toho, že $\phi^*$ komutuje s $d$.
+$[\mathcal{L}_a,\iota_b]=\iota_{[a,b]}$: Leibniz pro zúžení $b\cdot\omega$ a $\mathcal{L}_ab=[a,b]$.
+$\mathcal{L}_{fa}\omega$: navíc oproti $f\mathcal{L}_a\omega$ vystupuje člen s $df$ -- Lieova derivace není $\mathbf{F}M$-lineární ve směru, protože tok pole $fa$ se od toku $a$ liší nejen rychlostí, ale i tím, jak deformuje okolí bodu. Pro funkce ($p=0$) člen vymizí: $\mathcal{L}_{fa}g=f\,a[g]$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-8}
+\subsection{Interpretace Lieovy závorky}
+
+\begin{veta}[Tvrzení]
+$\phi_\alpha,\psi_\beta$ toky s generátory $a,b$, platí
+\[
+  \vzorec{\phi_\alpha\psi_\beta = \psi_\beta\phi_\alpha \quad\Longleftrightarrow\quad [a,b] = 0}
+\]
+\end{veta}
+důk.:
+\begin{itemize}[nosep]
+  \item[$\Rightarrow$] definujeme $\Xi(\alpha,\beta) = \phi_\alpha\psi_\beta$ \\
+    orbita $\Xi(\alpha,\beta)x_0$ vyplňuje 2-dim.\ varietu $N_{x_0}$ se souř.\ $\alpha,\beta$ \\
+    platí $a\big|_{N_{x_0}} = \frac{\partial}{\partial\alpha}$, \ $b\big|_{N_{x_0}} = \frac{\partial}{\partial\beta}$
+    \ $\Rightarrow$ \ $[a,b]\big|_{N_{x_0}} = \big[\frac{\partial}{\partial\alpha},\frac{\partial}{\partial\beta}\big] = 0$ \\
+    různou volbou $x_0$ se dostane foliace $M$ podvar.\ $N_x$ \ $\Rightarrow$ \ $[a,b] = 0$
+  \item[$\Leftarrow$] $\phi_\alpha^* = \exp[\alpha\mathcal{L}_a]$ \quad $\psi_\beta^* = \exp[\beta\mathcal{L}_b]$ \\
+    $[a,b] = 0 \Rightarrow [\mathcal{L}_a,\mathcal{L}_b] = 0 \Rightarrow
+    \exp[\alpha\mathcal{L}_a]\exp[\beta\mathcal{L}_b] = \exp[\beta\mathcal{L}_b]\exp[\alpha\mathcal{L}_a]
+    \Rightarrow \phi_\alpha\psi_\beta = \psi_\beta\phi_\alpha$
+\end{itemize}
+
+\begin{vysvetleni}[komutující toky]
+Lieova závorka měří, zda na pořadí posunutí podél dvou toků záleží. Ve směru $\Rightarrow$: jsou-li $a,b$ v $x_0$ nezávislé, parametry $(\alpha,\beta)$ jsou souřadnice na ploše $N_{x_0}$ a $a,b$ jsou na ní souřadnicová pole; souřadnicová pole komutují, protože parciální derivace jsou záměnné. Pro $\partial_\beta(\phi_\alpha\psi_\beta x_0)=b$ se přitom využívá $\phi_{\alpha*}b=b$, což plyne právě z komutace toků.
+Ve směru $\Leftarrow$: komutují-li generátory $\mathcal{L}_a,\mathcal{L}_b$, komutují i jejich exponenciály. Argument přes $\exp$ je formální (řady); rigorózně se dokáže např.\ tak, že $\frac{d}{d\alpha}\phi_{\alpha*}b=-\phi_{\alpha*}\mathcal{L}_ab=0$.
+Viz Krtouš, odd.~3.A a marginálie M3.1.
+\end{vysvetleni}
+
+\begin{minipage}{0.55\textwidth}
+\begin{veta}[Tvrzení]
+$\phi_\alpha,\psi_\beta$ toky s generátory $a,b$
+\[
+  [\phi_\tau,\psi_\tau]^*f = \tau^2[a,b]\cdot df + O(\tau^3)
+\]
+\end{veta}
+důkaz \%
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[scale=0.75,>=Stealth]
+  % "a"-křivky (téměř vodorovné, šikmo dolů vpravo)
+  \foreach \i in {0,1,2,3}
+    \draw[NavyBlue!60] (-0.4+0.25*\i,1.8-0.75*\i) -- (2.1+0.25*\i,1.0-0.75*\i);
+  % "b"-křivky (šikmo nahoru vpravo)
+  \foreach \i in {0,1,2,3}
+    \draw[NavyBlue!60] (0.0+0.55*\i,-1.0-0.2*\i) -- (1.7+0.55*\i,0.4-0.2*\i);
+  % hlavní hrany
+  \draw[thick,NavyBlue] (0,0) -- (0.5,2.2);
+  \draw[thick,NavyBlue] (0,0) -- (1.3,-1.6);
+  \fill (0,0) circle (1.5pt) node[left] {$x$};
+  \fill (0.5,2.2) circle (1.5pt) node[above left] {\small $\psi_\tau x$};
+  \fill (1.3,-1.6) circle (1.5pt) node[below] {\small $\phi_\tau x$};
+  \draw[->,NavyBlue] (0.5,2.2) -- (3.8,1.3) node[above] {\small $\phi_\tau\psi_\tau x$};
+  \draw[->,NavyBlue] (1.3,-1.6) -- (4.4,0.4) node[right] {\small $\psi_\tau\phi_\tau x$};
+  \draw[->,thick,Red] (3.8,1.3) -- (4.4,0.45);
+  \node[Red] at (4.7,1.0) {\small $\tau^2[a,b]$};
+  \node at (2.6,1.75) {\small $a$};
+  \node at (2.9,-0.6) {\small $b$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[{geometrický význam $[a,b]$}]
+Posuneme-li bod $x$ nejdřív o $\tau$ podél $b$ a pak podél $a$, resp.\ v opačném pořadí, dostaneme dva různé body; „čtyřúhelník“ v obrázku se neuzavře a mezera je řádu $\tau^2$ ve směru $[a,b]$.
+Zápis $[\phi_\tau,\psi_\tau]^*f$ je zkratka pro rozdíl $f(\psi_\tau\phi_\tau x)-f(\phi_\tau\psi_\tau x)$, který se počítá na str.~GMI-06b-9 (na funkci lze test „rozdílu bodů“ provést bez odečítání bodů variety). Přesně ve tvaru
+$f(\psi_\tau\phi_\tau x)-f(\phi_\tau\psi_\tau x)=\tau^2[a,b]\cdot df(x)+O(\tau^3)$ je to lemma V3.11 v Krtouš, odd.~3.A.
+První řád v $\tau$ se ruší, protože obě cesty začínají vektorem $a+b$; rozdíl je až v druhém řádu ve smíšených derivacích.
+\end{vysvetleni}
+
+\begin{veta}[Tvrzení]
+$a_k\in\mathbf{T}U$, \ $k = 1\dots K$, \quad $U$ okolí $x$ \\
+$[a_k,a_l] = 0$ na $U$, \quad $a_k$ nezávislé \\
+$\Rightarrow$ bodem $x_0$ prochází podvarieta $N_{x_0}$, ke které jsou $a_k$ tečné
+a na ní lze zvolit souř.\ $x^k$ tak, že $a_k = \frac{\partial}{\partial x^k}$
+\end{veta}
+důk.\ -- viz 2D případ
+\begin{itemize}[nosep]
+  \item[] ${}^k\phi_\alpha$ tok generovaný $a_k$
+  \item[] $\Xi(\alpha^1,\dots,\alpha^K) = {}^1\phi_{\alpha^1}\cdots{}^K\phi_{\alpha^K}$ \quad nezávisí na pořadí ${}^k\phi_{\alpha^k}$
+  \item[] $N_x = \Xi(\alpha^1,\dots,\alpha^K)x_0$, \quad $\alpha^k\in(-\varepsilon,\varepsilon)$ \quad -- $K$-dim.\ podvarieta $M$
+  \item[] $x^k\big(\Xi(\alpha^l)x_0\big) = \alpha^k$ \quad $\to$ souř.\ $x = [x^k]$
+  \item[] zřejmě \quad $\frac{\partial}{\partial x^k}\Big|_x = \frac{D}{d\alpha^k}\Xi(x^1\dots\alpha^k\dots x^K)x_0\Big|_{\alpha^k = x^k}^{x^l = x^l(x)} = a_k\big|_x$
+\end{itemize}
+důsledek
+\[
+  e_k \text{ je holonomní báze} \quad\Longleftrightarrow\quad \vzorec{[e_k,e_l] = 0}
+\]
+
+\begin{vysvetleni}[holonomní báze]
+Tvrzení zobecňuje 2D případ: $K$ nezávislých komutujících polí lze lokálně „srovnat“ na souřadnicová pole $\partial/\partial x^k$ (souřadnice $x^k$ jsou prostě parametry toků $\alpha^k$). Pro $K=d$ dostáváme kritérium: báze $e_k$ je \emph{holonomní} (souřadnicová, $e_k=\partial/\partial x^k$ pro nějaké souřadnice) právě když všechny závorky $[e_k,e_l]$ jsou nulové.
+Příklad: v rovině v polárních souřadnicích je normovaná báze $e_r=\partial_r$, $e_\varphi=\frac1r\partial_\varphi$ neholonomní, protože $[\partial_r,\frac1r\partial_\varphi]=-\frac1{r^2}\partial_\varphi\neq0$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06b-9}
+\pozn{celá strana psaná tužkou -- důkaz tvrzení o $[\phi_\tau,\psi_\tau]^*f$; $\xi$ generuje $\phi_\rho$, $\zeta$ generuje $\psi_\sigma$}
+
+\begingroup\color{black!65}
+\begin{minipage}{0.52\textwidth}
+\begin{align*}
+  \varphi(\rho,\sigma) &= f(\phi_\rho\psi_\sigma x) & \varphi(0,0) &= f(x) \\
+  \psi(\sigma,\rho) &= f(\psi_\sigma\phi_\rho x) & \psi(0,0) &= f(x)
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=0.8,>=Stealth,black!65]
+  % spodní křivka (tok phi, pole xi)
+  \draw (-0.3,0) .. controls (1.5,0.1) and (3,-0.1) .. (4.3,-0.5);
+  \fill (0,0) circle (1.6pt) node[below left] {\small $x$};
+  \fill (2.6,-0.05) circle (1.6pt) node[below] {\small $\phi_\rho x$};
+  \foreach \t in {0,0.25,0.5} \draw[->] (3.6+\t,-0.2-\t*0.5) -- (4.2+\t,-0.4-\t*0.5);
+  \node at (4.9,-0.6) {$\xi$};
+  % levá křivka (tok psi, pole zeta)
+  \draw (0,0) .. controls (0.1,1) and (0.1,2) .. (0.2,3.2);
+  \foreach \t in {-0.3,0,0.3} \draw[->] (0.2+\t,3.0) -- (0.25+\t,3.6);
+  \node at (0.6,3.85) {$\zeta$};
+  \fill (0.15,2.2) circle (1.6pt) node[below right] {\small $\psi_\sigma x$};
+  % horní křivka
+  \draw (-0.2,2.2) .. controls (1.5,2.3) and (3,2.5) .. (5.2,2.6);
+  \fill (2.5,2.4) circle (1.6pt) node[above right] {\small $\phi_\rho\psi_\sigma x$};
+  % čárkovaná svislá přes phi_rho x
+  \draw[dashed] (2.6,-0.05) -- (2.5,2.4) -- (2.45,3.4);
+  \foreach \t in {-0.2,0,0.2} \draw[->] (2.45+\t,3.3) -- (2.45+\t,3.8);
+  \node at (2.5,4.1) {$\phi_\rho^*\zeta$};
+  % čárkovaná šikmá od psi_sigma x
+  \draw[dashed] (0.15,2.2) -- (4,1.3);
+  \draw[dotted] (2.6,-0.05) -- (4,1.3) -- (5,2.8);
+  \fill (4,1.3) circle (1.6pt) node[below] {\small $\psi_\sigma\phi_\rho x$};
+  \foreach \t in {0,0.25} \draw[->] (4.4,1.2-\t) -- (5,1.0-\t);
+  \node at (5.5,0.95) {$\psi_\sigma^*\xi$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{align*}
+  \frac{\partial\varphi}{\partial\rho}(\rho,\sigma) &= (\xi\cdot df)\big|_{\phi_\rho\psi_\sigma x}
+    & \frac{\partial\varphi}{\partial\rho}(0,0) &= \xi\cdot df\big|_x \\
+  \frac{\partial\varphi}{\partial\sigma}(\rho,\sigma) &= \big((\phi_\rho^*\zeta)\cdot df\big)\big|_{\phi_\rho\psi_\sigma x}
+    & \frac{\partial\varphi}{\partial\sigma}(0,0) &= \zeta\cdot df\big|_x \\
+  \frac{\partial\psi}{\partial\sigma}(\sigma,\rho) &= (\zeta\cdot df)\big|_{\psi_\sigma\phi_\rho x}
+    & \frac{\partial\psi}{\partial\sigma}(0,0) &= \zeta\cdot df\big|_x \\
+  \frac{\partial\psi}{\partial\rho}(\sigma,\rho) &= \big((\psi_\sigma^*\xi)\cdot df\big)\big|_{\psi_\sigma\phi_\rho x}
+    & \frac{\partial\psi}{\partial\rho}(0,0) &= \xi\cdot df\big|_x
+\end{align*}
+\begin{align*}
+  \frac{\partial^2\varphi}{\partial\rho^2}(\rho,\sigma) &= \big(\xi\cdot d(\xi\cdot df)\big)\big|_{\phi_\rho\psi_\sigma x}
+    & \frac{\partial^2\varphi}{\partial\rho^2}(0,0) &= \xi\cdot d(\xi\cdot df)\big|_x \\
+  \frac{\partial^2\varphi}{\partial\sigma^2}(\rho,\sigma) &= \big((\phi_\rho^*\zeta)\cdot d((\phi_\rho^*\zeta)\cdot df)\big)\big|_{\phi_\rho\psi_\sigma x}
+    & \frac{\partial^2\varphi}{\partial\sigma^2}(0,0) &= \zeta\cdot d(\zeta\cdot df)\big|_x \\
+  \frac{\partial^2\varphi}{\partial\sigma\partial\rho}(\rho,\sigma) &= \big((\phi_\rho^*\zeta)\cdot d(\xi\cdot df)\big)\big|_{\phi_\rho\psi_\sigma x}
+    & \frac{\partial^2\varphi}{\partial\sigma\partial\rho}(0,0) &= \zeta\cdot d(\xi\cdot df)\big|_x \\
+  \frac{\partial^2\psi}{\partial\sigma^2}(\sigma,\rho) &= \big(\zeta\cdot d(\zeta\cdot df)\big)\big|_{\psi_\sigma\phi_\rho x}
+    & \frac{\partial^2\psi}{\partial\sigma^2}(0,0) &= \zeta\cdot d(\zeta\cdot df)\big|_x \\
+  \frac{\partial^2\psi}{\partial\rho^2}(\sigma,\rho) &= \big((\psi_\sigma^*\xi)\cdot d((\psi_\sigma^*\xi)\cdot df)\big)\big|_{\psi_\sigma\phi_\rho x}
+    & \frac{\partial^2\psi}{\partial\rho^2}(0,0) &= \xi\cdot d(\xi\cdot df)\big|_x \\
+  \frac{\partial^2\psi}{\partial\rho\partial\sigma}(\sigma,\rho) &= \big((\psi_\sigma^*\xi)\cdot d(\zeta\cdot df)\big)\big|_{\psi_\sigma\phi_\rho x}
+    & \frac{\partial^2\psi}{\partial\rho\partial\sigma}(0,0) &= \xi\cdot d(\zeta\cdot df)\big|_x
+\end{align*}
+\begin{align*}
+  f(\psi_\tau\phi_\tau x) - f(\phi_\tau\psi_\tau x) &= \psi(\tau,\tau) - \varphi(\tau,\tau) = \\
+  &= \Big(\psi - \varphi + \Big(\frac{\partial\psi}{\partial\sigma} + \frac{\partial\psi}{\partial\rho}
+     - \frac{\partial\varphi}{\partial\sigma} - \frac{\partial\varphi}{\partial\rho}\Big)\tau \\
+  &\qquad + \Big(\frac12\frac{\partial^2\psi}{\partial\sigma^2} + \frac12\frac{\partial^2\psi}{\partial\rho^2}
+     + \frac{\partial^2\psi}{\partial\rho\partial\sigma} - \frac12\frac{\partial^2\varphi}{\partial\rho^2}
+     - \frac12\frac{\partial^2\varphi}{\partial\sigma^2} - \frac{\partial^2\varphi}{\partial\sigma\partial\rho}\Big)\tau^2 + \dots\Big)\Big|_{0,0} \\
+  &= \tau^2\big(\xi\cdot d(\zeta\cdot df) - \zeta\cdot d(\xi\cdot df)\big)\big|_x = \\
+  &= \tau^2[\xi,\zeta]\cdot df\big|_x
+\end{align*}
+\endgroup
+\pozn{v originále se písmena $\xi$ a $\zeta$ (a parametry $\rho,\sigma$) těžko rozlišují; přiřazení podle obrázku}
+
+\begin{vysvetleni}[struktura důkazu]
+Funkce $\varphi(\rho,\sigma)$ a $\psi(\sigma,\rho)$ (zde $\psi$ označuje i funkci, nejen tok!) jsou hodnoty $f$ v koncových bodech obou cest. Derivace podle parametru je derivace $f$ ve směru tečného vektoru křivky, kterou koncový bod opisuje: při změně $\rho$ ve $\varphi$ se bod $\phi_\rho\psi_\sigma x$ hýbe po orbitě $\xi$, při změně $\sigma$ se hýbe po obrazu orbity $\zeta$ zobrazením $\phi_\rho$, s tečným vektorem „přeneseného“ pole (čárkované křivky v obrázku).
+Krtouš (lemma V3.11) toto pole píše jako push-forward $\phi_{\rho*}\zeta$; v konvenci $\phi^*=(\phi^{-1})_*$ by tomu odpovídalo $\phi_{-\rho}^*\zeta$. Pro výsledek je to nepodstatné, protože se vše vyčísluje v $\rho=\sigma=0$, kde je přenos identitou.
+Taylorův rozvoj v $(\tau,\tau)$: nultý a první řád se odečtou, ve druhém řádu přežijí jen smíšené derivace, $\xi\cdot d(\zeta\cdot df)-\zeta\cdot d(\xi\cdot df)=\xi[\zeta[f]]-\zeta[\xi[f]]=[\xi,\zeta][f]$.
+\end{vysvetleni}
+

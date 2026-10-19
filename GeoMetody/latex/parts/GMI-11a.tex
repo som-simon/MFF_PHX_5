@@ -1,0 +1,364 @@
+%======================================================================
+% GMI-11a Krivost.pdf
+%======================================================================
+% podtržené (abstraktní) indexy
+\providecommand{\gmIjedenactAu}[1]{\underline{#1}}
+% operátor křivosti (v originále dvojité R)
+\providecommand{\gmIjedenactAR}{\mathbb{R}}
+% derivace asociovaná s n-ádou (v originále ozdobné d)
+\providecommand{\gmIjedenactAd}{\mathfrak{d}}
+% přeškrtnutý (vyrušený) člen
+\providecommand{\gmIjedenactAx}[1]{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\displaystyle #1$};\draw[gray](X.south west)--(X.north east);}}
+
+\section{Křivost}
+\strana{GMI-11a-1}
+
+\subsection*{Riemannův tenzor křivosti}
+\begin{definice}[Riemannův tenzor křivosti]
+\[
+  \vzorec{R_{\gmIjedenactAu{kl}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}\,a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}c^{\gmIjedenactAu{n}}
+  = \nabla_a\nabla_b c^{\gmIjedenactAu{m}} - \nabla_b\nabla_a c^{\gmIjedenactAu{m}} - \nabla_{[a,b]}c^{\gmIjedenactAu{m}}}
+\]
+\end{definice}
+\begin{itemize}[nosep]
+  \item aby pravá strana definovala tenzor $R_{\gmIjedenactAu{kl}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}$, musí záviset na $a,b,c$ \kw{ultralok.\ lineárně} \\
+        dokážeme obecněji
+\end{itemize}
+
+\begin{vysvetleni}[Co měří Riemannův tenzor]
+Podtržené indexy $\gmIjedenactAu{k},\gmIjedenactAu{l},\dots$ jsou abstraktní indexy (označují sloty tenzoru, ne složky); kde to nehrozí záměnou, píšou se v poznámkách i bez podtržení. Riemannův tenzor měří \emph{nekomutativitu} kovariantních derivací: v plochém $\mathbb{R}^d$ s $\nabla=\partial$ je výraz vpravo nulový. Člen $-\nabla_{[a,b]}c$ je oprava na to, že samotná pole $a,b$ nemusí komutovat (pro souřadnicová pole $a=\partial_k$, $b=\partial_l$ je $[a,b]=0$ a zbude jen komutátor $\nabla_k\nabla_l-\nabla_l\nabla_k$).
+Geometricky: vektor paralelně přenesený podél malé smyčky o ploše $S$ ve směrech $a,b$ se změní o $\approx -S\,R(a,b)^{k}{}_{l}c^{l}$, tj.\ $R$ je ``plošná hustota'' netriviálnosti paralelního přenosu.
+Viz Krtouš, odd.\ 7.10 (def.\ D7.21, marginálie M7.8) a dodatek 7.A.
+\end{vysvetleni}
+
+\begin{veta}[Lemma]
+\[
+  \nabla_a\nabla_b c - \nabla_b\nabla_a c - \nabla_{[a,b]}c
+\]
+závisí na $a,b\in\mathbf{T}M$, \ $c\in\mathbf{T}^p_q M$ \ ultralok.\ lin.
+\end{veta}
+
+\underline{Důk:}
+\begin{align*}
+  \nabla_{fa}\nabla_b c - \nabla_b\nabla_{fa}c - \nabla_{[fa,b]}c
+  &= f\nabla_a\nabla_b c - \nabla_b(f\nabla_a c) - \nabla_{f[a,b]-b[f]a}\,c \\
+  &= f\big(\nabla_a\nabla_b c - \nabla_b\nabla_a c - \nabla_{[a,b]}c\big) - (\nabla_b f)\nabla_a c + b[f]\nabla_a c \\
+  &= f\big(\nabla_a\nabla_b c - \nabla_b\nabla_a c - \nabla_{[a,b]}c\big)
+\end{align*}
+\begin{align*}
+  \nabla_a\nabla_b(fc) - \nabla_b\nabla_a(fc) - \nabla_{[a,b]}(fc)
+  &= \nabla_a\big(f\nabla_b c + b[f]c\big) - \nabla_b\big(f\nabla_a c + a[f]c\big) - f\nabla_{[a,b]}c - [a,b][f]\,c \\
+  &= f\big(\nabla_a\nabla_b c - \nabla_b\nabla_a c - \nabla_{[a,b]}c\big) \\
+  &\quad + a[f]\nabla_b c + b[f]\nabla_a c - b[f]\nabla_a c - a[f]\nabla_b c \\
+  &\quad + \big(a\big[b[f]\big] - b\big[a[f]\big] - [a,b][f]\big)\,c \\
+  &= f\big(\nabla_a\nabla_b c - \nabla_b\nabla_a c - \nabla_{[a,b]}c\big)
+\end{align*}
+
+\begin{vysvetleni}[Proč stačí ověřit $f$-linearitu]
+Zobrazení vektorových polí, které je lineární vůči násobení \emph{funkcí} (ultralokálně lineární), závisí jen na hodnotách polí v daném bodě, a je tedy dáno tenzorem. Samotné $\nabla_a\nabla_b c$ tuto vlastnost nemá (derivuje $b$ i $a$), teprve celá kombinace ano.
+V prvním výpočtu se použilo $[fa,b]=f[a,b]-b[f]\,a$ a $\nabla_{fa}=f\nabla_a$; ve druhém Leibnizovo pravidlo $\nabla_a(fc)=f\nabla_a c+a[f]\,c$ a definice Lieovy závorky $[a,b][f]=a\big[b[f]\big]-b\big[a[f]\big]$ (poslední závorka je proto nulová). Linearita v $b$ plyne z antisymetrie $a\leftrightarrow b$.
+Viz Krtouš, lemma V7.21.
+\end{vysvetleni}
+
+definujeme též
+\[
+  R_{a,b}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}} \equiv R(a,b)^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}
+  \equiv a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}R_{\gmIjedenactAu{kl}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}
+\]
+
+%----------------------------------------------------------------------
+\strana{GMI-11a-2}
+\subsection*{Komutátor kov.\ der.\ na vekt.\ polích}
+\begin{veta}[Komutátor kovariantních derivací]
+\[
+  \vzorec{\nabla_{\gmIjedenactAu{a}}\nabla_{\gmIjedenactAu{b}}c^{\gmIjedenactAu{m}} - \nabla_{\gmIjedenactAu{b}}\nabla_{\gmIjedenactAu{a}}c^{\gmIjedenactAu{m}}
+  + T^{\gmIjedenactAu{n}}_{\gmIjedenactAu{ab}}\nabla_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{m}}
+  = R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{n}}}
+\]
+\end{veta}
+\underline{Důk:}
+\begin{align*}
+  a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}R_{\gmIjedenactAu{kl}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{n}}
+  &= a^{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{k}}\big(b^{\gmIjedenactAu{l}}\nabla_{\gmIjedenactAu{l}}c^{\gmIjedenactAu{m}}\big)
+   - b^{\gmIjedenactAu{l}}\nabla_{\gmIjedenactAu{l}}\big(a^{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{k}}c^{\gmIjedenactAu{m}}\big)
+   - [a,b]^{\gmIjedenactAu{n}}\nabla_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{m}} \\
+  &= a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}\big(\nabla_{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{l}}c^{\gmIjedenactAu{m}} - \nabla_{\gmIjedenactAu{l}}\nabla_{\gmIjedenactAu{k}}c^{\gmIjedenactAu{m}}\big)
+   + \big(a^{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{k}}b^{\gmIjedenactAu{n}} - b^{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{k}}a^{\gmIjedenactAu{n}} - [a,b]^{\gmIjedenactAu{n}}\big)\nabla_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{m}} \\
+  &= a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}\big(\nabla_{\gmIjedenactAu{k}}\nabla_{\gmIjedenactAu{l}}c^{\gmIjedenactAu{m}} - \nabla_{\gmIjedenactAu{l}}\nabla_{\gmIjedenactAu{k}}c^{\gmIjedenactAu{m}}
+   + T^{\gmIjedenactAu{n}}_{\gmIjedenactAu{kl}}\nabla_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{m}}\big)
+\end{align*}
+oproti definici $R$ je zde potřeba rozšíření $R$ na tenzory
+\begin{itemize}[nosep]
+  \item[--] nevadí -- obvykle máme
+  \item[--] lze hledat obecnou akci na tenz.
+\end{itemize}
+
+\begin{vysvetleni}[Komutátor a torze]
+Člen s torzí vzniká z rozderivování součinů $b^{\gmIjedenactAu{l}}\nabla_{\gmIjedenactAu{l}}c$: zbude kombinace $\nabla_a b-\nabla_b a-[a,b]$, což je přesně torze $T(a,b)$. Pro beztorzní derivaci ($T=0$, např.\ Levi-Civitova) tedy
+$\nabla_{\gmIjedenactAu{a}}\nabla_{\gmIjedenactAu{b}}c^{\gmIjedenactAu{m}}-\nabla_{\gmIjedenactAu{b}}\nabla_{\gmIjedenactAu{a}}c^{\gmIjedenactAu{m}}=R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{n}}$ -- antisymetrická část druhé derivace je dána čistě křivostí.
+Poznámka ``oproti definici $R$ \dots'' znamená: definice potřebuje $\nabla$ jen na vektorech, zde ale derivujeme tenzor $\nabla_{\gmIjedenactAu{l}}c^{\gmIjedenactAu{m}}$, takže předpokládáme rozšíření $\nabla$ na celou tenzorovou algebru. Viz Krtouš, lemma V7.22.
+\end{vysvetleni}
+
+\subsection*{Operátor křivosti}
+\begin{definice}[Operátor křivosti]
+\[
+  \vzorec{\gmIjedenactAR_{a,b} \equiv \gmIjedenactAR(a,b) \equiv \nabla_a\nabla_b - \nabla_b\nabla_a - \nabla_{[a,b]}}
+\]
+\end{definice}
+\begin{itemize}[nosep]
+  \item[--] závisí na $a,b$ ultralok.\ lin.\ -- viz výše \quad $\Rightarrow$
+\end{itemize}
+\[
+  \gmIjedenactAR_{a,b} = a^{\gmIjedenactAu{k}}b^{\gmIjedenactAu{l}}\gmIjedenactAR_{\gmIjedenactAu{kl}}
+\]
+
+\begin{veta}[Lemma]
+$\gmIjedenactAR_{a,b}$ či $\gmIjedenactAR_{\gmIjedenactAu{kl}}$ jsou \kw{pseudoderivace}
+\end{veta}
+\underline{Důk:}
+\begin{itemize}[nosep]
+  \item[] linearita vůči součtu \quad $\Leftarrow$ lin.\ $\nabla$
+  \item[] ultralok.\ lin. \quad $\Leftarrow$ viz výše
+  \item[] Leibnitz
+\end{itemize}
+\begin{align*}
+  \gmIjedenactAR_{a,b}(AB) &= \nabla_a\nabla_b(AB) - \nabla_b\nabla_a(AB) - \nabla_{[a,b]}(AB) = \\
+  &= \nabla_a\big((\nabla_b A)B + A\nabla_b B\big) - \nabla_b\big((\nabla_a A)B + A\nabla_a B\big) - (\nabla_{[a,b]}A)B - A\nabla_{[a,b]}B \\
+  &= \big(\nabla_a\nabla_b A - \nabla_b\nabla_a A - \nabla_{[a,b]}A\big)B + A\big(\nabla_a\nabla_b B - \nabla_b\nabla_a B - \nabla_{[a,b]}B\big) \\
+  &\quad + \gmIjedenactAx{(\nabla_b A)(\nabla_a B)} + \gmIjedenactAx{(\nabla_a A)(\nabla_b B)} - \gmIjedenactAx{(\nabla_a A)(\nabla_b B)} - \gmIjedenactAx{(\nabla_b A)(\nabla_a B)} \\
+  &= (\gmIjedenactAR_{a,b}A)B + A(\gmIjedenactAR_{a,b}B)
+\end{align*}
+$\Downarrow$ \\
+operátor křivosti je pseudoder.\ indukovaná Riem.\ tenz.
+\[
+  \gmIjedenactAR_{\gmIjedenactAu{ab}}M^{\gmIjedenactAu{k}\dots}_{\gmIjedenactAu{l}\dots}
+  = R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{k}}{}_{\gmIjedenactAu{m}}M^{\gmIjedenactAu{m}\dots}_{\gmIjedenactAu{l}\dots} + \dots
+  - R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{n}}{}_{\gmIjedenactAu{l}}M^{\gmIjedenactAu{k}\dots}_{\gmIjedenactAu{n}\dots} - \dots
+\]
+
+\begin{vysvetleni}[Operátor křivosti jako pseudoderivace]
+$\gmIjedenactAR$ (v originále ``dvojité R'') je operátor působící na libovolná tenzorová pole, kdežto $R$ je tenzor. \emph{Pseudoderivace} je lineární, Leibnizovské, komutuje se zúžením a je ultralokální (funkce anihiluje: $\gmIjedenactAR_{a,b}f=a\big[b[f]\big]-b\big[a[f]\big]-[a,b][f]=0$). Taková operace je jednoznačně určena svou akcí na vektorech, tj.\ maticí $R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{k}}{}_{\gmIjedenactAu{m}}$. Na každý horní index působí $+R$, na každý dolní $-R$, např.
+$\gmIjedenactAR_{ab}\,\omega_{n}=-R_{ab}{}^{m}{}_{n}\,\omega_{m}$, \ $\gmIjedenactAR_{ab}\,g_{cd}=-R_{ab}{}^{n}{}_{c}g_{nd}-R_{ab}{}^{n}{}_{d}g_{cn}$.
+Viz Krtouš, def.\ D7.22, věty V7.23, V7.24 a vztahy (7.13).
+\end{vysvetleni}
+
+\subsection*{Komutátor kov.\ der.}
+\[
+  \vzorec{\nabla_{\gmIjedenactAu{a}}\nabla_{\gmIjedenactAu{b}} - \nabla_{\gmIjedenactAu{b}}\nabla_{\gmIjedenactAu{a}} + T^{\gmIjedenactAu{n}}_{\gmIjedenactAu{ab}}\nabla_{\gmIjedenactAu{n}} = \gmIjedenactAR_{\gmIjedenactAu{ab}}}
+\]
+důkaz shodný jako při působení na vekt.
+
+%----------------------------------------------------------------------
+\strana{GMI-11a-3}
+\subsection*{Křivost souřad.\ derivace}
+\[
+  \vzorec{\mathrm{Riem}[\partial] = 0}\qquad\qquad
+  \vzorec{\mathrm{Riem}[\gmIjedenactAd] = 0}
+\]
+\underline{Důk:}
+\[
+  R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}\,e^{\gmIjedenactAu{n}}_{e}
+  = \gmIjedenactAd_{\gmIjedenactAu{a}}\gmIjedenactAd_{\gmIjedenactAu{b}}e^{\gmIjedenactAu{m}}_{e}
+  - \gmIjedenactAd_{\gmIjedenactAu{b}}\gmIjedenactAd_{\gmIjedenactAu{a}}e^{\gmIjedenactAu{m}}_{e}
+  + t^{\gmIjedenactAu{n}}_{\gmIjedenactAu{ab}}\gmIjedenactAd_{\gmIjedenactAu{n}}e^{\gmIjedenactAu{m}}_{e} = 0
+\]
+
+\begin{vysvetleni}[Plochost souřadnicové a n-ádové derivace]
+$\gmIjedenactAd$ (v originále ozdobné d) je n-ádová derivace asociovaná s n-ádou $\{e_{e}\}$ -- je definovaná tak, že vektory n-ády jsou ``konstantní'', $\gmIjedenactAd e_{e}=0$. Proto je pravá strana nulová a díky ultralokalitě $R$ na každém vektoru $c=c^{e}e_{e}$ dává $R=0$. Její torze $t$ obecně nulová není ($t(e_{e},e_{f})=-[e_{e},e_{f}]$, koeficienty neholonomity). Souřadnicová derivace $\partial$ je speciální případ s $e_{e}=\partial_{e}$ a $t=0$.
+Viz Krtouš, lemma V7.25.
+\end{vysvetleni}
+
+\subsection*{Vztah křivosti dvou derivací}
+\[
+  \tilde\nabla = \nabla + \mathbb{W} \qquad\qquad \mathbb{W}\ \text{generováno}\ \Gamma^{\gmIjedenactAu{n}}_{\gmIjedenactAu{al}}
+\]
+\begin{veta}[Vztah křivostí]
+\begin{align*}
+  \tilde R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{k}}{}_{\gmIjedenactAu{l}}
+  &= R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{k}}{}_{\gmIjedenactAu{l}}
+   + \nabla_{\gmIjedenactAu{a}}\Gamma^{\gmIjedenactAu{k}}_{\gmIjedenactAu{bl}}
+   - \nabla_{\gmIjedenactAu{b}}\Gamma^{\gmIjedenactAu{k}}_{\gmIjedenactAu{al}}
+   + T^{\gmIjedenactAu{n}}_{\gmIjedenactAu{ab}}\Gamma^{\gmIjedenactAu{k}}_{\gmIjedenactAu{nl}} \\
+  &\quad + \Gamma^{\gmIjedenactAu{k}}_{\gmIjedenactAu{an}}\Gamma^{\gmIjedenactAu{n}}_{\gmIjedenactAu{bl}}
+   - \Gamma^{\gmIjedenactAu{k}}_{\gmIjedenactAu{bn}}\Gamma^{\gmIjedenactAu{n}}_{\gmIjedenactAu{al}}
+\end{align*}
+\end{veta}
+Důk.\ přímo užitím vztahu pro $\tilde R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}c^{\gmIjedenactAu{n}} = \dots$
+
+\begin{vysvetleni}[Rozdílový tenzor a změna křivosti]
+Rozdíl dvou kovariantních derivací je tenzor: $\tilde\nabla_{a}c^{k}=\nabla_{a}c^{k}+\Gamma^{k}_{al}c^{l}$ ($\mathbb{W}$ je pseudoderivace generovaná $\Gamma$, na dolní indexy působí s mínusem). Do vztahu $\tilde R c=\tilde\nabla_a\tilde\nabla_b c-\tilde\nabla_b\tilde\nabla_a c+\tilde T\nabla c$ dosadíme $\tilde\nabla=\nabla+\Gamma$ a $\tilde T^{n}_{ab}=T^{n}_{ab}+2\Gamma^{n}_{[ab]}$; členy s $\nabla c$ se vyruší a zůstanou členy úměrné $c$.
+Struktura ``$\nabla\Gamma-\nabla\Gamma+\Gamma\Gamma-\Gamma\Gamma$'' je stejná jako u složek $R$ níže -- ty dostaneme volbou $\nabla=\partial$ (pak $R=0$, $T=0$ a $\Gamma$ jsou Christoffelovy symboly, čárka značí parciální derivaci). Viz Krtouš, věta V7.26 a lemma V7.27.
+\end{vysvetleni}
+
+\subsection*{Složky Riem.\ tenzoru}
+\[
+  x^{k} \;\longrightarrow\; \partial \;\longrightarrow\; \Gamma^{k}_{ab} \;\longrightarrow\; R_{ab}{}^{k}{}_{l}
+\]
+\[
+  \vzorec{R_{ab}{}^{k}{}_{l} = \Gamma^{k}_{bl,a} - \Gamma^{k}_{al,b} + \Gamma^{k}_{an}\Gamma^{n}_{bl} - \Gamma^{k}_{bn}\Gamma^{n}_{al}}
+\]
+
+\subsection*{2.\ Cartanovy rov.\ struktury}
+\[
+  \tilde\nabla\to\nabla \qquad \nabla\to\gmIjedenactAd \qquad \text{n-áda } e^{\gmIjedenactAu{n}}_{e} \qquad
+  \gamma^{k}_{\gmIjedenactAu{a}b} = \nabla - \gmIjedenactAd \qquad
+  \omega_{\gmIjedenactAu{e}}{}^{k}{}_{l} = \gamma_{\gmIjedenactAu{e}}{}^{k}{}_{l}
+\]
+\begin{veta}[2.\ Cartanova rovnice struktury]
+\begin{align*}
+  R_{\gmIjedenactAu{ab}}{}^{k}{}_{l}
+  &= \gmIjedenactAd_{\gmIjedenactAu{a}}\omega_{\gmIjedenactAu{b}}{}^{k}{}_{l}
+   - \gmIjedenactAd_{\gmIjedenactAu{b}}\omega_{\gmIjedenactAu{a}}{}^{k}{}_{l}
+   + t^{n}_{\gmIjedenactAu{ab}}\omega_{n}{}^{k}{}_{l}
+   + \omega_{\gmIjedenactAu{a}}{}^{k}{}_{n}\omega_{\gmIjedenactAu{b}}{}^{n}{}_{l}
+   - \omega_{\gmIjedenactAu{b}}{}^{k}{}_{n}\omega_{\gmIjedenactAu{a}}{}^{n}{}_{l} \\
+  &= \vzorec{\mathrm{d}_{\gmIjedenactAu{a}}\omega_{\gmIjedenactAu{b}}{}^{k}{}_{l} + \omega_{\gmIjedenactAu{a}}{}^{k}{}_{n}\wedge\omega_{\gmIjedenactAu{b}}{}^{n}{}_{l}}
+\end{align*}
+\end{veta}
+
+\begin{vysvetleni}[Jak číst Cartanovu rovnici]
+Jde o předchozí větu s volbou $\tilde\nabla\to\nabla$, $\nabla\to\gmIjedenactAd$ (n-ádová derivace, ta má $R=0$, ale torzi $t$), rozdílový tenzor je $\gamma=\nabla-\gmIjedenactAd$. Nepodtržené indexy $k,l,n$ jsou n-ádové (číslují vektory n-ády, ne sloty), podtržené $\gmIjedenactAu{a},\gmIjedenactAu{b}$ jsou abstraktní formové indexy. $\omega^{k}{}_{l}$ je tedy matice 1-forem (\kw{konexní 1-formy}) a $R^{k}{}_{l}$ matice 2-forem. Kombinace $\gmIjedenactAd_a\omega_b-\gmIjedenactAd_b\omega_a+t^{n}_{ab}\omega_n$ je přesně vnější derivace $(\mathrm{d}\omega)_{ab}$ a $(\alpha\wedge\beta)_{ab}=\alpha_a\beta_b-\alpha_b\beta_a$; maticově
+\[
+  R^{k}{}_{l}=\mathrm{d}\omega^{k}{}_{l}+\omega^{k}{}_{n}\wedge\omega^{n}{}_{l}.
+\]
+(1.\ Cartanova rovnice obdobně dává torzi: $\mathrm{d}e^{k}+\omega^{k}{}_{n}\wedge e^{n}=T^{k}$, kde $e^{k}$ je duální ko-n-áda.) Ve formalismu kovariantní vnější derivace jde o vztah $\nabla\mathrm{d}\,\nabla\mathrm{d}=R\wedge$, viz Krtouš, odd.\ 8.3, věta V8.3.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11a-4}
+\subsection*{Stopy Riemannova tenzoru}
+Riem.\ tenz.\ $R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{n}}$ má dvě nezávislé stopy:
+
+\begin{definice}[Ricciho tenzor a stopa Riem.\ tenzoru]
+\kw{Ricciho tenzor}
+\[
+  \vzorec{\mathrm{Ric}_{\gmIjedenactAu{ab}} = R_{\gmIjedenactAu{ma}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{b}}}
+\]
+\kw{stopa Riem.\ tenz.}
+\[
+  \vzorec{\mathrm{Tr}R_{\gmIjedenactAu{ab}} = R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{m}}{}_{\gmIjedenactAu{m}}}
+\]
+\end{definice}
+
+obecně
+\begin{align*}
+  \mathrm{Tr}R_{\gmIjedenactAu{ab}} &\neq 0 && \text{(konexe nezachov.\ obj.\ element)} \\
+  \mathrm{Ric}_{[\gmIjedenactAu{ab}]} &\neq 0 && \text{(buď díky $\mathrm{Tr}R$ či $T$ -- viz B.I.)}
+\end{align*}
+
+\begin{vysvetleni}[Proč jen dvě stopy]
+$R_{ab}{}^{m}{}_{n}$ je typu (1,3), horní index lze zúžit se třemi dolními. Zúžení s $a$ a s $b$ se liší jen znaménkem (antisymetrie v $ab$), takže nezávislá jsou dvě: Ricciho tenzor $\mathrm{Ric}$ (zúžení s prvním indexem) a $\mathrm{Tr}R$ (zúžení s posledním), který je antisymetrický v $ab$. $\mathrm{Tr}R$ je křivost indukovaná na objemových formách (viz str.~GMI-11a-6); pro metrickou derivaci je nulová a v literatuře se proto obvykle nedefinuje. Krtouš, def.\ D7.23.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11a-5}
+\subsection*{Bianchiho identity}
+\begin{veta}[Bianchiho identity]
+pro Riemannův tenz.\ platí
+\begin{align*}
+  R_{[ab}{}^{n}{}_{c]} &= \nabla_{[a}T^{n}_{bc]} - T^{k}_{[ab}T^{n}_{c]k} && \text{1.\ BI} \\
+  \nabla_{[a}R_{bc]}{}^{k}{}_{l} &= T^{n}_{[ab}R_{c]n}{}^{k}{}_{l} && \text{2.\ BI}
+\end{align*}
+bez torze
+\begin{align*}
+  \vzorec{R_{[ab}{}^{n}{}_{c]} = 0} &&& \text{1.\ BI} \\
+  \vzorec{\nabla_{[a}R_{bc]}{}^{k}{}_{l} = 0} &&& \text{2.\ BI}
+\end{align*}
+\end{veta}
+
+\underline{Důk} pro $T = 0$
+\begin{align*}
+  R_{[ab}{}^{n}{}_{c]}\,\omega_n &= -\gmIjedenactAR_{[ab}\,\omega_{c]} = -\nabla_{[a}\nabla_b\omega_{c]} + \nabla_{[b}\nabla_a\omega_{c]} \\
+  &= -\nabla_{[a}\big(\nabla_b\omega_{c]} - \nabla_c\omega_{b]}\big) = -\nabla_{[a}\mathrm{d}_b\omega_{c]} = -\mathrm{d}_a\mathrm{d}_b\omega_c = 0
+\end{align*}
+\begin{align*}
+  (\nabla_a R_{bc}{}^{m}{}_{n})\,a^{n} &= \nabla_a\big(R_{bc}{}^{m}{}_{n}a^{n}\big) - R_{bc}{}^{m}{}_{n}\nabla_a a^{n} = \\
+  &= \nabla_a\big(\gmIjedenactAR_{bc}\,a^{m}\big) - \gmIjedenactAR_{bc}\nabla_a a^{m} - R_{bc}{}^{n}{}_{a}\nabla_n a^{m} \\
+  &= \nabla_a\nabla_b\nabla_c a^{m} - \nabla_a\nabla_c\nabla_b a^{m} - \nabla_b\nabla_c\nabla_a a^{m} + \nabla_c\nabla_b\nabla_a a^{m} - R_{bc}{}^{n}{}_{a}\nabla_n a^{m} \\
+  (\nabla_{[a}R_{bc]}{}^{m}{}_{n})\,a^{n} &= -R_{[bc}{}^{n}{}_{a]}\nabla_n a^{m} = 0
+\end{align*}
+důkaz projde i s $T\neq 0$, pouze dodatečné členy navíc
+
+\begin{vysvetleni}[Smysl Bianchiho identit]
+1.\ BI je \emph{algebraická}: bez torze je Riemannův tenzor cyklicky symetrický v dolních indexech $a,b,c$ (jde o důsledek $\mathrm{d}\mathrm{d}=0$). 2.\ BI je \emph{diferenciální}: totálně antisymetrická část $\nabla R$ vymizí. V řeči kovariantní vnější derivace jsou to triviální identity $R\wedge\delta=\nabla\mathrm{d}T$ a $\nabla\mathrm{d}R=0$ (Krtouš, věty V7.28, V8.4).
+V důkazu značí $\mathrm{d}_b\omega_c=2\nabla_{[b}\omega_{c]}$ vnější derivaci v abstraktních indexech (pro $T=0$); zápis ``$\mathrm{d}_a\mathrm{d}_b\omega_c$'' je zkratka za složky $(\mathrm{d}\mathrm{d}\omega)_{abc}$ až na číselný faktor. Ve druhém důkazu je $a^{n}$ libovolné pomocné vektorové pole (písmeno $a$ zde slouží zároveň jako index -- nutno rozlišovat). Antisymetrizací přes $abc$ se členy $\nabla\nabla\nabla a$ vyruší a zbyde 1.\ BI.
+\end{vysvetleni}
+
+\subsection*{Zúžené Bianchiho identity}
+\begin{align*}
+  2\,\mathrm{Ric}_{[ab]} + \mathrm{Tr}R_{ab} &= \mathrm{d}_a T^{n}_{bn} + \nabla_n T^{n}_{ab} && \Leftarrow\ \text{1.\ BI} \\
+  \mathrm{d}_a\mathrm{Tr}R_{bc} = 0 \quad &\text{tj.}\quad \nabla_{[a}\mathrm{Tr}R_{bc]} - T^{n}_{[ab}\mathrm{Tr}R_{c]n} = 0 && \Leftarrow\ \text{2.\ BI} \\
+  \nabla_a\mathrm{Ric}_{bc} - \nabla_b\mathrm{Ric}_{ac} + T^{n}_{ab}\mathrm{Ric}_{nc}
+  &= \nabla_m R_{ab}{}^{m}{}_{c} + T^{n}_{am}R_{bn}{}^{m}{}_{c} - T^{n}_{bm}R_{an}{}^{m}{}_{c} && \Leftarrow\ \text{2.\ BI}
+\end{align*}
+bez torze
+\begin{align*}
+  2\,\mathrm{Ric}_{[ab]} &= -\mathrm{Tr}R_{ab} \\
+  \mathrm{d}_a\mathrm{Tr}R_{bc} = 0 \quad &\text{tj.}\quad \nabla_{[a}\mathrm{Tr}R_{bc]} = 0 \\
+  2\,\nabla_{[a}\mathrm{Ric}_{b]c} &= \nabla_m R_{ab}{}^{m}{}_{c}
+\end{align*}
+
+\begin{vysvetleni}[Odkud jsou zúžené identity]
+První řádek: v 1.\ BI zúžíme $n$ s $c$ (rozepsání $3R_{[ab}{}^{c}{}_{c]}$ dá $\mathrm{Tr}R_{ab}+\mathrm{Ric}_{ab}-\mathrm{Ric}_{ba}$). Druhý: ve 2.\ BI zúžíme $k$ s $l$; říká, že 2-forma $\mathrm{Tr}R$ je uzavřená (lokálně $\mathrm{Tr}R=\mathrm{d}(\dots)$, viz další strana). Třetí: ve 2.\ BI zúžíme $k$ s $c$.
+Důsledek bez torze: Ricciho tenzor je symetrický, právě když $\mathrm{Tr}R=0$. Třetí identita je základ pro $\nabla\cdot\mathrm{Ein}=0$ v GMI-11b. Viz Krtouš, věta V7.29.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11a-6}
+\subsection*{Význam $\mathrm{Tr}R_{ab}$}
+akce komutátoru $\gmIjedenactAR_{ab}$ na tot.\ AS formě $\omega_{n_1\dots n_d}$
+\[
+  \gmIjedenactAR_{ab}\,\omega_{m_1\dots m_d} = -R_{ab}{}^{n}{}_{n}\,\omega_{m_1\dots m_d} = -\mathrm{Tr}R_{ab}\,\omega_{m_1\dots m_d}
+\]
+$\mathrm{Tr}R_{ab}$ charakterizuje nekomutativitu $\nabla$ na $\mathbf{A}^d M$
+
+\begin{veta}[Integrabilita $\nabla$ na $\mathbf{A}^d M$]
+\[
+  \mathrm{Tr}R = 0
+  \quad\Longleftrightarrow\quad
+  \text{(na každé topol.\ triv.\ oblasti $U$)}\quad \exists\,\omega\in\mathbf{A}^d U:\ \nabla\omega = 0
+\]
+\end{veta}
+důkaz:
+\begin{itemize}[nosep]
+  \item[$\Uparrow$] $\displaystyle -\mathrm{Tr}R_{ab}\,\omega = \nabla_a\nabla_b\omega - \nabla_b\nabla_a\omega + T^{e}_{ab}\nabla_e\omega = 0$
+  \item[$\Downarrow$] zvolme lib.\ $\tilde\omega$ a OZ-ně \\
+        $\nabla_a\tilde\omega_{n_1\dots n_d} = \lambda_a\tilde\omega_{n_1\dots n_d}$
+        \qquad $\lambda_a = \nabla_a\tilde\omega\bullet\tilde\omega^{-1} = \frac{1}{d!}\nabla_a\omega_{n_1\dots n_d}\,\omega^{-1\,n_1\dots n_d}$ \\
+        pro komutátor dostaneme
+        \begin{align*}
+          \gmIjedenactAR_{ab}\tilde\omega &= \nabla_a\nabla_b\tilde\omega - \nabla_b\nabla_a\tilde\omega + T^{e}_{ab}\nabla_e\tilde\omega = \\
+          &= \nabla_a(\lambda_b\tilde\omega) - \nabla_b(\lambda_a\tilde\omega) + T^{e}_{ab}\lambda_e\tilde\omega = \\
+          &= \big(\nabla_a\lambda_b - \nabla_b\lambda_a + T^{e}_{ab}\lambda_e\big)\tilde\omega + \gmIjedenactAx{\lambda_a\lambda_b\tilde\omega} - \gmIjedenactAx{\lambda_b\lambda_a\tilde\omega} \\
+          &= (\mathrm{d}_a\lambda_b)\,\tilde\omega
+        \end{align*}
+        $\Downarrow$
+        \[
+          \mathrm{Tr}R_{ab} = -\mathrm{d}_a\lambda_b
+        \]
+        při změně $\tilde\omega\to e^{-f}\tilde\omega$ máme $\lambda\to\lambda - \mathrm{d}f$, \ tj.\ $\mathrm{Tr}R\to\mathrm{Tr}R$ \\
+        pokud $\mathrm{Tr}R = 0$, pak $\lambda$ je uzavřená $\Rightarrow$ (Poincaré) $\lambda$ exaktní, tj.\ $\exists f$: $\lambda = \mathrm{d}f$
+        \[
+          \omega = e^{-f}\tilde\omega \qquad \nabla\omega = (\lambda - \mathrm{d}f)\,\omega = 0
+        \]
+\end{itemize}
+
+\begin{vysvetleni}[Význam $\mathrm{Tr}R$: křivost na objemových formách]
+Prostor $\mathbf{A}^dM$ $d$-forem (objemových elementů) je v každém bodě 1-dimenzionální, každá $d$-forma je násobkem pevné $\tilde\omega\neq0$. Proto $\nabla_a\tilde\omega=\lambda_a\tilde\omega$ pro nějakou 1-formu $\lambda$ (``konexní 1-forma'' na $\mathbf{A}^dM$), zápis $\tilde\omega^{-1}$ značí inverzní $d$-vektor, $\tilde\omega\bullet\tilde\omega^{-1}=1$. Operátor křivosti na $\mathbf{A}^dM$ je pak $\gmIjedenactAR_{ab}=\mathrm{d}_a\lambda_b$, tj.\ $\mathrm{Tr}R=-\mathrm{d}\lambda$ -- stejně jako pole $F=\mathrm{d}A$ v elektromagnetismu, a změna $\tilde\omega\to e^{-f}\tilde\omega$ je obdoba kalibrační transformace $\lambda\to\lambda-\mathrm{d}f$.
+Věta tedy říká: $\nabla$ zachovává (lokálně) nějaký objemový element, právě když $\mathrm{Tr}R=0$. Poincarého lemma vyžaduje topologicky triviální (stažitelnou) oblast. Viz Krtouš, odd.\ 10 (věty V10.11, V10.12, marginálie M10.3).
+\end{vysvetleni}
+
+\subsection*{Metrická der.}
+\[
+  \nabla g = 0 \;\Rightarrow\; \nabla\varepsilon = 0 \;\Rightarrow\; \vzorec{\mathrm{Tr}R = 0}
+\]
+je vidět i proto, že
+\[
+  \nabla g = 0 \;\Rightarrow\; R_{\gmIjedenactAu{abkl}} = R_{\gmIjedenactAu{ab}[\gmIjedenactAu{kl}]}
+  \;\Rightarrow\; R_{\gmIjedenactAu{ab}}{}^{\gmIjedenactAu{k}}{}_{\gmIjedenactAu{k}} = \mathrm{Tr}R = 0
+\]
+
+\begin{vysvetleni}[Metrická derivace]
+Je-li $\nabla g=0$, zachovává $\nabla$ i metrický objemový element $\varepsilon$ (ten je sestrojen jen z $g$ a orientace), takže podle předchozí věty $\mathrm{Tr}R=0$. Druhý argument: $0=\gmIjedenactAR_{ab}\,g_{kl}=-2R_{ab(kl)}$, tj.\ $R_{abkl}$ je antisymetrický i ve druhé dvojici, a stopa antisymetrické matice $R_{ab}{}^{k}{}_{l}$ (po spuštění indexu) je nulová. Pro beztorzní metrickou (Levi-Civitovu) derivaci pak ze zúžené 1.\ BI plyne $\mathrm{Ric}_{[ab]}=0$ -- podrobně v GMI-11b.
+\end{vysvetleni}
+

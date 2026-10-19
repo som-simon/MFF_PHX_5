@@ -1,0 +1,711 @@
+%======================================================================
+% GMI-14 Derivovani hustot.pdf
+%======================================================================
+% symboly hustot (stejné jako v GMI-13; \providecommand -> nepřepíše)
+\providecommand{\gmIhustsym}{\mathord{\text{\tikz[baseline=0.04cm,line width=0.55pt,line join=round]{\draw (0,0.075)--(0.07,0.15)--(0.32,0.15)--(0.28,0.075)--(0.32,0)--(0.07,0)--cycle;}}}}
+\providecommand{\gmIhustsymB}{\mathord{\text{\tikz[baseline=0.04cm,line width=0.55pt,line join=round]{\draw (0.32,0.075)--(0.25,0.15)--(0,0.15)--(0.04,0.075)--(0,0)--(0.25,0)--cycle;}}}}
+\providecommand{\gmIhdual}{\mathord{\divideontimes}}
+% klín s tečkou nad / uvnitř
+\providecommand{\gmIdotwedge}{\mathbin{\dot\wedge}}
+\providecommand{\gmIwedgedot}{\mathbin{\ooalign{$\wedge$\cr\hidewidth\raisebox{0.1ex}{$\cdot$}\hidewidth\cr}}}
+
+\section{Derivování hustot}
+\strana{GMI-14-1}
+
+\begin{itemize}[nosep]
+  \item Rozšíření tenzorové derivace na hustoty
+  \item Kovariantní derivace hustot
+  \item Divergence AS-tenz.\ hustot
+  \item Lieova derivace hustot
+  \item Metrická divergence
+\end{itemize}
+
+\begin{vysvetleni}[značení v této kapitole]
+Destička $\gmIhustsym$ (a zrcadlová $\gmIhustsymB$) zde většinou značí \emph{antisymetrickou tenzorovou hustotu} z $\Lambda^{*p}M$
+(u Krtouše $\tilde\Lambda^pM$, gotické $\mathfrak a$), $\mathfrak m$ obecnou (skalární) hustotu, $\gmIhdual$ hustotní duál z GMI-13-11.
+$\gmIdotwedge$ (\uv{klín s tečkou nad}) a $\gmIwedgedot$ (\uv{klín s tečkou uvnitř}) jsou kombinace kontrakce a vnějšího součinu
+definované v dodatku A2 (str.~GMI-14-11): $\gmIdotwedge$ $=$ nejdřív $\wedge$, pak kontrakce; $\gmIwedgedot$ $=$ nejdřív kontrakce, pak $\wedge$.
+Dimenze variety je $m$ (Krtouš: $d$; v GMI-14-3 a GMI-14-12 se objevuje i $d$). Celá kapitola odpovídá Krtouš, kap.~10 (odd.~10.1--10.2).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-14-2}
+\subsection{Rozšíření tenzorové derivace na hustoty}
+
+připomenutí: \kw{tenzorová der.} $D$
+\[
+  A,B\in\mathbf{T}^k{}_lM
+\]
+\[
+  D(A+B) = DA + DB \qquad D(AB) = (DA)B + A(DB) \qquad D(\mathsf{C}A) = \mathsf{C}\,DA
+\]
+lze rozšířit na tenz.\ hustoty konst.\ váhy
+\[
+  A,B\in\mathrm{Sect}(\mathcal{H}^w\otimes\mathbf{T}^k{}_l)M = \tilde{\mathbf{T}}^{w\,k}{}_lM
+\]
+\begin{itemize}[nosep]
+  \item[--] stejné vlastnosti
+  \item[+] komutace s $\iota_\pm$
+  \[
+    \iota_\pm:\ \Lambda^mM\to\mathcal{H}M \quad\text{izomorf.}
+    \qquad\qquad D\,\iota_\pm\alpha = \iota_\pm D\alpha
+  \]
+\end{itemize}
+pomocí tenzoru orientace:
+\[
+  \gmIhustsym = \iota_+\alpha \ \Leftrightarrow\ \alpha = \gmIhustsym\,\tilde\varepsilon
+\]
+\begin{align*}
+  D\alpha &= D(\iota_+\alpha)\,\tilde\varepsilon = (D\gmIhustsym)\,\tilde\varepsilon \\
+  &= D(\gmIhustsym\,\tilde\varepsilon) = (D\gmIhustsym)\,\tilde\varepsilon + \gmIhustsym\,D\tilde\varepsilon \\
+  \Updownarrow\quad & D\tilde\varepsilon = 0
+\end{align*}
+\begin{veta}[Rozšíření tenz.\ der.\ na hustoty]
+rozšíření tenz.\ der.\ na hustoty dáno podmínkou
+\[
+  \vzorec{D\tilde\varepsilon = 0}
+\]
+\end{veta}
+
+\begin{vysvetleni}[proč $D\tilde\varepsilon = 0$]
+Tenzorová derivace (Leibniz, linearita, komutace s kontrakcí) je známa na tenzorech, ale na hustotách ji teprve musíme definovat.
+Přirozený požadavek: má se chovat stejně na hustotě jako na jí odpovídající $m$-formě, tj.\ komutovat s izomorfismem $\iota_\pm$.
+Protože $\iota_+^{-1}\gmIhustsym = \gmIhustsym\,\tilde\varepsilon$, Leibnizovo pravidlo ukazuje, že to je přesně $D\tilde\varepsilon = 0$
+(a pak i $D\tilde\varepsilon^{-1} = 0$). Podmínka je invariantní vůči $\tilde\varepsilon\to-\tilde\varepsilon$, nezávisí tedy na orientaci.
+Poslední vzorec: $\alpha^{-1}\bullet D\alpha$ je číslo (\uv{logaritmická derivace} formy), takže $D\gmIhustsym$ je jím vynásobená hustota.
+Viz Krtouš D10.5, D10.6.
+\end{vysvetleni}
+obdobně pokud $D$ přidává tenz.\ indexy
+
+můžeme též psát
+\[
+  D\gmIhustsym = \gmIhustsym\,\alpha^{-1}\bullet D\alpha \qquad\text{kde } \alpha = \gmIhustsym\,\tilde\varepsilon,\quad \gmIhustsym = \iota_+\alpha
+\]
+vskutku
+\[
+  D\gmIhustsym = \iota_+D\alpha = \tilde\varepsilon^{-1}\bullet D\alpha = \gmIhustsym\,\alpha^{-1}\bullet D\alpha
+\]
+
+%----------------------------------------------------------------------
+\strana{GMI-14-3}
+\textbf{derivace konst.\ mocniny hustoty}
+\[
+  \vzorec{D\mathfrak{m}^w = w\,\mathfrak{m}^{w-1}D\mathfrak{m}} \qquad \mathfrak{m}\in\tilde{\mathcal{F}}^pM
+\]
+\underline{Důk:}
+\begin{align*}
+  q\in\mathbb{N}:&\quad \text{Leibniz + indukce} \ \Rightarrow\ D\mathfrak{m}^q = q\,\mathfrak{m}^{q-1}D\mathfrak{m} \\
+  -q\in\mathbb{N}:&\quad 0 = D(\mathfrak{m}^{-q}\mathfrak{m}^q) = \mathfrak{m}^{-q}D\mathfrak{m}^q + \mathfrak{m}^qD\mathfrak{m}^{-q} \\
+  &\quad\Rightarrow\ D\mathfrak{m}^{-q} = -\mathfrak{m}^{-2q}D\mathfrak{m}^q = -q\,\mathfrak{m}^{-q-1}D\mathfrak{m} \\
+  \tfrac pq\in\mathbb{Q}:&\quad D\mathfrak{m}^p = D(\mathfrak{m}^{p/q})^q = q\,\mathfrak{m}^{\frac pq(q-1)}D\mathfrak{m}^{p/q} \\
+  &\quad\Rightarrow\ D\mathfrak{m}^{p/q} = \frac1q\,\mathfrak{m}^{-\frac pq(q-1)}D\mathfrak{m}^p
+   = \frac pq\,\mathfrak{m}^{-\frac pq q+\frac pq+p-1}D\mathfrak{m} = \frac pq\,\mathfrak{m}^{\frac pq-1}D\mathfrak{m} \\
+  w\in\mathbb{R}:&\quad \Leftarrow\ \text{spojitost}
+\end{align*}
+
+\begin{vysvetleni}[derivace mocniny]
+Stejný vzorec jako $(f^w)' = wf^{w-1}f'$ a stejný důkaz: Leibniz pro přirozené mocniny, $D(\mathfrak m^{-q}\mathfrak m^q) = D1 = 0$ pro záporné
+(v řádku \uv{$-q\in\mathbb{N}$} je míněno $q\in\mathbb{N}$ a exponent $-q$), $(\mathfrak m^{p/q})^q = \mathfrak m^p$ pro racionální a spojitost pro reálné.
+Horní index v $\tilde{\mathcal F}^pM$ je váha hustoty $\mathfrak m$ (libovolná). Vzorec umožní převést akci derivace na hustotách libovolné váhy
+na akci na hustotách váhy $1$. Viz Krtouš lemma V10.4.
+\end{vysvetleni}
+
+\textbf{akce pseudoderivace na hustotách}
+\[
+  \mathbb{M}\ \text{pseudoder.} \ \Leftrightarrow\ \mathbb{M}\ \text{tenz.\ der.} \ +\ \mathbb{M}f = 0
+\]
+tj.\ předpokládáme
+\[
+  \mathbb{M}\,\tilde\varepsilon = 0
+\]
+působení $\mathbb{M}$ na hustotě váhy $w$
+\[
+  \vzorec{\mathbb{M}\,\mathfrak{m} = -w\,M^{n}{}_{\underline n}\,\mathfrak{m}}
+\]
+\underline{Důk:} \quad $w = 1$, \quad $\mu = \mathfrak{m}\,\tilde\varepsilon$
+\begin{align*}
+  \mathbb{M}\big(\mathfrak{m}\,\tilde\varepsilon_{\underline{a_1}\dots\underline{a_d}}\big)
+  &= \mathbb{M}\mu_{\underline{a_1}\dots\underline{a_d}}
+  \underset{\substack{\uparrow\\\text{viz akce $\mathbb{M}$ na $d$-formách}}}{=}
+  -M^{n}{}_{\underline n}\,\mu_{\underline{a_1}\dots\underline{a_d}}
+  = -M^{n}{}_{\underline n}\,\mathfrak{m}\,\tilde\varepsilon_{\underline{a_1}\dots\underline{a_d}} \\
+  &= (\mathbb{M}\mathfrak{m})\,\tilde\varepsilon_{\underline{a_1}\dots\underline{a_d}}
+\end{align*}
+\[
+  \Rightarrow\quad \mathbb{M}\mathfrak{m} = -M^{n}{}_{\underline n}\,\mathfrak{m}
+  \qquad
+  \mathbb{M}\mathfrak{m}^w = +w\,\mathfrak{m}^{w-1}\,\mathbb{M}\mathfrak{m} = -w\,M^{n}{}_{\underline n}\,\mathfrak{m}^w
+\]
+
+\begin{vysvetleni}[pseudoderivace na hustotách]
+Pseudoderivace je tenzorová derivace anihilující funkce; na vektorech působí jako lineární zobrazení $v^a\mapsto M^a{}_n v^n$
+(\uv{infinitezimální změna báze}). Na $d$-formě (zde $d=m$) působí $-M^n{}_n$ krát (každý ze $d$ dolních indexů dostane $-M$, antisymetrie nechá jen stopu).
+Hustota se pak musí chovat stejně jako forma: $\mathbb M\mathfrak m = -w\,\mathrm{Tr}M\,\mathfrak m$ -- infinitezimální verze $|\det A|^w$,
+neboť $\det(1+\epsilon M)\approx 1+\epsilon\,\mathrm{Tr}M$. Viz Krtouš lemma V10.5 a věta V10.6.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-4}
+\subsection{Kovariantní derivace hustot}
+
+$\nabla$ kov.\ der.\ na $TM$ \\
+rozšíříme na hustoty podmínkou
+\[
+  \vzorec{\nabla\tilde\varepsilon = 0}
+\]
+není potřeba orientovatelnost, protože podmínky
+\[
+  \nabla(+\tilde\varepsilon) = 0 \quad\text{a}\quad \nabla(-\tilde\varepsilon) = 0
+\]
+si jsou ekvivalentní
+
+\textbf{rozdíl kov.\ der.}
+\[
+  \nabla = \bar\nabla + \boldsymbol{\Gamma} \qquad \boldsymbol{\Gamma}\ \text{generováno } \Gamma^a{}_{\underline{mn}}
+\]
+explicitně pro tenzorovou hustotu $A$ váhy $w$
+\[
+  \vzorec{\nabla_{\underline m}A^{k\dots}_{l\dots} = \bar\nabla_{\underline m}A^{k\dots}_{l\dots}
+  + \Gamma^k{}_{\underline{mn}}A^{n\dots}_{l\dots} + \dots
+  - \Gamma^n{}_{\underline{ml}}A^{k\dots}_{n\dots} - \dots
+  - w\,\Gamma^n{}_{\underline{mn}}A^{k\dots}_{l\dots}}
+\]
+
+\begin{vysvetleni}[kovariantní derivace hustot v souřadnicích]
+Rozdíl dvou kovariantních derivací je pseudoderivace $\boldsymbol\Gamma$, na hustotách tedy dává člen $-w\,\Gamma^n{}_{mn}$ (předchozí strana).
+Volíme-li $\bar\nabla = \partial$ (souřadnicová derivace), platí $\partial\,\dd^m x = 0$ (neboť $\dd^m x = |\dd x^1\wedge\dots\wedge\dd x^m|$),
+takže $\nabla_m\mathfrak m = (\partial_m\mathfrak m_x - w\,\Gamma^n{}_{mn}\mathfrak m_x)\,\dd^m x$. Pro Levi-Civitovu derivaci je
+$\Gamma^n{}_{mn} = \partial_m\ln\sqrt{|g|}$, a tedy $\nabla\mathfrak g^{1/2} = 0$. Viz Krtouš věty V10.7, V10.8, rov.~(10.3)--(10.4).
+\end{vysvetleni}
+
+\textbf{křivost na hustotách}
+
+operátory křivosti
+\begin{align*}
+  \mathbb{R}_{a,b} &= \nabla_a\nabla_b - \nabla_b\nabla_a - \nabla_{[a,b]}
+  &&\text{generováno } R_{a,b}{}^m{}_n = a^kb^l R_{kl}{}^m{}_n \\
+  \mathbb{R}_{\underline{kl}} &= \nabla_{\underline k}\nabla_{\underline l} - \nabla_{\underline l}\nabla_{\underline k} + T^n{}_{\underline{kl}}\nabla_{\underline n}
+  &&\text{generováno } R_{\underline{kl}}{}^{\oprava{m}{k}}{}_{\underline n}
+\end{align*}
+pseudoderivace rozšířené na hustoty \\
+$\Downarrow$
+\begin{align*}
+  \mathbb{R}_{a,b}\,\mathfrak{m} &= -w\,R_{a,b}{}^n{}_n\,\mathfrak{m} = -w\,a^kb^l R_{\underline{kl}}{}^n{}_{\underline n}\,\mathfrak{m} = -w\,a^kb^l\,\mathrm{Tr}R_{\underline{kl}}\,\mathfrak{m} \\
+  \mathbb{R}_{\underline{kl}}\,\mathfrak{m} &= \vzorec{-w\,\mathrm{Tr}R_{\underline{kl}}\,\mathfrak{m}}
+\end{align*}
+
+\begin{vysvetleni}[křivost na hustotách]
+Operátor křivosti (komutátor derivací opravený o $\nabla_{[a,b]}$ resp.\ torzi) je pseudoderivace -- na vektorech působí maticí
+$R_{kl}{}^m{}_n$ (indexy $m,n$). Na hustotách tedy podle předchozí strany působí stopou: $\mathrm{Tr}R_{kl} = R_{kl}{}^n{}_n$.
+Geometricky: obnesení hustoty kolem malé smyčky ji přeškáluje faktorem $\approx\det(\text{holonomie})$.
+Pro Levi-Civitovu konexi je $R_{kl\,mn}$ antisymetrické v $mn$, takže $\mathrm{Tr}R = 0$ -- objem se paralelním přenosem nemění.
+Viz Krtouš věty V10.11, V10.12.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-5}
+\begin{veta}[Věta]
+$\nabla$ beztorzní kov.\ der.\ \quad $T = 0$
+\[
+  \nabla\ \text{komutuje na hustotách} \ \Longleftrightarrow\ \mathrm{Tr}R = 0
+\]
+\end{veta}
+\underline{Důk:} \quad
+$\nabla_{\underline a}\nabla_{\underline b}\mathfrak{m} - \nabla_{\underline b}\nabla_{\underline a}\mathfrak{m} = -w\,\mathrm{Tr}R_{\underline{ab}}\,\mathfrak{m}$
+
+\begin{veta}[Věta]
+\[
+  \nabla\ \text{anihiluje } \mathfrak{m},\ \text{tj. } \nabla\mathfrak{m} = 0 \ \Longrightarrow\ \mathrm{Tr}R = 0
+\]
+\end{veta}
+\underline{Důk:}
+\[
+  -\mathrm{Tr}R\,\mathfrak{m} = \mathbb{R}\,\mathfrak{m} = [\nabla\nabla - \nabla\nabla + T\cdot\nabla]\,\mathfrak{m} = 0 \ \Rightarrow\ \mathrm{Tr}R = 0
+\]
+
+\begin{veta}[Věta]
+\[
+  \mathrm{Tr}R = 0 \ \Longrightarrow\ \exists\,\mathfrak{m}\in\tilde{\mathcal{F}}M \ \text{tak, že}\ \nabla\mathfrak{m} = 0
+\]
++ topol.\ triv.\ $M$
+\end{veta}
+\underline{Důk:}
+\[
+  \lambda = \mathfrak{m}^{-1}\nabla\mathfrak{m}\in T^*M
+\]
+\begin{align*}
+  \dd_{\underline a}\lambda_{\underline b} &= \nabla_{\underline a}\wedge\lambda_{\underline b} + T^n{}_{\underline{ab}}\lambda_{\underline n}
+  = \nabla_{\underline a}\wedge(\mathfrak{m}^{-1}\nabla_{\underline b}\mathfrak{m}) + \mathfrak{m}^{-1}T^c{}_{\underline{ab}}\nabla_{\underline c}\mathfrak{m} \\
+  &= \mathfrak{m}^{-1}\big(\nabla_{\underline a}\wedge\nabla_{\underline b}\mathfrak{m} + T^c{}_{\underline{ab}}\nabla_{\underline c}\mathfrak{m}\big)
+   - \underbrace{\mathfrak{m}^{-2}\nabla_{\underline a}\mathfrak{m}\wedge\nabla_{\underline b}\mathfrak{m}}_{0} \\
+  &= -\mathfrak{m}^{-1}\,\mathrm{Tr}R_{\underline{ab}}\,\mathfrak{m} = -\mathrm{Tr}R_{\underline{ab}}
+\end{align*}
+\[
+  \mathrm{Tr}R = 0 \ \Rightarrow\ \dd\lambda = 0 \qquad \text{top.\ triv.} \ \Rightarrow\ \lambda = -\dd\log f
+\]
+$\Downarrow$ \quad $\nabla(f\mathfrak{m}) = 0$
+\[
+  \nabla(f\mathfrak{m}) = \dd f\,\mathfrak{m} + f\nabla\mathfrak{m} = \dd f\,\mathfrak{m} + f\mathfrak{m}\lambda = \dd f\,\mathfrak{m} - \dd f\,\mathfrak{m} = 0
+\]
+
+\begin{vysvetleni}[kdy derivace zachovává nějakou hustotu]
+Otázka: existuje \uv{objemový element} $\mathfrak m$ s $\nabla\mathfrak m = 0$? Nutná podmínka $\mathrm{Tr}R = 0$ plyne z toho, že
+$\nabla\mathfrak m = 0$ dává $\mathbb R\,\mathfrak m = 0$. Postačitelnost: 1-forma $\lambda = \mathfrak m^{-1}\nabla\mathfrak m$ (logaritmická derivace
+libovolné hustoty) má $\dd\lambda = -\mathrm{Tr}R$; je-li $\mathrm{Tr}R=0$, je $\lambda$ uzavřená, podle Poincarého lemmatu (proto
+\uv{topol.\ triv.}) exaktní, $\lambda = -\dd\log f$, a $f\mathfrak m$ je hledaná hustota. Pro Levi-Civitovu derivaci je to $\mathfrak g^{1/2}$.
+Viz Krtouš marginálie M10.3.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-6}
+\subsection{Divergence AS tenzorových hustot}
+
+motivace:
+\begin{itemize}[nosep]
+  \item[] hust.\ duál $\gmIhdual$ zprostředkovává dualitu $\Lambda^nM$ a $\Lambda^{*\hat n}M$
+  \item[] operace na $\Lambda^nM$ indukují operace na $\Lambda^{*\hat n}$
+\end{itemize}
+
+\begin{definice}[Divergence]
+\[
+  \dd:\ \mathcal{A}^{n-1}M\to\mathcal{A}^nM \qquad\qquad \mathrm{div}:\ \tilde{\mathcal{A}}^{*\hat n+1}\to\tilde{\mathcal{A}}^{*\hat n}M
+\]
+\[
+  \vzorec{\mathrm{div} = \gmIhdual\,\dd\,\gmIhdual}
+\]
+\end{definice}
+\begin{veta}[Lemma]
+\[
+  \mathrm{div}\,\mathrm{div} = 0 \qquad \Leftarrow\ \dd\dd = 0,\ \gmIhdual\gmIhdual = \mathrm{id}
+\]
+\end{veta}
+
+\begin{vysvetleni}[divergence jako duál vnější derivace]
+$\mathrm{div}$ je vnější derivace \uv{přenesená} hustotním duálem na antisymetrické tenzorové hustoty: z $(\hat n+1)$-vektorové hustoty udělá
+$\gmIhdual$ $(n-1)$-formu, $\dd$ z ní $n$-formu a $\gmIhdual$ zpět $\hat n$-vektorovou hustotu. Nepotřebuje metriku ani konexi.
+Pro $\hat n = 0$: $\mathrm{div}$ vektorové hustoty $\gmIhustsym^a$ je skalární hustota -- \uv{zdroj} toku; v $\mathbb{R}^3$ s
+$\gmIhustsym = \vec j\,\dd V$ dostaneme $(\nabla\cdot\vec j)\,\dd V$. Krtouš D10.1, lemma V10.1 (zde stejná znaménková konvence).
+\end{vysvetleni}
+
+\begin{veta}[Věta]
+\begin{align*}
+  (\mathrm{div}\,\gmIhustsym)^{a_1\dots a_{\hat n}} &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+  && \nabla\ \text{bez torze} \\
+  (\mathrm{div}\,\gmIhustsym)^{a_1\dots a_{\hat n}} &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+   + \frac{\hat n+2}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n}\underline{l_1}}\,T^{\underline{l_2}]}{}_{\underline{l_1}\underline{l_2}}
+  && \nabla\ \text{s torzí}
+\end{align*}
+tj.\ \quad $\mathrm{div}\,\gmIhustsym = \gmIhustsym\cdot\overleftarrow{\nabla} + \gmIhustsym\gmIdotwedge T = \gmIhustsym\cdot\overleftarrow{\nabla} + \gmIhustsym\cdot t + \gmIhustsym\gmIwedgedot T$
+\pozn{šipka nad $\nabla$ -- derivace působící doleva}
+\end{veta}
+\underline{důkaz:} \quad pro $\nabla$ bez torze \quad (s torzí viz další strana)
+\begin{align*}
+  (\mathrm{div}\,\gmIhustsym)^{a_1\dots a_{\hat n}} &= (\gmIhdual\dd\gmIhdual\gmIhustsym)^{a_1\dots a_{\hat n}} = (\gmIhdual\,\nabla\wedge\gmIhdual\gmIhustsym)^{a_1\dots a_{\hat n}} \\
+  &= \frac1{n!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}(\nabla\wedge\gmIhdual\gmIhustsym)_{\underline{k_1}\dots\underline{k_n}}
+   = \frac1{n!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,n\,\nabla_{[\underline{k_1}}(\gmIhdual\gmIhustsym)_{\underline{k_2}\dots\underline{k_n}]} \\
+  &= \frac1{(n-1)!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,\frac1{(\hat n+1)!}\nabla_{\underline{k_1}}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n+1}}}\,\tilde\varepsilon_{\underline{b_1}\dots\underline{b_{\hat n+1}}\underline{k_2}\dots\underline{k_n}} \\
+  &= \frac{m!}{(n-1)!\,(\hat n+1)!}\,\nabla_{\underline k}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline b}\;{}^{[m]}\delta^{a_1\dots a_{\hat n}k\,k_2\dots k_n}_{b_1\dots b_{\hat n}b\,k_2\dots k_n}
+  \qquad \Leftarrow\ \tilde\varepsilon^{-1}\tilde\varepsilon = m!\;{}^{[m]}\delta \\
+  &= \nabla_{\underline k}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline b}\;{}^{[\hat n+1]}\delta^{a_1\dots a_{\hat n}k}_{b_1\dots b_{\hat n}b}
+  \qquad \Leftarrow\ \tbinom{m}{p}{}^{[m]}\delta = {}^{[m-p]}\delta \ \text{(stopa přes $p$ indexů)} \\
+  &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+\end{align*}
+
+\begin{vysvetleni}[k důkazu]
+Kroky: (1) $\dd = \nabla\wedge$ pro beztorzní $\nabla$, a $(\nabla\wedge\beta)_{k_1\dots k_n} = n\,\nabla_{[k_1}\beta_{k_2\dots k_n]}$;
+antisymetrizace je zbytečná díky kontrakci s $\tilde\varepsilon^{-1}$. (2) $\nabla$ lze protáhnout přes $\tilde\varepsilon^{\pm1}$, protože $\nabla\tilde\varepsilon=0$.
+(3) $\tilde\varepsilon^{-1}\tilde\varepsilon = m!\,{}^{[m]}\delta$ a zúžení ${}^{[m]}\delta$ v $p$ indexech dává ${}^{[m-p]}\delta/\binom mp$; zde $p = n-1$, $m-p = \hat n+1$,
+takže všechny faktoriály se zkrátí na $1$. (4) ${}^{[\hat n+1]}\delta$ jen antisymetrizuje, což je u $\gmIhustsym$ zbytečné.
+Výsledek: divergence $=$ kontrakce kovariantní derivace s \emph{posledním} indexem. Krtouš věta V10.9.
+\end{vysvetleni}
+
+\begin{veta}[Věta]
+$\nabla$ bez torze, \ $\gmIhustsym\in\tilde{\mathcal{A}}^{*\hat n}M$, \ $\partial$ souř.\ der.\ souřadnic $x^a$
+\[
+  \nabla\cdot\gmIhustsym \ \text{nezávisí na } \nabla \qquad\qquad \nabla\cdot\gmIhustsym = (-1)^{\hat n}\,\mathrm{div}\,\gmIhustsym
+\]
+\[
+  \vzorec{(\nabla\cdot\gmIhustsym)_x^{a_1\dots a_{\hat n}} = (\partial\cdot\gmIhustsym)_x^{a_1\dots a_{\hat n}} = \partial_k\gmIhustsym_x^{ka_1\dots a_{\hat n}}}
+  \qquad
+  (\mathrm{div}\,\gmIhustsym)_x^{a_1\dots a_{\hat n}} = \gmIhustsym_x^{a_1\dots a_{\hat n}k}{}_{,k}
+\]
+\end{veta}
+\underline{důkaz:} \quad nezávislost na $\nabla$ plyne přímo ze vztahu s div \\
+\quad lze dokázat i přímo užitím $\nabla = \bar\nabla + \boldsymbol{\Gamma}$ a symetrie $\Gamma^k{}_{ab}$
+
+\begin{vysvetleni}[nezávislost na $\nabla$, znaménka]
+Přímo: v $\nabla_k\gmIhustsym^{\dots k}$ se členy $+\Gamma^{a_i}{}_{kn}\gmIhustsym^{\dots n\dots k}$ vyruší (symetrické $\Gamma$ krát antisymetrické $\gmIhustsym$),
+a člen $+\Gamma^k{}_{kn}\gmIhustsym^{\dots n}$ od posledního indexu se vyruší s váhovým členem $-\Gamma^n{}_{kn}\gmIhustsym^{\dots k}$. Proto v souřadnicích
+stačí parciální derivace. $\nabla\cdot$ kontrahuje s \emph{prvním} indexem, odtud znaménko $(-1)^{\hat n}$; Krtouš píše $\dd\cdot\gmIhustsym = -\delta\gmIhustsym$.
+S metrikou a $\gmIhustsym = a\,\mathfrak g^{1/2}$: $\mathrm{div}\,\gmIhustsym = \frac{1}{\sqrt{|g|}}\partial_k(\sqrt{|g|}\,a^k)\,\mathfrak g^{1/2}$ -- známý vzorec pro divergenci.
+Krtouš lemma V10.10. Hustotní rotace $\widetilde{\mathrm{rot}}$ je opačná kombinace ($\gmIhdual\dd$); vlnka zdůrazňuje, že výsledkem je hustota (Krtouš D10.1).
+\end{vysvetleni}
+
+\begin{definice}[]
+\[
+  \dd\cdot:\ \tilde{\mathcal{A}}^{*\hat n+1}M\to\tilde{\mathcal{A}}^{*\hat n} \qquad
+  \dd\cdot\gmIhustsym = (-1)^{\hat n}\,\mathrm{div}\,\gmIhustsym = \nabla\cdot\gmIhustsym \quad\text{pro beztorzní } \nabla
+\]
+\end{definice}
+\begin{definice}[Hustotní rotace]
+\[
+  \widetilde{\mathrm{rot}}:\ \mathcal{A}^{n-1}M\to\tilde{\mathcal{A}}^{*\hat n}M \qquad \widetilde{\mathrm{rot}}\,\alpha = \gmIhdual\,\dd\alpha
+\]
+\end{definice}
+\begin{veta}[Lemma]
+\[
+  \dd\alpha = \gmIhdual\,\widetilde{\mathrm{rot}}\,\alpha \qquad\qquad \mathrm{div}\,\gmIhustsym = \widetilde{\mathrm{rot}}\,\gmIhdual\gmIhustsym
+\]
+\end{veta}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-7}
+\subsection{Lieova derivace hustot}
+
+tok indukovaný na hustoty \\
+\quad $\phi$ difeomorf.\ $M$
+\[
+  (\phi_*\mathfrak{m})[\phi_*e_n] = \phi_*\,\mathfrak{m}[e_n]
+\]
+komutace s $\iota_\pm$
+\[
+  \iota_\pm\phi_*\mu = \phi_*(\iota_\pm\mu) \ \Longleftrightarrow\ \phi_*\tilde\varepsilon = \tilde\varepsilon \qquad \phi_*\tilde\varepsilon^{-1} = \tilde\varepsilon^{-1}
+\]
+diferenciální podoba
+\[
+  \mathcal{L}_a\iota_\pm\mu = \iota_\pm\mathcal{L}_a\mu \qquad\text{resp.}\qquad \mathcal{L}_a\gmIhdual\mu = \gmIhdual\mathcal{L}_a\mu
+\]
+\[
+  \Updownarrow\qquad \vzorec{\mathcal{L}_a\tilde\varepsilon = 0} \qquad \mathcal{L}_a\tilde\varepsilon^{-1} = 0
+\]
+viz diskuze obecné tenz.\ der.
+
+vyjádření pomocí kov.\ der.\ \quad ($\mathrm{Tor}\nabla = 0$)
+\begin{align*}
+  \mathcal{L}_a\mathfrak{m} &= a\cdot\nabla\mathfrak{m} + \underset{\substack{\uparrow\\\text{generováno } -\nabla a}}{\mathbb{L}_a\mathfrak{m}} \\
+  &= a\cdot\nabla\mathfrak{m} - (-\nabla\cdot a)\,\mathfrak{m} \\
+  &= \nabla\cdot(a\mathfrak{m}) \\
+  &= \vzorec{\dd\cdot(a\mathfrak{m}) = \mathrm{div}(a\mathfrak{m})}
+\end{align*}
+
+\begin{vysvetleni}[Lieova derivace hustoty]
+Hustota se tokem přenáší tak, že množství v přenesené buňce je stejné; komutace s $\iota_\pm$ znamená opět $\mathcal L_a\tilde\varepsilon=0$.
+Lieova derivace $=$ kovariantní derivace ve směru $a$ plus pseudoderivace generovaná tenzorem $-\nabla a$ (tj.\ $M^k{}_n = -\nabla_n a^k$);
+na hustotě váhy $1$ tato dává $-\mathrm{Tr}M\,\mathfrak m = +(\nabla\cdot a)\,\mathfrak m$. Výsledek $\mathcal L_a\mathfrak m = \mathrm{div}(a\mathfrak m)$
+je geometrický obsah rovnice kontinuity: změna hustoty unášené prouděním $=$ divergence toku $a\mathfrak m$
+(např.\ $\mathcal L_a\mathfrak g^{1/2} = (\nabla\cdot a)\,\mathfrak g^{1/2}$ -- relativní změna objemu).
+\end{vysvetleni}
+
+\begin{veta}[Cartanova identita pro div]
+\[
+  \mathcal{L}_u\gmIhustsym = (\mathrm{div}\,\gmIhustsym)\wedge u + \mathrm{div}(\gmIhustsym\wedge u)
+\]
+\end{veta}
+\underline{důkaz:}
+\begin{align*}
+  \mathcal{L}_u\gmIhustsym &= \mathcal{L}_u\gmIhdual\alpha = \gmIhdual\mathcal{L}_u\alpha = \gmIhdual\big(u\cdot\dd\alpha + \dd(u\cdot\alpha)\big)
+  && \text{Cartanova identita} \\
+  &= (\gmIhdual\dd\alpha)\wedge u + \gmIhdual\dd\gmIhdual(\gmIhustsym\wedge u)
+  && \Leftarrow\ \gmIhdual(\gmIhustsym\wedge u) = u\cdot(\gmIhdual\gmIhustsym) \\
+  &= (\mathrm{div}\,\gmIhustsym)\wedge u + \mathrm{div}(\gmIhustsym\wedge u)
+\end{align*}
+
+\begin{vysvetleni}[Cartanova identita pro div]
+Je to přesný duál Cartanovy formule $\mathcal L_u = u\cdot\dd + \dd\,u\cdot$ pro formy: zúžení s vektorem $u\cdot$ na straně forem odpovídá
+vnějšímu přinásobení $\wedge u$ na straně hustot (lemma $\gmIhdual(\gmIhustsym\wedge u) = u\cdot\gmIhdual\gmIhustsym$, GMI-13-12),
+a $\dd$ odpovídá $\mathrm{div}$. Zde $\alpha = \gmIhdual\gmIhustsym$. Pro $\hat n=0$ ($\gmIhustsym = \mathfrak m$) dostaneme $\mathcal L_u\mathfrak m = \mathrm{div}(\mathfrak m u)$ z předchozí strany.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-8}
+\subsection{Metrická divergence na $\mathcal{A}^{p+1}M$}
+
+metrika $g$, \ Levi-Civitova kov.\ der.\ $\nabla$
+\begin{definice}[Divergence]
+\[
+  \mathrm{div}:\ \omega\in\mathcal{A}^{p+1}M \ \to\ \mathrm{div}\,\omega\in\mathcal{A}^pM
+\]
+\begin{align*}
+  (\mathrm{div}\,\omega)_{a_1\dots a_p} &= \nabla^{\underline n}\omega_{a_1\dots a_p\underline n} && \text{divergence} \\
+  (\nabla\cdot\omega)_{a_1\dots a_p} &= \nabla^{\underline n}\omega_{\underline n a_1\dots a_p} && \text{divergence} \\
+  \delta\omega &= -\nabla\cdot\omega && \text{koderivace}
+\end{align*}
+\end{definice}
+tj.\ \quad $-\delta\omega = \nabla\cdot\omega = (-1)^p\,\mathrm{div}\,\omega$
+
+\begin{veta}[Věta]
+\[
+  \vzorec{*\,\mathrm{div}\,\omega = \dd*\omega} \qquad\text{tj.}\qquad \mathrm{div}\,\omega = *^{-1}\dd*\omega
+\]
+\end{veta}
+\underline{důkaz:}
+\begin{align*}
+  *\,\mathrm{div}\,\omega &= \underbrace{*\,(\mathfrak{g}^{-\frac12}\flat}_{}\,\sharp\,\mathfrak{g}^{\frac12}\,\mathrm{div}\,\omega)
+  && \Leftarrow\ \text{div je metrická} \Rightarrow \text{komutuje s } \sharp \text{ a } \mathfrak{g}^{\frac12} \\
+  &= \gmIhdual\;\mathrm{div}(\mathfrak{g}^{\frac12}\sharp\,\omega)
+  && \gmIhdual\gmIhustsym = *\,\flat\,\mathfrak{g}^{-\frac12}\gmIhustsym \\
+  &= \underbrace{\gmIhdual\gmIhdual}_{\mathrm{id}}\dd\,\underbrace{\gmIhdual(\mathfrak{g}^{\frac12}\sharp\,\omega)}_{*\omega}
+  && *\omega = \gmIhdual\,\sharp\,\mathfrak{g}^{\frac12}\omega \\
+  &= \dd*\omega
+\end{align*}
+
+\begin{definice}[Rotace]
+\[
+  \mathrm{rot}:\ \omega\in\mathcal{A}^pM \ \to\ \mathrm{rot}\,\omega\in\mathcal{A}^{d-p-1}M
+\]
+\[
+  \mathrm{rot}\,\omega = *^{-1}\dd\omega \qquad\text{tj.}\qquad *\,\mathrm{rot}\,\omega = \dd\omega
+\]
+\end{definice}
+kombinací dostáváme
+\[
+  \vzorec{\mathrm{rot}*\omega = \mathrm{div}\,\omega} \qquad \dd\omega = *\,\mathrm{rot}\,\omega = *\,\mathrm{div}*^{-1}\omega
+\]
+
+\begin{vysvetleni}[metrická divergence a rotace]
+S metrikou lze divergenci definovat i na formách: zvedneme indexy, přinásobíme $\mathfrak g^{1/2}$ a použijeme hustotní divergenci;
+důkaz věty je přesně tento řetězec ($*$ $=$ $\gmIhdual\circ\sharp\circ\mathfrak g^{1/2}$ z GMI-13-11). Krtouš (lemma V10.3):
+$\mathrm{div}\,\omega = \mathfrak g^{-1/2}\,\mathrm{div}\,\mathfrak g^{1/2}\omega$ (s implicitním zvedáním indexů).
+Znaménkové konvence: $\mathrm{div}$ kontrahuje s posledním indexem, $\nabla\cdot$ s prvním, koderivace $\delta = -\nabla\cdot$; souhlasí s Krtouš D10.2, V10.2.
+V $\mathbb{E}^3$ a pro 1-formy/vektory: $\mathrm{div}\,a = *\dd*a$, $\mathrm{rot}\,a = *\dd a$ (Krtouš M10.1). $*^{-1} = (\operatorname{sign}g)(-1)^{p(m-p)}*$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-9}
+\begin{definice}[de Rhamův Laplaceův operátor]
+\[
+  \vzorec{\Delta = -[\dd\delta + \delta\dd] = \dd\,\nabla\cdot + \nabla\cdot\dd}
+\]
+\[
+  \Delta\omega = \nabla\wedge(\nabla\cdot\omega) + \nabla\cdot(\nabla\wedge\omega)
+\]
+\end{definice}
+
+\begin{align*}
+  \Delta\omega &= \dd\,\nabla\cdot\omega + (-1)^p\,\mathrm{div}\,\dd\omega && \omega\in\mathcal{A}^pM \\
+  &= \dd\,\nabla\cdot\omega + (-1)^p *^{-1}\dd*\dd\omega \\
+  &= \dd\,\nabla\cdot\omega \mp \mathrm{rot}\,\mathrm{rot}\,\omega
+\end{align*}
+\[
+  \pm\,\mathrm{rot}\,\mathrm{rot}\,\omega = \dd\,\nabla\cdot\omega - \Delta\omega
+\]
+\[
+  \pm = -(-1)^p(-1)^{(p+1)(m-p-1)}\,s = (-1)^{(p+1)(m-p)}\,s
+\]
+
+\begin{veta}[Věta: Weitzenböckova identita]
+\[
+  \vzorec{-\Delta\omega_{a_1\dots a_p} = -\nabla^2\omega_{a_1\dots a_p}
+  + p\,\mathrm{Ric}_{\underline n[a_1}\,\omega^{\underline n}{}_{a_2\dots a_p]}
+  - \frac{p(p-1)}{2}\,R_{\underline{mn}[a_1a_2}\,\omega^{\underline{mn}}{}_{a_3\dots a_p]}}
+\]
+\end{veta}
+
+\begin{vysvetleni}[de Rhamův Laplace a Weitzenböck]
+Zde $\Delta = -(\dd\delta+\delta\dd)$, kdežto Krtouš (D10.3) užívá kladný operátor $\square = \delta\dd + \dd\delta = -\Delta$ (proto poznámka níže);
+s touto volbou je pro funkce $\Delta f = \nabla^2 f$ (obvyklý Laplace). Znaménko $\pm$ u $\mathrm{rot}\,\mathrm{rot}$ vzniká z $*^{-1}$ a je
+$s = \operatorname{sign}g$; pro $m=3$ eukl.\ a $p=1$: $\Delta a = \mathrm{grad}\,\mathrm{div}\,a - \mathrm{rot}\,\mathrm{rot}\,a$.
+Weitzenböckova identita říká, že $\Delta$ a \uv{hrubý} Laplace $\nabla^2 = g^{ab}\nabla_a\nabla_b$ se liší jen o algebraické členy křivosti
+(pro $p=1$: $\Delta\omega_a = \nabla^2\omega_a - \mathrm{Ric}_{na}\omega^n$, Bochnerova formule). Krtouš věta V10.13, rov.~(10.1).
+\end{vysvetleni}
+
+\vfill
+\pozn{pozn: $\Delta$ def.\ s opačným znaménkem než v textu}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-10}
+\subsection*{Dodatek: divergence s torzí \ \normalfont\small(DerHust-A1)}
+
+\begin{veta}[Věta]
+\begin{align*}
+  (\mathrm{div}\,\gmIhustsym)^{a_1\dots a_{\hat n}}
+  &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+   + \frac{\hat n+2}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n}\underline{l_1}}\,T^{\underline{l_2}]}{}_{\underline{l_1}\underline{l_2}} \\
+  &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+   + \gmIhustsym^{a_1\dots a_{\hat n}\underline k}\,t_{\underline k}
+   + \frac{\hat n}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n-1}|\underline{l_1}\underline{l_2}|}\,T^{a_{\hat n}]}{}_{\underline{l_1}\underline{l_2}}
+\end{align*}
+\[
+  \mathrm{div}\,\gmIhustsym = \gmIhustsym\cdot\overleftarrow{\nabla} + \gmIhustsym\gmIdotwedge T
+  = \gmIhustsym\cdot\overleftarrow{\nabla} + \gmIhustsym\cdot t + \gmIhustsym\gmIwedgedot T
+\]
+\quad kde \quad $t_a = T^{\underline k}{}_{a\underline k}$, \quad tj.\ $t = \mathrm{Tr}\,T$
+\end{veta}
+
+\underline{důkaz}
+\begin{align*}
+  (\mathrm{div}\,\gmIhustsym)^{a_1\dots a_{\hat n}}
+  &= (\gmIhdual\dd\gmIhdual\gmIhustsym)^{a_1\dots a_{\hat n}} = \big(\gmIhdual[\nabla\wedge + T\wedge]\gmIhdual\gmIhustsym\big)^{a_1\dots a_{\hat n}} \\
+  &= \frac1{n!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}
+   \Big((\nabla\wedge\gmIhdual\gmIhustsym)_{\underline{k_1}\dots\underline{k_n}} + (T\wedge\gmIhdual\gmIhustsym)_{\underline{k_1}\dots\underline{k_n}}\Big) \\
+  &= \oprava{\frac{n}{n!}}{\frac{m}{m!}}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,\nabla_{\underline{k_1}}(\gmIhdual\gmIhustsym)_{\underline{k_2}\dots\underline{k_n}}
+   + \frac1{n!}\binom n2\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,T^{\underline l}{}_{\underline{k_1}\underline{k_2}}(\gmIhdual\gmIhustsym)_{\underline l\underline{k_3}\dots\underline{k_n}} \\
+  &= \frac1{(n-1)!}\frac1{(\hat n+1)!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline k\underline{k_2}\dots\underline{k_n}}\,\tilde\varepsilon_{\underline{b_1}\dots\underline{b_{\hat n}}\underline l\underline{k_2}\dots\underline{k_n}}\,\nabla_{\underline k}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline l} \\
+  &\quad + \frac1{(n-2)!}\frac{\hat n+2}{(\hat n+2)!}\frac12\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\underline{k_2}\underline{k_3}\dots\underline{k_n}}\,\tilde\varepsilon_{\underline{b_1}\dots\underline{b_{\hat n+1}}\underline l\underline{k_3}\dots\underline{k_n}}\,\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n+1}}}\,T^{\underline l}{}_{\underline{k_1}\underline{k_2}} \\
+  &= \binom m{n-1}{}^{[m]}\delta^{a_1\dots a_{\hat n}k\,k_2\dots k_n}_{b_1\dots b_{\hat n}l\,k_2\dots k_n}\,\nabla_{\underline k}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline l}
+   + \frac{\hat n+2}{2}\binom m{n-2}{}^{[m]}\delta^{a_1\dots a_{\hat n}k_1k_2k_3\dots k_n}_{b_1\dots b_{\hat n}l_1l_2k_3\dots k_n}\,\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline{l_1}}\,T^{\underline{l_2}}{}_{\underline{k_1}\underline{k_2}} \\
+  &= {}^{[\hat n+1]}\delta^{a_1\dots a_{\hat n}k}_{b_1\dots b_{\hat n}l}\,\nabla_{\underline k}\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline l}
+   + \frac{\hat n+2}{2}\,{}^{[\hat n+2]}\delta^{a_1\dots a_{\hat n}k_1k_2}_{b_1\dots b_{\hat n}l_1l_2}\,\gmIhustsym^{\underline{b_1}\dots\underline{b_{\hat n}}\underline{l_1}}\,T^{\underline{l_2}}{}_{\underline{k_1}\underline{k_2}} \\
+  &= \nabla_{\underline k}\gmIhustsym^{a_1\dots a_{\hat n}\underline k}
+   + \frac{\hat n+2}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n}\underline{k_1}}\,T^{\underline{k_2}]}{}_{\underline{k_1}\underline{k_2}} \\
+  &= \big(\gmIhustsym\cdot\overleftarrow{\nabla} + \gmIhustsym\gmIdotwedge T\big)^{a_1\dots a_{\hat n}}
+\end{align*}
+
+\begin{vysvetleni}[divergence s torzí]
+S torzí je $\dd = \nabla\wedge + T\wedge$ (tj.\ $\dd_a\beta_b = \nabla_a\wedge\beta_b + T^n{}_{ab}\beta_n$), takže přibude člen s torzí;
+jeho kombinatorika je stejná jako v beztorzním důkazu (GMI-14-6), jen se zúží o jeden index víc
+($\binom n2/n! = \frac{1}{2(n-2)!}$, zúžení ${}^{[m]}\delta$ v $n-2$ indexech). Oprava $\frac{m}{m!}\to\frac{n}{n!}$: na této straně rukopisu
+vypadají písmena $n$ a $m$ téměř stejně; správně je $\frac{n}{n!} = \frac{1}{(n-1)!}$, jak plyne z $(\nabla\wedge\beta)_{k_1\dots k_n} = n\nabla_{[k_1}\beta_{\dots]}$
+a jak vyžaduje následující řádek. Výsledek souhlasí s Krtouš, marginálie M10.2 (tam $p=\hat n$, $t_k = T^n{}_{kn}$; jeho člen
+$-(-1)^p\frac p2T^{[a_1}{}_{kl}\gmIhustsym^{a_2\dots a_p]kl}$ je po přesunutí indexu totožný se zdejším $\frac{\hat n}{2}\gmIhustsym^{[a_1\dots|kl|}T^{a_{\hat n}]}{}_{kl}$).
+\end{vysvetleni}
+
+\[
+  \gmIhustsym\gmIdotwedge T = \gmIhustsym\cdot(\mathrm{Tr}\,T) + \gmIhustsym\gmIwedgedot T \qquad\text{viz vztahy pro } \gmIdotwedge \text{ a } \gmIwedgedot
+\]
+též
+\begin{align*}
+  \frac{\hat n+2}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n}\underline k}\,T^{\underline l]}{}_{\underline{kl}}
+  &= \frac12\,\gmIhustsym^{a_1\dots a_{\hat n}\underline k}\,T^{\underline l}{}_{\underline{kl}}
+   - \frac{\hat n+1}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n}|\underline l|}\,T^{\underline k]}{}_{\underline{kl}} \\
+  &= \frac12\,\gmIhustsym^{a_1\dots a_{\hat n}\underline k}\,T^{\underline l}{}_{\underline{kl}}
+   - \frac12\,\gmIhustsym^{a_1\dots a_{\hat n}\underline l}\,T^{\underline k}{}_{\underline{kl}}
+   + \frac{\hat n}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n-1}|\underline{kl}|}\,T^{a_{\hat n}]}{}_{\underline{kl}} \\
+  &= \gmIhustsym^{a_1\dots a_{\hat n}\underline k}\,T^{\underline l}{}_{\underline{kl}}
+   + \frac{\hat n}{2}\,\gmIhustsym^{[a_1\dots a_{\hat n-1}|\underline{kl}|}\,T^{a_{\hat n}]}{}_{\underline{kl}}
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-11}
+\subsection*{Dodatek: kontrakce a vnější součiny \ \normalfont\small(DerHust-A2)}
+\pozn{v originále jsou indexy ve složkových vztazích naznačeny jen čárkami; zde $\cdots$ $=$ skupina indexů}
+
+\[
+  A\in\mathbf{T}^{[r]}_{[s]}M \qquad p = \min(r,s)
+\]
+\[
+  \begin{array}{lll}
+    \underset{k}{\mathrm{Tr}}\,A = \frac1{k!}\,C^{k\text{ zleva}}_{k\text{ zleva}}A &
+    \mathrm{Tr}\,A = \underset{p}{\mathrm{Tr}}\,A &
+    (\underset{k}{\mathrm{Tr}}\,A)^{\cdots}_{\cdots} = \frac1{k!}A^{\underline{\cdots}\cdots}_{\underline{\cdots}\cdots} \quad
+    (\mathrm{Tr}A)^{\cdots} = \frac1{s!}A^{\underline{\cdots}\cdots}_{\underline{\cdots}} \quad
+    (\mathrm{Tr}A)_{\cdots} = \frac1{r!}A^{\underline{\cdots}}_{\underline{\cdots}\cdots} \\[6pt]
+    A\underset{k}{\mathrm{rT}} = \frac1{k!}\,C^{k\text{ zprava}}_{k\text{ zprava}}A &
+    A\,\mathrm{rT} = A\underset{p}{\mathrm{rT}} &
+    (A\underset{k}{\mathrm{rT}})^{\cdots}_{\cdots} = \frac1{k!}A^{\cdots\underline{\cdots}}_{\cdots\underline{\cdots}} \quad
+    (A\,\mathrm{rT})^{\cdots} = \frac1{s!}A^{\cdots\underline{\cdots}}_{\underline{\cdots}} \quad
+    (A\,\mathrm{rT})_{\cdots} = \frac1{r!}A^{\underline{\cdots}}_{\cdots\underline{\cdots}}
+  \end{array}
+\]
+
+\[
+  \alpha\in\Lambda^aM \qquad \beta\in\Lambda^bM \qquad w\in\mathbf{T}^{[p]}{}_0M
+\]
+\[
+  \alpha\bullet w = \begin{cases} a\geq p & (\alpha w)\,\mathrm{rT} \\ a\leq p & \mathrm{Tr}(\alpha w)\end{cases}
+  \quad
+  \alpha\underset{k}{\bullet}w = \begin{cases} a\geq p & (\alpha w)\underset{k}{\mathrm{rT}} \\ a\leq p & \underset{k}{\mathrm{Tr}}(\alpha w)\end{cases}
+  \quad
+  \begin{aligned}
+    (\alpha\bullet w)_{\cdots} &= \tfrac1{p!}\,\alpha_{\cdots\underline{\cdots}}w^{\underline{\cdots}} &
+    (\alpha\underset{k}{\bullet}w)^{\cdots}_{\cdots} &= \tfrac1{k!}\,\alpha_{\cdots\underline{\cdots}}w^{\cdots\underline{\cdots}} \\
+    (\alpha\bullet w)^{\cdots} &= \tfrac1{a!}\,\alpha_{\underline{\cdots}}w^{\underline{\cdots}\cdots} &
+    (\alpha\underset{k}{\bullet}w)^{\cdots}_{\cdots} &= \tfrac1{k!}\,\alpha_{\underline{\cdots}\cdots}w^{\underline{\cdots}\cdots}
+  \end{aligned}
+\]
+\[
+  w\bullet\alpha = \begin{cases} a\geq p & \mathrm{Tr}(w\alpha) \\ a\leq p & (w\alpha)\,\mathrm{rT}\end{cases}
+  \quad
+  w\underset{k}{\bullet}\alpha = \begin{cases} a\geq p & \underset{k}{\mathrm{Tr}}(w\alpha) \\ a\leq p & (w\alpha)\underset{k}{\mathrm{rT}}\end{cases}
+  \quad
+  \begin{aligned}
+    (w\bullet\alpha)_{\cdots} &= \tfrac1{p!}\,w^{\underline{\cdots}}\alpha_{\underline{\cdots}\cdots} &
+    (w\underset{k}{\bullet}\alpha)^{\cdots}_{\cdots} &= \tfrac1{k!}\,w^{\underline{\cdots}\cdots}\alpha_{\underline{\cdots}\cdots} \\
+    (w\bullet\alpha)^{\cdots} &= \tfrac1{a!}\,w^{\cdots\underline{\cdots}}\alpha_{\underline{\cdots}} &
+    (w\underset{k}{\bullet}\alpha)^{\cdots}_{\cdots} &= \tfrac1{k!}\,w^{\cdots\underline{\cdots}}\alpha_{\cdots\underline{\cdots}}
+  \end{aligned}
+\]
+
+\begin{align*}
+  p\geq a+b:&\quad w\bullet(\alpha\wedge\beta) = (w\bullet\beta)\bullet\alpha
+  &&(\alpha\wedge\beta)\bullet w = \beta\bullet(\alpha\bullet w) \\
+  p = a+b:&\quad w\bullet(\alpha\wedge\beta) = (\alpha\bullet w)\bullet\beta = \alpha\bullet(w\bullet\beta)
+  &&(\alpha\wedge\beta)\bullet w = \alpha\bullet(w\bullet\beta) = (\alpha\bullet w)\bullet\beta \\
+  p\leq a+b:&\quad w\bullet(\alpha\wedge\beta) = \sum_{\substack{k,l\\k+l=p\\k\leq a\\l\leq b}}(-1)^{l(a-k)}\,(\underset{k}{\mathrm{Tr}}\,w\alpha)\underset{l}{\gmIwedgedot}\beta
+  &&(\alpha\wedge\beta)\bullet w = \sum_{\substack{k,l\\k+l=p\\k\leq a\\l\leq b}}(-1)^{k(b-l)}\,\alpha\underset{k}{\gmIwedgedot}(\beta w\underset{l}{\mathrm{rT}})
+\end{align*}
+
+$r\leq a$
+\[
+  \begin{array}{ll}
+    A\gmIwedgedot\alpha = \wedge(A\bullet\alpha) \quad A\underset{k}{\gmIwedgedot}\alpha = \wedge(A\underset{k}{\bullet}\alpha) &
+    (A\gmIwedgedot\alpha)_{\cdots} = \frac1{r!}(A^{\underline{\cdots}}\wedge\alpha_{\underline{\cdots}})_{\cdots} \quad
+    (A\underset{k}{\gmIwedgedot}\alpha)^{\cdots}_{\cdots} = \frac1{k!}(A^{\underline{\cdots}\cdots}\wedge\alpha_{\underline{\cdots}})_{\cdots} \\[4pt]
+    \alpha\gmIwedgedot A = \wedge(\alpha\bullet A) \quad \alpha\underset{k}{\gmIwedgedot}A = \wedge(\alpha\underset{k}{\bullet}A) &
+    (\alpha\gmIwedgedot A)_{\cdots} = \frac1{r!}(\alpha_{\underline{\cdots}}\wedge A^{\underline{\cdots}})_{\cdots} \quad
+    (\alpha\underset{k}{\gmIwedgedot}A)^{\cdots}_{\cdots} = \frac1{k!}(\alpha_{\underline{\cdots}}\wedge A^{\cdots\underline{\cdots}})_{\cdots} \\[4pt]
+    A\gmIdotwedge\alpha = \mathrm{Tr}(A\wedge\alpha) \quad A\underset{k}{\gmIdotwedge}\alpha = \underset{k}{\mathrm{Tr}}(A\wedge\alpha) &
+    (A\gmIdotwedge\alpha)_{\cdots} = \frac1{r!}(A^{\underline{\cdots}}\wedge\alpha)_{\underline{\cdots}\cdots} \quad
+    (A\underset{k}{\gmIdotwedge}\alpha)^{\cdots}_{\cdots} = \frac1{k!}(A^{\underline{\cdots}\cdots}\wedge\alpha)_{\underline{\cdots}\cdots} \\[4pt]
+    \alpha\gmIdotwedge A = (\alpha\wedge A)\,\mathrm{rT} \quad \alpha\underset{k}{\gmIdotwedge}A = (\alpha\wedge A)\underset{k}{\mathrm{rT}} &
+    (\alpha\gmIdotwedge A)_{\cdots} = \frac1{r!}(\alpha\wedge A^{\underline{\cdots}})_{\cdots\underline{\cdots}} \quad
+    (\alpha\underset{k}{\gmIdotwedge}A)^{\cdots}_{\cdots} = \frac1{k!}(\alpha\wedge A^{\cdots\underline{\cdots}})_{\cdots\underline{\cdots}}
+  \end{array}
+\]
+
+\[
+  A\gmIdotwedge\alpha = \sum_{\substack{k,l\\k+l=r\\k\leq s\\l\leq a}}(-1)^{l(s-k)}\,(\underset{k}{\mathrm{Tr}}\,A)\underset{l}{\gmIwedgedot}\alpha
+  \qquad\qquad
+  \alpha\gmIdotwedge A = \sum_{\substack{k,l\\k+l=r\\k\leq a\\l\leq s}}(-1)^{k(s-l)}\,\alpha\underset{k}{\gmIwedgedot}(A\underset{l}{\mathrm{rT}})
+\]
+
+\begin{vysvetleni}[slovník operací z dodatku]
+$\underset{k}{\mathrm{Tr}}$ zúží $k$ horních indexů s $k$ dolními \emph{zleva} (s faktorem $1/k!$), $\underset{k}{\mathrm{rT}}$ totéž \emph{zprava};
+bez indexu $k$ se zúží maximální možný počet $p=\min(r,s)$. $\bullet$ je tenzorový součin následovaný takovým maximálním zúžením
+(zúžení \uv{přes styčné indexy}), $\underset{k}{\bullet}$ zúží jen $k$ indexů. Odtud dvě kombinace s vnějším součinem:
+$A\gmIwedgedot\alpha = \wedge(A\bullet\alpha)$ -- nejdřív zúžit, pak antisymetrizovat; $A\gmIdotwedge\alpha = \mathrm{Tr}(A\wedge\alpha)$ -- nejdřív vnější součin
+(v dolních indexech), pak zúžit. Rozdíl mezi nimi tvoří stopy $A$ (vzorce s $\sum_{k+l=r}$). Typicky $A = T$ (torze) a pak
+$T\gmIdotwedge\alpha = (\mathrm{Tr}\,T)\wedge\alpha + T\gmIwedgedot\alpha$ (dodatek A3).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-14-12}
+\subsection*{Dodatek: vztahy s torzí \ \normalfont\small(DerHust-A3)}
+
+\[
+  u\in TM \qquad \alpha,\beta\in\Lambda M
+\]
+\begin{align*}
+  u\cdot(\alpha\wedge\beta) &= (u\cdot\alpha)\wedge\beta + \big((-1)^q\alpha\big)\wedge(u\cdot\beta) \\
+  (\alpha\wedge\beta)\cdot u &= (\alpha\cdot u)\wedge\big((-1)^q\beta\big) + \alpha\wedge(\beta\cdot u)
+\end{align*}
+
+\[
+  T,\bar T\in\mathbf{T}^1{}_{[2]}M \qquad \alpha\in\Lambda^pM \qquad \gmIhustsym\in\Lambda^{*q}M
+  \qquad \bar T = -T \qquad \gmIhustsym = \gmIhdual\alpha \qquad p+q = m
+\]
+\[
+  t = \bar t\in\Lambda^1M \qquad t = T\,\mathrm{rT} = -\mathrm{Tr}\,T = -\bar T\,\mathrm{rT} = \mathrm{Tr}\,\bar T = \bar t
+\]
+\pozn{složkové vztahy v pravém sloupci jsou psány velmi drobně -- polohy indexů přibližné}
+
+\begin{align*}
+  T\gmIdotwedge\alpha &= (\mathrm{Tr}\,T)\wedge\alpha + T\gmIwedgedot\alpha = -t\wedge\alpha + T\gmIwedgedot\alpha
+  & (T\gmIdotwedge\alpha)^{\underline c}{}_{\underline c\,a_1\dots a_p} &= \tbinom{p+2}{2}\,T^{\underline k}{}_{[\underline{k}c_0}\alpha_{a_1\dots a_p]} \\
+  T\gmIwedgedot\alpha &= -(\mathrm{Tr}\,T)\wedge\alpha + T\gmIdotwedge\alpha = t\wedge\alpha + T\gmIdotwedge\alpha
+  & (T\gmIwedgedot\alpha)_{c_0a_1\dots a_p} &= \tbinom{p+1}{2}\,T^{\underline k}{}_{[c_0a_1}\alpha_{|\underline k|\dots a_p]} \\
+  \alpha\gmIdotwedge\bar T &= \alpha\wedge(\bar T\,\mathrm{rT}) + \alpha\gmIwedgedot\bar T = -\alpha\wedge\bar t + \alpha\gmIwedgedot\bar T
+  & (\alpha\gmIdotwedge\bar T)_{a_1\dots a_pa_{p+1}} &= \tbinom{p+2}{2}\,\alpha_{[a_1\dots a_p}\bar T_{\underline k\,a_{p+1}]}{}^{\underline k} \\
+  \alpha\gmIwedgedot\bar T &= -\alpha\wedge(\bar T\,\mathrm{rT}) + \alpha\gmIdotwedge\bar T = \alpha\wedge\bar t + \alpha\gmIdotwedge\bar T
+  & (\alpha\gmIwedgedot\bar T)_{a_1\dots a_pa_{p+1}} &= \tbinom{p+1}{2}\,\alpha_{[a_1\dots a_{p-1}|\underline k|}\bar T_{a_pa_{p+1}]}{}^{\underline k} \\[4pt]
+  \gmIhustsym\gmIdotwedge T &= \gmIhustsym\cdot(\mathrm{Tr}\,T) + \gmIhustsym\gmIwedgedot T = \gmIhustsym\cdot t + \gmIhustsym\gmIwedgedot T
+  & (\gmIhustsym\gmIdotwedge T)^{a_1\dots a_{q-1}} &= \tfrac12\tbinom{q+1}{1}\,\gmIhustsym^{[a_1\dots a_{q-1}\underline{a_q}}\,T^{\underline{a_{q+1}}]}{}_{\underline{a_q}\underline{a_{q+1}}} \\
+  \gmIhustsym\gmIwedgedot T &= -\gmIhustsym\cdot(\mathrm{Tr}\,T) + \gmIhustsym\gmIdotwedge T = -\gmIhustsym\cdot t + \gmIhustsym\gmIdotwedge T
+  & (\gmIhustsym\gmIwedgedot T)^{a_1\dots a_{q-1}} &= \tfrac12\tbinom{q-1}{1}\,\gmIhustsym^{[a_1\dots a_{q-2}|\underline{kl}|}\,T^{a_{q-1}]}{}_{\underline{kl}} \\
+  T\gmIdotwedge\gmIhustsym &= (\mathrm{Tr}\,T)\cdot\gmIhustsym + T\gmIwedgedot\gmIhustsym = -t\cdot\gmIhustsym + T\gmIwedgedot\gmIhustsym
+  & (T\gmIdotwedge\gmIhustsym)^{a_1\dots a_{q-1}} &= \tfrac12\tbinom{q+1}{1}\,T^{[a_1}{}_{\underline{c_0}\underline{c_1}}\,\gmIhustsym^{\underline{c_0}\underline{c_1}\dots a_{q-1}]} \\
+  T\gmIwedgedot\gmIhustsym &= -(\mathrm{Tr}\,T)\cdot\gmIhustsym + T\gmIdotwedge\gmIhustsym = t\cdot\gmIhustsym + T\gmIdotwedge\gmIhustsym
+  & (T\gmIwedgedot\gmIhustsym)^{a_1\dots a_{q-1}} &= \tfrac12\tbinom{q-1}{1}\,T^{[a_1}{}_{\underline{kl}}\,\gmIhustsym^{|\underline{kl}|\dots a_{q-1}]}
+\end{align*}
+

@@ -1,0 +1,445 @@
+%======================================================================
+% GMI-02 Diferencialni struktura.pdf
+%======================================================================
+\section{Diferenciální struktura}
+\strana{GMI-02-1}
+
+\begin{itemize}[nosep]
+  \item Diferenciální varieta
+  \item Hladká zobrazení
+  \item Klasifikace dif.\ variet a struktur
+  \item Technikality
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-2}
+\subsection{Diferenciální varieta}
+
+historie:
+\begin{itemize}[nosep]
+  \item[] Bernhard Riemann -- habilitační přednáška 1867 \\
+          \quad lokalizace geometrie pomocí souřadnic a metriky
+  \item[] Hassler Whitney -- moderní def.\ dif.\ variety
+\end{itemize}
+
+\begin{vysvetleni}[Historie]
+Riemannova habilitační přednáška \uv{Über die Hypothesen, welche der Geometrie zu Grunde liegen} byla přednesena v Göttingen roku 1854, tiskem vyšla posmrtně 1867/68 (letopočet v poznámkách odpovídá vydání). Whitney (1936) zformuloval abstraktní definici diferencovatelné variety pomocí atlasu a dokázal, že každá taková varieta je podvarietou nějakého $\mathbb{R}^N$.
+\end{vysvetleni}
+
+nechť $M$ je topologická varieta se spočetnou bází top. \\
+\quad (second countable $\Rightarrow$ parakompakt + spoč.\ počet komponent)
+
+\begin{minipage}{0.6\textwidth}
+\begin{definice}[Souřadnicová mapa]
+\kw{souřadnicová mapa} $(U,x)$ \\
+\quad $U$ otevř.\ oblast z $M$ \\
+\quad $x: U\to\mathbb{R}^n$ \qquad $x\equiv[x^1,\dots,x^n]\equiv[x^i]$ \ hladké \\[2pt]
+\quad $x^i$ nazýváme $i$-tou souř. \\
+\quad $U$ nazýváme souř.\ oblastí
+\end{definice}
+\end{minipage}\hfill
+\begin{minipage}{0.37\textwidth}
+\begin{tikzpicture}[scale=0.85]
+  % varieta M
+  \draw (0,1.2) .. controls (0.8,2.1) and (1.8,2.3) .. (3.1,2.5)
+        .. controls (2.9,1.9) and (2.6,1.3) .. (2.4,0.9)
+        .. controls (1.7,0.8) and (0.8,0.9) .. (0,1.2);
+  \node at (3.3,2.5) {$M$};
+  % oblast U
+  \draw (1.1,1.4) .. controls (1.3,1.9) and (1.9,2.0) .. (2.2,1.8)
+        .. controls (2.3,1.4) and (1.9,1.2) .. (1.6,1.35)
+        .. controls (1.4,1.25) and (1.2,1.25) .. (1.1,1.4);
+  \node at (2.0,2.15) {$U$};
+  % mřížka R^n
+  \foreach \x in {2.6,2.9,3.2,3.5} \draw (\x,-1.4) -- (\x,0.3);
+  \foreach \y in {-1.1,-0.7,-0.3} \draw (2.3,\y) -- (3.9,\y);
+  \node at (4.0,0.4) {$\mathbb{R}^n$};
+  % obraz x(U)
+  \draw (2.7,-0.9) .. controls (2.6,-0.5) and (3.3,-0.3) .. (3.6,-0.6)
+        .. controls (3.7,-0.9) and (3.1,-1.2) .. (2.7,-0.9);
+  % šipka x
+  \draw[-{Stealth}] (1.8,1.5) .. controls (2.0,0.7) and (2.3,0) .. (2.85,-0.55);
+  \node at (1.7,0.3) {$x$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[Souřadnicová mapa]
+Mapa je homeomorfismus $x:U\to x(U)$ otevřené $U\subset M$ na otevřenou podmnožinu $\mathbb{R}^n$: přiřadí každému bodu $z\in U$ $n$-tici čísel $x^i(z)$. Zápis $[x^i]$ zdůrazňuje, že mapa je uspořádaná $n$-tice skalárních funkcí na $U$ (Krtouš, odd.~2.1, píše $(U,[x^j])$, $j=1,\dots,d$). Slovo \uv{hladké} v definici je třeba chápat až vzhledem k diferenciální struktuře zavedené níže (mapy maximálního atlasu jsou difeomorfismy na obraz); na čistě topologické varietě má smysl jen požadavek homeomorfismu. Jedna mapa obvykle celou varietu nepokryje (např.\ kompaktní $S^n$ není homeomorfní otevřené podmnožině $\mathbb{R}^n$), proto potřebujeme více map.
+\end{vysvetleni}
+
+\begin{definice}[Přechodové zobrazení]
+nechť $(U,x)$, $(V,y)$ jsou 2 mapy na $M$ \\
+\kw{přechodové zobr.} je
+\[ \alpha = x\circ y^{-1}: \mathbb{R}^n\to\mathbb{R}^n
+   \qquad \big(\text{přesněji } \oprava{y}{y^{-1}}(U\cap V)\to x(U\cap V)\big) \]
+\end{definice}
+
+\begin{vysvetleni}[Přechodové zobrazení]
+Na překryvu $U\cap V$ máme dvoje souřadnice téhož bodu; $x\circ y^{-1}$ je \uv{transformace souřadnic} $x^i = x^i(y^1,\dots,y^n)$, obyčejná funkce mezi otevřenými množinami $y(U\cap V)\subset\mathbb{R}^n$ a $x(U\cap V)\subset\mathbb{R}^n$ (proto definiční obor $y(U\cap V)$, nikoli $y^{-1}(\dots)$). Hladkost má smysl testovat jen pro takové zobrazení $\mathbb{R}^n\to\mathbb{R}^n$ -- \uv{hladkost na $M$} se tak definuje přes přechodová zobrazení.
+\end{vysvetleni}
+
+\begin{definice}[Atlas třídy $C^r$ \ (též $C^r$-atlas)]
+\kw{$C^r$-atlas} je kolekce map $(U_\alpha,x_\alpha)$, \ $\alpha\in$ index.\ mn.
+\begin{itemize}[nosep]
+  \item[--] $U_\alpha$ tvoří otevřené pokrytí $M$
+  \item[--] všechna přechodová zobr.\ $x_{\alpha\beta} = x_\alpha\circ x_\beta^{-1}$ jsou třídy $C^r$ na $\mathbb{R}^n$
+  \begin{itemize}[nosep]
+    \item[] $C^0$ \ -- homeomorfismy (spojitá zobr.)
+    \item[] $C^r$ \ -- spojité derivace stupně $r$
+    \item[] $C^\infty$ -- spojité všechny derivace
+    \item[] $C^\omega$ \ -- analytická zobr.\ (konvergentní Taylor.\ rozvoj)
+  \end{itemize}
+\end{itemize}
+\end{definice}
+topologická var.\ má přirozený $C^0$ atlas \\
+každý $C^r$-atlas je též $C^s$-atlas pro $s\leq r$
+
+\begin{vysvetleni}[Třída atlasu]
+\uv{Spojité derivace stupně $r$} znamená: všechny parciální derivace až do řádu $r$ existují a jsou spojité. Platí $C^\omega\subset C^\infty\subset\dots\subset C^1\subset C^0$. Protože $x_{\beta\alpha}=x_{\alpha\beta}^{-1}$, jsou přechodová zobrazení $C^r$-atlasu ($r\geq1$) automaticky $C^r$-difeomorfismy s nenulovým jakobiánem $\det(\partial x_\alpha^i/\partial x_\beta^j)\neq0$. Přirozený $C^0$ atlas topologické variety tvoří všechny její mapy (homeomorfismy).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-3}
+\begin{definice}[Kompatibilita atlasů]
+atlasy $\mathcal{A}_1,\mathcal{A}_2$ jsou \kw{$C^r$-kompatibilní} (též $C^r$-ekvivalentní) $\equiv$ \\
+\quad $\mathcal{A}_1\cup\mathcal{A}_2$ je $C^r$ atlas \\
+$C^r$-kompatibilita je relace ekvivalence
+\end{definice}
+
+\begin{definice}[Diferenciální struktura]
+třída $C^r$-ekvivalence atlasů se nazývá \kw{$C^r$-dif.\ struktura} \\
+$C^\infty$-dif.\ str.\ též hladká dif.\ str.\ či jen dif.\ str.
+\end{definice}
+
+\begin{definice}[Maximální atlas]
+\kw{maximální atlas} je sjednocení všech atlasů v dif.\ str. \\
+každý atlas je obsažen právě v jednom max.\ atlase
+\end{definice}
+
+\begin{vysvetleni}[Proč třídy atlasů]
+Atlas je jen pomocný nástroj -- např.\ na sféře lze použít stereografické projekce i úhlové souřadnice. Kompatibilní atlasy určují \emph{stejné} hladké funkce, křivky a zobrazení, takže podstatná je jen třída ekvivalence = diferenciální struktura. Kompatibilita znamená: všechny \uv{smíšené} přechody $x_\alpha\circ y_\beta^{-1}$ mezi mapami obou atlasů jsou $C^r$. (Tranzitivita relace není úplně triviální: přechod mezi mapami $\mathcal{A}_1$ a $\mathcal{A}_3$ se lokálně rozloží přes mapu $\mathcal{A}_2$.) Maximální atlas obsahuje \emph{všechny} mapy kompatibilní se strukturou; \uv{mapou na hladké varietě} se dále vždy myslí mapa z maximálního atlasu.
+\end{vysvetleni}
+
+specifikace dif.\ str.\ je dána
+\begin{itemize}[nosep]
+  \item[--] libovolným atlasem z ní \hfill (praktické ale nejednozn.)
+  \item[--] celou třídou kompat.\ atlasů
+  \item[--] maximálním atlasem \hfill (jednozn.\ ale nepraktické)
+\end{itemize}
+
+\begin{definice}[Diferencovatelná varieta]
+\kw{dif.\ varieta třídy $C^r$} je dvojice $(M,\mathcal{A})$, kde
+\begin{itemize}[nosep]
+  \item[] $M$ je topologická var.\ (Hausdorffovská) se spočet.\ bází topol.
+  \item[] $\mathcal{A}$ je diferencov.\ str.\ třídy $C^r$
+\end{itemize}
+namísto $(M,\mathcal{A})$ budeme většinou psát $M$
+\end{definice}
+
+\begin{vysvetleni}[Diferencovatelná varieta]
+Toto je výchozí objekt celé přednášky: Krtouš (odd.~2.1) definuje varietu právě jako \uv{topologický prostor s diferenciální strukturou danou diferencovatelným atlasem}. Na téže topologické varietě může existovat více (i nekompatibilních) diferenciálních struktur -- viz klasifikace níže a příklad $y=x^3$. Dimenzí variety je $n$ z map $x:U\to\mathbb{R}^n$ (u Krtouše $d$).
+\end{vysvetleni}
+
+souřadnicové oblasti max.\ atlasu tvoří bázi topologie podkladové top.\ var.
+
+dif.\ varieta by šla definovat bez apriorní topol.\ str.\ podkladové množiny $M$, tu lze nainduko\-vat z atlasu \\
+\quad nutno přidat axiomy zaručující Hausdorff a spočetnou báz.
+
+\begin{vysvetleni}[Topologie z atlasu]
+Báze: zúžení mapy maximálního atlasu na libovolnou otevřenou podmnožinu její oblasti je opět mapou, takže souřadnicové oblasti jsou \uv{libovolně malé} a generují celou topologii. Bez apriorní topologie se prohlásí $W\subset M$ za otevřenou, pokud $x_\alpha(W\cap U_\alpha)$ je otevřená v $\mathbb{R}^n$ pro všechny mapy. Takto vzniklá topologie ale nemusí být Hausdorffova (přímka se dvěma počátky má hladký atlas ze dvou map), proto je nutné přidat axiomy.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-4}
+\subsection*{Příklady}
+
+\begin{priklad}[Př: otevřená podvarieta]
+zúžení atlasu variety $M$ na otevřenou podm.\ $N\subset M$ definuje atlas na $N$ \\
+\quad $N$ je \kw{otevřená podvarieta} $M$
+\end{priklad}
+
+\begin{priklad}[Př: $\mathbb{R}^n$]
+$\mathbb{R}^n$ a jeho otevřené podm.\ jsou dif.\ variety \\
+\quad $\mathbb{R}^n$ má přirozenou globální mapu generující tzv.\ \kw{standardní dif.\ strukturu}
+\end{priklad}
+
+\begin{priklad}[Př: sféra]
+sféra $S^n\subset\mathbb{R}^{n+1}$ s atlasem daným souborem
+\begin{itemize}[nosep]
+  \item[--] sférických souř.\ s různými póly
+  \item[--] projekcí na různé roviny v $\mathbb{R}^{n+1}$
+\end{itemize}
+\end{priklad}
+
+\begin{priklad}[Př: součin variet]
+$M, N$ dif.\ variety $\Rightarrow$ $M\times N$ je dif.\ varieta s atlasem \\
+\quad $(U_\alpha\times V_\beta,\ x_\alpha\times y_\beta)$, \ kde $(U_\alpha,x_\alpha)\in\mathcal{A}_M$, \ $(V_\beta,y_\beta)\in\mathcal{A}_N$
+
+$T^n = \underbrace{S^1\times\dots\times S^1}_{n}$ \quad \kw{torus}
+\end{priklad}
+
+\begin{vysvetleni}[K příkladům]
+\begin{itemize}[nosep]
+  \item Sféra: sférické souřadnice jsou singulární na pólech (a nespojité na \uv{nultém poledníku}), proto je potřeba více map s různě umístěnými póly. Projekce: polosféra $\{z^k>0\}$ (resp.\ $<0$) se kolmo promítne na rovinu $z^k=0$ -- to dává $2(n+1)$ map. Úspornější je stereografická projekce ze severního a jižního pólu (2 mapy), přechod $y = x/|x|^2$ na $\mathbb{R}^n\setminus\{0\}$ je hladký.
+  \item Součin: souřadnice na $M\times N$ jsou $(x^1,\dots,x^m,y^1,\dots,y^n)$, $\dim(M\times N)=m+n$. Torus $T^2$ má (lokálně) souřadnice dvou úhlů.
+\end{itemize}
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-5}
+\subsection{Hladká zobrazení}
+
+\begin{definice}[Hladké zobrazení mezi var.\ $M,N$]
+zobr.\ $\phi: M\to N$ je třídy $C^r$ $\equiv$ \\
+\quad pro každou mapu $(U,x)$ na $M$ a $(V,y)$ na $N$ \\
+\quad $y\circ\phi\circ x^{-1}: \mathbb{R}^m\to\mathbb{R}^n$ je hladké ve smyslu $\mathbb{R}^k$
+
+fce $\bar y^k(u^1,\dots,u^m)$, $k = 1\dots n$, dané $\bar y^k\big(x^i(z)\big) = y^k\big(\phi(z)\big)$ \\
+\quad (tj.\ $[\bar y^k] = y\circ\phi\circ x^{-1}$) \\
+nazýváme \kw{souřadnicové vyjádření} zobr.\ $\phi$
+\end{definice}
+
+\begin{vysvetleni}[Hladkost v souřadnicích]
+Princip: vlastnost se na varietě definuje tak, že ji má souřadnicové vyjádření (zde zobrazení mezi otevřenými množinami $x(U\cap\phi^{-1}V)\subset\mathbb{R}^m$ a $\mathbb{R}^n$). Díky kompatibilitě map nezávisí výsledek na volbě map: jiné vyjádření se liší složením s hladkými přechodovými zobrazeními, $y'\circ\phi\circ x'^{-1} = (y'\circ y^{-1})\circ(y\circ\phi\circ x^{-1})\circ(x\circ x'^{-1})$. Proto stačí ověřit podmínku v mapách nějakého atlasu, ne ve všech mapách. Pruh v $\bar y^k$ odlišuje funkci proměnných $u^i\in\mathbb{R}^m$ od funkce $y^k\circ\phi$ na $M$; Krtouš (odd.~2.1, D2.1) píše pro souřadnicové vyjádření vlnovku $\tilde f(x^1,\dots,x^d)$ a obvykle ji vynechává.
+\end{vysvetleni}
+
+\begin{definice}[Diffeomorfismus]
+$\phi: M\to N$ je \kw{$C^r$-diffeomorfismus} $\equiv$
+\begin{itemize}[nosep]
+  \item[] $\phi$ má inverzi $\phi^{-1}$
+  \item[] $\phi$ i $\phi^{-1}$ jsou hladké
+\end{itemize}
+\begin{tabular}{@{}ll}
+$\mathrm{Diff}(M,N)$ & diffeo z $M$ do $N$ \\
+$\mathrm{Diff}\,M$ & diffeo na $M$ (tj.\ $M\to M$) \\
+ & \quad tvoří grupu s operací skládání
+\end{tabular}
+\end{definice}
+
+\begin{vysvetleni}[Difeomorfismus]
+Difeomorfismus je izomorfismus hladkých variet -- difeomorfní variety jsou z hlediska diferenciální geometrie stejné. Hladkost inverze je nutné žádat zvlášť: $t\mapsto t^3$ na $\mathbb{R}$ je hladký homeomorfismus, ale inverze $t^{1/3}$ není v nule hladká (právě tento příklad se objeví na str.~GMI-02-7). $\mathrm{Diff}\,M$ je grupa \uv{aktivních transformací} variety, kterými se podrobně zabývá Krtouš v kap.~3 (Difeomorfismy a Lieova derivace).
+\end{vysvetleni}
+
+\begin{definice}[Hladké funkce]
+$f: M\to\mathbb{R}$ je fce třídy $C^r$ $\equiv$ \\
+\quad $\forall$ mapu $(U,x)$ je $f\circ x^{-1}:\mathbb{R}^n\to\mathbb{R}$ třídy $C^r$ \\
+fce třídy $C^\infty$ nazýváme \kw{hladké} a značíme $\mathcal{F}M$
+\end{definice}
+
+\begin{definice}[Hladké křivky]
+$z: \mathbb{R}\to M$ nazýváme \kw{křivkou} na $M$ \\
+hladkost zobr.\ určuje hladkost křivky
+\end{definice}
+
+\begin{vysvetleni}[Funkce a křivky]
+Hladká funkce i křivka jsou speciální případy hladkého zobrazení (s $N=\mathbb{R}$, resp.\ $M=\mathbb{R}$). $\mathcal{F}M$ je stejné značení jako u Krtouše (odd.~2.1); s bodovým sčítáním a násobením tvoří komutativní algebru. Křivka je zde \emph{parametrizovaná} (zobrazení, ne množina bodů); souřadnicové vyjádření je $n$-tice funkcí $x^i(z(\tau))$. Tyto dva objekty jsou duální stavební kameny tečných vektorů: Krtouš (odd.~2.2) chápe tečný vektor buď jako \uv{rychlost} křivky, nebo jako derivaci působící na funkce, $a[f] = \frac{d}{d\tau}(f\circ z)|_{\tau=0}$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-6}
+\subsection{Klasifikace dif.\ variet a struktur}
+
+\begin{definice}[Diffeo-ekvivalence]
+dvě dif.\ variety $(M,\mathcal{A}_M)$ a $(N,\mathcal{A}_N)$ jsou \kw{diffeo-ekvivalentní} $\equiv$ \\
+\quad existuje diffeomorf.\ $\phi: M\to N$
+
+dvě dif.\ str.\ $\mathcal{A}_1,\mathcal{A}_2$ na top.\ var.\ $M$ jsou diffeo-ekvivalentní $\equiv$ \\
+\quad $(M,\mathcal{A}_1)$ a $(M,\mathcal{A}_2)$ jsou diffeo-ekvivalentní
+\end{definice}
+diffeo ekviv.\ říká, že dif.\ struktury jsou v podstatě stejné
+
+\begin{vysvetleni}[Kompatibilita vs.\ difeo-ekvivalence]
+Jde o dva různé pojmy \uv{stejnosti} struktur na téže množině $M$. \emph{Kompatibilita} ($\mathcal{A}_1=\mathcal{A}_2$ jako maximální atlasy) znamená, že identita $\mathrm{id}:(M,\mathcal{A}_1)\to(M,\mathcal{A}_2)$ je difeomorfismus. \emph{Difeo-ekvivalence} připouští libovolný difeomorfismus $\phi$, nejen identitu -- je tedy slabší. Nekompatibilní, ale difeo-ekvivalentní struktury se liší jen \uv{přeznačením bodů}, geometricky jsou nerozlišitelné (příklad na str.~GMI-02-7). Skutečně \uv{různé} jsou až struktury, které nejsou difeo-ekvivalentní (exotické struktury).
+\end{vysvetleni}
+
+\begin{veta}[Věta o zhlazení (Whitney)]
+každý maximální $C^r$-atlas, $r\geq 1$, na $M$ obsahuje $C^\infty$ a $C^\omega$ atlas na $M$
+\end{veta}
+$C^\infty$-podatlasu $C^r$ atlasu říkáme \kw{zhlazení} \\
+$C^r$-atlas může obsahovat nekompatibilní $C^\infty$ atlasy, ale všechny jsou si diffeo-ekvivalentní \\
+jedná se o důsledek věty o vnoření
+
+\begin{veta}[Věta o vnoření (Whitney)]
+každou $C^1$ dif.\ varietu lze vnořit jako $C^\infty$ podvarietu do $\mathbb{R}^{2n+1}$ (se stand.\ dif.\ str.)
+\end{veta}
+není proto potřeba rozlišovat $C^r$-variety a $C^\infty$-variety ($r\geq 1$) \\
+\quad každá taková var.\ lze \uv{jednoznačně} zhladit na $C^\infty$
+
+\begin{veta}[Věta (Whitney)]
+každý $C^r$ diffeomorfismus je též $C^\infty$ diffeomorfism. \\
+\pozn{?? pro nějaké zhlazení ?}
+\end{veta}
+
+\begin{vysvetleni}[Whitneyho věty]
+\begin{itemize}[nosep]
+  \item Zhlazení: v maximálním $C^r$-atlase ($r\geq1$) lze vybrat mapy, jejichž přechody jsou dokonce $C^\infty$ (i $C^\omega$). Hladká struktura je tím určena jednoznačně až na difeomorfismus -- proto se v dalším pracuje jen s $C^\infty$ varietami. Pro $r=0$ (topologické variety) nic takového neplatí (viz Kervaire níže).
+  \item Vnoření: $n=\dim M$. Snadná verze dává $\mathbb{R}^{2n+1}$, silná Whitneyho věta dokonce $\mathbb{R}^{2n}$. Každou abstraktní varietu si tak lze představit jako plochu v euklidovském prostoru.
+  \item Poslední věta je v poznámkách zapsána nepřesně (viz otazníky v originále). Přesná standardní formulace: jsou-li dvě $C^\infty$ variety $C^r$-difeomorfní ($r\geq1$), jsou i $C^\infty$-difeomorfní (každý $C^r$ difeomorfismus lze aproximovat $C^\infty$ difeomorfismem). Daný $C^r$ difeomorfismus sám obecně $C^\infty$ není.
+\end{itemize}
+\end{vysvetleni}
+
+\begin{veta}[Věta (Kervaire 1960)]
+existují top.\ var.\ nepřipouštějící $C^1$-dif.\ str.
+\end{veta}
+
+\begin{vysvetleni}[Nehladkoschopné variety]
+Kervaire sestrojil kompaktní 10-dim.\ topologickou varietu, která nepřipouští žádný $C^1$ (a tedy podle věty o zhlazení ani hladký) atlas. V dimenzi 4 je příkladem Freedmanova varieta $E_8$ (1982). V dimenzích $\leq3$ má každá topologická varieta právě jednu hladkou strukturu.
+\end{vysvetleni}
+
+\textbf{klasifikace} -- kolik diffeo nekviv.\ tříd dif.\ str.\ existuje na $M$
+\begin{itemize}[nosep]
+  \item[] $\dim < 4$ \ -- 1 tř.\ dif.\ str.
+  \item[] $\dim > 4$ kompaktní -- konečně mnoho tř.\ dif.\ str. \\
+          \quad počet nezávisí na top.\ strukt.\ \textsuperscript{kompaktní} variety -- stačí klasif.\ $S^n$
+\end{itemize}
+\begin{center}
+\begin{tabular}{l|cccccccccccc|c}
+$\dim S^n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & \dots \\ \hline
+\# tř.\ dif.\ str. & 1 & 1 & 1 & ?$\geq$1 & 1 & 1 & 28 & 2 & 8 & 6 & 992 & 1 &
+\end{tabular}
+\end{center}
+\begin{tabular}{@{}ll}
+$\dim = 4$ & typicky nekonečný počet \\
+\quad $\mathbb{R}^4$ & nespočetně exotických tříd dif.\ struktur \\
+\quad $S^4$ & hladká Poincarého hyp.: 1 tř.\ dif.\ str.\ \ (asi neplatí) \\
+$\mathbb{R}^n$, $\dim > 4$ & 1 tř.\ dif.\ str.
+\end{tabular}
+
+\begin{vysvetleni}[Exotické sféry a $\mathbb{R}^4$]
+\begin{itemize}[nosep]
+  \item Hladká struktura na $S^n$ nedifeomorfní standardní se nazývá \emph{exotická sféra}; první objevil Milnor (1956) na $S^7$. Čísla v tabulce jsou řády grup $\Theta_n$ (Kervaire--Milnor 1963), kde se struktury počítají až na difeomorfismus \emph{zachovávající orientaci}; bez ohledu na orientaci jich je na $S^7$ 15 (28 tříd se párují zrcadlením). Dál: $n=13$: 3, $n=14$: 2, $n=15$: 16256.
+  \item Věta \uv{stačí klasifikovat $S^n$} je silně zjednodušená: počet hladkých struktur obecně závisí na konkrétní varietě; exotické sféry $\Sigma$ ale vytvářejí z dané struktury další pomocí souvislé sumy $M\#\Sigma$.
+  \item Dim 4 je výjimečná: $\mathbb{R}^n$ má pro $n\neq4$ jedinou hladkou strukturu, $\mathbb{R}^4$ nespočetně mnoho (Donaldson, Freedman, Gompf, Taubes, 80.~léta). Hladká 4-dim.\ Poincarého hypotéza (zda $S^4$ má jen standardní strukturu) je dosud otevřená -- \uv{asi neplatí} je názor přednášejícího.
+\end{itemize}
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-7}
+\begin{priklad}[Příklad: diffeomorfně ekvivalentní nekompatibilní dif.\ struktury]
+Diffeomorfně ekvivalentní nekompatibilní diferencovatelné struktury na 1-dim nekompaktní top.\ varietě $M$ ($\mathbb{R}$)
+
+\begin{tabular}{@{}lll}
+mapa $(M,x)$ & $x: M\to\mathbb{R}$ & globální 1-1 značení \\
+mapa $(M,y)$ & $y: M\to\mathbb{R}$ & globální 1-1 značení
+\end{tabular}
+\[ y = x^3 \qquad \text{tj.}\quad y\circ x^{-1}(u) = u^3 \]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % M
+  \draw (0,2) -- (5,2) node[right] {$M$};
+  \draw (2.3,1.93) -- (2.3,2.07) node[above] {$0$};
+  \fill (3.8,2) circle (1.5pt) node[above] {$z$};
+  % šipky x, y
+  \draw[-{Stealth}] (2.0,1.8) -- (0.3,0.8) node[midway,above left] {$x$};
+  \draw[-{Stealth}] (2.6,1.8) -- (4.4,0.8) node[midway,above right] {$y$};
+  % R vlevo
+  \draw (-1.8,0.6) -- (1.2,0.6);
+  \node[below] at (-1.6,0.55) {$\mathbb{R}$};
+  \draw (-0.3,0.53) -- (-0.3,0.67); \node[below] at (-0.3,0.55) {$0$};
+  \fill (0.6,0.6) circle (1.5pt); \node[below] at (0.6,0.55) {$u$};
+  % R vpravo
+  \draw (3.3,0.6) -- (6.2,0.6);
+  \node[below] at (3.5,0.55) {$\mathbb{R}$};
+  \draw (4.4,0.53) -- (4.4,0.67); \node[below] at (4.4,0.55) {$0$};
+  \draw (5.7,0.53) -- (5.7,0.67); \node[above] at (5.7,0.65) {$u^3$};
+  % y o x^-1
+  \draw[-{Stealth}] (0.9,0.4) .. controls (1.6,-0.3) and (2.8,-0.3) .. (3.5,0.4);
+  \node at (2.2,-0.55) {$y\circ x^{-1}$};
+  \node at (0.7,-1.1) {$x(z) = u$};
+  \node at (4.7,-1.1) {$y(z) = u^3$};
+\end{tikzpicture}
+\end{center}
+
+$(M,x)$ tvoří atlas a indukuje dif.\ strukturu $\mathcal{A}_x$ \\
+$M_x$ je odpovídající varieta $(M,\mathcal{A}_x)$ \\
+podobně \quad $(M,y)\to\mathcal{A}_y\to M_y$
+
+$\mathcal{A}_x,\mathcal{A}_y$ nejsou kompatibilní \\
+\quad $\Leftarrow$ mapy $(M,x)$, $(M,y)$ nekompatibilní \\
+\quad $\Leftarrow$ $x\circ y^{-1}(u) = u^{1/3}$ není hladké
+
+$M_x, M_y$ jsou diffeomorfní ekvivalentní
+
+\begin{minipage}{0.62\textwidth}
+\quad nechť $\phi: M\to M$, \ $x(\phi z) = x(z)^{1/3}$ \\
+\quad\quad tj.\ $y(\phi z) = y(z)^{1/3} = x(z)$
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{tikzpicture}[scale=0.8]
+  \draw (0,0) -- (3.6,0); \node[left] at (0,0) {$M$};
+  \draw (1.4,-0.07) -- (1.4,0.07); \node[above] at (1.4,0.05) {\small $0$};
+  \fill (2.2,0) circle (1.5pt); \fill (3.3,0) circle (1.5pt);
+  \draw[-{Stealth}] (2.25,0.08) .. controls (2.5,0.5) and (3.0,0.5) .. (3.25,0.08);
+  \node[below] at (2.2,-0.02) {\scriptsize $z$};
+  \node[below] at (3.3,-0.02) {\scriptsize $\phi z$};
+  \node[below] at (2.1,-0.35) {\scriptsize $x(z)=u$};
+  \node[below] at (3.4,-0.7) {\scriptsize $x(\phi z)=u^{1/3}$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{tabular}{@{}lcll}
+$\phi\notin\mathrm{Diff}(M_x)$ & $\Leftarrow$ & $x\circ\phi\circ x^{-1}(u) = u^{1/3}$ & není hladké \\
+$\phi\notin\mathrm{Diff}(M_y)$ & $\Leftarrow$ & $y\circ\phi\circ y^{-1}(v) = v^{1/3}$ & není hladké \\
+$\phi\in\mathrm{Diff}(M_x,M_y)$ & $\Leftarrow$ & $y\circ\phi\circ x^{-1}(u) = u$ & hladké s hl.\ inverzí
+\end{tabular}
+
+$\Downarrow$ \\
+$M_x, M_y$ \pozor{diffeomorfně ekvivalentní, ačkoli $\mathcal{A}_x,\mathcal{A}_y$ jsou nekompatibilní}
+\end{priklad}
+
+\begin{vysvetleni}[Rozbor příkladu $y=x^3$]
+$M$ je množina (topologicky $\mathbb{R}$) se dvěma globálními mapami. Každá sama tvoří atlas (jediná mapa nemá netriviální přechody), ale dohromady ne: $x\circ y^{-1}(v)=v^{1/3}$ nemá v $v=0$ derivaci. Funkce $f$ s $f=x$ je hladká na $M_x$, ale na $M_y$ má vyjádření $v^{1/3}$, hladká tam není -- struktury tedy opravdu definují různé třídy hladkých funkcí.
+Zobrazení $\phi$ \uv{posune body} tak, aby $y$-souřadnice obrazu byla rovna $x$-souřadnici vzoru: $y(\phi z)=x(\phi z)^3=x(z)$. V mapách $x$ (vzor) a $y$ (obraz) je to identita $u\mapsto u$, tedy difeomorfismus $M_x\to M_y$. Ověření prvního řádku tabulky: $x\circ\phi\circ x^{-1}(u)=x(\phi z)$ pro $x(z)=u$, tj.\ $u^{1/3}$; druhého: $y^{-1}(v)$ je bod s $x=v^{1/3}$, jeho obraz má $x=v^{1/9}$ a $y=v^{1/3}$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-02-8}
+\subsection{Technikality}
+
+\begin{definice}[Rozklad jednotky]
+\kw{rozklad jednotky} na $M$ $\equiv$ \\
+\quad soubor hladkých fcí $\varphi_\alpha$ (lze volit $C^r$, $r = 0\dots\oprava{\infty}{\omega}$) tak, že
+\begin{itemize}[nosep]
+  \item[--] $0\leq\varphi_\alpha\leq 1$
+  \item[--] $\{\operatorname{supp}\varphi_\alpha\}$ je lokálně konečné pokrytí
+  \item[--] $\sum_\alpha\varphi_\alpha = 1$ \hfill (je jen konečně nenulových členů)
+\end{itemize}
+\end{definice}
+
+\begin{definice}
+rozklad jednotky je \kw{podřízen pokrytí} $M$, pokud \\
+\quad pro každou $\varphi_\alpha$ je $\operatorname{supp}\varphi_\alpha$ podmnož.\ některé z množin pokrytí
+\end{definice}
+
+\begin{veta}[Věta]
+každé pokrytí má podřízený rozklad jednotky
+\end{veta}
+
+\begin{vysvetleni}[Rozklad jednotky]
+$\operatorname{supp}\varphi = \overline{\{z:\varphi(z)\neq0\}}$ je nosič. Rozklad jednotky slouží k \uv{lepení}: lokální objekty $T_\alpha$ definované v mapách $U_\alpha$ složíme do globálního $T=\sum_\alpha\varphi_\alpha T_\alpha$ (lokální konečnost zaručuje, že suma je v okolí každého bodu konečná, a tedy hladká). Tak se např.\ dokazuje existence riemannovské metriky nebo se definuje integrál přes celou varietu (Krtouš, kap.~5). Věta platí pro \emph{otevřená} pokrytí a vyžaduje parakompaktnost (Hausdorff) -- proto se požaduje spočetná báze. Základem jsou hladké \uv{hrbolové} funkce s kompaktním nosičem, např.\ z $h(t)=e^{-1/t}$ pro $t>0$, $h(t)=0$ pro $t\leq0$.
+\emph{Oprava $r$:} třídu $C^\omega$ volit nelze -- analytická funkce na souvislé varietě, která je nulová na otevřené množině, je nulová všude, takže analytické funkce s malým nosičem neexistují. Rozklad jednotky lze volit nejvýše třídy $C^\infty$.
+\end{vysvetleni}
+
+\textbf{germ zobrazení a fce} \\
+\quad často nás zajímají jen lok.\ vlastnosti zobr.\ či fce kolem daného bodu, \\
+\quad stačí nám znát zobrazení (fci) jen v libovolně malém okolí bodu
+
+\begin{definice}[Ekvivalence blízko $x$]
+dvě zobr.\ $\phi,\psi: M\to N$ jsou \kw{ekvivalentní blízko $x$}
+\[ \phi\underset{x}{\simeq}\psi \ \equiv\ \exists\ \text{okolí } U \text{ bodu } x:\quad \phi|_U = \psi|_U \]
+$\underset{x}{\simeq}$ je relace ekvivalence
+\end{definice}
+
+\begin{definice}[Germ]
+třída ekvivalence $\underset{x}{\simeq}$ zobrazení (fcí) se nazývá \kw{germ zobrazení} (fce) \\
+pro germ lze def.\ hodnotu v $x$: \quad $[\phi](x) = \phi(x)$ \\
+pokud $N = \mathbb{R},\mathbb{C}$, mluvíme o germu fce v bodě $x$
+\end{definice}
+
+germy fcí v bodě $x$ tvoří komut.\ algebru
+\[ [\phi] + [\psi] = [\phi + \psi] \qquad [\phi][\psi] = [\phi\psi] \qquad [1] = 1 \qquad [0] = 0 \]
+
+\begin{vysvetleni}[Germy]
+Germ (\uv{zárodek}) zachycuje přesně informaci o funkci, kterou \uv{vidí} libovolně malé okolí bodu $x$: dvě funkce, které se shodují na nějakém okolí $x$, mají v $x$ stejný germ, i když se jinde liší. Tranzitivita relace plyne z toho, že průnik dvou okolí je opět okolí. Hodnota $[\phi](x)$ a všechny derivace v $x$ jsou na volbě reprezentanta nezávislé, ale hodnoty v jiných bodech ne. Algebra germů je přirozený obor pro tečné vektory chápané jako derivace (lineární zobrazení splňující Leibnizovo pravidlo $a[fg]=a[f]\,g(x)+f(x)\,a[g]$), srv.\ Krtouš, odd.~2.2. Díky \uv{hrbolovým} funkcím lze každý germ realizovat globální hladkou funkcí.
+\end{vysvetleni}

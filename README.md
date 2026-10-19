@@ -36,6 +36,8 @@ Only the `latex/` directories are tracked; the original scans are kept locally
 - **Green boxes** – worked examples
 - **Orange frames** – the most important formulas
 - *Grey italics in brackets* – faint pencil notes from the original
+- **Purple "Vysvětlení" boxes** (GeoMetody) – explanations added during the rewrite, not part of the original notes; based on P. Krtouš, *Geometrické metody ve fyzice*
+- **Teal text with *[oprava; orig.: …]*** (GeoMetody) – a definite mistake in the original notes, corrected; the original version is shown next to it
 - Margin tags (e.g. `QM-I-7`) – page label of the original handwritten notes, for cross-checking
 
 ## Building

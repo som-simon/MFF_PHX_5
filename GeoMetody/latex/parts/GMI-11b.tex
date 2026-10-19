@@ -1,0 +1,525 @@
+%======================================================================
+% GMI-11b Krivost Levi-Civitovy derivace.pdf
+%======================================================================
+% operátor křivosti (v originále dvojité R)
+\providecommand{\gmIjedenactBR}{\mathbb{R}}
+% podtržené indexy
+\providecommand{\gmIjedenactBu}[1]{\underline{#1}}
+% Penroseova diagramatická notace: krabička tenzoru A (prázdná) a B (s klikyhákem)
+% #1 = x středu, #2 = y spodní hrany, #3 = poloviční šířka
+\providecommand{\gmIjedenactBbA}[3]{\draw (#1-#3,#2) rectangle (#1+#3,#2+0.28);}
+\providecommand{\gmIjedenactBbB}[3]{\draw (#1-#3,#2) rectangle (#1+#3,#2+0.28);
+  \draw[decorate,decoration={zigzag,amplitude=0.8pt,segment length=2.2pt}] (#1-#3+0.07,#2+0.13)--(#1+#3-0.07,#2+0.13);}
+% dvojitý wedge (v originále wedge se stříškou)
+\providecommand{\owedge}{\mathbin{\hat{\wedge}}}
+% vynulovaný (přeškrtnutý) člen s nulou nad
+\providecommand{\gmIjedenactBc}[1]{\overset{0}{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$#1$};\draw(X.south west)--(X.north east);}}}
+% diagram v řádku textu
+\providecommand{\gmIjedenactBd}[1]{\tikz[baseline=0.1cm,x=0.5cm,y=0.5cm,line width=0.5pt]{#1}}
+
+\section{Vlastnosti Riem.\ tenz.\ Levi-Civitovy kov.\ der.}
+\strana{GMI-11b-1}
+
+nechť $\nabla$ je \kw{Levi-Civitova der.} metr.\ $g$ a $R$ její tenz.\ křivosti
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{R_{abcd} = R_{ab[cd]} = R_{[ab]cd}}
+\]
+\end{veta}
+Důkaz:
+\begin{align*}
+  &R_{abcd} = R_{[ab]cd} && \text{z def.\ Riem.\ tenz.} \\
+  &\nabla g = 0 \;\Rightarrow\; 0 = \gmIjedenactBR_{ab}\,g_{cd} = -R_{ab}{}^{n}{}_{c}\,g_{nd} - R_{ab}{}^{n}{}_{d}\,g_{cn} = -2R_{ab(cd)}
+\end{align*}
+
+\begin{vysvetleni}[Levi-Civitova derivace a spouštění indexů]
+Levi-Civitova derivace je jediná kovariantní derivace s $\nabla g=0$ a $T=0$. Díky $\nabla g=0$ komutuje spouštění indexů s derivováním, takže lze bez obav pracovat s $R_{abcd}=R_{ab}{}^{n}{}_{d}\,g_{nc}$ (spuštěn třetí index). Antisymetrie v první dvojici je z definice ($a\leftrightarrow b$), antisymetrie ve druhé dvojici plyne z toho, že operátor křivosti $\gmIjedenactBR_{ab}$ (pseudoderivace, viz GMI-11a) anihiluje $g$. Geometricky: paralelní přenos zachovává skalární součin, takže ``infinitezimální rotace'' $R(a,b)^{c}{}_{d}$ je antisymetrická matice v $\mathfrak{so}(g)$.
+\end{vysvetleni}
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{R_{[abc]d} = 0} \qquad\qquad \vzorec{R_{a[bcd]} = 0}
+\]
+\end{veta}
+Důkaz:
+\begin{align*}
+  &T = 0 + \text{Bianchi} \;\Rightarrow\; R_{[ab}{}^{n}{}_{c]} = 0 \;\Rightarrow\; R_{[abc]d} = 0 \\
+  &3R_{a[bcd]} = R_{abcd} + R_{acdb} + R_{adbc} = \tfrac12\big(R_{acdb} + R_{dacb} + R_{badc} + R_{adbc} + R_{abcd} + R_{cabd}\big) \\
+  &\phantom{3R_{a[bcd]}} = +\tfrac12\big(R_{cdba} + R_{dbca} + R_{bcda}\big) = 0
+\end{align*}
+\pozn{poslední člen v závorce v originále přepsaný}
+
+\begin{vysvetleni}[Jak funguje výpočet $R_{a[bcd]}=0$]
+První identita je 1.\ BI (GMI-11a) se spuštěným indexem. Pro druhou: díky antisymetrii ve druhé dvojici je $3R_{a[bcd]}$ součet tří cyklických záměn $bcd$. Každý člen přepíšeme pomocí $R_{abcd}=R_{badc}$ (dvě antisymetrie) na dva ekvivalentní tvary -- odtud $\tfrac12$ a šest členů (obnovený přepsaný člen $R_{cabd}=R_{acdb}$ je s tím konzistentní). Členy pak seskupíme podle posledního indexu do trojic, na které jde použít $R_{[xyz]w}=0$:
+$R_{acdb}+R_{dacb}=-R_{cdab}$, \ $R_{badc}+R_{adbc}=-R_{dbac}$, \ $R_{abcd}+R_{cabd}=-R_{bcad}$.
+Po přehození poslední dvojice vznikne $\tfrac12(R_{cdba}+R_{dbca}+R_{bcda})$, což je opět cyklický součet v prvních třech indexech, tedy $0$.
+\end{vysvetleni}
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{R_{abcd} = R_{cdab}}
+\]
+\end{veta}
+Důkaz:
+\begin{align*}
+  R_{abcd} &= -R_{cabd} - R_{bcad} = -\underline{R_{adcb}} - \underline{R_{dcab}} - R_{cdba} - R_{dbca} \\
+  &= R_{cdab} + R_{dacb} + R_{dcba} + R_{dbac} = R_{cdab}
+\end{align*}
+
+\begin{vysvetleni}[Symetrie párů a počítání]
+První rovnost je 1.\ BI ($R_{[abc]d}=0$), podtržené členy vznikly použitím $R_{a[bcd]}=0$ na $R_{cabd}$ a $R_{bcad}$ po přehození dvojic; ve druhém řádku se jen přehodí indexy v páru, aby poslední tři členy tvořily cyklický součet $R_{d[acb]}=0$.
+Důsledek: $R_{abcd}$ lze chápat jako \emph{symetrickou} bilineární formu na prostoru 2-forem (bivektorů), $R(\omega,\sigma)=\tfrac14 R_{abcd}\,\omega^{ab}\sigma^{cd}$. Pro zakřivenou plochu napjatou bivektorem $a\wedge b$ je $R_{abcd}a^{a}b^{b}a^{c}b^{d}$ po vydělení $g(a,a)g(b,b)-g(a,b)^2$ \kw{sekcionální křivost}.
+Pro LC derivaci tak platí: $R_{abcd}=R_{[ab][cd]}=R_{cdab}$, $R_{[abc]d}=0$ -- tzv.\ algebraický tenzor křivosti.
+\end{vysvetleni}
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{\mathrm{Ric}_{ab} = \mathrm{Ric}_{(ab)}} \qquad\qquad \vzorec{\mathrm{Tr}R_{ab} = 0}
+\]
+\end{veta}
+Důkaz:
+\begin{align*}
+  R_{abkl} &= +R_{ab[kl]} && \Rightarrow && \mathrm{Tr}R_{ab} = 0 \\
+  R_{akbl} &= R_{blak} && \Rightarrow && \mathrm{Ric}_{ab} = \mathrm{Ric}_{ba}
+\end{align*}
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{\nabla^{n}\big(\mathrm{Ric}_{an} - \tfrac12 \mathcal{R}\,g_{an}\big) = 0}
+\]
+\end{veta}
+Důkaz:
+\begin{align*}
+  &\text{zúžené B.I.} + T = 0 \;\Rightarrow\; \nabla_a\mathrm{Ric}_{bc} - \nabla_b\mathrm{Ric}_{ac} = \nabla_m R_{ab}{}^{m}{}_{c} \\
+  &\text{zúžení } g^{bc} \;\Rightarrow\; \nabla_a \mathcal{R} - \nabla^{n}\mathrm{Ric}_{an} = \nabla^{n}\mathrm{Ric}_{an}
+  \;\Rightarrow\; \nabla^{n}\big(\mathrm{Ric}_{an} - \tfrac12 \mathcal{R}\,g_{an}\big) = 0
+\end{align*}
+
+\begin{vysvetleni}[Einsteinův tenzor je bezdivergenční]
+$\mathcal{R}=\mathrm{Ric}_{n}{}^{n}$ je skalární křivost a $\mathrm{Ein}_{ab}=\mathrm{Ric}_{ab}-\tfrac12\mathcal{R}g_{ab}$ Einsteinův tenzor. Vycházíme ze třetí zúžené BI z GMI-11a (pro $T=0$). Při zúžení $g^{bc}$ je vpravo $g^{bc}R_{ab}{}^{m}{}_{c}=R_{ab}{}^{mb}$, což je díky symetriím ($R_{abmb}=R_{bamb}$ po dvou přehozeních) opět Ricciho tenzor $\mathrm{Ric}_{a}{}^{m}$.
+Ve fyzice: Einsteinovy rovnice $\mathrm{Ein}_{ab}=8\pi T_{ab}$ jsou díky této identitě konzistentní jen se zachováním energie a hybnosti $\nabla^{n}T_{an}=0$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-2}
+\subsection*{Rozklad na bezestopé ireducibilní části}
+operace pro tenzory typu $\mathbf{T}^0_{(2)}M$ a $\mathbf{T}^0_{[2][2]}M$
+\pozn{vpravo Penroseova diagramatická notace: prázdná krabička $= A$ (či $K$), krabička s klikyhákem $= B$, oblouk $= g$}
+
+\textbf{metrické stopy}
+\begin{align*}
+  &A_{ab}\in\mathbf{T}^0_{(2)}M && \mathrm{Tr}A = A_{kl}\,g^{kl} &&
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\draw (-0.25,0)--(-0.25,-0.6) (0.25,0)--(0.25,-0.6);}
+  \;\to\;
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\draw (-0.25,0)--(-0.25,-0.35) arc(180:360:0.25) --(0.25,0);} \\
+  &K_{abcd}\in\mathbf{T}^0_{[2][2]}M && (\mathrm{Tr}K)_{ab} = K_{akbl}\,g^{kl} &&
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{1}\foreach \x in {-0.75,-0.25,0.25,0.75}{\draw (\x,0)--(\x,-0.6);}}
+  \;\to\;
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{1}\draw (-0.75,0)--(-0.75,-0.7) (0.25,0)--(0.25,-0.7);
+     \draw (-0.25,0)--(-0.25,-0.4)--(0.75,-0.4)--(0.75,0);}
+  = -\,
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{1}\draw (-0.75,0)--(-0.75,-0.7) (0.75,0)--(0.75,-0.7);
+     \draw (-0.25,0)--(-0.25,-0.3)--(0.25,-0.3)--(0.25,0);}
+\end{align*}
+platí \quad $\mathrm{Tr}\,g = d$
+
+\begin{vysvetleni}[Jak číst diagramy (Penroseova notace)]
+Krabička je tenzor, každá nožka jeden (dolní) index, v pořadí zleva doprava. Volně visící nožka je volný index; dvě nožky spojené obloukem jsou zúžené metrikou $g^{kl}$ (samotný oblouk je $g$, uzavřená smyčka je $\mathrm{Tr}\,g=d$). Křížení čar znamená přehození indexů. Vodorovná čárka přes několik nožek značí antisymetrizaci těchto indexů.
+$\mathbf{T}^0_{(2)}M$ jsou symetrické tenzory typu $(0,2)$, $\mathbf{T}^0_{[2][2]}M$ tenzory antisymetrické v první i druhé dvojici indexů (``s tvarem'' Riemannova tenzoru). U $\mathrm{Tr}K$ se zužuje druhý index s posledním; zúžení sousedních indexů 2 a 3 dává totéž s opačným znaménkem díky antisymetrii ve druhé dvojici (proto ``$=-$'').
+\end{vysvetleni}
+
+\textbf{maticové násobení}
+\begin{align*}
+  &A,B\in\mathbf{T}^0_{(2)}M \qquad (A\cdot B)_{ab} = A_{ak}B_{lb}\,g^{kl} &&
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\gmIjedenactBbB{1.6}{0}{0.5}
+     \draw (-0.25,0)--(-0.25,-0.8) (1.85,0)--(1.85,-0.8);
+     \draw (0.25,0)--(0.25,-0.45)--(1.35,-0.45)--(1.35,0);} \\
+  &A\cdot B + B\cdot A\in\mathbf{T}^0_{(2)}M &&
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\gmIjedenactBbB{1.3}{0}{0.4}
+     \draw (-0.25,0)--(-0.25,-0.7) (1.5,0)--(1.5,-0.7);
+     \draw (0.25,0)--(0.25,-0.35)--(1.1,-0.35)--(1.1,0);}
+  +
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0}{0.4}\gmIjedenactBbA{1.3}{0}{0.5}
+     \draw (-0.2,0)--(-0.2,-0.7) (1.55,0)--(1.55,-0.7);
+     \draw (0.2,0)--(0.2,-0.35)--(1.05,-0.35)--(1.05,0);} \\
+  &A\cdot g = g\cdot A = A
+\end{align*}
+
+\textbf{dvojitý wedge}
+\[
+  A,B\in\mathbf{T}^0_{(2)}M \;\to\; A\owedge B\in\mathbf{T}^0_{[2][2]}M
+\]
+\begin{definice}[Dvojitý wedge]
+\[
+  \vzorec{(A\owedge B)_{abcd} = 4A_{[a|[c}B_{d]|b]} = A_{ac}B_{bd} + A_{bd}B_{ac} - A_{ad}B_{bc} - A_{bc}B_{ad}}
+\]
+\[
+  4\,\gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\gmIjedenactBbB{1.4}{0}{0.5}
+     \draw (-0.25,0)--(-0.25,-0.9) (1.65,0)--(1.65,-0.9);
+     \draw (0.25,0)--(1.15,-0.9) (1.15,0)--(0.25,-0.9);
+     \draw (-0.35,-0.6)--(0.45,-0.6) (0.95,-0.6)--(1.8,-0.6);}
+  =
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.5}\gmIjedenactBbB{1.4}{0}{0.5}
+     \draw (-0.25,0)--(-0.25,-0.9) (1.65,0)--(1.65,-0.9);
+     \draw (0.25,0)--(1.15,-0.9) (1.15,0)--(0.25,-0.9);}
+  +
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0}{0.5}\gmIjedenactBbA{1.4}{0}{0.5}
+     \draw (-0.25,0)--(-0.25,-0.9) (1.65,0)--(1.65,-0.9);
+     \draw (0.25,0)--(1.15,-0.9) (1.15,0)--(0.25,-0.9);}
+  -
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0.2}{0.5}\gmIjedenactBbA{0}{-0.6}{0.3}
+     \draw (-0.15,-0.6)--(-0.15,-1.1) (0.15,-0.6)--(0.15,-1.1);
+     \draw (-0.3,0.2) .. controls (-0.7,-0.3) .. (-0.55,-1.1);
+     \draw (0.3,0.2) .. controls (0.7,-0.3) .. (0.55,-1.1);}
+  -
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0.2}{0.5}\gmIjedenactBbB{0}{-0.6}{0.3}
+     \draw (-0.15,-0.6)--(-0.15,-1.1) (0.15,-0.6)--(0.15,-1.1);
+     \draw (-0.3,0.2) .. controls (-0.7,-0.3) .. (-0.55,-1.1);
+     \draw (0.3,0.2) .. controls (0.7,-0.3) .. (0.55,-1.1);}
+\]
+\end{definice}
+
+\begin{vysvetleni}[Dvojitý wedge = Kulkarniho--Nomizuův součin]
+$\owedge$ (v originále wedge se stříškou) je v literatuře \kw{Kulkarniho--Nomizuův součin}. Ze dvou symetrických tenzorů vyrobí tenzor se všemi symetriemi Riemannova tenzoru ($R_{[ab][cd]}$, $R_{abcd}=R_{cdab}$ i $R_{[abc]d}=0$), proto jím lze ``stavět'' křivosti. V diagramu: zkřížené nožky odpovídají prohození $b\leftrightarrow c$ (tj.\ $A_{ac}B_{bd}$), čárky dvojí antisymetrizaci.
+Příklad: $(g\owedge g)_{abcd}=2(g_{ac}g_{bd}-g_{ad}g_{bc})$. Prostor konstantní křivosti (sféra o poloměru $\varrho$) má $R=\tfrac{1}{2\varrho^2}\,g\owedge g$, tj.\ $R_{abcd}=\varrho^{-2}(g_{ac}g_{bd}-g_{ad}g_{bc})$ (v konvenci těchto poznámek, kde má sféra kladný Ricciho tenzor $\mathrm{Ric}=\tfrac{d-1}{\varrho^2}\,g$).
+\end{vysvetleni}
+
+platí
+\begin{align*}
+  \mathrm{Tr}(A\owedge B) &= A\,\mathrm{Tr}B + B\,\mathrm{Tr}A - A\cdot B - B\cdot A \\
+  &\phantom{=}\
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.6) (0.2,0)--(0.2,-0.6);}
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.3) arc(180:360:0.2)--(0.2,0);}
+  +
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.6) (0.2,0)--(0.2,-0.6);}
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.3) arc(180:360:0.2)--(0.2,0);}
+  -
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.4}\gmIjedenactBbB{1}{0}{0.4}
+     \draw (-0.2,0)--(-0.2,-0.6) (1.2,0)--(1.2,-0.6); \draw (0.2,0)--(0.2,-0.3)--(0.8,-0.3)--(0.8,0);}
+  -
+  \gmIjedenactBd{\gmIjedenactBbB{0}{0}{0.4}\gmIjedenactBbA{1}{0}{0.4}
+     \draw (-0.2,0)--(-0.2,-0.6) (1.2,0)--(1.2,-0.6); \draw (0.2,0)--(0.2,-0.3)--(0.8,-0.3)--(0.8,0);} \\
+  \mathrm{Tr}(A\owedge g) &= (d-2)A + g\,\mathrm{Tr}A &&
+  (d-2)\gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.6) (0.2,0)--(0.2,-0.6);}
+  + \gmIjedenactBd{\draw (-0.2,-0.6)--(-0.2,0) arc(180:0:0.2)--(0.2,-0.6);}
+  \gmIjedenactBd{\gmIjedenactBbA{0}{0}{0.4}\draw (-0.2,0)--(-0.2,-0.3) arc(180:360:0.2)--(0.2,0);} \\
+  \mathrm{Tr}(g\owedge g) &= 2(d-1)\,g &&
+  2(d-1)\gmIjedenactBd{\draw (-0.2,-0.6)--(-0.2,0) arc(180:0:0.2)--(0.2,-0.6);}
+\end{align*}
+
+\begin{vysvetleni}[Odvození stop]
+Zúžením $g^{kl}$ ve vzorci $(A\owedge B)_{akbl}=A_{ab}B_{kl}+A_{kl}B_{ab}-A_{al}B_{kb}-A_{kb}B_{al}$ dostaneme postupně $A\,\mathrm{Tr}B$, $B\,\mathrm{Tr}A$, $(A\cdot B)_{ab}$ a $(B\cdot A)_{ab}$. Pro $B=g$: $\mathrm{Tr}\,g=d$ a $A\cdot g=g\cdot A=A$, tedy $dA+g\,\mathrm{Tr}A-2A$. Pro $A=B=g$: $2d\,g-2g$.
+Tyto vzorce jsou vše, co potřebujeme k rozkladu Riemannova tenzoru na následující straně.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-3}
+\pozn{$\mathcal{R}$ = skalární křivost (v originále ozdobné R), $R$ = Riemannův tenzor}
+
+\textbf{rozklad $\mathrm{Ric}_{ab}$}
+\[
+  \mathcal{R} = \mathrm{Tr}\,\mathrm{Ric}
+\]
+\[
+  \mathrm{Ric} = \underbrace{S}_{\substack{\text{bezestopá část Ric,}\\ \text{tj. } \mathrm{Tr}S = 0}}
+  + \underbrace{\gamma\,\mathcal{R}\,g}_{\substack{\text{triviální tenzor nesoucí}\\ \text{info o stopě}}}
+\]
+\[
+  \Rightarrow\quad \mathcal{R} = \gmIjedenactBc{\mathrm{Tr}S} + \gamma d\,\mathcal{R} \quad\Rightarrow\quad \gamma = \frac1d
+\]
+\[
+  \vzorec{\mathrm{Ric} = S + \frac1d\,\mathcal{R}\,g}
+  \qquad\qquad
+  \vzorec{S = \mathrm{Ric} - \frac1d\,\mathcal{R}\,g}
+\]
+
+\textbf{rozklad $R$} \qquad $d\geq 3$
+\[
+  \mathrm{Ric} = \mathrm{Tr}R \qquad\qquad \mathcal{R} = \mathrm{Tr}\,\mathrm{Ric} = \mathrm{Tr}\,\mathrm{Tr}R
+\]
+\[
+  R = \underbrace{C}_{\substack{\text{bezestopá část } R,\\ \text{tj. } \mathrm{Tr}C = 0}}
+  + \underbrace{\alpha\,S\owedge g}_{\substack{\text{triv.\ tenz.\ nesoucí info}\\ \text{o bezest.\ části } \mathrm{Tr}R}}
+  + \underbrace{\beta\,\mathcal{R}\,g\owedge g}_{\substack{\text{triv.\ tenz.\ nesoucí}\\ \text{info o } \mathrm{Tr}\,\mathrm{Tr}R}}
+\]
+\[
+  \Rightarrow\quad \mathrm{Ric} = \gmIjedenactBc{\mathrm{Tr}C} + \underbrace{\alpha(d-2)}_{1}S + \alpha\,(\gmIjedenactBc{\mathrm{Tr}S})\,g
+  + \underbrace{2\beta(d-1)}_{1/d}\,\mathcal{R}\,g
+\]
+\[
+  \Rightarrow\quad \alpha = \frac{1}{d-2} \qquad \beta = \frac{1}{2d(d-1)}
+\]
+\begin{veta}[Rozklad Riemannova tenzoru]
+\begin{align*}
+  R &= C + \frac{1}{d-2}\,S\owedge g + \frac{1}{2d(d-1)}\,\mathcal{R}\,g\owedge g \\
+    &= C + \frac{1}{d-2}\,\mathrm{Ric}\owedge g - \frac{1}{2(d-1)(d-2)}\,\mathcal{R}\,g\owedge g
+\end{align*}
+\begin{align*}
+  C &= R - \frac{1}{d-2}\,S\owedge g - \frac{1}{2d(d-1)}\,\mathcal{R}\,g\owedge g \\
+    &= R - \frac{1}{d-2}\,\mathrm{Ric}\owedge g + \frac{1}{2(d-1)(d-2)}\,\mathcal{R}\,g\owedge g
+\end{align*}
+\[
+  \vzorec{C_{abcd} = R_{abcd} - \frac{4}{d-2}\,\mathrm{Ric}_{[a|[c}\,g_{d]|b]} + \frac{2}{(d-1)(d-2)}\,\mathcal{R}\,g_{[a|[c}\,g_{d]|b]}}
+\]
+\end{veta}
+\kw{Weylův tenzor} -- stejné symetrie jako Riemann
+
+členy $C$, $\frac{1}{d-2}S\owedge g$, $\frac{1}{2d(d-1)}\mathcal{R}\,g\owedge g$ jsou ortogonální ve smyslu přiroz.\ sk.\ součinu na $\mathbf{T}^0_{[2]}M$
+\[
+  \langle K,L\rangle = \frac18\,K_{abcd}\,L^{abcd}
+\]
+
+\begin{vysvetleni}[Smysl rozkladu a Weylův tenzor]
+Ze symetrického tenzoru se dá vytáhnout jediná stopa, takže $\mathrm{Ric}$ se rozpadne na bezestopou část $S$ a stopu $\mathcal{R}$. U $R$ postupujeme stejně: od $R$ odečteme ``triviální'' tenzory postavené z $g$ a stop ($S\owedge g$, $g\owedge g$) tak, aby zbytek $C$ byl úplně bezestopý; koeficienty $\alpha,\beta$ určíme z požadavku $\mathrm{Tr}\,C=0$ pomocí vzorců pro stopy z předchozí strany. Výsledek je rozklad na ireducibilní části vůči grupě $O(g)$ a tři části jsou navzájem kolmé.
+\kw{Weylův tenzor} $C$ je ta část křivosti, kterou neurčují Einsteinovy rovnice (``volné gravitační pole'', slapové síly a gravitační vlny ve vakuu, kde $\mathrm{Ric}=0$ a $R=C$). Je konformně invariantní: pro $g\to\Omega^2g$ se $C^{a}{}_{bcd}$ nemění; pro $d\geq4$ platí $C=0$ $\Leftrightarrow$ metrika je lokálně konformně plochá. Skalární součin ve skriptu ``na $\mathbf{T}^0_{[2]}M$'' je třeba chápat jako součin na tenzorech $K,L\in\mathbf{T}^0_{[2][2]}M$ (tj.\ symetrických formách na 2-formách), faktor $\tfrac18$ je jen normalizace.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-4}
+\subsection*{Schouten tensor}
+rozklad
+\[
+  R = C + \mathrm{Sch}\owedge g
+\]
+definuje \kw{Schouten tenzor}
+\begin{definice}[Schoutenův tenzor]
+\[
+  \vzorec{\mathrm{Sch} = \frac{1}{d-2}\Big(\mathrm{Ric} - \frac{1}{2(d-1)}\,\mathcal{R}\,g\Big)}
+\]
+\end{definice}
+\[
+  \mathrm{Tr}\,\mathrm{Sch} = \frac{1}{2(d-1)}\,\mathcal{R} \qquad\qquad \mathrm{Sch}_{ab} = \mathrm{Sch}_{(ab)}
+\]
+
+\begin{vysvetleni}[Schoutenův tenzor]
+Schoutenův tenzor sbalí obě ``stopové'' části rozkladu do jediného symetrického tenzoru: z druhého řádku rozkladu $R=C+\frac{1}{d-2}\mathrm{Ric}\owedge g-\frac{1}{2(d-1)(d-2)}\mathcal{R}\,g\owedge g$ plyne přímo $R=C+\mathrm{Sch}\owedge g$, protože $\owedge$ je bilineární. Celá informace o $\mathrm{Ric}$ je tak v $\mathrm{Sch}$ (a naopak). Pro $d=4$ je $\mathrm{Sch}=\tfrac12\big(\mathrm{Ric}-\tfrac16\mathcal{R}g\big)$. Schoutenův tenzor se při konformní změně metriky transformuje jednoduše (jen pomocí derivací konformního faktoru), proto je užitečný v konformní geometrii.
+\end{vysvetleni}
+
+\subsection*{Cotton tensor}
+\begin{definice}[Cottonův tenzor]
+\[
+  \vzorec{\mathrm{Cot}_{amn} = \nabla_m\mathrm{Sch}_{na} - \nabla_n\mathrm{Sch}_{ma}}
+\]
+\end{definice}
+\[
+  \mathrm{Cot}_{amn} = \mathrm{Cot}_{a[mn]} \qquad \mathrm{Cot}_{[abc]} = 0 \quad (\text{díky } \mathrm{Sch}_{[ab]} = 0)
+\]
+\begin{veta}[Tvrzení]
+\[
+  \vzorec{\nabla_m C_{ab}{}^{m}{}_{c} = (d-3)\,\mathrm{Cot}_{cab}} \qquad\qquad \mathrm{Cot}^{m}{}_{ma} = 0
+\]
+\end{veta}
+\underline{Důk:}
+\begin{align*}
+  \nabla_m\mathrm{Sch}_a{}^{m} &= \frac{1}{d-2}\underbrace{\nabla_m\mathrm{Ric}_a{}^{m}}_{\substack{\uparrow\\ \nabla\cdot\mathrm{Ein} = 0}} - \frac{1}{2(d-1)(d-2)}\nabla_a\mathcal{R}
+  = \frac{1}{2(d-2)}\Big(\nabla_a\mathcal{R} - \frac{1}{d-1}\nabla_a\mathcal{R}\Big) = \frac{1}{2(d-1)}\nabla_a\mathcal{R} \\
+  \nabla_m(\mathrm{Sch}\owedge g)_{ab}{}^{m}{}_{c} &= \nabla_m\big(\mathrm{Sch}_a{}^{m}g_{cb} - \mathrm{Sch}_b{}^{m}g_{ca} + \mathrm{Sch}_{bc}\delta^{m}_{a} - \mathrm{Sch}_{ac}\delta^{m}_{b}\big) \\
+  &= 2\nabla_m\mathrm{Sch}_{[a}{}^{m}g_{b]c} + \nabla_a\mathrm{Sch}_{bc} - \nabla_b\mathrm{Sch}_{ac} \\
+  &= \mathrm{Cot}_{cab} + \frac{2}{2(d-1)}\nabla_{[a}\mathcal{R}\,g_{b]c} \\
+  \nabla_m R_{ab}{}^{m}{}_{c} &= 2\nabla_{[a}\mathrm{Ric}_{b]c} \qquad\Leftarrow\ \text{zúž.\ B.I.} \\
+  \nabla_m C_{ab}{}^{m}{}_{c} &= \nabla_m\big(R_{ab}{}^{m}{}_{c} - (\mathrm{Sch}\owedge g)_{ab}{}^{m}{}_{c}\big) = \\
+  &= -\mathrm{Cot}_{cab} + 2\nabla_{[a}\Big(\mathrm{Ric}_{b]c} - \frac{1}{2(d-1)}\mathcal{R}\,g_{b]c}\Big) = -\mathrm{Cot}_{cab} + 2(d-2)\nabla_{[a}\mathrm{Sch}_{b]c} \\
+  &= -\mathrm{Cot}_{cab} + (d-2)\,\mathrm{Cot}_{cab} = (d-3)\,\mathrm{Cot}_{cab} \\
+  \mathrm{Cot}^{m}{}_{ma} &= \nabla_m\mathrm{Sch}_a{}^{m} - \nabla_a\mathrm{Sch}_m{}^{m} = \frac{1}{2(d-1)}\nabla_a\mathcal{R} - \nabla_a\frac{1}{2(d-1)}\mathcal{R} = 0
+\end{align*}
+
+pro $d = 3$ lze definovat \kw{Cotton--York tenzor} ${*}\mathrm{Cot}$
+\[
+  {*}\mathrm{Cot}^{b}{}_{a} = \frac12\,\varepsilon^{bmn}\,\mathrm{Cot}_{amn}
+\]
+\pozor{pro $d = 3$ podmínka $\mathrm{Cot} = 0$ zajišťuje, že metrika je konformně plochá}
+
+\begin{vysvetleni}[Cottonův tenzor a průběh důkazu]
+$\mathrm{Cot}_{amn}$ je ``rotace'' Schoutenova tenzoru v indexech $m,n$ (vnější derivace $\mathrm{Sch}$ chápaného jako 1-formou-značná 1-forma). Důkaz: (1) z $\nabla\cdot\mathrm{Ein}=0$, tj.\ $\nabla_m\mathrm{Ric}_a{}^m=\tfrac12\nabla_a\mathcal{R}$, spočteme divergenci $\mathrm{Sch}$; (2) rozepíšeme $(\mathrm{Sch}\owedge g)_{ab}{}^{m}{}_{c}$ podle definice $\owedge$ a vezmeme divergenci; (3) divergenci $R$ dává zúžená BI; (4) odečtením ($C=R-\mathrm{Sch}\owedge g$) zbyde násobek $\mathrm{Cot}$.
+Důsledky: pro $d\geq4$ z $C=0$ plyne $\mathrm{Cot}=0$. Pro $d=3$ je $C\equiv0$ automaticky (viz dále), takže konformní plochost měří až Cotton; v $d=3$ je $\mathrm{Cot}$ konformně invariantní. Cottonův--Yorkův tenzor ${*}\mathrm{Cot}$ je jeho Hodgeův duál v antisymetrické dvojici $mn$ -- symetrický, bezestopý a bezdivergenční tenzor typu (1,1).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-5}
+\subsection*{Tenzory křivosti Levi-Civitovy derivace}
+\begin{veta}[Přehled]
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{@{}ll@{}}
+  Riemann & $R_{abcd}$ \\
+  Weyl & $C_{abcd} = R_{abcd} - \dfrac{4}{d-2}\,\mathrm{Ric}_{[a|[c}\,g_{d]|b]} + \dfrac{2}{(d-1)(d-2)}\,\mathcal{R}\,g_{[a|[c}\,g_{d]|b]}$ \\
+  Ricci & $\mathrm{Ric}_{ab} = R_{ma}{}^{m}{}_{b}$ \\
+  bezest.\ Ricci & $S_{ab} = \mathrm{Ric}_{ab} - \dfrac1d\,\mathcal{R}\,g_{ab}$ \\
+  Einstein & $\mathrm{Ein}_{ab} = \mathrm{Ric}_{ab} - \dfrac12\,\mathcal{R}\,g_{ab}$ \\
+  sk.\ kř. & $\mathcal{R} = \mathrm{Ric}_n{}^{n} = R_{mn}{}^{mn} = \dfrac{2}{2-d}\,\mathrm{Ein}_m{}^{m} = 2(d-1)\,\mathrm{Sch}_m{}^{m}$ \\[6pt]
+  Schouten & $\mathrm{Sch}_{ab} = \dfrac{1}{(d-2)}\Big(\mathrm{Ric}_{ab} - \dfrac{1}{2(d-1)}\,\mathcal{R}\,g_{ab}\Big)$ \\
+  Cotton & $\mathrm{Cot}_{amn} = 2\nabla_{[m}\mathrm{Sch}_{n]a} = \dfrac{1}{d-3}\,\oprava{\nabla_k C_{mn}{}^{k}{}_{a}}{\nabla_m C_{ab}{}^{m}{}_{c}}$
+\end{tabular}
+\end{veta}
+
+\begin{vysvetleni}[Přehled a oprava indexů]
+V originále měl poslední výraz řádku Cotton jiné volné indexy ($abc$, sčítací $m$) než levá strana ($amn$). Z tvrzení na str.~GMI-11b-4, $\nabla_m C_{ab}{}^{m}{}_{c}=(d-3)\,\mathrm{Cot}_{cab}$, plyne po přejmenování $c\to a$, $a\to m$, $b\to n$ a sčítacího indexu na $k$ opravený tvar $\mathrm{Cot}_{amn}=\frac{1}{d-3}\nabla_k C_{mn}{}^{k}{}_{a}$ (pro $d>3$).
+Tabulka shrnuje všechny tenzory: $R$ je celá křivost, $C$ její bezestopá (konformní) část, ostatní jsou kombinace $\mathrm{Ric}$, $\mathcal{R}$, $g$, které nesou stopovou informaci. Divergence níže všechny plynou ze zúžené 2.\ BI.
+\end{vysvetleni}
+
+\textbf{divergence}
+\begin{align*}
+  \nabla_m R_{ab}{}^{m}{}_{c} &= 2\nabla_{[a}\mathrm{Ric}_{b]c} \\
+  \nabla_m C_{ab}{}^{m}{}_{c} &= 2(d-3)\nabla_{[a}\mathrm{Sch}_{b]c} = (d-3)\,\mathrm{Cot}_{cab} \\
+  \nabla_m\mathrm{Ric}_a{}^{m} &= \tfrac12\nabla_a\mathcal{R} \\
+  \nabla_m\mathrm{Sch}_a{}^{m} &= \frac{1}{2(d-1)}\nabla_a\mathcal{R} \\
+  \nabla_m\mathrm{Ein}_a{}^{m} &= \vzorec{0}
+\end{align*}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-6}
+\subsection*{Počet nezávislých komponent křivosti}
+\[
+  R_{abcd} = R_{[ab][cd]}
+\]
+\begin{tabular}{@{}ll}
+  počet AS 2-indexů & $\dfrac{d(d-1)}{2}$ \\[8pt]
+  matice v AS 2-indexech & $\Big(\dfrac{d(d-1)}{2}\Big)^2$
+\end{tabular}
+\[
+  R_{[abc]d} = 0
+\]
+vazby $\to$ restrikce $d\cdot\dfrac{d(d-1)(d-2)}{3!}$ komponent \\
+$\Downarrow$
+\[
+  \text{počet nez.\ komp.\ v } R = \Big(\frac{d(d-1)}{2}\Big)^2 - d\,\frac{d(d-1)(d-2)}{6} = \vzorec{\frac{d^2(d^2-1)}{12}}
+\]
+\begin{center}
+\begin{tabular}{l@{\qquad}c|ccc|l}
+  & $\#\,R$ & $\mathrm{Ric}$ & $S$ & $\mathcal{R}$ & \\ \hline
+  $d = 2$ & $1$ & \pozor{!}\,$1$ & $0$ & $1$ & $C = 0$, \ $S = 0$ \\
+  $d = 3$ & $6$ & $6$ & $5$ & $1$ & $C = 0$ \\
+  $d = 4$ & $20$ & $10$ & $9$ & $1$ &
+\end{tabular}
+\end{center}
+\[
+  \mathrm{Ric}_{ab} = \mathrm{Ric}_{(ab)}
+\]
+$\Downarrow$ \\
+\begin{tabular}{@{}lll}
+  počet nez.\ komp.\ v $\mathrm{Ric}$ & $\dfrac{d(d+1)}{2}$ & $d > 2$ \\[8pt]
+  počet nez.\ komp.\ v $S$ & $\dfrac{d(d+1)}{2} - 1$ &
+\end{tabular}
+\pozn{v originále dlouhá šipka od tabulky ($d = 2,3,4$) k těmto počtům}
+
+\begin{vysvetleni}[Počítání komponent]
+$R_{[ab][cd]}$ je matice $N\times N$, $N=\binom d2$. Podmínka $R_{[abc]d}=0$ je pro každé $d$ jedna úplně antisymetrická trojice, tj.\ $d\binom d3$ nezávislých rovnic; ty už zahrnují i symetrii párů $R_{abcd}=R_{cdab}$. (Alternativně: symetrická matice $\tfrac{N(N+1)}{2}$ minus $\binom d4$ podmínek $R_{[abcd]}=0$ dává totéž.)
+Počet komponent Weylova tenzoru je $\#R-\#\mathrm{Ric}=\frac{d^2(d^2-1)}{12}-\frac{d(d+1)}{2}=\frac{d(d+1)(d+2)(d-3)}{12}$: $0$ pro $d=3$, $10$ pro $d=4$. Pro $d=3$ tedy Ricci určuje celé $R$; pro $d=2$ je $R$ dáno jediným číslem $\mathcal{R}$ a $\mathrm{Ric}=\tfrac12\mathcal{R}g$ má jen 1 nezávislou komponentu (proto ``!'' a podmínka $d>2$).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-7}
+\subsection*{Křivost v $d = 3$}
+\begin{tabular}{@{}ll}
+  $g_{ab}$ & metrika signatury \qquad $\pm = \operatorname{sign}g$ \\
+  $\varepsilon_{abc}$ & Levi-Civitův tenzor
+\end{tabular}
+\begin{gather*}
+  \varepsilon_{abc}\,\varepsilon^{klm} = \pm 6\,\delta^{[k}_{a}\delta^{l}_{b}\delta^{m]}_{c}
+  \qquad
+  \pm\varepsilon_{abk}\,\varepsilon^{cdk} = \delta^{c}_{a}\delta^{d}_{b} - \delta^{d}_{a}\delta^{c}_{b}
+  \qquad
+  \varepsilon_{akl}\,\varepsilon^{bkl} = \pm 2\,\delta^{b}_{a}
+  \qquad
+  \varepsilon_{klm}\,\varepsilon^{klm} = \pm 6 \\
+  ({*}\omega)_a = \tfrac12\,\varepsilon_{amn}\,\omega^{mn} \qquad\qquad \omega_{ab} = \pm\varepsilon_{abn}\,({*}\omega)^{n} \\
+  \pm\varepsilon_{abm}\,\varepsilon_{cdn}\,g^{mn} = 2\,g_{[a|[c}\,g_{d]|b]} = \tfrac12\,(g\owedge g)_{abcd}
+\end{gather*}
+
+platí
+\begin{veta}[Křivost v $d = 3$]
+\begin{align*}
+  R_{abcd} &= \varepsilon_{abk}\,\varepsilon_{cdl}\,{*}R^{*kl} = \mp\,\varepsilon_{abk}\,\varepsilon_{cdl}\,\mathrm{Ein}^{kl} \\
+  \mathrm{Ric}_{ab} &= \mp\big({*}R^{*}{}_{ab} - (\mathrm{Tr}\,{*}R^{*})\,g_{ab}\big) \\
+  \mathcal{R} &= \pm 2\,\mathrm{Tr}\,{*}R^{*} \\
+  \mathrm{Ein}_{ab} &= \mp\,{*}R^{*}{}_{ab} \\
+  \mathrm{Sch}_{ab} &= \mp\big({*}R^{*}{}_{ab} - \tfrac12(\mathrm{Tr}\,{*}R^{*})\,g_{ab}\big) \\
+  C_{abcd} &= \vzorec{0}
+\end{align*}
+\[
+  {*}R^{*}{}_{ab} = \tfrac14\,\varepsilon_a{}^{kl}\,\varepsilon_b{}^{mn}\,R_{klmn}
+  = \mp\big(\mathrm{Ric}_{ab} - \tfrac12\mathcal{R}\,g_{ab}\big) = \mp\,\mathrm{Ein}_{ab} = \mp\big(\mathrm{Sch}_{ab} - \mathrm{Tr}\,\mathrm{Sch}\,g_{ab}\big)
+\]
+\end{veta}
+
+\underline{Důk}
+\begin{align*}
+  \text{symetrie} \;\Rightarrow\;\quad R_{abcd} &= \varepsilon_{ab}{}^{k}\,\varepsilon_{cd}{}^{l}\,{*}R^{*}{}_{kl} \\
+  \mathrm{Ric}_{ab} &= R_{ambn}\,g^{mn} = \varepsilon_{amk}\,\varepsilon_{bnl}\,g^{mn}\,{*}R^{*kl} = \pm(g_{ab}g_{kl} - g_{al}g_{kb})\,{*}R^{*kl} \\
+  &= \mp\,{*}R^{*}{}_{ab} \pm \mathrm{Tr}\,{*}R^{*}\,g_{ab} \\
+  \mathcal{R} &= \pm(3-1)\,\mathrm{Tr}\,{*}R^{*} = \pm 2\,\mathrm{Tr}\,{*}R^{*} \\
+  \mathrm{Ein}_{ab} &= \mp\,{*}R^{*}{}_{ab} + \tfrac12\mathcal{R}\,g_{ab} - \tfrac12\mathcal{R}\,g_{ab} = \mp\,{*}R^{*}{}_{ab} \\
+  \mathrm{Sch}_{ab} &= \mp\,{*}R^{*}{}_{ab} + \tfrac12\mathcal{R}\,g_{ab} - \tfrac14\mathcal{R}\,g_{ab} = \mp\big({*}R^{*}{}_{ab} - \tfrac12\mathrm{Tr}\,{*}R^{*}\,g_{ab}\big) \\
+  C_{abcd} &= \varepsilon_{ab}{}^{k}\,\varepsilon_{cd}{}^{l}\,{*}C^{*}{}_{kl} \\
+  {*}C^{*} &= {*}R^{*} - {*}(\mathrm{Ric}\owedge g)^{*} + \tfrac14\,\mathcal{R}\,{*}(g\owedge g)^{*} \\
+  &= \underbrace{\mp\,\mathrm{Ric}_{ab} \pm \tfrac12\mathcal{R}\,g_{ab} \pm \mathrm{Ric}_{ab} \mp \mathcal{R}\,g_{ab} \pm \tfrac12\mathcal{R}\,g_{ab}}_{=0} \\
+  \Rightarrow\quad C &= 0
+  \qquad\text{díky}\quad {*}(A\owedge g)^{*} = \mp A \pm (\mathrm{Tr}A)\,g
+\end{align*}
+\pozn{boční poznámka v originále: ${*}(A\owedge g)^{*}{}_{kl} = \varepsilon_k{}^{ab}\varepsilon_l{}^{cd}A_{[a|[c}g_{d]|b]} = \varepsilon_{kab}\varepsilon_{lcd}\,g^{bd}A^{ac} = \pm(g_{kl}g_{ac} - g_{kc}g_{al})A^{ac} = \mp A_{kl} \pm (\mathrm{Tr}A)\,g_{kl}$}
+
+platí
+\[
+  {*}R^{*}{}_{ab} = {*}R^{*}{}_{ba} \qquad \mathrm{Tr}\,{*}R^{*} = \pm\tfrac12\mathcal{R} \qquad {*}R^{m}{}_{ma} = 0 \qquad R^{*}{}_{am}{}^{m} = 0 \qquad \Leftarrow\ \text{B.I.}
+\]
+kde \quad ${*}R_{mab} = \tfrac12\,\varepsilon_m{}^{kl}R_{klab}$ \qquad $R^{*}{}_{abm} = \tfrac12\,\varepsilon_m{}^{kl}R_{abkl}$ \qquad ${*}R^{*}{}_{mn} = \tfrac14\,\varepsilon_m{}^{ab}\varepsilon_n{}^{cd}R_{abcd}$
+
+\begin{vysvetleni}[Proč je v $d=3$ křivost dána Ricciho tenzorem]
+V $d=3$ je 2-forma ekvivalentní vektoru: $({*}\omega)_a=\tfrac12\varepsilon_{amn}\omega^{mn}$ (Hodgeův duál) a zpět $\omega_{ab}=\pm\varepsilon_{abn}({*}\omega)^n$; znaménko $\pm=\operatorname{sign}g$ pochází z $\varepsilon_{abc}\varepsilon^{abc}=\pm6$ (pro Riemannovu metriku $+$, pro Lorentzovu signaturu $-$). ${*}R^{*}$ je Riemannův tenzor zdualizovaný v obou antisymetrických párech, tj.\ symetrická $3\times3$ matice (6 komponent = $\#R$ v $d=3$). Protože symetrický tenzor typu (0,2) má také 6 komponent a $\mathrm{Ric}$ je s ${*}R^{*}$ svázán lineárně a invertibilně, Riemann je plně určen Riccim a Weylův tenzor je nutně nulový. Konkrétně ${*}R^{*}=\mp\mathrm{Ein}$, takže ve 3D vakuu ($\mathrm{Ein}=0$) je prostor lokálně plochý.
+Užité identity jsou kontrakce dvou Levi-Civitových tenzorů ($\varepsilon\varepsilon=\pm$ antisymetrizovaný součin $\delta$). Poslední řádek (${*}R^{m}{}_{ma}=0$ apod.) je 1.\ BI zapsaná v duálu.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-11b-8}
+\subsection*{Křivost v $d = 2$}
+metrika $g_{ab}$ sign.\ $\pm = \operatorname{sign}g$ \ defin.\ Levi-Civitův tenz.\ $\varepsilon_{ab}$
+\[
+  \varepsilon_{ab}\,\varepsilon^{ab} = \pm 2 \qquad\qquad
+  \varepsilon^{a}{}_{m}\,\varepsilon^{m}{}_{b} = \mp\,\delta^{a}_{b} \qquad\qquad
+  \pm\varepsilon_{ab}\,\varepsilon^{cd} = \delta^{c}_{a}\delta^{d}_{b} - \delta^{d}_{a}\delta^{c}_{b}
+\]
+\[
+  \gmIjedenactBd{\draw (0,0) rectangle (0.6,0.6);} = \pm 2
+  \qquad\qquad
+  \gmIjedenactBd{\draw (0,0.6)--(0,0.15)--(0.5,0.15) .. controls (0.7,0.15) and (0.7,0.5) .. (0.9,0.5)--(1.4,0.5)--(1.4,0);}
+  = \mp\;\gmIjedenactBd{\draw (0,0)--(0,0.7);}
+  \qquad\qquad
+  \pm\,\gmIjedenactBd{\draw (0,0.9)--(0,0.6)--(0.5,0.6)--(0.5,0.9); \draw (0,0)--(0,0.35)--(0.5,0.35)--(0.5,0);}
+  = \gmIjedenactBd{\draw (0,0)--(0,0.9) (0.35,0)--(0.35,0.9);}
+  - \gmIjedenactBd{\draw (0,0)--(0.5,0.9) (0.5,0)--(0,0.9);}
+\]
+\pozn{diagramatická notace: vodorovná čárka s dvěma nožkami $= \varepsilon$}
+
+platí
+\begin{veta}[Křivost v $d = 2$]
+\begin{align*}
+  R_{abcd} &= \pm\tfrac12\,\mathcal{R}\,\varepsilon_{ab}\,\varepsilon_{cd} = \mathcal{R}\,g_{[a|[c}\,g_{d]|b]}
+  && R = \tfrac14\,\mathcal{R}\,g\owedge g \\
+  \mathrm{Ric}_{ab} &= \tfrac12\,\mathcal{R}\,g_{ab} && \text{Ricci} \\
+  S_{ab} &= 0 && \text{bezestopá část Ric} \\
+  \vzorec{K = \tfrac12\,\mathcal{R} = \oprava{\pm{*}R^{*}}{{*}R^{*}}} &&& \text{\kw{Gaussova křivost}} \\
+  \mathrm{Ein}_{ab} &= 0 && \text{Einstein} \\
+  C &= 0 && \text{Weyl}
+\end{align*}
+\end{veta}
+\underline{Důk:}
+\[
+  \pm\tfrac12\,\varepsilon_{ab}\,\varepsilon_{cd} = g_{[a|[c}\,g_{d]|b]}
+  \qquad\Leftarrow\qquad
+  \pm\,\gmIjedenactBd{\draw (0,0)--(0,0.5)--(0.5,0.5)--(0.5,0); \draw (0.8,0)--(0.8,0.5)--(1.3,0.5)--(1.3,0);}
+  = \gmIjedenactBd{\draw (0,0) arc(180:0:0.55); \draw (0.5,0) arc(180:0:0.55);}
+  - \gmIjedenactBd{\draw (0,0) arc(180:0:0.8); \draw (0.4,0) arc(180:0:0.4);}
+  = 2\,\gmIjedenactBd{\draw (0,0) arc(180:0:0.8); \draw (0.4,0) arc(180:0:0.6); \draw (-0.15,0.15)--(0.55,0.15) (1.05,0.15)--(1.75,0.15);}
+\]
+\begin{gather*}
+  \mathrm{Ric} = \mathrm{Tr}R = \tfrac14\,\mathcal{R}\,\mathrm{Tr}(g\owedge g) = \tfrac12\,\mathcal{R}\,g \\
+  S = \mathrm{Ric} - \tfrac1d\,\mathcal{R}\,g = 0 \qquad\qquad \mathrm{Ein} = \mathrm{Ric} - \tfrac12\,\mathcal{R}\,g = 0 \\
+  {*}R^{*} = \tfrac12\,\varepsilon^{ab}\,\tfrac12\,\varepsilon^{cd}\,R_{abcd} = \oprava{\pm\tfrac12\,\mathcal{R}}{\tfrac12\,\mathcal{R}} \\
+  R = \tfrac14\,\mathcal{R}\,g\owedge g \;\Rightarrow\; S = 0 \quad C = 0
+\end{gather*}
+
+\begin{vysvetleni}[Křivost plochy a oprava znaménka]
+V $d=2$ je prostor 2-forem 1-dimenzionální, takže $R_{abcd}$ je úměrné $\varepsilon_{ab}\varepsilon_{cd}$ a celá křivost je jediná funkce -- \kw{Gaussova křivost} $K=\tfrac12\mathcal{R}$. Pro sféru poloměru $\varrho$ je $K=\varrho^{-2}$, $\mathcal{R}=2\varrho^{-2}$. $K$ závisí jen na metrice plochy (Gaussovo Theorema egregium). Einsteinův tenzor v $d=2$ identicky vymizí, proto 2D Einsteinova gravitace nemá dynamiku.
+V diagramech je $\varepsilon$ vodorovná čárka se dvěma nožkami (``krabička'' s uzavřenými nožkami je $\varepsilon_{ab}\varepsilon^{ab}=\pm2$).
+\emph{Oprava:} dosazením $R_{abcd}=\pm\tfrac12\mathcal{R}\,\varepsilon_{ab}\varepsilon_{cd}$ a $\varepsilon^{ab}\varepsilon_{ab}=\pm2$ vyjde ${*}R^{*}=\tfrac14\cdot(\pm\tfrac12\mathcal{R})(\pm2)(\pm2)=\pm\tfrac12\mathcal{R}$, tj.\ $K=\pm{*}R^{*}$. Pro Riemannovu (pozitivně definitní) metriku je $\pm=+$ a původní $K={*}R^{*}$ platí; pro Lorentzovu signaturu se liší znaménkem (analogicky jako $\mathrm{Tr}\,{*}R^{*}=\pm\tfrac12\mathcal{R}$ v $d=3$).
+\end{vysvetleni}

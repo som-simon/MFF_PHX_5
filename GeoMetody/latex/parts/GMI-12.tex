@@ -1,0 +1,506 @@
+%======================================================================
+% GMI-12 Podvariety a tecne distribuce.pdf
+%======================================================================
+% krabička / zakřivená plocha pro obrázky podvariet
+\providecommand{\gmIdvanactPl}[1]{%
+  \draw #1 (0,0) .. controls (0.8,0.25) and (1.6,-0.15) .. (2.4,0.1)
+     -- (3.0,0.9) .. controls (2.2,0.65) and (1.4,1.05) .. (0.6,0.8) -- cycle;}
+
+\section{Podvariety a tečné distribuce}
+\strana{GMI-12-1}
+\begin{itemize}[nosep]
+  \item Podvariety
+  \item Tečné vektory a normálové formy
+  \item Tečné a normálové distribuce
+  \item Foliace
+  \item Aplikace integrability
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-2}
+\subsection{Podvariety}
+\pozn{v pravém horním rohu originálu: IntegDist-1}
+
+\begin{definice}[lokálně prosté zobrazení]
+$\phi: N\to M$ je \kw{lokálně prosté} \pozn{locally injective} v $x\in N$ $\equiv$
+$\phi_*|_x$ je prosté, \ tj.\ $\ker\phi_*|_x = \{0\}$
+\end{definice}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  % N
+  \draw (0,0) -- (0.1,1.3) -- (2.3,1.4) -- (2.2,0.1) -- cycle;
+  \fill (0.9,0.7) circle (1.2pt) node[left] {\small $x$};
+  \draw[->] (0.9,0.7) -- (1.4,0.95);
+  \draw[->] (0.9,0.7) -- (1.45,0.65);
+  \draw[->] (0.9,0.7) -- (1.25,0.35);
+  % phi
+  \draw[->] (3.0,0.95) .. controls (3.6,1.1) and (4.0,1.05) .. (4.6,0.85) node[midway,above] {$\phi$};
+  % obraz
+  \draw (5.0,0.3) -- (5.1,1.3) .. controls (5.8,1.6) and (6.5,1.2) .. (7.3,0.9)
+        -- (7.8,-0.1) .. controls (7.1,0.1) and (6.3,-0.1) .. (5.4,0.15);
+  \fill (5.9,0.85) circle (1.2pt) node[left] {\small $\phi x$};
+  \draw[->] (5.9,0.85) -- (6.4,1.1);
+  \draw[->] (5.9,0.85) -- (6.45,0.8);
+  \draw[->] (5.9,0.85) -- (6.3,0.5);
+  % phi_* |_x
+  \draw[->] (1.2,-0.2) .. controls (2.5,-1.1) and (4.6,-0.9) .. (5.6,-0.05) node[pos=0.5,below] {$\phi_*|_x$};
+\end{tikzpicture}
+\end{center}
+nedegeneruje směry
+
+\begin{vysvetleni}[Lokální prostota]
+Podmínka se týká jen \emph{linearizace} $\phi_*|_x$ (push-forward, Jacobiho matice $D\phi|_x$): žádný nenulový tečný směr v $x$ se nesmí ``zdrtit'' na nulu. Nutně tedy $\dim N\leq\dim M$ a Jacobiho matice má v $x$ plnou hodnost $n$. Lokální prostota neznamená prostotu $\phi$ (kružnice navinutá vícekrát je lokálně prostá) a naopak prosté zobrazení nemusí být lokálně prosté (příklad $t\mapsto t^3$ níže). Viz Krtouš, odd.\ 3.4, def.\ D3.12.
+\end{vysvetleni}
+
+\begin{veta}[Přizpůsobené souřadnice]
+\pozn{$\dim M = m$, $\dim N = n$} \\
+$\phi$ lok.\ prosté v $x$ \qquad $\phi: N\to M$ \\
+$\Rightarrow$ existuje $V\subset N$ na kt.\ je $\phi$ prosté \\
+$\Rightarrow$ lib.\ souř.\ $[y^1\dots y^n]$ na $V$ lze v okolí $U$ bodu $\phi x$ rozšířit na souř.\ $[x^1\dots x^m]$ tak, že pro $w\in V$
+\begin{align*}
+  x^i(\phi w) &= y^i(w) && i = 1\dots n \\
+  x^p(\phi w) &= \text{konst} && p = n+1,\dots,m
+\end{align*}
+\end{veta}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  % N s y-souřadnicemi
+  \draw (0,0) rectangle (2.4,1.2);
+  \node at (2.5,-0.2) {$N$};
+  \draw[->] (0.3,0.3) -- (0.3,1.0) node[right] {\small $y^2$};
+  \draw[->] (0.3,0.3) -- (1.2,0.3) node[right] {\small $y^1$};
+  % M s plochami x^3 = konst
+  \begin{scope}[xshift=4cm,yshift=-0.2cm]
+    \gmIdvanactPl{[gray]}
+    \begin{scope}[yshift=-0.25cm,xshift=-0.1cm]\gmIdvanactPl{[gray!70,dashed]}\end{scope}
+    \begin{scope}[yshift=-0.5cm,xshift=-0.2cm]\gmIdvanactPl{[gray!50,dashed]}\end{scope}
+    \gmIdvanactPl{[thick]}
+    \draw[->] (0.6,0.35) -- (1.5,0.35) node[right] {\small $x^1$};
+    \draw[->] (0.6,0.35) -- (0.9,0.85) node[left] {\small $x^2$};
+    \draw[->] (1.9,0.5) -- (1.9,1.4) node[right] {\small $x^3$};
+    \node at (3.25,0.95) {$\phi N$};
+    \node at (3.9,0.4) {$M$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{vysvetleni}[Přizpůsobené souřadnice]
+Věta je důsledkem věty o implicitní (inverzní) funkci: lokálně prosté zobrazení vypadá v dobrých souřadnicích jako standardní vložení $\mathbb{R}^n\hookrightarrow\mathbb{R}^m$, $(y^1,\dots,y^n)\mapsto(y^1,\dots,y^n,0,\dots,0)$. Obraz $\phi V$ je pak lokálně ``rovná'' plocha $x^{p}=\text{konst}$ (na obrázku $n=2$, $m=3$: $\phi N$ je jedna z ploch $x^3=\text{konst}$). Tyto souřadnice dále používáme pro všechny výpočty s podvarietami. Krtouš (věta V3.10) volí konstantu $x^{p}(\phi w)=0$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-3}
+\pozn{v rohu: IntegDist-2}
+\begin{definice}[Vnoření, vložení]
+$\iota: N\to M$
+\begin{align*}
+  &\iota \text{ je \kw{vnoření}} \pozn{immersion} && \equiv \text{ lokálně prosté v každém bodě} \pozn{locally injective} \\
+  &\iota \text{ je \kw{vložení}} \pozn{embedding} && \equiv \text{ vnoření a prosté}
+\end{align*}
+tj.\ vnoření se může protínat
+\end{definice}
+
+\begin{definice}[podvarieta]
+\kw{podvarietou} $N$ variety $M$ nazýváme obraz $N = \iota\tilde N$ vložení $\iota: \tilde N\to M$ \\
+píšeme $\iota: N\hookrightarrow M$ a obvykle $N$ a $\tilde N$ nerozlišujeme
+\end{definice}
+
+\begin{vysvetleni}[Vnoření vs.\ vložení]
+Vnoření je ``lokálně slušné'' (v každém bodě nedegeneruje), ale globálně se obraz může sám protínat (osmička, poslední řádek příkladu), a v průsečíku pak obraz není varietou. Vložení navíc vyžaduje prostotu, takže obraz lze s $\tilde N$ ztotožnit. Pozor: v řadě učebnic se u vložení (embedding) navíc požaduje, aby $\iota$ byl homeomorfismus na obraz s indukovanou topologií -- to vylučuje např.\ prostou ``šestku'', jejíž konec se asymptoticky blíží vlastnímu bodu. Tato skripta (i Krtouš, def.\ D3.13, D3.14) používají slabší definici.
+\end{vysvetleni}
+
+\begin{priklad}[Př: $\phi: N\to M$, \ $N = \mathbb{R}$, \ $M = \mathbb{R}^2$]
+$t$ souř.\ na $N$ \qquad $x^1, x^2$ souř.\ na $M$
+
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\gmIdvanactMr}[1]{\tikz[baseline=0.45cm,x=0.55cm,y=0.55cm,>=Stealth]{%
+   \draw[gray] (0,0.3)--(2,0.3) (0,1)--(2,1) (0,1.7)--(2,1.7) (0.5,0)--(0.5,2) (1.5,0)--(1.5,2); #1}}
+\begin{tabular}{@{}p{4.3cm}c l@{}}
+  $\phi$ nehladké &
+  \gmIdvanactMr{\draw[thick] (0.9,2)--(0.9,1)--(0.1,1); \node[font=\scriptsize] at (1.25,0.65) {$\phi0$};
+                \draw[->] (1.6,2.1)--(1.6,2.5) node[right,font=\scriptsize] {$x^2$};
+                \draw[->] (1.6,-0.2)--(2.1,-0.2) node[right,font=\scriptsize] {$x^1$};} &
+  $D\phi|_0$ nedefinované \\[4pt]
+  $\phi$ nehladké \newline \hspace*{1em} $\phi^1 = |t|$ \quad $\phi^2 = 0$ &
+  \gmIdvanactMr{\draw[thick,->] (0.9,1)--(1.8,1); \draw[thick] (0.9,1.05)--(1.6,1.05);
+                \node[font=\scriptsize] at (0.75,1.3) {$\phi0$};} &
+  $D\phi|_0$ nedefinované \\[4pt]
+  $\phi$ hladké, neprosté \newline \hspace*{1em} lok.\ neprosté \newline \hspace*{1em} $\phi^1 = \cos t$ \quad $\phi^2 = 0$ &
+  \gmIdvanactMr{\draw[thick] (0,1) ellipse (0 and 0); \draw[thick] (0.1,1.05)--(1.9,1.05); \draw[thick,->] (0.1,0.95)--(1.9,0.95);
+                \node[font=\scriptsize] at (2.35,1) {$\phi\pi$};} &
+  $D\phi|_\pi = 0$ \\[4pt]
+  $\phi$ hladké prosté \newline \hspace*{1em} lok.\ neprosté \newline \hspace*{1em} $\phi^1 = t^3$ \quad $\phi^2 = 0$ &
+  \gmIdvanactMr{\draw[thick] (0,1)--(2,1); \fill (1,1) circle (1.5pt); \node[font=\scriptsize] at (1,0.6) {$\phi0$};} &
+  $D\phi|_0 = 0$ \\[4pt]
+  $\phi$ hladké neprosté \newline \hspace*{1em} lok.\ prosté \newline \hspace*{1em} $\phi^1 = \cos t$ \quad $\phi^2 = \sin t$ &
+  \gmIdvanactMr{\draw[thick] (1,1) circle (0.8);} &
+  periodické v $t$ \\[4pt]
+  $\phi$ hladké neprosté \newline \hspace*{1em} lok.\ prosté &
+  \gmIdvanactMr{\draw[thick] (0.5,0.1) .. controls (1.2,0.9) .. (1.4,1.4) .. controls (1.5,1.9) and (0.5,1.9) .. (0.6,1.4)
+                 .. controls (0.8,0.9) .. (1.5,0.1);} &
+  neprosté v průsečíku
+\end{tabular}
+\end{priklad}
+
+\begin{vysvetleni}[Co ilustrují příklady]
+Tabulka odděluje tři vlastnosti, které se snadno pletou: hladkost ($D\phi$ existuje), lokální prostotu ($D\phi\neq0$, zde $\dim N=1$) a globální prostotu. Řádky: (1) obraz s rohem -- nehladké; (2) $|t|$ -- obraz je hladká polopřímka (proběhnutá dvakrát), ale parametrizace nehladká; (3) $\cos t$ -- v bodech obratu $t=k\pi$ je $D\phi=0$; (4) $t^3$ -- prosté, obraz je hladká přímka, ale v $0$ se rychlost zastaví; (5) kružnice -- vnoření, neprosté kvůli periodicitě (faktorizací $t\sim t+2\pi$ by šlo o vložení $S^1$); (6) osmička -- vnoření s průsečíkem. Viz Krtouš, marginálie M3.7.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-4}
+\subsection{Tečné vektory a normálové formy}
+\pozn{v rohu: IntegDist-3}
+
+mějme podvarietu $\iota: N\hookrightarrow M$
+
+\textbf{tečné vektory k podvarietě} \\
+push-forward $\iota_*$ definuje podprostor $\mathbf{T}_{\iota x}N\subset\mathbf{T}_{\iota x}M$ \\
+ten identifikujeme s $\mathbf{T}_x\tilde N$ ve smyslu nerozlišování $N$ a $\tilde N$
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  % N~
+  \draw (0,0) -- (0.6,0.8) -- (2.9,0.8) -- (2.3,0) -- cycle;
+  \node at (2.0,-0.3) {$\tilde N$};
+  \draw (0.9,0.25) rectangle (1.6,0.65);
+  \draw[->] (1.2,0.45) -- (1.5,0.6); \draw[->] (1.2,0.45) -- (1.5,0.42); \draw[->] (1.2,0.45) -- (1.42,0.27);
+  % iota
+  \draw[->] (3.2,0.65) -- (4.6,0.6) node[midway,above] {$\iota$};
+  % N v M
+  \draw (5.0,0.0) -- (5.3,0.85) .. controls (5.9,1.3) and (6.6,1.0) .. (7.5,0.6) -- (7.2,-0.6)
+        .. controls (6.7,-0.5) and (6.2,-0.3) .. (5.8,0.1);
+  \draw (5.0,0.0) .. controls (5.5,-0.3) and (6.1,-0.6) .. (6.9,-0.55);
+  \draw (5.85,0.35) rectangle (6.55,0.75);
+  \draw[->] (6.15,0.55) -- (6.45,0.7); \draw[->] (6.15,0.55) -- (6.45,0.52); \draw[->] (6.15,0.55) -- (6.37,0.37);
+  \node at (7.4,-0.75) {$N$};
+  \node at (7.6,1.2) {$M$};
+  % iota_*
+  \draw[->] (0.8,-0.4) .. controls (2.5,-1.1) and (4.8,-0.9) .. (6.0,0.2) node[pos=0.45,below] {$\iota_*$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{restrikce forem} \\
+$\mathbf{T}^*_x N$ nelze ztotožnit s podprostorem $\mathbf{T}^*M$
+\begin{itemize}[nosep]
+  \item[] neznáme akci 1-formy $\alpha\in\mathbf{T}^*_xN$ na vektory netečné k $N$
+  \item[] nelze jednoznačně položit $0$, protože neznáme projekci $\mathbf{T}M\to\mathbf{T}N$
+  \item[] pro Riemannovskou geom.\ budeme mít ortogon.\ projekci
+\end{itemize}
+lze provést restrikci formy z $\mathbf{A}^0_pM$ na $\mathbf{A}^0_pN$ pomocí pullbacku $\iota^*$
+\[
+  \vzorec{\omega|_N = \iota^*\omega}
+\]
+tj.\ $\omega|_N(a_1,\dots,a_p) = \omega(\iota_*a_1,\dots,\iota_*a_p)$ \qquad $a_k\in\mathbf{T}N$
+
+\textbf{normálové 1-formy} \\
+v prostoru $\mathbf{T}^*M$ 1-forem na $M$ lze identifikovat podprostor $\mathbb{N}^*_xN$ \kw{normál.\ forem}
+\begin{definice}[Normálové formy]
+\[
+  \omega\in\mathbb{N}^*_xN \quad\Leftrightarrow\quad \omega|_N = 0
+\]
+\end{definice}
+normálové 1-formy jsou komplementární k tečným vektorům
+\begin{align*}
+  \omega\in\mathbb{N}^*_xN &\quad\Leftrightarrow\quad \forall a\in\mathbf{T}_xN \quad \omega\cdot a = 0 \\
+  a\in\mathbf{T}_xN &\quad\Leftrightarrow\quad \forall\omega\in\mathbb{N}^*_xN \quad \omega\cdot a = 0
+\end{align*}
+
+\begin{vysvetleni}[Tečné vektory dopředu, formy dozadu]
+Vektory se přirozeně přenášejí \emph{ve směru} zobrazení (push-forward $\iota_*$), formy \emph{proti} němu (pull-back $\iota^*$). Tečný prostor podvariety je proto podprostorem $\mathbf{T}_xM$, ale kotečný prostor $\mathbf{T}^*_xN$ podprostorem $\mathbf{T}^*_xM$ přirozeně není -- je to \emph{kvocient} $\mathbf{T}^*_xM/\mathbb{N}^*_xN$: restrikce $\omega|_N$ zapomene, jak $\omega$ působí na netečné vektory, a dvě formy mají stejnou restrikci, právě když se liší o normálovou formu.
+Normálové formy tvoří \emph{anihilátor} $\mathbf{T}_xN$, prostor dimenze $m-n$ (kodimenze). Příklad: pro plochu $f=\text{konst}$ s $\mathrm{d}f\neq0$ je $\mathbb{N}^*N$ generováno $\mathrm{d}f$ (gradient je normálová forma). Teprve s metrikou lze formy ztotožnit s vektory a mluvit o ortogonální projekci.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-5}
+\pozn{v rohu: IntegDist-4}
+\subsubsection*{Vyjádření v přizpůsobených souřadnicích}
+mějme $\iota: \tilde N\to M$ \qquad $N = \iota\tilde N$ \\
+pro explicitnost nyní rozlišujeme $N$ a $\tilde N$ \\
+přizp.\ souř.
+\[
+  \tilde N:\quad \tilde x^{i} \;\big(\downarrow y^{i}\big)\quad i = 1\dots n
+  \qquad\qquad
+  M:\quad x^{i} = \tilde x^{i} \;\big(\uparrow y^{i}\big)\quad i = 1\dots n, \qquad x^{p}|_N = 0 \quad p = n+1\dots m
+\]
+
+\textbf{tečné vektory}
+\begin{align*}
+  \tilde a\in\mathbf{T}\tilde N &\qquad \tilde a = \sum_{i=1}^{n}a^{i}\,\frac{\partial}{\partial\tilde x^{i}} \\
+  \downarrow\qquad & \\
+  a = \iota_*\tilde a\in\mathbf{T}N &\qquad a = \sum_{i=1}^{n}a^{i}\,\frac{\partial}{\partial x^{i}}
+\end{align*}
+\textbf{restrikce 1-formy}
+\begin{align*}
+  \alpha\in\mathbf{T}^*M &\qquad \alpha = \sum_{k=1}^{m}\alpha_k\,\mathrm{d}x^{k} \\
+  \downarrow\qquad & \\
+  \tilde\alpha = \alpha|_N\in\mathbf{T}^*\tilde N &\qquad \alpha|_N = \sum_{i=1}^{n}\alpha_i\,\mathrm{d}\tilde x^{i}
+\end{align*}
+\textbf{normálové formy}
+\[
+  \alpha\in\mathbb{N}^*N \quad\Leftrightarrow\quad \vzorec{\alpha = \sum_{p=n+1}^{m}\alpha_p\,\mathrm{d}x^{p}}
+\]
+plyne z
+\begin{align*}
+  \iota_*\frac{\partial}{\partial\tilde x^{i}} &= \frac{\partial}{\partial x^{i}} && i = 1\dots n \\
+  \iota^*\mathrm{d}x^{p} &\equiv \mathrm{d}x^{p}|_N = 0 && p = n+1,\dots,m
+\end{align*}
+jelikož $x^{p}|_N = \text{konst}$
+
+\begin{vysvetleni}[Přizpůsobené souřadnice v praxi]
+Šipky $\downarrow y^{i}$, $\uparrow y^{i}$ naznačují, že souřadnice $\tilde x^{i}$ na $\tilde N$ a $x^{i}$ na $M$ odpovídají týmž $y^{i}$ z věty o přizpůsobených souřadnicích, tj.\ $x^{i}\circ\iota=\tilde x^{i}$. V těchto souřadnicích je všechno ``diagonální'': tečné vektory mají nenulové jen první $n$ složek, restrikce formy prostě zahodí složky $\alpha_p$ u $\mathrm{d}x^{p}$ (protože $\iota^*\mathrm{d}x^{p}=\mathrm{d}(x^{p}\circ\iota)=0$) a normálové formy mají nenulové jen poslední $m-n$ složek.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-6}
+\subsection{Tečné a normálové distribuce}
+\pozn{v rohu: IntegDist-5}
+
+\begin{definice}[Distribuce]
+\kw{distribuce} $\Delta$ podprostorů tečných vektorů dim $n$ (krátce distribuce $\Delta$) \\
+je soubor $n$-dim podprostorů $\Delta_x\subset\mathbf{T}_xM$ $\forall x\in M$, \\
+které jsou generovány hl.\ poli $a_j\in\mathbf{T}M$, $j = 1\dots n$, \ tj.\ \\
+\quad $\forall x\in M$ \ $\Delta_x$ je generováno vektory $a_j(x)$ \\
+říkáme, že $a\in\mathbf{T}M$ patří do $\Delta$, pokud $\forall x$ \ $a(x)\in\Delta_x$
+\end{definice}
+
+\begin{definice}[Kodistribuce]
+\kw{(ko)distribuce} $\Delta^*$ podprostorů 1-forem kodim.\ $n$ (krátce kodistribuce $\Delta^*$) \\
+je soubor $(m-n)$-dim podprostorů $\Delta^*_x\subset\mathbf{T}^*_xM$ $\forall x\in M$, \\
+které jsou generovány hl.\ poli $\alpha^{p}\in\mathbf{T}^*M$, $p = n+1,\dots,m$, \ tj.\ \\
+\quad $\forall x\in M$ \ $\Delta^*_x$ je generováno 1-formami $\alpha^{p}(x)$ \\
+říkáme, že $\alpha\in\mathbf{T}^*M$ patří do $\Delta^*$, pokud $\forall x$ \ $\alpha(x)\in\Delta^*_x$
+\end{definice}
+v obou def.\ postačuje, pokud jsou distribuce generovány hl.\ poli pouze lokálně, tj.\ hl.\ poli def.\ na oblastech $U_x$, které pokrývají celou varietu
+
+\begin{definice}[komplementarita distribucí]
+distribuce $\Delta$ dim $n$ a kodistribuce $\Delta^*$ kodim $n$ jsou \kw{komplementární}, pokud
+\[
+  \forall a\in\Delta_x \quad \forall\alpha\in\Delta^*_x \qquad \alpha\cdot a = 0
+\]
+\end{definice}
+komplementární distribuce $\Delta$ a $\Delta^*$ se navzájem určují
+\begin{align*}
+  a\in\Delta &\quad\Leftrightarrow\quad \forall\alpha\in\Delta^* \quad \alpha\cdot a = 0 \\
+  \alpha\in\Delta^* &\quad\Leftrightarrow\quad \forall a\in\Delta \quad \alpha\cdot a = 0
+\end{align*}
+dále budeme vždy předpokládat, že $\Delta$, $\Delta^*$ jsou komplem.
+
+mějme distribuci $\Delta$, pro $\omega\in\mathbf{T}^0_pM$ píšeme
+\[
+  \omega|_\Delta = 0 \quad\Leftrightarrow\quad \forall a_1\dots a_p\in\Delta \quad \omega(a_1\dots a_p) = 0
+\]
+tj.\ $\alpha\in\Delta^*\Leftrightarrow\alpha|_\Delta = 0$
+
+\begin{vysvetleni}[Distribuce jako ``pole rovinek'']
+Distribuce je hladké přiřazení $n$-rozměrné ``rovinky'' $\Delta_x$ každému bodu -- kandidát na tečné prostory nějakých podvariet. Komplementární kodistribuce je její anihilátor ($\Delta^*_x=\Delta_x^{0}$), tj.\ popis téže rovinky pomocí $m-n$ rovnic $\alpha^{p}(a)=0$. Je to přesně analogie dvojice $\mathbf{T}_xN$ a $\mathbb{N}^*_xN$ u podvariety, jen bez podvariety -- otázkou je, zda nějaké podvariety s těmito tečnými prostory existují.
+Příklad v $\mathbb{R}^3$: $\Delta$ generovaná $a_1=\partial_x$, $a_2=\partial_y+x\,\partial_z$ a komplementární $\Delta^*$ generovaná $\alpha=\mathrm{d}z-x\,\mathrm{d}y$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-7}
+\pozn{v rohu: IntegDist-6}
+\begin{definice}[Involutivní distribuce]
+distribuce $\Delta$ je \kw{involutivní}, pokud
+\begin{itemize}[nosep]
+  \item $[\Delta,\Delta]\subset\Delta$
+  \item $\forall a,b\in\Delta$ \quad $[a,b]\in\Delta$
+  \item $\Delta$ generováno $a_j$ $\Rightarrow$
+        \[ [a_i,a_{i'}] = \sum_{j=1}^{n}f_{ii'}{}^{j}\,a_j \qquad f_{ii'}{}^{j}\in\mathcal{F}M \]
+\end{itemize}
+tyto charakt.\ jsou ekvivalentní
+\end{definice}
+
+\begin{definice}[Diferenciální kodistribuce]
+kodistribuce $\Delta^*$ je \kw{diferenciální}, pokud
+\begin{itemize}[nosep]
+  \item $\forall\alpha\in\Delta^*$ \quad $\mathrm{d}\alpha|_\Delta = 0$ \quad kde $\Delta$ je komplem.\ k $\Delta^*$
+  \item $\Delta^*$ generováno $\alpha^{p}$ $\Rightarrow$
+        \[ \mathrm{d}\alpha^{p} = \sum_{q=n+1}^{m}\theta^{p}_{q}\wedge\alpha^{q} \qquad \theta^{p}_{q}\ \text{1-formy} \]
+  \item $\mathrm{d}\mathcal{J}\subset\mathcal{J}$ \quad kde $\mathcal{J}$ je ideál vnější alg.\ generovaný kodistribucí $\Delta^*$, tj.\ lin.\ obal prvků typu $\alpha\wedge\omega$, $\alpha\in\Delta^*$, $\omega\in\mathbf{A}M$
+\end{itemize}
+tyto charakt.\ jsou ekvivalentní \\
+(doplnit $\alpha^{p}$ do báze a vyjádřit $\mathrm{d}\alpha^{p}$ v této bázi, přes $\mathrm{d}\alpha^{p}|_\Delta = 0$)
+\end{definice}
+
+\begin{veta}[Th]
+mějme komplementární distribuce $\Delta$ a $\Delta^*$
+\[
+  \vzorec{\Delta\ \text{je involutivní}\quad\Leftrightarrow\quad\Delta^*\ \text{je diferenciální}}
+\]
+\end{veta}
+důk:
+\begin{align*}
+  &\forall p \quad \mathrm{d}\alpha^{p}|_\Delta = 0 \quad\Leftrightarrow \\
+  &\forall i,j,p \quad 0 = a_i\cdot\mathrm{d}\alpha^{p}\cdot a_j = a_i\cdot\mathrm{d}(a_j\cdot\alpha^{p}) - a_j\cdot\mathrm{d}(a_i\cdot\alpha^{p}) - [a_i,a_j]\cdot\alpha^{p} = -[a_i,a_j]\cdot\alpha^{p} \quad\Leftrightarrow \\
+  &\forall i,j \quad [a_i,a_j]\in\Delta
+\end{align*}
+
+\begin{vysvetleni}[Involutivnost $\Leftrightarrow$ diferenciálnost]
+Zápis $a\cdot\omega\cdot b$ znamená dosazení vektorů do 2-formy, $\omega(a,b)$. Klíčový je vzorec pro vnější derivaci 1-formy
+$\mathrm{d}\alpha(a,b)=a\big[\alpha(b)\big]-b\big[\alpha(a)\big]-\alpha([a,b])$.
+Pro $a,b\in\Delta$ a $\alpha\in\Delta^*$ jsou první dva členy nulové (derivujeme nulové funkce), takže $\mathrm{d}\alpha|_\Delta=0$ přesně když $\alpha([a,b])=0$, tj.\ $[a,b]\in\Delta$. Ekvivalence charakterizací v definici ``diferenciální'': doplníme $\alpha^{p}$ o 1-formy $\beta^{i}$ na kobázi; $\mathrm{d}\alpha^{p}|_\Delta=0$ znamená, že v rozkladu $\mathrm{d}\alpha^{p}$ chybí členy $\beta^{i}\wedge\beta^{j}$, takže každý člen obsahuje nějaké $\alpha^{q}$.
+Příklad z předchozí strany: $[\partial_x,\partial_y+x\partial_z]=\partial_z\notin\Delta$ a $\mathrm{d}\alpha=-\mathrm{d}x\wedge\mathrm{d}y$, $\mathrm{d}\alpha(a_1,a_2)=-1\neq0$ -- distribuce není involutivní.
+\end{vysvetleni}
+
+\begin{definice}[integrabilita distr.\ $\Delta$, $\Delta^*$]
+$N$ je \kw{integrální podvarieta} distribucí $\Delta$, $\Delta^*$, pokud $\forall x\in N$
+\begin{align*}
+  a\in\Delta_x &\Leftrightarrow a\in\mathbf{T}_xN && \text{tj.\ } \Delta_x \text{ definuje tečné vekt.\ } \mathbf{T}_xN \\
+  \alpha\in\Delta^*_x &\Leftrightarrow \alpha\in\mathbb{N}^*_xN && \text{tj.\ } \Delta^*_x \text{ definuje normál.\ 1-formy } \mathbb{N}^*_xN
+\end{align*}
+distribuce $\Delta$, $\Delta^*$ jsou \kw{integrabilní}, pokud každým bodem $x\in M$ prochází integrální podvarieta
+\end{definice}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-8}
+\pozn{v rohu: IntegDist-7}
+\begin{veta}[Th]
+$\Delta$, $\Delta^*$ jsou integrabilní $\Leftrightarrow$ existují souř.\ $x^{k}$ tak, že
+\begin{align*}
+  &\frac{\partial}{\partial x^{i}} && i = 1\dots n && \text{generují } \Delta_x \\
+  &\mathrm{d}x^{p} && p = n+1,\dots,m && \text{generují } \Delta^*_x \\
+  &x^{p} = \text{konst} && p = n+1,\dots,m && \text{definují integrální podv.} \\
+  &x^{i} && i = 1\dots n && \text{jsou souř.\ na integr.\ podv.}
+\end{align*}
+\end{veta}
+
+\begin{veta}[Th: Fröbeniova věta]
+\[
+  \vzorec{\Delta,\Delta^*\ \text{jsou integrabilní}\quad\Leftrightarrow\quad
+  \begin{array}{l}\Delta\ \text{je involutivní}\\ \Delta^*\ \text{je diferenciální}\end{array}}
+\]
+\end{veta}
+
+\begin{vysvetleni}[Frobeniova věta]
+Integrabilita znamená, že $M$ se lokálně rozpadá na vrstvy -- integrální podvariety (\kw{foliace}), jejichž tečné prostory jsou právě $\Delta_x$. Směr $\Rightarrow$ je snadný (tečná pole k podvarietě mají komutátor tečný k podvarietě); netriviální je $\Leftarrow$: lokální podmínka na komutátory stačí k existenci podvariet. Pro $n=1$ je každá distribuce integrabilní (integrální křivky vektorového pole). Pro kodimenzi 1 ($\Delta^*$ generováno jedinou $\alpha$) je podmínka ekvivalentní $\alpha\wedge\mathrm{d}\alpha=0$; v příkladu $\alpha=\mathrm{d}z-x\,\mathrm{d}y$ je $\alpha\wedge\mathrm{d}\alpha=-\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\neq0$ (tzv.\ kontaktní struktura, žádné integrální plochy). Speciální případ: $n$ všude lineárně nezávislých komutujících polí $[a_i,a_j]=0$ jsou lokálně souřadnicová pole $\partial/\partial x^{i}$.
+Krtouš Frobeniovu větu v textu jen zmiňuje (marginálie v kap.~3 u push-forwardu).
+\end{vysvetleni}
+
+důkaz: \\
+1.\ věta plyne z vět o přizp.\ souř.\ v okolí podvariety
+
+\textbf{Fröb $\Rightarrow$:} \\
+$\Delta$, $\Delta^*$ integrabilní $\Rightarrow$ $\exists\,x^{p}$, $p = n+1,\dots,m$ takové, že $\mathrm{d}x^{p}$ generují $\Delta^*$ \\
+pokud $\alpha^{q}$, $q = n+1,\dots,m$ generují $\Delta^*$ $\Rightarrow$ $\alpha^{q} = \sum_{p=n+1}^{m}A^{q}_{p}\,\mathrm{d}x^{p}$, \ $A^{q}_{p}$ nedegenerov.\ $\Rightarrow$
+\[
+  \mathrm{d}\alpha^{q} = \sum_{p=n+1}^{m}\mathrm{d}A^{q}_{p}\wedge\mathrm{d}x^{p}
+  = \sum_{p,\pi=n+1}^{m}(\mathrm{d}A^{q}_{\pi})\,A^{-1\,\pi}{}_{p}\wedge\alpha^{p}
+  = \sum_{p=n+1}^{m}\Theta^{q}_{p}\wedge\alpha^{p}
+  \;\Rightarrow\; \Delta^*\ \text{diferenciální} \;\Rightarrow\; \Delta\ \text{involutivní}
+\]
+
+\textbf{Fröb $\Leftarrow$:} \\
+$\Delta$ involutivní $\overset{?}{\Rightarrow}$ $\exists\,x^{p}$, $p = n+1\dots m$ tak, že $\mathrm{d}x^{p}$ generuje $\Delta^*$ \\
+indukcí přes $n$
+\begin{itemize}[nosep,leftmargin=1.2cm]
+  \item[$n = 1$:] nechť $a_1$ generuje $\Delta$, vždy lze zvolit $x^{k}$, $k = 1\dots m$ tak, že
+  \begin{align*}
+    a_1\cdot\mathrm{d}x^{1} &= 1 && x^{1} \text{ je parametr toku s generátorem } a_1 \\
+    a_1\cdot\mathrm{d}x^{p} &= 0 \quad p = 2,\dots,m && x^{p} \text{ konst podél integr.\ křivek}
+  \end{align*}
+  \item[$n-1\to n$:] nechť $a_j$, $j = 1,\dots,n$ generují $\Delta$ a $[a_i,a_{i'}] = f_{ii'}{}^{j}a_j$ \\
+  zvolme $x^{1}$ tak, že $a_1\cdot\mathrm{d}x^{1} = 1$ a předefinujme $a_j$
+  \[
+    \bar a_j = a_j - (a_j\cdot\mathrm{d}x^{1})\,a_1 \quad j = 2,\dots,n \qquad\qquad \bar a_1 = a_1
+  \]
+\end{itemize}
+
+\begin{minipage}[t]{0.32\textwidth}
+\vspace{0pt}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+  % rovina x^1 = konst
+  \draw (0,0) -- (3.3,0) -- (3.9,1.6) -- (0.6,1.6) -- cycle;
+  \node[right,font=\small] at (3.4,-0.05) {$x^{1} = \text{konst}$};
+  % svislé plochy x^{n+1}..x^m = konst (integrální křivky a_1)
+  \draw (0.8,-1.6) -- (0.8,0); \draw[dashed] (0.8,0) -- (0.8,0.3);
+  \draw (0.8,0.3) -- (0.8,2.6);
+  \draw (1.2,-1.6) -- (1.2,2.3);
+  \draw (1.6,-1.4) -- (1.6,0);
+  \draw (0.4,-1.3) -- (1.9,-0.3);
+  \draw (1.0,0.15) -- (2.1,2.7) (1.0,0.15) -- (2.9,1.25);
+  \draw (2.1,2.7) -- (2.9,1.25);
+  \draw[->] (1.6,1.6) -- (1.75,2.4);
+  \draw[->] (2.1,1.6) -- (2.25,2.35);
+  \draw[->] (2.6,1.6) -- (2.75,2.3);
+  \node[font=\small] at (1.75,2.65) {$a_1$};
+  \node[font=\small] at (0.55,2.4) {$x^{1}$};
+  \draw[->] (0.8,2.1) -- (0.8,2.5);
+  % souřadnice na rovině
+  \draw[->] (1.7,0.8) -- (2.6,1.25) node[right,font=\scriptsize] {$x^{i}$, $\bar a_n$};
+  \draw[->] (1.7,0.8) -- (2.4,0.45) node[right,font=\scriptsize] {$x^{n+1}$};
+  \draw[gray] (1.3,0.6) -- (2.3,1.1) (1.4,1.0) -- (2.2,0.6) (1.5,0.45) -- (2.1,1.25);
+  % popisek
+  \draw[->] (2.4,-1.4) -- (1.0,-1.05);
+  \node[right,font=\scriptsize] at (2.4,-1.4) {$x^{n+1}\dots x^{m} = \text{konst}$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[t]{0.66\textwidth}
+\vspace{0pt}
+platí
+\begin{gather*}
+  \bar a_j\cdot\mathrm{d}x^{1} = 0 \qquad \text{tj.\ } \bar a_j \text{ tečné k } x^{1} = \text{konst a } \bar a_1\dots\bar a_n \text{ generují } \Delta \\
+  [\bar a_i,\bar a_{i'}]\cdot\mathrm{d}x^{1} = \bar a_i\cdot\mathrm{d}(\bar a_{i'}\cdot\mathrm{d}x^{1}) - \bar a_{i'}\cdot\mathrm{d}(\bar a_i\cdot\mathrm{d}x^{1}) = 0 \qquad i,i' = 2,\dots,n \\
+  \Rightarrow\ [\bar a_i,\bar a_{i'}] = \sum_{j=2}^{n}\bar f_{ii'}{}^{j}\,\bar a_j
+  \qquad\text{též}^{\circledast}\quad [a_1,\bar a_i] = \sum_{j=2}^{n}\bar f_{1i}{}^{j}\,\bar a_j
+\end{gather*}
+\end{minipage}
+
+indukční předpoklad $\Rightarrow$ $\exists\,x^{p}$, $p = n+1,\dots,m$ tak, že $\mathrm{d}x^{p}$ generují kodistr.\ komplementární k distr.\ generované $\bar a_j$, $j = 2\dots n$ v rámci $(m-1)$-dim podvariety $x^{1} = \text{konst}$ \\
+$x^{p}$, $p = n+1\dots m$ lze rozšířit z $x^{1} = \text{konst}$ podmínkou $a_1\cdot\mathrm{d}x^{p} = 0$ (akční toku s gen.\ $a_1$) \\
+tyto fce splňují$^{\circledast}$ \ $\bar a_j\cdot\mathrm{d}x^{p} = 0$, $j = 1\dots n$, \ tj.\ $\mathrm{d}x^{p}$ generují $\Delta^*$ \hfill c.b.d. \\
+funkce $x^{p}$ definují integrální podvariety distr.\ $\Delta$, $\Delta^*$ podmínkou
+\[
+  x^{p} = \text{konst} \qquad p = n+1\dots m
+\]
+\hfill c.b.d.\ Fröb \qquad $\circledast$\,\%
+\pozn{$\circledast$\,\% v originále odkaz na doplnění důkazu (viz další strana)}
+
+\begin{vysvetleni}[Strategie důkazu $\Leftarrow$]
+Hledáme $m-n$ funkcí $x^{p}$, jejichž diferenciály generují $\Delta^*$ (pak plochy $x^{p}=\text{konst}$ jsou integrální podvariety podle první věty). Indukce:
+(1) $n=1$: věta o ``narovnání'' vektorového pole -- v okolí bodu, kde $a_1\neq0$, lze zvolit souřadnice s $a_1=\partial/\partial x^{1}$; $x^{p}$ jsou konstantní podél integrálních křivek.
+(2) Krok: pole $a_1$ narovnáme ($a_1[x^{1}]=1$) a ostatní generátory upravíme na $\bar a_j$ tečné k nadplochám $x^{1}=\text{konst}$. Ty tvoří na každé nadploše $(n-1)$-rozměrnou involutivní distribuci, takže podle indukčního předpokladu tam existují vhodné $x^{p}$. Ty pak ``rozneseme'' z jedné nadplochy tokem pole $a_1$. Zbývá ukázat ($\circledast$), že takto rozšířené $x^{p}$ splňují $\bar a_j[x^{p}]=0$ všude, nejen na výchozí nadploše -- k tomu je potřeba, aby $[a_1,\bar a_i]$ zůstával v rozpětí $\bar a_j$, $j\geq2$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-12-9}
+\subsubsection*{$\circledast$ Doplnění důkazu}
+{\small
+\begin{align*}
+  [a_1,\bar a_i] &= [a_1, a_i - (a_i\cdot\mathrm{d}x^{1})a_1] = [a_1,a_i] - \big(a_1\cdot\mathrm{d}(a_i\cdot\mathrm{d}x^{1})\big)a_1
+   = [a_1,a_i] - \big(a_1\cdot\mathrm{d}(a_i\cdot\mathrm{d}x^{1}) - a_i\cdot\mathrm{d}(a_1\cdot\mathrm{d}x^{1})\big)a_1 \\
+  &= [a_1,a_i] - ([a_1,a_i]\cdot\mathrm{d}x^{1})\,a_1 = \sum_j f_{1i}{}^{j}\big(a_j - (a_j\cdot\mathrm{d}x^{1})a_1\big) = \sum_{j=2}^{n}f_{1i}{}^{j}\,\bar a_j \\[4pt]
+  [\bar a_i,\bar a_{i'}] &= \big[a_i - a_i[x^{1}]a_1,\ a_{i'} - a_{i'}[x^{1}]a_1\big]
+   = \underline{[a_i,a_{i'}]} - \underline{a_i\big[a_{i'}[x^{1}]\big]a_1} - \underline{\underline{a_{i'}[x^{1}][a_i,a_1]}}
+   + \underline{a_{i'}\big[a_i[x^{1}]\big]a_1} + \underline{\underline{a_i[x^{1}][a_{i'},a_1]}} \\
+  &\qquad + \underline{\underline{a_i[x^{1}]\,a_1\big[a_{i'}[x^{1}]\big]a_1}} - \underline{\underline{a_{i'}[x^{1}]\,a_1\big[a_i[x^{1}]\big]a_1}} \\
+  &= [a_i,a_{i'}] - [a_i,a_{i'}][x^{1}]\,a_1 + a_i[x^{1}]\big([a_{i'},a_1] + (a_1[a_{i'}[x^{1}]] - a_{i'}[a_1[x^{1}]])a_1\big) \\
+  &\qquad - a_{i'}[x^{1}]\big([a_i,a_1] + (a_1[a_i[x^{1}]] - a_i[a_1[x^{1}]])a_1\big) \\
+  &= \sum_j f_{ii'}{}^{j}\big(a_j - a_j[x^{1}]a_1\big) - a_i[x^{1}]\sum_j f_{1i'}{}^{j}\big(a_j - a_j[x^{1}]a_1\big) + a_{i'}[x^{1}]\sum_j f_{1i}{}^{j}\big(a_j - a_j[x^{1}]a_1\big) \\
+  &= \sum_{j=2}^{n}\big(f_{ii'}{}^{j} - a_i[x^{1}]f_{1i'}{}^{j} + a_{i'}[x^{1}]f_{1i}{}^{j}\big)\,\bar a_j = \sum_{j=2}^{n}\bar f_{ii'}{}^{j}\,\bar a_j
+\end{align*}}
+\pozn{vlevo u řádků 2--4 svislá poznámka, nečitelná}
+
+\begin{align*}
+  \pounds_{a_1}(\bar a_i\cdot\mathrm{d}x^{p}) &= a_1\cdot\mathrm{d}(\bar a_i\cdot\mathrm{d}x^{p}) = [a_1,\bar a_i]\cdot\mathrm{d}x^{p} + \bar a_i\cdot\mathrm{d}(a_1\cdot\mathrm{d}x^{p}) = \\
+  &= \sum_{j=2}^{n}\bar f_{1i}{}^{j}\underbrace{\bar a_j\cdot\mathrm{d}x^{p}}_{\substack{0 \text{ na ploše}\\ x^{1} = \text{konst}}}
+   + \bar a_i\cdot\mathrm{d}\underbrace{(a_1\cdot\mathrm{d}x^{p})}_{\substack{0 \text{ díky rozšíření } x^{p}\\ \text{podél } a_1}} = 0
+\end{align*}
+$\Rightarrow$ \ $\bar a_i\cdot\mathrm{d}x^{p}$ všude \\
+vskutku -- rovnice pro komponenty $\alpha_i = \bar a_i\cdot\mathrm{d}x^{p}$ má strukturu
+\[
+  \frac{\mathrm{d}}{\mathrm{d}x^{1}}\boldsymbol{\alpha} = F(x^{1})\cdot\boldsymbol{\alpha}
+  \qquad
+  \begin{array}{l}
+    \text{kde } x^{1} \text{ je parametr podél } a_1 \\
+    \boldsymbol{\alpha} \text{ je sloupeček } \alpha_i \quad i = 2,\dots,n \\
+    F \text{ je matice } \bar f_{1i}{}^{j} \quad i,j = 2,\dots,n
+  \end{array}
+\]
+tj.\ $\boldsymbol{\alpha}(x^{1}) = \mathrm{Pexp}(x^{1}F)\cdot\boldsymbol{\alpha}(0)$ \ ale $\boldsymbol{\alpha}(0) = 0$ \ $\Rightarrow$ \ $\boldsymbol{\alpha}(x^{1}) = 0$ \ $\Rightarrow$ \ $\bar a_i\cdot\mathrm{d}x^{p} = 0$
+
+\begin{vysvetleni}[Doplnění důkazu: co se v něm děje]
+Zápis $a[f]=a\cdot\mathrm{d}f$ je derivace funkce $f$ ve směru $a$. První výpočet ukazuje, že $[a_1,\bar a_i]$ leží v rozpětí $\bar a_2,\dots,\bar a_n$ (s koeficienty $\bar f_{1i}{}^{j}=f_{1i}{}^{j}$); použije se $a_i[a_1[x^{1}]]=a_i[1]=0$ a rozklad $[a_1,a_i]=f_{1i}{}^{j}a_j$. Druhý výpočet totéž pro $[\bar a_i,\bar a_{i'}]$ (podtržené a dvojitě podtržené členy se seskupí).
+Poslední část: funkce $\alpha_i=\bar a_i[x^{p}]$ (pro pevné $p$) splňují podél integrální křivky pole $a_1$ (parametr $x^{1}$) lineární homogenní soustavu ODR $\frac{\mathrm{d}}{\mathrm{d}x^{1}}\boldsymbol\alpha=F\boldsymbol\alpha$, protože $a_1[x^{p}]=0$ podle konstrukce. Lineární soustava s nulovou počáteční podmínkou (na výchozí nadploše) má jen nulové řešení -- formálně $\boldsymbol\alpha(x^{1})=\mathrm{Pexp}\big(\int_0^{x^{1}}F\big)\boldsymbol\alpha(0)$, kde $\mathrm{Pexp}$ je (podél parametru) uspořádaná exponenciála; stačí ale jednoznačnost řešení ODR. Výsledná věta ``$\Rightarrow\ \bar a_i\cdot\mathrm{d}x^{p}$ všude'' tedy znamená ``$\bar a_i\cdot\mathrm{d}x^{p}=0$ všude''.
+\end{vysvetleni}

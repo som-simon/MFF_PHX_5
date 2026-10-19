@@ -1,0 +1,761 @@
+%======================================================================
+% GMI-13 Integrovatelne hustoty.pdf
+%======================================================================
+\section{Integrovatelné hustoty}
+\strana{GMI-13-1}
+
+\begin{itemize}[nosep]
+  \item Extenzivní veličiny
+  \item Integrovatelné hustoty
+  \item Integrování
+  \item Hustoty obecné váhy a operace na hustotách
+  \item Vztah $\Lambda^m M$ a $\mathcal{H}M$
+  \item Dualita AS forem a AS tenzorových hustot
+\end{itemize}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-13-2}
+\subsection{Extenzivní veličiny}
+
+veličiny aditivní při skládání oblastí $=$ \kw{míry na varietě} \\
+lze chápat jako sčítání nekonečně malého množství veličiny lokalizovaného kolem každého bodu přes body oblasti
+\[
+  m_\Omega = \int_\Omega \dd m \qquad q_\Omega = \int_\Omega \dd q \qquad V_\Omega = \int_\Omega \dd V
+\]
+veličiny pod integrálem $=$ \kw{integrovatelné hustoty}
+\begin{itemize}[nosep]
+  \item[--] ultralokální charakter (lze definovat v bodě) $\Leftrightarrow$ aditivita
+  \item[--] skalární charakter -- tvoří 1dim vekt.\ pr.\ v každém bodě \\
+        $\Rightarrow$ každé dvě hust.\ si jsou úměrné přes reálné číslo
+        \[ \dd m = \mu\,\dd V \qquad \mu = \frac{\dd m}{\dd V} \qquad \mu\in\mathbb{R}\ \text{ v } x \]
+\end{itemize}
+
+\begin{vysvetleni}[extenzivní veličiny a hustoty]
+Hmotnost, náboj, objem\ldots{} jsou \emph{míry}: přiřazují číslo oblasti a jsou aditivní při jejím rozdělení.
+\uv{Nekonečně malé množství} $\dd m$ v bodě je to, co se integruje -- integrovatelná hustota.
+Klíčové pozorování: v daném bodě tvoří hustoty \emph{1-dim} prostor, proto je podíl dvou hustot
+(např.\ $\mu = \dd m/\dd V$, hmotnostní hustota) obyčejné číslo (funkce na $M$), kdežto hustota sama číslem není --
+závisí na tom, \uv{v čem} objem měříme. Viz Krtouš, odd.~5.1--5.2.
+\end{vysvetleni}
+
+\textbf{referenční souřadnicový objem}
+
+$x^j$ souř.\ mapa na $U\subset M$, \ $\dim M = m$, \ $\Omega\subset U$ oblast
+
+\begin{minipage}{0.5\textwidth}
+\[
+  \Delta^m x = \int_\Omega \dd^m x = \int_{x[\Omega]} \dd x^1\dots\dd x^m
+\]
+měří objem oblasti $\Omega$ daný počtem souř.\ buněk s souř.\ hranou 1
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\begin{tikzpicture}[scale=0.55]
+  % mřížka (zakřivená souřadnicová síť)
+  \foreach \i in {0,...,5}
+    \draw[gray] (0,\i*0.8) .. controls (2,\i*0.8+0.3) and (4,\i*0.8-0.2) .. (6,\i*0.8+0.2);
+  \foreach \i in {0,...,6}
+    \draw[gray] (\i*0.95,-0.2) .. controls (\i*0.95+0.3,1.5) and (\i*0.95-0.2,2.5) .. (\i*0.95+0.2,4.2);
+  % oblast Omega = 2x2 buňky
+  \draw[very thick] (1.95,0.9) rectangle (3.9,2.5);
+  \node at (2.9,1.7) {\small 1\,\,1};
+  \node[below] at (2.5,0.9) {$\Omega$};
+  \node at (3,-0.9) {$\Delta^m x = 4$};
+  % obecná oblast
+  \begin{scope}[xshift=7.2cm]
+    \foreach \i in {0,...,5}
+      \draw[gray] (0,\i*0.8) .. controls (2,\i*0.8+0.3) and (3,\i*0.8-0.2) .. (4.5,\i*0.8+0.2);
+    \foreach \i in {0,...,5}
+      \draw[gray] (\i*0.9,-0.2) .. controls (\i*0.9+0.3,1.5) and (\i*0.9-0.2,2.5) .. (\i*0.9+0.2,4.2);
+    \draw[very thick,pattern=north east lines,pattern color=gray] (2.2,2.2) ellipse (1.2 and 0.9);
+    \node[align=center,font=\small] at (2.2,-0.9) {spojité zahrnutí\\ obecné hranice};
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+věta o změně proměnných při integr.\ v $\mathbb{R}^m$
+\[
+  \int_{\Omega\to x[\Omega]} \dd^m x = \int_{\Omega\to x'[\Omega]} \Big|\det\frac{\partial x^k}{\partial x^{j'}}\Big|\,\dd^m x'
+\]
+$\Downarrow$ \quad transformace hustoty souř.\ objemu
+\[
+  \vzorec{\dd^m x = \Big|\det\frac{\partial x^k}{\partial x^{l'}}\Big|\,\dd^m x'}
+  \qquad
+  \dd^m x' = \Big|\det\frac{\partial x^{k'}}{\partial x^{l}}\Big|\,\dd^m x
+\]
+\quad zvětšení souřadnicové buňky $=$ zmenšení souř.\ objemu
+
+\textbf{obecná hustota}
+\[
+  \dd a = \alpha_x\,\dd^m x \qquad \alpha_x \equiv \dd a_x \equiv \frac{\dd a}{\dd^m x}
+  \qquad \text{\parbox{5.2cm}{\small hustota kvantity na souř.\ objem $=$ množství kvantity v souř.\ buňce}}
+\]
+transf.\ vlastnosti
+\[
+  \vzorec{\alpha_{x'} = \frac{\dd a}{\dd^m x'} = \Big|\det\frac{\partial x^k}{\partial x^{l'}}\Big|\frac{\dd a}{\dd^m x} = \Big|\det\frac{\partial x^k}{\partial x^{l'}}\Big|\,\alpha_x}
+\]
+integr.\ veličina nezávisí na volbě souř.
+\[
+  a_\Omega = \int_\Omega \dd a = \int_{x[\Omega]} \alpha_x\,\dd^m x = \int_{x'[\Omega]} \alpha_{x'}\,\dd^m x'
+  \quad\text{vskutku: } = \int \Big|\det\frac{\partial x^k}{\partial x^{l'}}\Big|\,\alpha_x\,\Big|\det\frac{\partial x^{k'}}{\partial x^{l}}\Big|\,\dd^m x
+\]
+
+\begin{vysvetleni}[souřadnicový objem a jeho transformace]
+$\dd^m x$ \uv{počítá souřadnicové buňky} $\Delta x^1=\dots=\Delta x^m=1$. Při změně souřadnic se mění velikost buňky,
+proto se mění i $\dd^m x$ -- faktor je Jakobián z věty o substituci, \emph{s absolutní hodnotou} (objem nezávisí na orientaci).
+Složka $\alpha_x = \dd a/\dd^m x$ (\uv{množství na buňku}) se transformuje \emph{inverzně}, takže součin $\alpha_x\,\dd^m x$
+a tedy i integrál na souřadnicích nezávisí (oba Jakobiány v posledním řádku jsou vzájemně inverzní, jejich součin je $1$).
+Příklad: v rovině $\dd x\,\dd y = r\,\dd r\,\dd\varphi$, tj.\ $\dd^2x = |\det\partial(x,y)/\partial(r,\varphi)|\,\dd^2x' = r\,\dd r\dd\varphi$.
+Viz Krtouš, odd.~5.1 (D5.1, V5.1) a příklad P5.1.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-3}
+% symbol hustoty z poznámek (destička) -- přibližná reprodukce
+\providecommand{\gmIhustsym}{\mathord{\text{\tikz[baseline=0.04cm,line width=0.55pt,line join=round]{\draw (0,0.075)--(0.07,0.15)--(0.32,0.15)--(0.28,0.075)--(0.32,0)--(0.07,0)--cycle;}}}}
+% druhá hustota (zrcadlový symbol) a bázová hustota (symbol s příčkou)
+\providecommand{\gmIhustsymB}{\mathord{\text{\tikz[baseline=0.04cm,line width=0.55pt,line join=round]{\draw (0.32,0.075)--(0.25,0.15)--(0,0.15)--(0.04,0.075)--(0,0)--(0.25,0)--cycle;}}}}
+\providecommand{\gmIbazhust}{\mathord{\text{\tikz[baseline=0.04cm,line width=0.55pt,line join=round]{\draw (0,0.075)--(0.07,0.15)--(0.27,0.15)--(0.32,0.075)--(0.27,0)--(0.07,0)--cycle; \draw (0.03,0.075)--(0.32,0.075);}}}}
+% hustotní duál (hvězdička s příčkou)
+\providecommand{\gmIhdual}{\mathord{\divideontimes}}
+
+\textbf{lokalizace do bodu}
+
+souřad.\ objem je dán velikostí souř.\ buňky v bodě $x$ \\
+nepotřebujeme ale pokračování souřadnic mimo bod $x$ \\
+tvar/velikost souř.\ buňky v bodě $x$ je dána souř.\ vekt.\ v $x$ \quad $\dfrac{\partial}{\partial x^j}$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \foreach \i in {0,...,3}
+    \draw[gray] (-0.3+\i*0.2,\i*0.6) -- (3.3+\i*0.2,\i*0.6+0.5);
+  \foreach \i in {0,...,4}
+    \draw[gray] (\i*0.8,-0.3) -- (\i*0.8+0.7,2.2);
+  \draw[very thick,-{Stealth}] (1.15,0.75) -- (1.85,0.85) node[below right] {$\frac{\partial}{\partial x^1}$};
+  \draw[very thick,-{Stealth}] (1.15,0.75) -- (1.33,1.35) node[above left] {$\frac{\partial}{\partial x^2}$};
+  \draw[thin] (1.33,1.35) -- (2.03,1.45) -- (1.85,0.85);
+\end{tikzpicture}
+\end{center}
+
+v daném bodě je souř.\ buňka dána $m$-ticí vektorů \\
+\quad $\to$ zobecníme na obecnou bázi \quad $\dfrac{\partial}{\partial x^j}\to e_j$
+
+množství kvantity v souř.\ buňce napnuté na $\dfrac{\partial}{\partial x^j}$ \quad resp.\ $e_j$
+\[
+  \dd a\Big[\frac{\partial}{\partial x^j}\Big] \equiv \dd a_x \equiv \alpha_x = \frac{\dd a}{\dd^m x}
+  \qquad\text{resp.}\qquad \dd a[e_j] = \dd a_e
+\]
+transformační vlastnosti
+\[
+  \dd a\Big[\frac{\partial}{\partial x^{l'}}\Big] = \Big|\det\frac{\partial x^k}{\partial x^{l'}}\Big|\,\dd a\Big[\frac{\partial}{\partial x^k}\Big]
+  \qquad\text{resp.}\qquad
+  \vzorec{\dd a[e_{l'}] = |\det A^k{}_{l'}|\,\dd a[e_k]}
+\]
+\[
+  \frac{\partial}{\partial x^{l'}} = \frac{\partial x^k}{\partial x^{l'}}\frac{\partial}{\partial x^k}
+  \hspace{4cm}
+  e_{l'} = A^k{}_{l'}\,e_k
+\]
+
+alternativní značení \quad $\dd a,\ \gmIhustsym,\ \tilde a$
+\[
+  \begin{array}{llll}
+    a = \int \dd a & \dd a = \dd a_x\,\dd^m x & \dd a_x = \dd a\big[\frac{\partial}{\partial x^k}\big] & \dd a_e = \dd a[e_k] \\[4pt]
+    A = \int \gmIhustsym & \gmIhustsym = \gmIhustsym_x\,\dd^m x & \gmIhustsym_x = \gmIhustsym\big[\frac{\partial}{\partial x^k}\big] & \gmIhustsym_e = \gmIhustsym[e_k] \\[4pt]
+    A = \int \tilde a & \tilde a = \tilde a_x\,\dd^m x & \tilde a_x = \tilde a\big[\frac{\partial}{\partial x^k}\big] & \tilde a_e = \tilde a[e_k]
+  \end{array}
+\]
+
+\begin{vysvetleni}[ručně kreslené symboly hustot]
+V poznámkách se hustota značí speciálním piktogramem \uv{destičky} $\gmIhustsym$ (\uv{plíšek} s nějakým množstvím veličiny);
+je to jen jméno obecné hustoty, ekvivalent zápisů $\dd a$ nebo $\tilde a$ v tabulce.
+Dále: $\gmIhustsymB$ (zrcadlová destička) $=$ druhá obecná hustota, $\gmIbazhust$ (destička s příčkou) $=$ bázová/souřadnicová hustota
+příslušná bázi $e_j$ (viz str.~GMI-13-4), $\gmIhdual$ $=$ hustotní duál (str.~GMI-13-11).
+Krtouš značí hustoty \emph{gotickými písmeny} $\mathfrak a,\mathfrak b,\mathfrak m$ nebo $\dd V,\dd q$, souřadnicovou hustotu báze $e_j$
+gotickým $\mathfrak e$, dimenzi variety $d$ (zde $m$); tenzorové hustoty vlnovkou. Hranaté závorky $\gmIhustsym[e_k]$ $=$ \uv{hodnota hustoty na bázi},
+tj.\ množství veličiny v buňce napnuté na $e_1,\dots,e_m$; Krtouš (5.8) píše též $\dd q[\partial/\partial x^j] = \dd q/\dd^d x$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-4}
+% (definice \gmIhustsymB a \gmIbazhust přesunuty na str. GMI-13-3)
+
+\subsection{Integrovatelné hustoty}
+
+\begin{definice}[Integrovatelná hustota]
+\kw{integr.\ hust.}\ je ultralok.\ veličina přiřazující bázi vekt.\ číslo
+\[
+  \gmIhustsym:\ \text{báze } T_xM \to \mathbb{R} \qquad e_j \to \gmIhustsym[e_j] \equiv \gmIhustsym_e
+\]
+transf.\ vlastnosti:
+\[
+  \vzorec{\gmIhustsym[e_{l'}] = \gmIhustsym[A^k{}_{l'}e_k] = |\det A^k{}_{l'}|\;\gmIhustsym[e_k]}
+  \qquad\text{pro } e_{l'} = A^k{}_{l'}e_k
+\]
+\end{definice}
+
+\begin{vysvetleni}[proč definice přes báze]
+Souřadnice už nepotřebujeme: v bodě stačí znát \uv{referenční buňku}, tj.\ bázi $e_j$ v $T_xM$, a hustota jí přiřadí
+množství veličiny v této buňce. Změníme-li bázi maticí $A$, objem buňky se změní faktorem $|\det A|$, a tolikrát víc veličiny se do ní vejde.
+Hustota je tak \uv{ultralokální} objekt jako tenzor -- jen s jinou (jednorozměrnou) reprezentací grupy $GL(m)$: $A\mapsto|\det A|$.
+Srovnej s $m$-formou, kde se násobí $\det A$ \emph{bez} absolutní hodnoty (str.~GMI-13-8). Viz Krtouš, D5.2, lemma V5.2 a marginálie M5.2.
+\end{vysvetleni}
+
+přirozená struktura 1-dim vekt.\ pr.
+\[
+  (\gmIhustsym + \gmIhustsymB)[e_k] = \gmIhustsym[e_k] + \gmIhustsymB[e_k]
+  \qquad
+  (r\gmIhustsym)[e_k] = r\,\gmIhustsym[e_k] \quad r\in\mathbb{R}
+\]
+\[
+  \frac{\gmIhustsym}{\gmIhustsymB} = \frac{\gmIhustsym[e_k]}{\gmIhustsymB[e_k]} \quad\text{pro libov.\ } e_k
+\]
+
+značení
+\begin{itemize}[nosep]
+  \item[] $\mathcal{H}_xM$ \quad prostor hustot v bodě $x$
+  \item[] $\tilde{\mathcal{F}}M = \mathrm{Sect}\,\mathcal{H}M$ \quad prostor hustotních polí na $M$
+\end{itemize}
+
+\textbf{souřadnicové hustoty}
+\begin{itemize}[nosep]
+  \item[] báze $e_j$ \ $\to$ \ bázové hust.\ $\gmIbazhust$ \qquad $\gmIbazhust[e_j] = 1$ \\
+          \quad měří počet buněk napnutých na $e_j$
+  \item[] báze $\dfrac{\partial}{\partial x^j}$ \ $\to$ \ bázové hust.\ $\dd^m x$ \qquad $\dd^m x\Big[\dfrac{\partial}{\partial x^j}\Big] = 1$
+\end{itemize}
+máme
+\[
+  \gmIhustsym = \gmIhustsym_e\,\gmIbazhust \qquad\text{kde } \gmIhustsym_e = \gmIhustsym[e_j]
+  \qquad\text{vskutku: } \gmIhustsym[e_j] = \gmIhustsym_e\,\gmIbazhust[e_j] = \gmIhustsym_e
+\]
+máme
+\[
+  \dd^m x' = \dd^m x'\Big[\frac{\partial}{\partial x^j}\Big]\dd^m x
+  = \dd^m x'\Big[\frac{\partial x^{l'}}{\partial x^j}\frac{\partial}{\partial x^{l'}}\Big]\dd^m x
+  = \Big|\det\frac{\partial x^{l'}}{\partial x^j}\Big|\,\overbrace{\dd^m x'\Big[\frac{\partial}{\partial x^{l'}}\Big]}^{1}\dd^m x
+  = \Big|\det\frac{\partial x^{l'}}{\partial x^j}\Big|\,\dd^m x
+\]
+
+\begin{vysvetleni}[bázová hustota $\gmIbazhust$]
+Protože $\mathcal{H}_xM$ je 1-dim, stačí jeden \uv{jednotkový} prvek: bázová hustota $\gmIbazhust$ přiřazená bázi $e_j$ je definována tak,
+že buňka na $e_j$ obsahuje právě jednotku ($\gmIbazhust[e_j]=1$). Pak každá hustota je její násobek a koeficient je
+přesně hodnota $\gmIhustsym[e_j]$. Pro souřadnicovou bázi $\partial/\partial x^j$ je bázovou hustotou $\dd^m x$ -- to dává smysl
+\uv{formálnímu} zápisu $\dd a = \dd a_x\,\dd^m x$ ze str.~GMI-13-2. Poslední výpočet ukazuje, že transformace $\dd^m x'$ odvozená z definice
+souhlasí se substituční větou. Krtouš: D5.3 (značí $\mathfrak e$), lemma V5.3, rov.~(5.7).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-5}
+\subsection{Integrování hustot}
+
+$U,x$ \quad souř.\ mapa pokrývající oblast $\Omega$
+\begin{definice}[Integrál hustoty]
+\[
+  \vzorec{\int_\Omega \gmIhustsym \overset{\text{def}}{=} \int_\Omega \gmIhustsym\Big[\frac{\partial}{\partial x^k}\Big]\dd^m x
+  = \int_{x[\Omega]} \gmIhustsym_x(x^1,\dots,x^m)\,\dd x^1\dots\dd x^m}
+\]
+\end{definice}
+
+nezávisí na změně souř.\ pokrývající $\Omega$
+\[
+  \int_\Omega \gmIhustsym = \int_{x'[\Omega]} \gmIhustsym_{x'}\,\dd^m x' = \int_{x[\Omega]} \gmIhustsym_x\,\dd^m x
+\]
+\quad kde \quad $\dd^m x' \hookrightarrow \Big|\det\dfrac{\partial x^{l'}}{\partial x^l}\Big|\dd^m x$
+\quad a \quad $\gmIhustsym_{x'} \hookrightarrow \gmIhustsym\Big[\dfrac{\partial}{\partial x^{l'}}\Big] = \Big|\det\dfrac{\partial x^k}{\partial x^{l'}}\Big|\,\gmIhustsym\Big[\dfrac{\partial}{\partial x^k}\Big]$
+
+oblast přesahující mapu $U,x$
+\begin{itemize}[nosep]
+  \item[--] rozsekání oblasti na disjunktní podoblasti pokryté mapami
+  \item[--] aditivita ve skládání oblastí
+  \item[--] spojité rozsekání oblasti \\
+        $=$ \kw{rozklad jednotky}
+\end{itemize}
+
+\begin{vysvetleni}[integrál hustoty]
+Integrál se převede na obyčejný Riemannův/Lebesgueův integrál v $\mathbb{R}^m$ ze složky $\gmIhustsym_x$; nezávislost na mapě
+plyne z toho, že transformace složky (faktor $|\det\partial x/\partial x'|$) přesně kompenzuje Jakobián substituční věty -- proto
+definice hustoty obsahuje \emph{absolutní} hodnotu determinantu. Pro oblasti mimo jednu mapu se použije rozklad jednotky
+$\sum_k\varphi_k = 1$, $\operatorname{supp}\varphi_k\subset U_k$: $\int_\Omega\gmIhustsym = \sum_k\int_{\Omega\cap U_k}\varphi_k\gmIhustsym$
+(\uv{spojité rozsekání}). Viz Krtouš, odd.~5.4 (D5.4--D5.6) a příklad P5.2 (válcová plocha).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-6}
+\subsection{Hustoty obecné váhy a operace na hustotách}
+
+\begin{definice}[Hustota váhy $w$]
+\kw{hustota váhy $w$} v bodě $x$
+\[
+  \gmIhustsym:\ \text{báze } T_xM \to \mathbb{R} \qquad\qquad \text{prostor } \mathcal{H}^w_xM
+\]
+\[
+  \vzorec{\gmIhustsym[e_{j'}] = |\det A^k{}_{j'}|^w\;\gmIhustsym[e_k]}
+\]
+\end{definice}
+tvoří též 1-dim vekt.\ prostor (viz výše $w = 1$) \\
+umožňuje definovat součin a mocninu hustot
+
+\textbf{součin:} \quad $\mathcal{H}^a_xM\times\mathcal{H}^b_xM \to \mathcal{H}^{a+b}_xM$
+\[
+  (\gmIhustsym\,\gmIhustsymB)[e_j] = \gmIhustsym[e_j]\;\gmIhustsymB[e_j]
+\]
+\quad vskutku \quad
+$(\gmIhustsym\gmIhustsymB)[e_{j'}] = \gmIhustsym[e_{j'}]\,\gmIhustsymB[e_{j'}]
+ = |\det A|^a\gmIhustsym[e_k]\,|\det A|^b\gmIhustsymB[e_k] = |\det A|^{a+b}(\gmIhustsym\gmIhustsymB)[e_k]$
+
+\textbf{$p$-mocnina:} \quad $\mathcal{H}^w_xM \to \mathcal{H}^{pw}_xM$
+\[
+  (\gmIhustsym^p)[e_j] = (\gmIhustsym[e_j])^p
+\]
+\quad vskutku \quad
+$(\gmIhustsym^p)[e_{j'}] = (\gmIhustsym[e_{j'}])^p = \big(|\det A|^w\gmIhustsym[e_k]\big)^p = |\det A|^{pw}\,\gmIhustsym^p[e_k]$
+
+souřadnicové hustoty váhy $w$
+\[
+  \gmIbazhust^w \quad\text{resp.}\quad (\dd^m x)^w
+  \qquad\qquad
+  \gmIhustsym = \gmIhustsym[e_j]\,\gmIbazhust^w \quad\text{pro } \gmIhustsym\in\mathcal{H}^w_xM
+\]
+
+\begin{vysvetleni}[váha hustoty]
+Váha $w$ udává, jakou mocninou objemu buňky se hustota škáluje: $w=1$ integrovatelné hustoty, $w=0$ obyčejná čísla (funkce),
+$w=2$ např.\ $\mathrm{Det}\,g$ (str.~GMI-13-7), $w=\frac12$ např.\ \uv{odmocniny z objemu} (užitečné v kvantové mechanice -- vlnová funkce
+s $|\psi|^2$ hustotou). Díky 1-dim charakteru lze definovat součin (váhy se sčítají) a reálnou mocninu (váha se násobí).
+Integrovat lze jen hustoty váhy $1$. Pozor: Krtouš (D5.10) definuje obecnou reálnou mocninu jen pro \emph{kladné} hustoty,
+celočíselnou pro libovolné -- pro záporné $\gmIhustsym[e_j]$ by $(\gmIhustsym[e_j])^p$ nebylo definováno. Viz Krtouš D5.9--D5.10.
+\end{vysvetleni}
+
+\begin{definice}[Absolutní hodnota]
+\[
+  |\ |:\ \mathcal{H}M \to \mathcal{H}^+M \qquad \gmIhustsym \to |\gmIhustsym|
+\]
+\[
+  |\gmIhustsym|[e_j] = \big|\gmIhustsym[e_j]\big| \qquad\text{konzist.\ s transf.\ vlast.}
+\]
+$\mathcal{H}^\pm M$ \quad \kw{pozitivní / negativní hust.}
+\[
+  \gmIhustsym\in\mathcal{H}^\pm M \ \Leftrightarrow\ \gmIhustsym[e_j] \gtrless 0 \qquad\text{nezávisí na volbě } e_j
+\]
+\end{definice}
+
+\begin{definice}[Tenzorové hustoty, vektor-hustoty]
+\[
+  \tilde{\mathbf{T}}^{w\,k}{}_l M = \mathcal{H}^w\otimes\mathbf{T}^k{}_l M
+\]
+např. \quad $\gmIhustsym^a = a^a\,\dd V$ \quad \pozn{horní index čten jako $a$}
+\end{definice}
+
+\begin{vysvetleni}[tenzorové hustoty]
+Tenzorová hustota je \uv{tenzor vynásobený nekonečně malým objemem}: např.\ hustota toku $\gmIhustsym^a = a^a\,\dd V$ (vektorové pole $a$
+krát objemový element) je vektorová hustota váhy $1$. Rozklad na hustotu $\times$ tenzor není jednoznačný (lze přesunout číselný faktor).
+Při změně báze se složky transformují jako tenzor a navíc faktorem $|\det A|^w$. Krtouš D5.8 značí prostor $\tilde{\mathbf{T}}M$ (vlnovka),
+tenzorové hustoty též $\tilde a$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-7}
+\begin{definice}[Metrický objemový element]
+\kw{metrický objemový element} $=$ geom.\ objem \\
+\quad $g$ metrika \quad $\to$ \quad $\dd V$ metr.\ objem.\ el.
+\[
+  \dd V[e_j] = 1 \qquad\text{pro ortonormální bázi } e_j
+\]
+\end{definice}
+
+\begin{veta}[Lemma]
+$\dd V$ v obecné bázi
+\[
+  \vzorec{\dd V[e_j] = |\det g_{kl}|^{\frac12}} \qquad\text{kde } g_{kl} = e_k\cdot g\cdot e_l \ \text{ metr.\ koef.}
+\]
+\end{veta}
+\underline{důk:} \quad $e_{l'}$ ortogon.\ báze, \quad $e_k = A^{l'}{}_k\,e_{l'}$ obecná báze
+\begin{align*}
+  \dd V[e_k] &= \dd V[A^{l'}{}_k e_{l'}] = |\det A^{l'}{}_k|\,\dd V[e_{l'}] = |\det A^{l'}{}_k| \\
+  \det g_{kl} &= \det\big(A^{i'}{}_k A^{j'}{}_l\, g_{i'j'}\big) = (\det A^{j'}{}_k)^2\det g_{i'j'} = \operatorname{sign}g\;|\det A^{j'}{}_k|^2 \\
+  &\Rightarrow\ |\det A^{j'}{}_k| = |\det g_{kl}|^{\frac12} \ \Rightarrow\ \dd V[e_k] = |\det g_{kl}|^{\frac12}
+\end{align*}
+
+\begin{vysvetleni}[metrický objemový element]
+Metrika vybírá význačnou hustotu: ortonormální buňka má objem $1$. Definice je korektní, protože přechod mezi dvěma ON bázemi má
+$|\det A| = 1$. V důkazu je $e_{l'}$ ortonormální báze (\uv{ortogon.} v poznámkách je míněno ortonormální, tj.\ $g_{i'j'} = \operatorname{diag}(\pm1)$,
+$\det g_{i'j'} = \operatorname{sign} g$). Výsledek je známé $\sqrt{|g|}$, např.\ ve sférických souřadnicích
+$\dd V = r^2\sin\vartheta\,\dd r\dd\vartheta\dd\varphi$. Viz Krtouš D5.11, věta V5.4, příklad P5.3.
+\end{vysvetleni}
+
+značení
+\begin{itemize}[nosep]
+  \item[] v dim 1--4 užíváme \quad $\dd l,\ \dd S,\ \dd V,\ \dd\Omega$
+  \item[] pro metriky $g$ resp.\ $q$ budeme užívat \quad $\mathfrak{g}^{\frac12}$, \ $\mathfrak{q}^{\frac12}$
+\end{itemize}
+
+\begin{definice}[Determinant metriky]
+\[
+  \mathrm{Det}:\ \mathbf{T}^0{}_2M \to \mathcal{H}^2M \qquad g\to\mathrm{Det}\,g
+\]
+\[
+  (\mathrm{Det}\,g)[e_j] = \det g_{kl} \qquad\text{kde } g_{kl} = e_k\cdot g\cdot e_l
+\]
+\end{definice}
+transf.\ vl.:
+\begin{align*}
+  (\mathrm{Det}\,g)[A^k{}_{l'}e_k] &= \det g_{k'l'} = \det\big(A^j{}_{k'}\,g_{ji}\,A^i{}_{l'}\big) = (\det A^j{}_{k'})^2\det g_{ij} \\
+  &= |\det A^k{}_{l'}|^2\,(\mathrm{Det}\,g)[e_k] \qquad\to\ \text{váha } 2
+\end{align*}
+zřejmě
+\[
+  \vzorec{\mathfrak{g} = |\mathrm{Det}\,g|}
+\]
+
+\begin{vysvetleni}[$\mathrm{Det}\,g$ a $\mathfrak g^{1/2}$]
+Determinant matice $g_{kl}$ není skalár -- závisí na bázi, a to právě jako hustota váhy $2$ (dvě matice $A$ v $A^TgA$).
+Proto $\mathfrak g = |\mathrm{Det}\,g|$ je kladná hustota váhy $2$ a $\mathfrak g^{1/2} = \dd V$ je metrický objemový element; v souřadnicích
+$\mathfrak g^{1/2} = |\det g_{ij}|^{1/2}\,\dd^m x$, tj.\ $\int_\Omega f\,\mathfrak g^{1/2} = \int f\sqrt{|g|}\,\dd^m x$.
+$\mathrm{Det}\,g$ samo je bez absolutní hodnoty, takže pro lorentzovskou signaturu je záporné. Viz Krtouš D5.12, rov.~(5.9)--(5.11).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-8}
+\subsection{Vztah $\Lambda^m_xM$ a $\mathcal{H}_xM$}
+
+\textbf{totálně AS formy} (TAS)
+\[
+  \omega\in\Lambda^mM \qquad\text{báze } \mathbf{e} = e^1\wedge\dots\wedge e^m
+  \quad\text{resp.}\quad \mathbf{e}' = e^{1'}\wedge\dots\wedge e^{m'}
+\]
+\[
+  \omega = \omega_{1\dots m}\,\mathbf{e} = \omega_{1'\dots m'}\,\mathbf{e}'
+\]
+1-dim vekt.\ prostor \\
+komponenta má transf.\ vlast.
+\[
+  \omega_{1'\dots m'} = \det A^k{}_{l'}\;\omega_{1\dots m}
+  \qquad\text{kde } e^k = A^k{}_{l'}e^{l'},\quad e_{l'} = A^k{}_{l'}e_k
+\]
+podobné jako pro hustoty -- až na absol.\ hodn.
+
+\begin{minipage}{0.55\textwidth}
+\begin{definice}[Absolutní hodnota formy]
+\[
+  |\ |:\ \Lambda^mM \to \mathcal{H}^+M
+\]
+\[
+  |\omega|[e_j] = |\omega_{1\dots m}|
+\]
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.7,>=Stealth]
+  \draw (0,-2) -- (0,2) node[above] {$\Lambda^mM$};
+  \draw (2.5,-2) -- (2.5,2) node[above] {$\mathcal{H}M$};
+  \foreach \y/\l in {1.2/\omega,0/0,-1.2/-\omega} {\draw (-0.08,\y)--(0.08,\y); \node[left] at (0,\y) {$\l$};}
+  \draw (2.42,1.2)--(2.58,1.2); \node[right] at (2.5,1.2) {$|\omega|$};
+  \draw (2.42,0)--(2.58,0); \node[right] at (2.5,0) {$0$};
+  \draw[->] (0,1.2) -- (2.45,1.2);
+  \draw[->] (0,-1.2) -- (2.45,1.15);
+  \node at (3.6,1.7) {\small$\mathcal{H}^+M$};
+  \node at (3.4,-1.7) {\small$\mathcal{H}^-M$};
+\end{tikzpicture}
+\end{minipage}
+
+$\Lambda^mM$ a $\mathcal{H}M$ jsou izomorfní včetně transf.\ vlastn. \\
+\quad \pozor{ale izomorfismus není kanonický} -- existují dva lišící se znaménkem \\
+výběr izomorfismu je ekvivalentní volbě orientace v prostoru $\Lambda^mM$, což je ekvivalentní volbě orientace bází
+
+\begin{definice}[Orientace]
+\kw{orientace bází v $TM$} -- dvě třídy ekv.\ bází -- jednu nazveme poz. \\
+\quad ekvivalence $e\sim e' \Leftrightarrow \det A > 0$, \ $A$ matice přechodu $e' = Ae$
+
+\kw{orientace v $\Lambda^mM$} -- dvě třídy ekv.\ forem -- jednu nazveme poz. \\
+\quad $\omega$ je pozitivní $\Leftrightarrow$ $\omega_{1\dots m} > 0$ pro poz.\ bázi \\
+\quad ekvivalence \ $\omega \sim \sigma \Leftrightarrow \sigma_{1\dots m}$, $\omega_{1\dots m}$ stejné znaménko
+\end{definice}
+
+izomorf.\ $\iota_+:\Lambda^mM\to\mathcal{H}M$ \quad zobr.\ poz.\ forem na poz.\ hustoty
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7,>=Stealth]
+  % iota_+
+  \draw (0,-2) -- (0,2) node[above] {$\Lambda^mM$};
+  \draw (2.5,-2) -- (2.5,2) node[above] {$\mathcal{H}M$};
+  \foreach \y/\l in {1.2/\omega,0/0,-1.2/-\omega} {\draw (-0.08,\y)--(0.08,\y); \node[left] at (0,\y) {$\l$};}
+  \foreach \y/\l in {1.2/\iota_+\omega,0/0,-1.2/-\iota_+\omega} {\draw (2.42,\y)--(2.58,\y); \node[right] at (2.5,\y) {$\l$};}
+  \draw[->] (0,1.2) -- node[above] {$\iota_+$} (2.45,1.2);
+  \draw[->] (0,-1.2) -- (2.45,-1.2);
+  \node at (4.5,1.5) {\small$\mathcal{H}^+M$};
+  \node at (4.5,-1.2) {\small$\mathcal{H}^-M$};
+  % iota_-
+  \begin{scope}[xshift=7.5cm]
+    \draw (0,-2) -- (0,2) node[above] {$\Lambda^mM$};
+    \draw (2.5,-2) -- (2.5,2) node[above] {$\mathcal{H}M$};
+    \foreach \y/\l in {1.2/\omega,0/0,-1.2/-\omega} {\draw (-0.08,\y)--(0.08,\y); \node[left] at (0,\y) {$\l$};}
+    \foreach \y/\l in {1.2/-\iota_-\omega,0/0,-1.2/\iota_-\omega} {\draw (2.42,\y)--(2.58,\y); \node[right] at (2.5,\y) {$\l$};}
+    \draw[->] (0,1.2) -- (2.45,-1.15);
+    \draw[->] (0,-1.2) -- (2.45,1.15);
+    \node at (0.9,0.9) {$\iota_-$};
+    \node at (4.5,1.5) {\small$\mathcal{H}^+M$};
+    \node at (4.5,-1.2) {\small$\mathcal{H}^-M$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+opačně
+\begin{itemize}[nosep]
+  \item[] $\iota_+$ určuje poz.\ TAS formy ($=$ vzor $\mathcal{H}^+M$)
+  \item[] a ty určují poz.\ orient.\ báze \\
+          (vůči kterým má poz.\ forma pozitivní komponentu)
+\end{itemize}
+
+\begin{vysvetleni}[$m$-formy vs.\ hustoty, orientace]
+$m$-forma a hustota přiřazují buňce číslo a obě jsou 1-dim; liší se jen tím, že forma \emph{mění znaménko} při změně orientace báze
+($\det A$ místo $|\det A|$). Forma tedy nese navíc informaci o orientaci. $|\omega|$ tuto informaci zapomene (není prosté: $|\omega| = |{-\omega}|$).
+Identifikovat oba prostory lineárně lze dvěma způsoby $\iota_\pm$ ($\iota_- = -\iota_+$); volba $\iota_+$ $\Leftrightarrow$ volba,
+které formy jsou \uv{kladné} $\Leftrightarrow$ volba orientace bází. Na diagramech: $|\ |$ posílá $\pm\omega$ na stejný bod $\mathcal H^+$,
+$\iota_\pm$ jsou lineární bijekce. Pro poz.\ orient.\ bázi $(\iota_\pm\alpha)[e_j] = \pm\alpha_{1\dots m}$.
+Viz Krtouš, odd.~5.6, D5.13--D5.17, rov.~(5.15)--(5.16).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-9}
+\begin{definice}[Tenzor orientace $\tilde\varepsilon$]
+mějme zvolenou orientaci pomocí izomorf.\ $\iota_+$ \\
+\kw{tenzor orientace} a jeho inverze
+\[
+  \vzorec{\begin{aligned}
+    \tilde\varepsilon &= \omega\,(\iota_+\omega)^{-1} &&\in \Lambda^m\otimes\mathcal{H}^{-1}M \\
+    \tilde\varepsilon^{-1} &= \omega^{-1}\,(\iota_+\omega) &&\in \mathbf{T}^{[m]}{}_0\otimes\mathcal{H}\,M
+  \end{aligned}}
+  \qquad\text{pro libovolnou } \omega\in\Lambda^mM
+\]
+\end{definice}
+připomeňme
+\[
+  \omega\to\omega^{-1}\in\mathbf{T}^{[m]}{}_0M \quad\text{takové, že}\quad \omega^{-1}\bullet\omega = 1
+  \qquad \omega^{-1}\otimes\omega = m!\;{}^{[m]}\delta
+\]
+\begin{itemize}
+  \item definice $\tilde\varepsilon$ nezávisí na $\omega$ \\
+        $\iota_+$ je izomorf.\ $\Rightarrow$ $\iota_+(r\omega) = r\,(\iota_+\omega)$
+  \item $\iota_+$ a $\iota_+^{-1}$ lze napsat pomocí $\tilde\varepsilon^{-1}$ a $\tilde\varepsilon$
+  \[
+    \iota_+:\ \Lambda^mM\to\mathcal{H}M \quad \alpha\to\iota_+\alpha = \tilde\varepsilon^{-1}\bullet\alpha
+    \qquad\qquad
+    \iota_+^{-1}:\ \mathcal{H}M\to\Lambda^mM \quad \gmIhustsym\to\iota_+^{-1}\gmIhustsym = \gmIhustsym\,\tilde\varepsilon
+  \]
+  \item pro poz.\ TAS formy $\omega$ máme $\iota_+\omega = |\omega|$, \ tj.\ $\tilde\varepsilon = \omega\,|\omega|^{-1}$
+  \item $\tilde\varepsilon$ určuje podprostor poz.\ TAS forem \\
+        $\gmIhustsym\in\mathcal{H}^+M \ \Rightarrow\ \gmIhustsym\tilde\varepsilon$ je poz.\ TASF
+  \item $\tilde\varepsilon^{-1}\bullet\tilde\varepsilon = 1$ \qquad $\tilde\varepsilon^{-1}\,\tilde\varepsilon = m!\;{}^{[m]}\delta$
+  \item \pozor{pozitivně!!} orient.\ souř.\ $x^j$, \ tj.\ $\dfrac{\partial}{\partial x^j}$ poz.\ orient.\ báze
+  \begin{align*}
+    \dd^m x &= |\dd x^1\wedge\dots\wedge\dd x^m| \\
+    \tilde\varepsilon &= (\dd^m x)^{-1}\,\dd x^1\wedge\dots\wedge\dd x^m & \tilde\varepsilon_{x\,1\dots m} &= 1 \\
+    \tilde\varepsilon^{-1} &= \dd^m x\;\frac{\partial}{\partial x^1}\wedge\dots\wedge\frac{\partial}{\partial x^m} & \tilde\varepsilon^{-1\,1\dots m}_x &= 1
+  \end{align*}
+  \[
+    \alpha = \alpha_{1\dots m}\,\dd x^1\wedge\dots\wedge\dd x^m \ \xrightarrow{\ \iota_+\ }\ \gmIhustsym = \gmIhustsym_x\,\dd^m x
+    \quad\Leftrightarrow\quad \vzorec{\alpha_{1\dots m} = \gmIhustsym_x}
+  \]
+\end{itemize}
+
+\begin{vysvetleni}[tenzor orientace $\tilde\varepsilon$]
+$\tilde\varepsilon$ je \uv{$m$-forma vydělená svou hustotou}: tenzorová hustota typu $(0,m)$ váhy $-1$, která kóduje \emph{jen} orientaci
+(v poz.\ orient.\ souřadnicích má složky $\tilde\varepsilon_{x\,k_1\dots k_m} = \operatorname{sign}$ permutace, resp.\ $0$ -- Levi-Civitův symbol,
+ale jako geometrický objekt, ne jen tabulka čísel). Jeho inverze $\tilde\varepsilon^{-1}$ (typ $(m,0)$, váha $+1$) realizuje $\iota_+$ tenzorově.
+Kontrakce $\bullet$ obsahuje faktor $1/m!$ (tj.\ $\iota_+\alpha = \frac{1}{m!}\tilde\varepsilon^{-1\,k_1\dots k_m}\alpha_{k_1\dots k_m}$),
+a $\omega^{-1}$ je inverze $m$-formy ($\omega^{-1\,1\dots m} = 1/\omega_{1\dots m}$).
+Krtouš píše $\tilde\varepsilon = (\iota_+\alpha)^{-1}\alpha$ (D5.18), vlastnosti viz lemma V5.6 a marginálie M5.4; $\wedge$ u něj i zde normováno tak,
+že $(\dd x^1\wedge\dots\wedge\dd x^m)_{1\dots m}=1$.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-10}
+\kw{orientovatelnost variety $M$}
+\begin{itemize}[nosep]
+  \item[--] orientace bází / TASF lze zvolit hladce globálně na $M$
+  \item[--] existuje globálně volba $\tilde\varepsilon$
+\end{itemize}
+
+\begin{definice}[Integrování TASF na orientovatelné varietě]
+\[
+  \alpha\in\mathrm{Sect}\,\Lambda^mM \ \longrightarrow\ \gmIhustsym = \iota_+\alpha \equiv \tilde\varepsilon^{-1}\bullet\alpha\in\mathrm{Sect}\,\mathcal{H}M
+\]
+\[
+  \vzorec{\int_\Omega\alpha = \int_\Omega\gmIhustsym}
+\]
+\end{definice}
+v pozitivně orient.\ souř.\ $x^j$ máme
+\[
+  \int_\Omega\alpha = \int_{x[\Omega]}\alpha_{1\dots m}\,\dd^m x
+\]
+
+\pozor{na neorientovatelné varietě nelze integr.\ TASF zavést}
+
+intuice:
+\begin{itemize}[nosep]
+  \item[] $\alpha$ \quad počítá \uv{orientovaný} objem, který na neorient.\ varietě nemá smysl
+  \item[] $\gmIhustsym$ \quad počítá \uv{velikost} objemu -- ta má vždy smysl
+\end{itemize}
+
+\begin{vysvetleni}[integrál formy]
+Integrál $m$-formy je \emph{definován} převodem na hustotu pomocí zvolené orientace; v poz.\ orient.\ souřadnicích
+$\int_\Omega \alpha_{1\dots m}\dd x^1\wedge\dots\wedge\dd x^m = \int\alpha_{1\dots m}\,\dd^m x$. Při opačné orientaci vyjde opačné znaménko.
+Bez globální orientace (Möbiův pásek) nelze $\iota_+$ zvolit spojitě, a integrál forem tedy nemá smysl -- hustoty integrovat lze vždy.
+Viz Krtouš, odd.~5.6--5.7 (D5.15, P5.4, lemma V5.5).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-11}
+% (definice \gmIhdual přesunuta na str. GMI-13-3)
+
+\subsection{Dualita AS forem a AS tenzorových hustot}
+
+motivace
+\begin{itemize}[nosep]
+  \item[] tečné vektory duální k normálovým formám
+  \item[] tečné složky AS forem duální k normálovým složkám AS tenz.\ hustot
+  \item[] tyto složky budou hrát roli při integrování přes podvariety
+\end{itemize}
+
+\textbf{AS tenzorové hustoty}
+\[
+  \Lambda^{*p}_xM = \mathcal{H}_xM\otimes\mathbf{T}^{[p]}_xM \qquad\qquad \tilde{\mathcal{A}}^{*p}M = \mathrm{Sect}\,\Lambda^{*p}M
+\]
+
+\begin{definice}[Hustotní duál]
+\[
+  \gmIhdual:\ \Lambda^n_xM \longleftrightarrow \Lambda^{*\hat n}_xM \qquad\text{1-1 jednoznačné} \qquad n + \hat n = m = \dim M
+\]
+\begin{align*}
+  \gmIhdual:\ \Lambda^nM\to\Lambda^{*\hat n}M \quad& \alpha\to\gmIhustsym = \gmIhdual\alpha = \tilde\varepsilon^{-1}\bullet\alpha \\
+  & \gmIhustsym^{a_1\dots a_{\hat n}} = \frac{1}{n!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,\alpha_{\underline{k_1}\dots\underline{k_n}} \\[3pt]
+  \gmIhdual:\ \Lambda^{*\hat n}M\to\Lambda^nM \quad& \gmIhustsym\to\alpha = \gmIhdual\gmIhustsym = \gmIhustsym\bullet\tilde\varepsilon \\
+  & \alpha_{a_1\dots a_n} = \frac{1}{\hat n!}\,\gmIhustsym^{\underline{k_1}\dots\underline{k_{\hat n}}}\,\tilde\varepsilon_{\underline{k_1}\dots\underline{k_{\hat n}}a_1\dots a_n}
+\end{align*}
+\end{definice}
+
+\begin{vysvetleni}[hustotní duál $\gmIhdual$]
+Symbol $\gmIhdual$ (v poznámkách ručně kreslená \uv{hvězdička s příčkou}) je hustotní duál; u Krtouše speciální hvězdička odlišná
+od Hodgeova $*$ (D5.19). $\Lambda^{*p}M$ je prostor antisymetrických tenzorových hustot typu $(p,0)$ váhy $1$ -- u Krtouše $\tilde\Lambda^pM$ (D5.20).
+Podtržené indexy jsou sčítací (kontrahované). Duál spojí $n$-formu s $(m-n)$-vektorovou hustotou kontrakcí s $\tilde\varepsilon^{-1}$ resp.\ $\tilde\varepsilon$
+(faktor $1/n!$ ruší přečítání stejných členů). Indexové pořadí: v $\gmIhdual\alpha$ se kontrahují \emph{poslední} indexy $\tilde\varepsilon^{-1}$,
+v $\gmIhdual\gmIhustsym$ \emph{první} indexy $\tilde\varepsilon$ -- stejně jako u Krtouše.
+Příklad ($m=3$): 2-forma toku $\alpha$ $\leftrightarrow$ vektorová hustota $\gmIhustsym^a$ (tok $=$ \uv{vektor $\times$ objem}); funkce $f\leftrightarrow f\tilde\varepsilon^{-1}$.
+Nepotřebuje metriku, jen orientaci.
+\end{vysvetleni}
+
+\begin{veta}[Lemma]
+\[
+  \vzorec{\gmIhdual\gmIhdual\alpha = \alpha} \qquad \vzorec{\gmIhdual\gmIhdual\gmIhustsym = \gmIhustsym}
+\]
+\end{veta}
+díky \quad
+$\displaystyle\frac{1}{n!}\frac{1}{\hat n!}\,\tilde\varepsilon^{-1\,a_1\dots a_{\hat n}\underline{k_1}\dots\underline{k_n}}\,\tilde\varepsilon_{b_1\dots b_{\hat n}\underline{k_1}\dots\underline{k_n}}
+ = {}^{[\hat n]}\delta^{a_1\dots a_{\hat n}}_{b_1\dots b_{\hat n}}$
+
+speciální případy
+\[
+  \begin{array}{lll}
+    \gmIhdual\omega = \iota_+\omega & \omega\in\Lambda^mM & \\
+    \gmIhdual\mathfrak{m} = \iota_+^{-1}\mathfrak{m} & \mathfrak{m}\in\Lambda^{*0}M = \mathcal{H}M & \\
+    \gmIhdual 1 = \tilde\varepsilon^{-1} & 1\in\Lambda^0M & \\
+    \gmIhdual\tilde\varepsilon^{-1} = 1 & \tilde\varepsilon^{-1}\in\Lambda^{*m}M & \\
+    \gmIhdual(a\mathfrak{m}) = a\cdot(\gmIhdual\mathfrak{m}) & a\in TM \quad \mathfrak{m}\in\mathcal{H}M & a\mathfrak{m}\in\Lambda^{*1}M \\
+    \gmIhdual(\gmIhustsym\wedge a) = a\cdot(\gmIhdual\gmIhustsym) & a\in TM \quad \gmIhustsym\in\Lambda^{*\hat n}M & \gmIhustsym\wedge a\in\Lambda^{*\hat n+1}M
+  \end{array}
+\]
+
+\begin{veta}[Lemma (vztah $\gmIhdual$ a $\bullet$)]
+\[
+  \gmIhustsym\in\Lambda^{*\hat n}M \quad \gmIhustsymB\in\Lambda^{*n}M \quad \alpha = \gmIhdual\gmIhustsym\in\Lambda^nM \quad \beta = \gmIhdual\gmIhustsymB\in\Lambda^{\hat n}M
+  \qquad n + \hat n = m
+\]
+\[
+  \gmIhustsym\bullet(\gmIhdual\gmIhustsymB) = (-1)^{n\hat n}(\gmIhdual\gmIhustsym)\bullet\gmIhustsymB
+  \qquad\qquad
+  \alpha\bullet(\gmIhdual\beta) = (-1)^{n\hat n}(\gmIhdual\alpha)\bullet\beta
+\]
+\end{veta}
+
+\underline{Pozn:}
+\begin{itemize}[nosep]
+  \item[] $\gmIhdual$ nezávisí na metrice, na signatuře
+  \item[] $\gmIhdual$ závisí na orientaci -- viz tenzor orientace
+  \item[] $\gmIhdual$ operuje mezi dvěma prostory -- na rozdíl od Hodgeova duálu $*$
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+\textbf{Vztah k Hodgeovu duálu}
+\[
+  *\alpha = \gmIhdual\,\sharp\,\mathfrak{g}^{\frac12}\alpha
+\]
+\[
+  \gmIhdual\gmIhustsym = *\,\flat\,\mathfrak{g}^{-\frac12}\gmIhustsym
+\]
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\[
+  \begin{tikzcd}[column sep=large]
+    \Lambda^{*\hat n}M \arrow[d, shift right=1ex, "\flat\,\mathfrak{g}^{-\frac12}"'] \arrow[rd, "\gmIhdual"] & \\
+    \Lambda^{\hat n}M \arrow[u, shift right=1ex, "\sharp\,\mathfrak{g}^{\frac12}"'] \arrow[r, "*"'] & \Lambda^nM
+  \end{tikzcd}
+\]
+\end{minipage}
+
+\begin{vysvetleni}[$\gmIhdual$ vs.\ Hodgeův duál]
+Hodgeův duál $*$ zobrazuje formy na formy, potřebuje však metriku. Rozklad: $\sharp$ zvedne indexy ($\hat n$-forma $\to$ $\hat n$-vektor),
+násobení $\mathfrak g^{1/2}$ z něj udělá hustotu váhy $1$, a pak $\gmIhdual$ dá $n$-formu. Opačně $\mathfrak g^{-1/2}$ a $\flat$.
+Tedy $(*\alpha)_{a\dots} = \frac{1}{\hat n!}\alpha^{k\dots}\varepsilon_{k\dots a\dots}$ s $\varepsilon = \mathfrak g^{1/2}\tilde\varepsilon$
+(metrický Levi-Civitův tenzor). Lemma o $\bullet$: duál je \uv{samoadjungovaný} až na znaménko $(-1)^{n\hat n}$ z přeházení indexů v $\tilde\varepsilon$.
+Viz Krtouš lemma V5.7 a kap.~6 (D6.14).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-13-12}
+\textbf{hustotní duál v komponentách}
+\[
+  \alpha\in\Lambda^nM \qquad \gmIhustsym\in\Lambda^{*\hat n}M \qquad \gmIhustsym = \gmIhdual\alpha
+\]
+\begin{align*}
+  \alpha &= \sum_{k_1<\dots<k_n}\alpha_{k_1\dots k_n}\,\dd x^{k_1}\wedge\dots\wedge\dd x^{k_n}
+  = \underset{\text{sčítá se}}{\alpha_K\,\dd x^{\wedge K}}
+  && K\text{ -- uspoř.\ $n$-tice -- multiindex} \\
+  \gmIhustsym &= \sum_{l_1<\dots<l_{\hat n}}\gmIhustsym_x^{l_1\dots l_{\hat n}}\,\dd^m x\,\frac{\partial}{\partial x^{l_1}}\wedge\dots\wedge\frac{\partial}{\partial x^{l_{\hat n}}}
+  = \underset{\text{sčítá se}}{\dd^m x\;\gmIhustsym_x^L\,\frac{\partial}{\partial x}^{\wedge L}}
+  && L\text{ -- uspoř.\ $\hat n$-tice -- multiindex}
+\end{align*}
+\[
+  \alpha_K = (\gmIhdual\gmIhustsym)_K = (\gmIhustsym\bullet\tilde\varepsilon)_K
+  = \underset{\substack{\uparrow\\\text{suma přes uspořádané}\\\text{$\hat n$-tice $L$}}}{\gmIhustsym_x^L\,\tilde\varepsilon_{x\,LK}}
+  = \underset{\substack{\uparrow\\\text{nesčítá se, $\hat K$ doplňková}\\\text{$\hat n$-tice k $n$-tici $K$}}}{\gmIhustsym_x^{\hat K}\,\tilde\varepsilon_{x\,\hat KK}}
+\]
+$\Downarrow$
+\[
+  \vzorec{\alpha_K = \tilde\varepsilon_{x\,\hat KK}\,\gmIhustsym_x^{\hat K}}
+  \qquad
+  \vzorec{\gmIhustsym_x^{\hat K} = \tilde\varepsilon_x^{-1\,\hat KK}\,\alpha_K}
+  \qquad\text{nesčítá se, $K,\hat K$ doplňkové}
+\]
+
+\begin{vysvetleni}[duál v souřadnicích]
+V poz.\ orient.\ souřadnicích jsou složky $\tilde\varepsilon_{x\,\hat K K} = \tilde\varepsilon_x^{-1\,\hat K K} = \pm1$ (znaménko permutace $(\hat K, K)$),
+takže duál jen \uv{přeskládá} složky na doplňkové multiindexy se znaménkem. Příklad $m=3$, $\alpha = \alpha_{23}\dd x^2\wedge\dd x^3+\dots$:
+$\gmIhustsym_x^1 = \alpha_{23}$, $\gmIhustsym_x^2 = \alpha_{31}$, $\gmIhustsym_x^3 = \alpha_{12}$ (srovnej s vektorovým součinem v $\mathbb{R}^3$).
+Viz Krtouš lemma V5.6(iii),(iv) a V10.10.
+\end{vysvetleni}
+
+\vspace{1cm}
+\begin{veta}[Lemma]
+\[
+  \gmIhdual(\gmIhustsym\wedge a) = a\cdot(\gmIhdual\gmIhustsym)
+\]
+\end{veta}
+\[
+  \gmIhdual(\gmIhustsym\wedge a)_{\dots}
+  = \frac{1}{(\hat n+1)!}(\gmIhustsym\wedge a)^{\dots\,\cdot}\,\tilde\varepsilon_{\dots\,\cdot\,\dots}
+  = \frac{1}{\hat n!}\gmIhustsym^{\dots}\,a^{\cdot}\,\tilde\varepsilon_{\dots\,\cdot\,\dots}
+  = (\gmIhdual\gmIhustsym)_{\cdot\,\dots}\,a^{\cdot}
+  = a\cdot(\gmIhdual\gmIhustsym)_{\dots}
+\]
+\pozn{indexy jsou v originále naznačeny jen čárkami}
+

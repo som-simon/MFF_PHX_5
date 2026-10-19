@@ -1,0 +1,378 @@
+%======================================================================
+% GMI-06a Indukovana zobrazeni.pdf
+%======================================================================
+
+\section{Indukovaná zobrazení, diffeomorfismy, toky a Lieova derivace}
+\strana{GMI-06a-1}
+
+\begin{itemize}[nosep]
+  \item Indukované zobrazení na tenzorech
+  \item Diferenciál zobrazení
+  \item Indukované zobrazení na polích
+  \item Tok a jeho generátor
+  \item Lieova derivace
+  \item Interpretace Lieovy závorky
+\end{itemize}
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-2}
+\subsection{Indukované zobrazení na tenzorech}
+
+připomínka:
+\begin{itemize}[nosep]
+  \item[] hladké zobr.\ \ $\phi: M\to N$ \\
+          \quad souř.\ vyjádření hladké \ $\bar\phi = y\circ\phi\circ x^{-1}$ hladké, \\
+          \quad kde $(U,x)$ mapa na $M$ a $(V,y)$ mapa na $N$
+  \item[] \kw{diffeomorfismus} \ $\phi: M\to N$ \ či \ $\phi: M\to M$ \\
+          \quad existuje hladké inverz.\ zobr.\ $\phi^{-1}$
+\end{itemize}
+
+\textbf{indukované zobr.\ pro $\phi: M\to N$}
+
+\begin{minipage}{0.5\textwidth}
+\begin{definice}[pull-back (stáhnutí) fce]
+\[
+  \phi^*: \mathcal{F}N\to\mathcal{F}M \qquad \hat f\mapsto\phi^*\hat f
+\]
+\[
+  \vzorec{(\phi^*\hat f)(x) = \hat f(\phi x)}
+\]
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}[line width=0.5pt,x=1em,y=1em]
+  \draw (0,0) -- (6,0) -- (7,3) -- (1,3) -- cycle;
+  \draw (9,0) -- (15,0) -- (16,3) -- (10,3) -- cycle;
+  \node[below] at (6,0) {$M$}; \node[below] at (15,0) {$N$};
+  \fill (3.2,1.1) circle (1.5pt) node[below] {$\scriptstyle x$};
+  \node at (3.6,2.1) {$\scriptstyle(\phi^*\hat f)(x)$};
+  \fill (12.3,1.1) circle (1.5pt) node[below] {$\scriptstyle\phi x$};
+  \node at (12.8,2.1) {$\scriptstyle\hat f(\phi x)$};
+  \draw[-{Stealth}] (6.8,1.4) -- (9.6,1.4) node[midway,below] {$\scriptstyle\phi$};
+  \draw[-{Stealth}] (9.8,3.4) to[bend right=40] node[above] {$\scriptstyle\phi^*$} (6.4,3.4);
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[Pull-back funkce]
+Stříška (vlnka) označuje objekty na cílové varietě $N$. Funkci na $N$ umíme vždy \uv{stáhnout} na $M$ složením, $\phi^*\hat f=\hat f\circ\phi$ -- jde proti směru $\phi$, a proto k tomu nepotřebujeme inverzi. Naopak funkci z $M$ na $N$ přenést obecně nejde (bod $N$ nemusí mít vzor, nebo jich má víc). Viz Krtouš, def.\ D3.5.
+\end{vysvetleni}
+
+\begin{minipage}{0.5\textwidth}
+\begin{definice}[push-forward (přesun) vektorů]
+\[
+  \phi_*: \mathbb{T}_xM\to\mathbb{T}_{\phi x}N
+\]
+\[
+  \vzorec{\phi_*\frac{\mathrm{D}z}{\dd\alpha}\Big|_{\alpha=0} = \frac{\mathrm{D}\,\phi z}{\dd\alpha}\Big|_{\alpha=0}}
+\]
+\quad $z(\alpha)$ křivka v $M$ s teč.\ vekt.\ $a$
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}[line width=0.5pt,x=1em,y=1em]
+  \draw (0,0) -- (6,0) -- (7,3.4) -- (1,3.4) -- cycle;
+  \draw (9,0) -- (15,0) -- (16,3.4) -- (10,3.4) -- cycle;
+  \fill (2.6,1) circle (1.5pt) node[below] {$\scriptstyle x$};
+  \draw (2.6,1) .. controls (3.4,1.8) and (4.5,2.4) .. (5.6,2.8) node[right] {$\scriptstyle z(\alpha)$};
+  \draw[-{Stealth},thick] (2.6,1) -- (3.6,2) node[above left] {$\scriptstyle a$};
+  \fill (11.6,1) circle (1.5pt) node[below] {$\scriptstyle\phi x$};
+  \draw (11.6,1) .. controls (12.4,1.8) and (13.5,2.4) .. (14.6,2.8) node[right] {$\scriptstyle\phi z(\alpha)$};
+  \draw[-{Stealth},thick] (11.6,1) -- (12.6,2) node[above left] {$\scriptstyle\phi_*a$};
+  \draw[-{Stealth}] (6.8,1.4) -- (9.6,1.4) node[midway,below] {$\scriptstyle\phi$};
+  \draw[-{Stealth}] (6.4,3.8) to[bend left=40] node[above] {$\scriptstyle\phi_*$} (9.8,3.8);
+\end{tikzpicture}
+\end{minipage}
+
+\begin{vysvetleni}[Push-forward vektoru]
+Tečný vektor $a$ v $x$ reprezentujeme křivkou $z(\alpha)$, $z(0)=x$, $\frac{\mathrm Dz}{\dd\alpha}=a$; křivku zobrazíme do $N$ a vezmeme tečný vektor obrazu $\phi\circ z$ v bodě $\phi x$. Výsledek nezávisí na volbě křivky (díky hladkosti $\phi$). Vektory jdou \uv{po směru} $\phi$, opačně než funkce. V souřadnicích je $\phi_*$ násobení Jacobiho maticí, $(\phi_*a)^{\tilde k}=\frac{\partial\bar\phi^{\tilde k}}{\partial x^i}a^i$ (viz diferenciál níže). Viz Krtouš, def.\ D3.6.
+\end{vysvetleni}
+
+\begin{minipage}{0.5\textwidth}
+\begin{definice}[pull-back (stáhnutí) 1-formy]
+\[
+  \phi^*: \mathbb{T}^*_{\phi x}N\to\mathbb{T}^*_xM
+\]
+\[
+  \vzorec{(\phi^*\tilde\omega)\cdot a\big|_x = \tilde\omega\cdot(\phi_*a)\big|_{\phi x}}
+\]
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}[line width=0.5pt,x=1em,y=1em]
+  \draw (0,0) -- (6,0) -- (7,3.2) -- (1,3.2) -- cycle;
+  \draw (9,0) -- (15,0) -- (16,3.2) -- (10,3.2) -- cycle;
+  \node[below] at (3,0) {$M$}; \node[below] at (15.5,-0.3) {$N$};
+  \fill (3,1) circle (1.5pt) node[below] {$\scriptstyle x$};
+  \draw[-{Stealth},thick] (3,1) -- (1.8,2.2) node[above] {$\scriptstyle a$};
+  \foreach \y in {1.6,2.0,2.4} \draw (3.4,\y) -- (4.6,\y+0.25);
+  \node at (5.4,2.7) {$\scriptstyle\phi^*\tilde\omega$};
+  \fill (12,1) circle (1.5pt) node[below] {$\scriptstyle\phi x$};
+  \draw[-{Stealth},thick] (12,1) -- (10.8,2.2) node[above] {$\scriptstyle\phi_*a$};
+  \foreach \y in {1.6,2.0,2.4} \draw (12.4,\y) -- (13.6,\y+0.25);
+  \node at (14.4,2.7) {$\scriptstyle\tilde\omega$};
+  \draw[-{Stealth}] (6.8,1.4) -- (9.6,1.4) node[midway,below] {$\scriptstyle\phi$};
+  \draw[-{Stealth}] (9.6,3.6) to[bend right=40] node[above] {$\scriptstyle\phi^*$} (6.6,3.6);
+  \draw[-{Stealth}] (6.2,-0.9) to[bend right=30] node[below] {$\scriptstyle\phi_*$} (9.6,-0.9);
+\end{tikzpicture}
+\end{minipage}
+
+platí
+\[
+  \vzorec{(\phi_*a)\big|_{\phi x}[\hat f] = a\big|_x[\phi^*\hat f]}
+\]
+\[
+  (\phi_*a)\big|_{\phi x}[\hat f] = \frac{\dd}{\dd\alpha}\hat f\big(\phi z(\alpha)\big)\Big|_{\alpha=0}
+  = \frac{\dd}{\dd\alpha}(\phi^*\hat f)\big(z(\alpha)\big)\Big|_{\alpha=0} = a\big|_x[\phi^*\hat f]
+  \qquad a = \dot z
+\]
+\[
+  \vzorec{\phi^*\big(\dd\hat f\big|_{\phi x}\big) = \dd\big(\phi^*\hat f\big)\big|_x}
+\]
+\[
+  a\big|_x\cdot\phi^*\big(\dd\hat f\big|_{\phi x}\big) = (\phi_*a)\big|_{\phi x}\cdot\dd\hat f\big|_{\phi x}
+  = (\phi_*a)\big|_{\phi x}[\hat f] = a\big|_x[\phi^*\hat f] = a\big|_x\cdot\dd(\phi^*\hat f)\big|_x
+\]
+\[
+  \Rightarrow\quad \phi^*\big(\dd\hat f\big|_{\phi x}\big) = \dd\big(\phi^*\hat f\big)\big|_x
+\]
+
+\begin{vysvetleni}[Pull-back formy a záměna s gradientem]
+Pull-back 1-formy je duální (transponované) zobrazení k push-forwardu: forma $\phi^*\tilde\omega$ v $x$ \uv{změří} vektor $a$ tak, že ho nejdřív posune do $\phi x$ a tam na něj nechá působit $\tilde\omega$. Formy tedy jdou proti směru $\phi$, stejně jako funkce. Odvozené vztahy říkají, že derivace ve směru a gradient jsou s indukovanými zobrazeními záměnné: derivovat stáhnutou funkci podél $a$ = derivovat původní funkci podél posunutého vektoru; a stáhnout gradient = vzít gradient stáhnuté funkce (řetízkové pravidlo bez souřadnic). Viz Krtouš, def.\ D3.7 a lemma V3.1.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-3}
+\textbf{linearita indukovaných zobr.}
+\[
+  \phi_*(a + rb) = \phi_*a + r\,\phi_*b \qquad r\in\mathbb{R}
+\]
+\[
+  \Leftarrow\quad \big(\phi_*(a+rb)\big)[\hat f] = (a+rb)[\phi^*\hat f] = a[\phi^*\hat f] + r\,b[\phi^*\hat f] = (\phi_*a)[\hat f] + r(\phi_*b)[\hat f]
+\]
+\[
+  \phi^*(\tilde\alpha + r\tilde\beta) = \phi^*\tilde\alpha + r\,\phi^*\tilde\beta
+\]
+\[
+  \Leftarrow\quad \phi^*(\tilde\alpha + r\tilde\beta)\cdot u = (\tilde\alpha + r\tilde\beta)\cdot\phi_*u = \tilde\alpha\cdot\phi_*u + r\,\tilde\beta\cdot\phi_*u = (\phi^*\tilde\alpha + r\,\phi^*\tilde\beta)\cdot u
+\]
+
+\textbf{zobecnění na tenzory} \\
+\quad komutace s tenz.\ násobením $\otimes$ $\to$ rozšíření
+\[
+  \phi_*: \mathbb{T}_x{}^p_0M\to\mathbb{T}_{\phi x}{}^p_0N \qquad\qquad
+  \phi^*: \mathbb{T}_{\phi x}{}^0_pN\to\mathbb{T}_x{}^0_pM
+\]
+\quad \pozor{nelze definovat na obecných tenz.\ $\mathbb{T}^p_q$ pro obecné $\phi$}
+
+\textbf{indukované zobr.\ pro diffeomorf.} \\
+\quad podmínka \ $\phi^* = \phi^{-1}{}_*$, \ $\phi_* = \phi^{-1\,*}$ \ umožňuje rozšíření
+\[
+  \vzorec{\phi_*: \mathbb{T}_x{}^p_qM\to\mathbb{T}_{\phi x}{}^p_qN \qquad
+  \phi^*: \mathbb{T}_{\phi x}{}^p_qN\to\mathbb{T}_x{}^p_qM}
+\]
+
+\begin{vysvetleni}[Proč smíšené tenzory jen pro difeomorfismy]
+Linearita (dokázaná přes působení na funkce, Krtouš lemma V3.3) a požadavek komutace s $\otimes$ určují $\phi_*$ na tenzorech typu $(p,0)$ ($\phi_*(a\otimes b)=\phi_*a\otimes\phi_*b$) a $\phi^*$ na typu $(0,p)$. Tenzor typu $(1,1)$ by ale potřeboval vektorovou část posunout dopředu a formovou zároveň \uv{posunout dopředu}, což obecné $\phi$ neumí (formy jdou jen zpět). Je-li $\phi$ difeomorfismus, definujeme $\phi_*$ na formách jako $(\phi^{-1})^*$ a $\phi^*$ na vektorech jako $(\phi^{-1})_*$ -- pak jdou oba druhy slotů stejným směrem. Viz Krtouš, def.\ D3.9.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-4}
+\subsection{Diferenciál zobrazení}
+\providecommand{\gmIsestAta}{\tilde{\underline{a}}}
+\providecommand{\gmIsestAtk}{\tilde{\underline{k}}}
+\providecommand{\gmIsestAm}{\underline{m}}
+
+\begin{minipage}{0.58\textwidth}
+díky linearitě induk.\ zobr.\ lze repr.\ tenzorově
+\begin{definice}[Diferenciál zobrazení]
+\[
+  \mathrm{D}\phi\big|_x\in\mathbb{T}^*_xM\otimes\mathbb{T}_{\phi x}N
+\]
+\[
+  \underset{\mathbb{T}_{\phi x}N}{(\phi_*a)^{\gmIsestAta}} = \mathrm{D}^{\gmIsestAta}_{\gmIsestAm}\phi\big|_x\;\underset{\mathbb{T}_xM}{a^{\gmIsestAm}}
+\]
+\[
+  \underset{\mathbb{T}^*_xM}{(\phi^*\tilde\alpha)_{\gmIsestAm}} = \mathrm{D}^{\gmIsestAta}_{\gmIsestAm}\phi\big|_x\;\underset{\mathbb{T}^*_{\phi x}N}{\tilde\alpha_{\gmIsestAta}}
+\]
+\end{definice}
+\end{minipage}
+\hfill
+\begin{minipage}{0.38\textwidth}
+\centering
+\begin{tikzpicture}[line width=0.5pt,x=1em,y=1em]
+  \draw (0,0) .. controls (-0.4,1.2) and (-0.2,2.2) .. (0.2,3) -- (4.8,3) .. controls (4.4,2) and (4.4,1) .. (4.8,0) -- cycle;
+  \draw (7,0) .. controls (6.6,1.2) and (6.8,2.2) .. (7.2,3) -- (11.8,3) .. controls (11.4,2) and (11.4,1) .. (11.8,0) -- cycle;
+  \node[below] at (4.5,0) {$M$}; \node[below] at (11.5,0) {$N$};
+  \fill (2,1.2) circle (1.5pt) node[below] {$\scriptstyle x$};
+  \draw[-{Stealth},thick] (2,1.2) -- (2.6,2.2);
+  \foreach \y in {1.8,2.1,2.4} \draw (1.4,\y) -- (2.1,\y+0.15);
+  \fill (9.2,1.2) circle (1.5pt) node[below] {$\scriptstyle\phi x$};
+  \draw[-{Stealth},thick] (9.2,1.2) -- (10.6,2.0);
+  \draw[-{Stealth}] (2.6,1.6) .. controls (5,2.4) and (7,1.2) .. (9.0,1.4);
+  \node at (5.8,3.5) {$\scriptstyle\mathrm{D}\phi|_x$};
+\end{tikzpicture}
+\end{minipage}
+
+vyjádření v souřadnicích \\
+\quad $(U,x)$ mapa na $M$ \qquad $(V,y)$ mapa na $N$ \\
+\quad $\bar\phi = y\circ\phi\circ x^{-1}$
+\[
+  \vzorec{\mathrm{D}\phi = \frac{\partial\bar\phi^{\tilde k}}{\partial x^a}\,\dd x^a\,\frac{\partial}{\partial y^{\tilde k}}}
+\]
+\quad plyne z aplikace \ $\phi_*\frac{\partial}{\partial x^a}$ \ a \ $\phi^*\dd y^{\tilde k}$
+
+\textbf{složení zobrazení}
+\[
+  (\phi\circ\psi)_* = \phi_*\circ\psi_* \quad\Rightarrow\quad \vzorec{\mathrm{D}(\phi\circ\psi)\big|_x = \mathrm{D}\phi\big|_{\psi x}\cdot\mathrm{D}\psi\big|_x}
+\]
+
+\begin{vysvetleni}[Diferenciál zobrazení]
+$\mathrm D\phi|_x$ je \uv{dvoubodový} tenzor: jeden dolní index $\underline m$ patří k $\mathbb T_xM$, jeden horní index $\tilde{\underline a}$ k $\mathbb T_{\phi x}N$ (vlnka u indexu = index na $N$). Tentýž objekt reprezentuje push-forward (kontrakce s vektorem přes dolní index) i pull-back (kontrakce s formou přes horní index) -- jsou to navzájem transponovaná zobrazení. V souřadnicích je to Jacobiho matice $\partial\bar\phi^{\tilde k}/\partial x^a$ souřadnicového vyjádření $\bar\phi$; dostaneme ji, když dosadíme $\phi_*\frac{\partial}{\partial x^a}$ a $\phi^*\dd y^{\tilde k}$. Pravidlo pro složení je řetízkové pravidlo (součin Jacobiho matic, \uv{$\cdot$} = kontrakce přes tečný prostor prostřední variety). Viz Krtouš, def.\ D3.8, rov.\ (3.1), lemma V3.4.
+\end{vysvetleni}
+
+\textbf{působení na tenzorech} \\
+\quad $\phi$ diffeomorf.
+\[
+  \phi^{-1}\circ\phi = \mathrm{id}_M,\quad \phi\circ\phi^{-1} = \mathrm{id}_N
+  \quad\Rightarrow\quad
+  \mathrm{D}\phi\cdot\mathrm{D}\phi^{-1} = \delta_N,\quad \mathrm{D}\phi^{-1}\cdot\mathrm{D}\phi = \delta_M
+\]
+\[
+  \vzorec{(\phi_*T)^{\tilde{\underline{a}}_1\tilde{\underline{a}}_2\dots}{}_{\tilde{\underline{b}}_1\tilde{\underline{b}}_2\dots}
+  = \mathrm{D}^{\tilde{\underline{a}}_1}_{\underline{m}_1}\phi\;\mathrm{D}^{\tilde{\underline{a}}_2}_{\underline{m}_2}\phi\cdots
+    \mathrm{D}^{\underline{n}_1}_{\tilde{\underline{b}}_1}\phi^{-1}\;\mathrm{D}^{\underline{n}_2}_{\tilde{\underline{b}}_2}\phi^{-1}\cdots
+    T^{\underline{m}_1\underline{m}_2\dots}{}_{\underline{n}_1\underline{n}_2\dots}}
+\]
+
+\begin{vysvetleni}[Push-forward obecného tenzoru]
+Z $\phi^{-1}\circ\phi=\mathrm{id}$ a řetízkového pravidla je $\mathrm D\phi^{-1}$ (v bodě $\phi x$) inverzní matice k $\mathrm D\phi$ (v bodě $x$). Každý horní index se tedy posouvá pomocí $\mathrm D\phi$, každý dolní pomocí $\mathrm D\phi^{-1}$ (protože $\phi_*$ na formách $=(\phi^{-1})^*$). Je to stejná struktura jako transformace komponent při změně báze (GMI-05, $M$ a $M^{-1}$), jen zde jde o \uv{aktivní} přenos tenzoru do jiného bodu. Viz Krtouš, rov.\ (3.3).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-5}
+\textbf{speciální případy} \\
+\quad 1-dim varieta $M$ lze ztotožnit s $\mathbb{R}$ volbou souř.\ $\tau$ \\
+\quad $\mathbb{T}M$ je 1-dim -- ztotož.\ s $\mathbb{R}$ pomocí $\frac{\partial}{\partial\tau}$ \\
+\quad $\mathbb{T}^*M$ je 1-dim -- ztotož.\ s $\mathbb{R}$ pomocí $\dd\tau$
+
+\begin{priklad}[funkce na $M$]
+\[
+  f: M\to N = \mathbb{R} \qquad\qquad \bar f = \tau(f): M\to\mathbb{R}
+\]
+\[
+  \mathrm{D}f = \dd\bar f\,\frac{\partial}{\partial\tau} = \bar f_{,i}\,\dd x^i\,\frac{\partial}{\partial\tau}
+\]
+\quad lze ztotožnit $\mathrm{D}f$ a $\dd\bar f$
+\end{priklad}
+
+\begin{priklad}[křivka v $N$]
+\[
+  z: M = \mathbb{R}\to N \qquad \bar z\circ\tau = z \qquad \bar z: \mathbb{R}\to N
+\]
+\[
+  \mathrm{D}z = \dd\tau\,\frac{\mathrm{D}\bar z}{\dd\tau} = \frac{\dd\bar z^i}{\dd\tau}\,\dd\tau\,\frac{\partial}{\partial y^i}
+  \qquad \bar z^i = y^i(z)
+\]
+\quad lze ztotožnit $\mathrm{D}z$ a $\dfrac{\mathrm{D}\bar z}{\dd\tau} = \dot{\bar z}$
+\end{priklad}
+
+\begin{vysvetleni}[Gradient a tečný vektor jako diferenciály]
+Diferenciál zobecňuje oba známé objekty. Pro $f:M\to\mathbb R$ je $\mathrm Df$ forma na $M$ \uv{krát} jednotkový vektor $\partial_\tau$ na $\mathbb R$; po ztotožnění $\mathbb T\mathbb R\cong\mathbb R$ je to gradient $\dd\bar f$. Pro křivku $z:\mathbb R\to N$ je $\mathrm Dz=\dd\tau\otimes\dot{\bar z}$ a po ztotožnění $\mathbb T^*\mathbb R\cong\mathbb R$ je to tečný vektor ke křivce. Pruh rozlišuje reálnou funkci $\bar f=\tau\circ f$ od zobrazení $f$ do 1-dim variety; běžně se nerozlišují. Viz Krtouš, př.\ P3.1 a marginálie M3.3.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-6}
+\subsection{Indukované zobrazení na polích}
+
+funkce \qquad $\phi^*: \mathcal{F}N\to\mathcal{F}M$ \qquad $(\phi^*\tilde f)(x) = \tilde f(\phi x)$
+
+formy \qquad $\phi^*: \mathsf{T}^0_pN\to\mathsf{T}^0_pM$
+\[
+  \underbrace{(\phi^*\tilde\omega)(x)}_{\mathbb{T}_x{}^0_pM} = \phi^*\big(\underbrace{\tilde\omega(\phi x)}_{\mathbb{T}_{\phi x}{}^0_pN}\big)
+\]
+platí
+\[
+  \vzorec{\phi^*\dd f = \dd\,\phi^*f}
+\]
+\quad plyne z relace v bodě
+
+\pozor{nelze definovat push-forward vekt.\ pole}
+\[
+  \underbrace{(\phi_*a)(\tilde x)}_{\mathbb{T}_{\tilde x}N} = \phi_*\big(\underbrace{a(\phi^{-1}\tilde x)}_{\mathbb{T}_{\phi^{-1}\tilde x}M}\big)
+  \qquad\quad \text{\pozor{$\phi^{-1}$ není definováno!!}}
+\]
+\quad potřeba inverze $\phi$
+
+\textbf{diffeomorfismy}
+\begin{itemize}[nosep]
+  \item[] push-forward
+  \[
+    (\phi_*A)(\tilde x) = \phi_*\big(A(\phi^{-1}\tilde x)\big) \qquad\quad
+    \vzorec{(\phi_*A)(\phi x) = \phi_*\big(A(x)\big)}
+  \]
+  \item[] pullback
+  \[
+    (\phi^*\tilde A) = \phi^{-1}{}_*\oprava{\tilde A}{A} \qquad\quad
+    \vzorec{(\phi^*\tilde A)(x) = \phi^*\tilde A(\phi x)}
+  \]
+  konzistentní s definicí $\phi^*$ pro formy
+\end{itemize}
+
+\begin{vysvetleni}[Push-forward a pull-back tenzorových polí]
+Vlnka (resp.\ stříška) značí objekty žijící na $N$, bez vlnky objekty na $M$ (stejně Krtouš). Pole je \uv{funkce s hodnotami v tečných prostorech}, takže při přenosu se musí přenést jak bod, tak hodnota: hodnotu $A(x)\in\mathbb T_xM$ přeneseme bodovým $\phi_*$ do $\mathbb T_{\phi x}N$ a přiřadíme ji bodu $\phi x$. Pro vektorové pole bychom ale potřebovali pro daný $\tilde x\in N$ najít jeho vzor $\phi^{-1}\tilde x$ -- ten nemusí existovat (bod mimo obraz) ani být jednoznačný; proto push-forward polí jen pro difeomorfismy. Formy se naopak stahují bez problému, protože $\phi^*$ jde \uv{proti} $\phi$ a vystačí si s $\phi x$. Pro difeomorfismus je pull-back pole $\tilde A$ na $N$ totéž co push-forward inverzí, $\phi^*\tilde A=(\phi^{-1})_*\tilde A$. Viz Krtouš, def.\ D3.9--D3.10 a rov.\ (3.3).
+\end{vysvetleni}
+
+vlastnosti
+\[
+  \begin{aligned}
+    \phi_*(A + rB) &= \phi_*A + r\,\phi_*B \\
+    \phi_*(A\otimes B) &= (\phi_*A)\otimes\phi_*B \\
+    \phi_*\mathsf{C}A &= \mathsf{C}\,\phi_*A
+  \end{aligned}
+\]
+
+%----------------------------------------------------------------------
+\strana{GMI-06a-7}
+vlastnosti
+\[
+  \left.
+  \begin{aligned}
+    a[\phi^*\hat f] &= \phi^*\big((\phi_*a)[\hat f]\big) \\
+    \phi_*\big(a[\phi^*\hat f]\big) &= (\phi_*a)[\hat f] \\
+    \phi_*\big(a[f]\big) &= \phi_*a\,[\phi_*f]
+  \end{aligned}
+  \ \right|\ \text{ekvivalentní}
+\]
+důk.
+\begin{align*}
+  \big(a[\phi^*\hat f]\big)(x) &= a(x)[\phi^*\hat f] = \big(\phi_*(a(x))\big)[\hat f]
+    \overset{\text{\scriptsize diffeo}}{=} \\
+  &= \big((\phi_*a)(\phi x)\big)[\hat f] = \big((\phi_*a)[\hat f]\big)\big|_{\phi x} = \phi^*\big((\phi_*a)[\hat f]\big)(x)
+\end{align*}
+
+\begin{vysvetleni}[Přirozenost derivace ve směru]
+Tři vztahy říkají totéž: \uv{nejdřív přenést a pak derivovat = nejdřív derivovat a pak přenést}. Druhý a třetí plynou z prvního aplikací $\phi_*=(\phi^*)^{-1}$ na funkce (pro difeomorfismus je $\phi_*f=(\phi^{-1})^*f=f\circ\phi^{-1}$, Krtouš D3.5) a dosazením $\hat f=\phi_*f$. V důkazu je podstatné, že díky difeomorfismu je pole $\phi_*a$ v bodě $\phi x$ rovno $\phi_*(a(x))$.
+\end{vysvetleni}
+
+\begin{veta}[Lieova závorka]
+\[
+  \vzorec{\phi_*[a,b] = [\phi_*a, \phi_*b]}
+\]
+\end{veta}
+důk.
+\begin{align*}
+  \phi^*\big((\phi_*[a,b])[\hat f]\big) &= [a,b][\phi^*\hat f] = a\big[b[\phi^*\hat f]\big] - b\big[a[\phi^*\hat f]\big] \\
+  &= a\big[\phi^*\big((\phi_*b)[\hat f]\big)\big] - b\big[\phi^*\big((\phi_*a)[\hat f]\big)\big] \\
+  &= \phi^*\big(\phi_*a\big[(\phi_*b)[\hat f]\big] - (\phi_*b)\big[(\phi_*a)[\hat f]\big]\big) \\
+  &= \phi^*\big([\phi_*a, \phi_*b][\hat f]\big)
+\end{align*}
+
+\begin{vysvetleni}[Push-forward a Lieova závorka]
+Lieova závorka je definována jen pomocí derivování funkcí, a to je s difeomorfismy záměnné (předchozí vlastnost použitá dvakrát, ve 2.\ a 3.\ řádku důkazu). Proto ji difeomorfismus zachovává -- závorka je \uv{přirozená} operace, nezávislá na volbě souřadnic (zvlášť pro $\phi$ = přechod mezi souřadnicemi). Protože $\phi^*$ je na funkcích prosté, plyne z rovnosti stažených funkcí pro všechna $\hat f$ rovnost vektorových polí. Viz Krtouš, lemma V3.2.
+\end{vysvetleni}

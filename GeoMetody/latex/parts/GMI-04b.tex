@@ -1,0 +1,403 @@
+%======================================================================
+% GMI-04 Zobecneni variet.pdf
+%======================================================================
+\section{Zobecnění variet}
+\strana{GMI-04b-1}
+\pozn{titulní strana -- bez dalšího obsahu}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-2}
+\subsection{Fibrované prostory}
+
+\begin{definice}[fibrovaný prostor (bundle)]
+$\mathbb{E}M$ je \kw{fibrovaný prostor} se stand.\ fibrem $\mathbb{E}$ $\equiv$
+\begin{itemize}[nosep]
+  \item[] $\mathbb{E}M$ je dif.\ varieta \hfill -- totální prostor, bundle
+  \item[] $M$ je dif.\ varieta \hfill -- podkladový [base] prostor
+  \item[] $\mathbb{E}$ prostor s nějakou str.\ \hfill -- standardní vlákno [fiber]
+  \item[] $\pi:\mathbb{E}M\to M$ \quad projekce dávající fibraci
+  \item[] $\mathbb{E}_xM = \pi^{-1}x$ \quad vlákno [fiber] nad $x\in M$
+  \item[] $\mathbb{E}_xM\cong\mathbb{E}$ \quad izomorfismus vlákna se stand.\ fibrem \\
+          izomorfismus respektuje strukturu $\mathbb{E}$ \\
+          přesněji: lokální izom.\ \quad $\mathbb{E}U\cong U\times\mathbb{E}$
+\end{itemize}
+\end{definice}
+
+\begin{definice}[řezy fibrovaného prostoru]
+\[
+  \phi: M\to\mathbb{E}M \qquad x\mapsto\phi(x)\in\mathbb{E}_xM
+\]
+tj.\ \quad $\pi\circ\phi = \mathrm{id}$
+\end{definice}
+
+tečný a kotečný bundle jsou vekt.\ fibr.\ prostory \\
+\quad $\mathcal{T}M$ je prostor řezů $\mathbb{T}M$ \\
+\quad $\mathcal{T}^*M$ je prostor řezů $\mathbb{T}^*M$
+
+tečný a kotečný prostor je svázán s $M$ více než obecný fibrovaný prostor nad $M$
+
+\begin{vysvetleni}[Opakování]
+Tato strana opakuje definici fibrovaného prostoru z GMI-04a (viz tamní vysvětlivky). Podstatné je \emph{lokální} ztotožnění $\mathbb{E}U\cong U\times\mathbb{E}$,
+které respektuje projekci; globálně může být bandl netriviální. Řezy bandlu jsou \uv{pole} -- vektorová pole jsou řezy $\mathbb{T}M$ (Krtouš, odd.~2.4).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-3}
+\subsection{Zobecnění variety pro obecnou strukturu}
+
+dif.\ variety lze zobecnit pro případ, kdy souřadnice nabývají hodnot v obecném prostoru,
+resp.\ připouštějí se pouze specifické transf.\ v prostoru souřadnic
+
+\begin{definice}[pseudogrupa transformací]
+\kw{pseudogrupa} $\Gamma$ \kw{transformací} na souřadnicovém prostoru $S$ $\equiv$
+\begin{itemize}[nosep]
+  \item[] $S$ \quad topol.\ prostor \hfill (prostor hodnot souřadnic -- např.\ $\mathbb{R}^n$)
+  \item[] $\Gamma$ \quad množina transf.\ $\underset{\text{(otevř.}\to\text{otevř.)}}{S\to S}$ \hfill (přípustné transf.\ souř.\ -- např.\ $C^\infty$)
+  \item[--] $\alpha\in\Gamma$ je spojité
+  \item[--] $\alpha\in\Gamma \Rightarrow \forall\, U\subset S$ otevř.\ \quad $\alpha|_U\in\Gamma$
+  \item[--] $\alpha$ homeomorf.\ na $U = \bigcup_\mu U_\mu$, \quad $U_\mu\subset S$ otevřené \\
+            $\alpha|_{U_\mu}\in\Gamma \Rightarrow \alpha\in\Gamma$
+  \item[--] $U\subset S$ otevř.\ $\Rightarrow \mathrm{id}|_U\in\Gamma$
+  \item[--] $\alpha\in\Gamma \Rightarrow \alpha^{-1}\in\Gamma$
+  \item[--] $\alpha,\beta\in\Gamma \Rightarrow \alpha\circ\beta\in\Gamma$ \quad na příslušné oblasti
+\end{itemize}
+\end{definice}
+
+\begin{vysvetleni}[Proč \uv{pseudo}grupa]
+Přechodová zobrazení mezi mapami nejsou definována na celém $S$, ale jen mezi otevřenými podmnožinami (obrazy překryvů map). Proto nejde o grupu:
+složení $\alpha\circ\beta$ má smysl jen tam, kde se obor hodnot $\beta$ potkává s definičním oborem $\alpha$. Axiomy zaručují, že $\Gamma$ je uzavřena
+na restrikce, inverze a skládání a že příslušnost do $\Gamma$ je \emph{lokální} vlastnost (lze ji ověřit na pokrytí -- třetí bod).
+Příklady: všechny $C^k$ difeomorfismy otevřených množin $\mathbb{R}^n$; $C^\infty$ difeomorfismy s kladným Jacobiánem; biholomorfní zobrazení v $\mathbb{C}^n$.
+\end{vysvetleni}
+
+\begin{definice}[varieta se strukturou $\Gamma$]
+varieta \dots\ $M$ se strukturou $\Gamma$ $\equiv$ \\
+stejná def.\ jako pro dif.\ varietu, jen $\mathbb{R}^n$, $C^\infty$ nahrazeno strukturou $S$, $\Gamma$
+\end{definice}
+
+\begin{priklad}[příklady]
+\begin{itemize}[nosep]
+  \item \kw{orientovaná dif.\ varieta} \\
+        -- připouští se pouze transf.\ souř.\ s $\det\dfrac{\partial y^i}{\partial x^j} > 0$
+  \item \kw{komplexní variety} \\
+        -- $S = \mathbb{C}^n$, holomorfní transf.
+\end{itemize}
+\end{priklad}
+
+\begin{vysvetleni}[$\Gamma$-varieta]
+Varieta se strukturou $\Gamma$ je topologický prostor s atlasem map do $S$, jehož všechna přechodová zobrazení $x_{(\alpha)}\circ x_{(\beta)}^{-1}$ leží v $\Gamma$
+(a atlas je maximální). Volbou $\Gamma$ volíme, které vlastnosti jsou \uv{nezávislé na souřadnicích}: menší $\Gamma$ = bohatší struktura.
+Orientovaná varieta: přechody s $\det\partial y^i/\partial x^j>0$ zachovávají orientaci báze, takže orientace je dobře definovaná (viz Krtouš, odd.~5.6).
+Komplexní varieta: holomorfnost funkce je pak pojem nezávislý na mapě. Další příklady: reálně analytické, afinní či plochá struktura (přechody afinní).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-4}
+\subsection{Varieta v řeči prostoru funkcí}
+
+dif.\ varietu $M$ lze charakterizovat prostorem hl.\ fcí \\
+několik příbuzných přístupů
+\begin{itemize}[nosep]
+  \item \kw{strukturní sheaf} dif.\ var.
+  \item \kw{locally ringed space}
+  \item \kw{$C^*$ algebry} s lokální hladkostí
+\end{itemize}
+
+zadání \uv{prostoru} fcí umožní zrekonstruovat top.\ či dif.\ strukturu na varietě či dokonce varietu samotnou
+
+změnou funkcionálních vlastností pr.\ fcí lze zavést abstraktní pojem variety jako podkladu pro příslušný pr.\ fcí \\
+umožňuje např.\ zavést
+\begin{itemize}[nosep]
+  \item[] \kw{supervariety} \quad (supersymetrie)
+  \item[] \kw{nekomutativní geometrii}
+\end{itemize}
+
+\begin{vysvetleni}[Geometrie z funkcí]
+Myšlenka: místo bodů a map zadáme algebru funkcí a body z ní zrekonstruujeme. Např.\ pro kompaktní Hausdorffův $X$ odpovídají body $x$ maximálním ideálům
+$\{f: f(x)=0\}$ algebry $C(X)$ (Gelfandova dualita) a pro hladkou varietu odpovídají body homomorfismům $\mathcal{F}M\to\mathbb{R}$, $f\mapsto f(x)$.
+Vektory v bodě jsou derivace této algebry (Krtouš, odd.~2.2: vektor jako diferenciální operátor 1.\ řádu).
+Když pak algebru nahradíme obecnější (s antikomutujícími Grassmannovými prvky, resp.\ nekomutativní), dostaneme \uv{prostor}, který body v obvyklém smyslu
+mít nemusí -- supervarieta, resp.\ nekomutativní geometrie.
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-5}
+\subsection{Svazky a okruhované prostory}
+
+opakování z algebry:
+\begin{itemize}
+  \item \kw{abelovská grupa} \\
+        operace $+$, asociat., komutat., inverze, prvek $0$
+  \item \kw{komutativní těleso} $\mathbb{K}$ (pole) \quad [field] \\
+        \begin{tabular}{@{}ll}
+          operace $+$ & abelovská gr. \\
+          \phantom{operace} $\cdot$ & asociat., komutat., distribut., prvek $1$ \\
+                                     & inverze mimo $0$
+        \end{tabular} \\
+        typicky $\mathbb{K} = \mathbb{R},\mathbb{C}$
+  \item \kw{vekt.\ prostor} $V$ nad $\mathbb{K}$ \\
+        operace $+$ \quad abel.\ gr. \\
+        násobení skalárem z $\mathbb{K}$ \quad -- linearita (tj.\ asoc.\ a distrib.)
+  \item \kw{algebra} $A$ nad $\mathbb{K}$ \\
+        vekt.\ pr.\ nad $\mathbb{K}$ s operací $+$ \\
+        násobení v $A$ konzist.\ s operacemi vekt.\ pr.\ (bi-linearita)
+        \begin{itemize}[nosep]
+          \item[-] asociativní algebry
+          \item[-] komutativní alg.
+          \item[-] Lieovy alg.
+        \end{itemize}
+  \item \kw{okruh} $R$ \\
+        obdobné tělesu, ale není zaručena existence inverze \\
+        Př: funkce na varietě
+  \item \kw{modul} $V$ nad $R$ \quad ($R$-modul $V$) \\
+        obdobné vekt.\ pr., ale nad okruhem \\
+        Př: vekt.\ a tenz.\ pole na varietě, řezy vekt.\ bandlů
+  \item \kw{algebra} $A$ \kw{nad} \oprava{\kw{okruhem}}{modulem} $R$ \\
+        obdobné algebře, jen nad okruhem \\
+        Př: algebra fcí na varietě \quad (okruh $R$ je vždy alg.\ nad $R$) \\
+        \phantom{Př:} operátory $\mathcal{T}^1_1M$ na varietě \dots
+\end{itemize}
+
+\begin{vysvetleni}[Proč okruhy a moduly]
+Hladké funkce $\mathcal{F}M$ tvoří komutativní okruh (s jedničkou), ale ne těleso: funkce s nulovým bodem nemá inverzi, ačkoli není nulová.
+Proto vektorová pole $\mathcal{T}M$ nejsou vektorový prostor nad $\mathcal{F}M$, ale $\mathcal{F}M$-modul -- násobit je lze funkcemi, dělit ne.
+Okruh, nad kterým je algebra, je zde $R=\mathcal{F}M$ (odtud oprava \uv{nad okruhem}). Tenzorová pole $\mathcal{T}^1_1M$ tvoří algebru nad $\mathcal{F}M$
+s násobením $(AB)^a{}_b=A^a{}_cB^c{}_b$ (skládání lineárních operátorů v každém bodě).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-6}
+\begin{definice}[modul $V$ nad okruhem $R$ ($R$-moduly)]
+$a_1,\dots,a_k\in V$ jsou \kw{lin.\ závislé}, pokud
+\[
+  r_1a_1 + \dots + r_ka_k = 0 \qquad\text{pro } \oprava{r_j\in R\text{ ne všechna nulová}}{r_j\in R}
+\]
+\pozor{nezaručuje možnost vyjádření $a_i$ pomocí ostatních!}
+
+$e_i$ tvoří \kw{bázi} modulu $V$ \quad $\forall a\in V\ \exists a^i\in R$ \quad $a = \sum_i a^ie_i$
+\end{definice}
+
+\begin{tabular}{@{}ll}
+\kw{volný modul} & -- existuje báze \\
+\kw{konečně generovaný modul} & -- existuje konečná báze \\
+\kw{duální modul} $V^*$ & -- prostor $R$-lineárních fcionálů $V\to R$ \\
+\kw{reflexivní modul} & -- $V^{**}\cong V$
+\end{tabular}
+\begin{itemize}[nosep]
+  \item[-] platí pro konečně generované moduly
+  \item[-] platí pro řezy vekt.\ bundlů s kon.\ dim.\ fibrem
+\end{itemize}
+
+\begin{vysvetleni}[Moduly -- upřesnění]
+Lineární závislost vyžaduje netriviální kombinaci (jinak by závislá byla každá $k$-tice). V modulu z ní neplyne vyjádřitelnost: z $r_1a_1=-r_2a_2$
+nelze dělit $r_1$, není-li invertibilní (např.\ funkce s nulovými body). Standardně je \emph{báze} množina, která modul generuje \emph{a} je lineárně nezávislá
+(rozklad $a=\sum a^ie_i$ je pak jednoznačný); bez nezávislosti jde jen o množinu generátorů. Konečně generovaný modul má \emph{konečnou množinu generátorů}
+(nemusí mít bázi), volný modul s konečnou bází je $R^n$. Reflexivita obecně neplatí pro každý konečně generovaný modul (např.\ $\mathbb{Z}/2$ nad $\mathbb{Z}$ má
+$V^*=0$), ale platí pro konečně generované \emph{projektivní} moduly -- a takové jsou podle Serreovy--Swanovy věty právě moduly řezů vektorových bandlů
+(odtud druhý bod; např.\ $\mathcal{T}^*M\cong(\mathcal{T}M)^*$).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-7}
+\begin{definice}[předsvazek $\mathcal{S}$ nad $M$ (též $\mathcal{S}_M$ či $\mathcal{S}M$) {[presheaf]}]
+\begin{itemize}[nosep]
+  \item topologický prostor $M$ \hfill (většinou top.\ varieta)
+  \item přiřazení \quad $\mathcal{S}: U\subset M\to\mathcal{S}U$ \hfill ($U$ otevřené) \\
+        kde $\mathcal{S}U$ je prostor $\mathcal{S}$-řezů nad $U$ \\
+        typicky abel.\ gr., okruh, modul, algebra
+  \item operace \kw{restrikce} $r^U_V$
+  \[
+    V\subset U \qquad r^U_V:\mathcal{S}U\to\mathcal{S}V \qquad \phi\mapsto\phi|_V \qquad\text{splňující}
+  \]
+  \begin{tabular}{@{}lll}
+    $r^V_W\circ r^U_V = r^U_W$ & pro & $W\subset V\subset U\subset M$ otevř. \\
+    $r^V_V = \mathrm{id}_V$ & pro & $V\subset M$ otevř.
+  \end{tabular}
+\end{itemize}
+\end{definice}
+
+\begin{vysvetleni}[Předsvazek]
+Předsvazek je přiřazení \uv{objektů definovaných na otevřené množině $U$} (funkcí, polí, řezů \dots) každé otevřené $U$ spolu s operací zúžení
+na menší množinu. Podmínky říkají jen, že zúžit dvakrát je totéž co zúžit najednou a že zúžení na tutéž množinu nic nemění
+(v řeči kategorií: kontravariantní funktor z otevřených množin do grup, okruhů, \dots). Zatím nic neříká, že objekt je určen \uv{lokálními daty}.
+\end{vysvetleni}
+
+\begin{definice}[svazek $\mathcal{S}$ nad $M$ (též $\mathcal{S}_M$ či $\mathcal{S}M$) {[sheaf]}]
+\kw{svazek} $\mathcal{S}_M$ je předsvazek $\mathcal{S}_M$ splňující
+\begin{enumerate}[label=\arabic*)]
+  \item $\phi_1,\phi_2\in\mathcal{S}U$ \quad $\forall\alpha$ \quad $\phi_1|_{U_\alpha} = \phi_2|_{U_\alpha}$ \quad $\Rightarrow$ \quad $\phi_1 = \phi_2$
+  \item pro kolekci $\phi_\alpha\in\mathcal{S}U_\alpha$ splňující
+  \[
+    \forall\alpha,\beta \qquad \phi_\alpha|_{U_\alpha\cap U_\beta} = \phi_\beta|_{U_\alpha\cap U_\beta}
+  \]
+  existuje $\phi\in\mathcal{S}U$ tak, že $\phi|_{U_\alpha} = \phi_\alpha$
+\end{enumerate}
+kde $U = \bigcup_\alpha U_\alpha$, \quad $U_\alpha$ otevřené v $M$
+\end{definice}
+
+\begin{vysvetleni}[Axiomy svazku]
+1) \emph{Lokalita}: řez je určen svými zúženími na libovolné otevřené pokrytí -- dva řezy, které se lokálně shodují, jsou stejné.
+2) \emph{Slepování}: lokální řezy, které souhlasí na překryvech, lze slepit do řezu na sjednocení (díky 1) jednoznačně).
+Svazek je tedy přesně ten typ objektu, který lze definovat \uv{lokálně a slepit} -- jako hladké funkce či vektorová pole, jejichž hladkost je lokální vlastnost.
+Stejná logika jako u věty o rekonstrukci bandlu z přechodových zobrazení v GMI-04a.
+\end{vysvetleni}
+
+Pozn: pokud máme nějakou operaci mezi dvěma (před)svazky, předpokládáme konzistenci operace s restrikcí
+
+\begin{priklad}[Př]
+\begin{itemize}[nosep]
+  \item[-] svazek $\mathcal{F}_M$ okruhů $C^\infty$ fcí na $M$ a jejích otevř.\ mn. \\
+           máme řezy nad každou $U$ a i glob.\ rozšíření
+  \item[-] svazek modulů $\mathcal{T}_M$ nad svazkem $\mathcal{F}_M$ \\
+           tj.\ $\mathcal{T}U$ je $\mathcal{F}U$-modul \\
+           nemusí existovat gl.\ nenul.\ řezy \quad (neparalelizov.\ $\mathbb{T}M$)
+\end{itemize}
+\end{priklad}
+
+\begin{vysvetleni}[Pozor na \uv{globální rozšíření}]
+Pro hladké funkce neplatí, že by \emph{každou} $f\in\mathcal{F}U$ šlo rozšířit na celé $M$: např.\ $f(x)=1/x$ na $U=(0,1)\subset\mathbb{R}$ hladké rozšíření
+na $\mathbb{R}$ nemá. Platí ale (díky \uv{bump} funkcím, tj.\ rozkladu jednotky), že každou $f\in\mathcal{F}U$ lze po zúžení na menší okolí $V$ s $\overline V\subset U$
+(tj.\ každý \emph{zárodek}, viz dále) rozšířit na globální hladkou funkci. To je velký rozdíl oproti holomorfním funkcím.
+Totéž platí pro vektorová pole. \uv{Nenulové globální řezy} u $\mathcal{T}_M$: na $S^2$ neexistuje všude nenulové spojité vektorové pole (věta o \uv{chlupaté kouli}).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-8}
+\begin{priklad}[Př: předsvazek $\mathcal{K}_M$ konst.\ fcí na $M$]
+$\mathcal{K}U$ \quad konstantní fce na $U$ \\
+\pozor{není svazek!}
+\begin{itemize}[nosep]
+  \item[] $M = M_1\cup M_2$ \qquad $M_i$ komponenty $M$
+  \item[] řezy na $M_1, M_2$ nezaručují existenci řezu na $M$ \\
+          $k_1\in\mathcal{K}M_1$, \ $k_2\in\mathcal{K}M_2$ \quad konzist.\ na $M_1\cap M_2 = \emptyset$ \\
+          pro $k_1\neq k_2$ \pozn{indexy u $k_1, k_2$ nečitelné} neexistuje $k\in\mathcal{K}M$ tak, že
+          $k|_{M_1} = k_1$ a $k|_{M_2} = k_2$
+\end{itemize}
+lze zavést svazek lokálně konst.\ fcí
+\end{priklad}
+
+\begin{vysvetleni}[Konstantní vs.\ lokálně konstantní funkce]
+Selhává axiom slepování: na dvou disjunktních komponentách můžeme zvolit různé konstanty (souhlasí \uv{na prázdném překryvu}),
+ale slepená funkce není konstantní. Funkce, které jsou konstantní jen na každé komponentě (lokálně konstantní), už svazek tvoří --
+je to tzv.\ zesvazkování předsvazku $\mathcal{K}_M$ (konstantní svazek). Prostor jeho globálních řezů je $\mathbb{R}^{\#\text{komponent}}$.
+\end{vysvetleni}
+
+\begin{priklad}[Př: předsvazek $\mathcal{B}_M$ omezených fcí na $M$]
+$\mathcal{B}U$ \quad soubor omezených hlad.\ fcí na $U$ \\
+\pozor{není svazek!} \\
+\quad omezenost na okolích $U_\alpha$ nezaručuje omezenost na jejich sjednocení -- pro nekonečně okolí
+\end{priklad}
+
+\begin{vysvetleni}[Příklad]
+$f(x)=x$ na $M=\mathbb{R}$ je omezená na každém intervalu $U_n=(n-1,n+1)$ a zúžení na překryvy samozřejmě souhlasí, slepená funkce však na $\mathbb{R}$
+omezená není. Omezenost je \emph{globální} vlastnost, kdežto svazky popisují vlastnosti, které jsou lokální (spojitost, hladkost, holomorfnost).
+Pro konečná pokrytí by slepování fungovalo.
+\end{vysvetleni}
+
+\begin{priklad}[Př: svazek $\mathcal{H}$ holomorfních fcí na komplexní var.\ $M$]
+$\mathcal{H}U$ \quad holomorfní fce na $U\subset M$ \\
+nemusí existovat netriv.\ gl.\ řezy rozšiřující lokální řez, tj.\ pro $\phi_U\in\mathcal{H}U$ nemusí existovat
+\oprava{$\phi\in\mathcal{H}M$}{$\phi\in M$} tak, že $\phi|_U = \phi_U$ \\
+\quad např.\ $\sqrt z$, $\log z$, \dots \quad -- více větví
+\end{priklad}
+
+\begin{vysvetleni}[Holomorfní funkce a rozšíření]
+Holomorfní funkce jsou \uv{tuhé}: podle věty o jednoznačnosti je holomorfní funkce na souvislé oblasti určena hodnotami na libovolně malé otevřené podmnožině.
+Proto nelze použít bump funkce a lokální řez často nejde rozšířit: větev $\sqrt z$ či $\log z$ na oblasti kolem $z_0\neq0$ nelze rozšířit holomorfně
+na $\mathbb{C}\setminus\{0\}$ (po oběhu počátku se změní větev), $1/z$ nelze rozšířit na $\mathbb{C}$. Na kompaktní souvislé komplexní varietě jsou dokonce
+všechny globální holomorfní funkce konstantní.
+\end{vysvetleni}
+
+\begin{priklad}[Př: svazek $\mathcal{F}_M$ hladkých fcí na $M$]
+$\mathcal{F}U$ \quad hladké fce na $U\subset M$ \\
+pro každou $f\in\mathcal{F}U$ existuje globální rozšíření
+\end{priklad}
+
+\begin{vysvetleni}[Upřesnění]
+Tvrzení je potřeba číst \uv{po zúžení na menší okolí} (resp.\ pro zárodky): $f\in\mathcal{F}U$ vynásobíme hladkou funkcí, která je $1$ na $V$ ($\overline V\subset U$)
+a mimo kompaktní část $U$ je nulová, a dostaneme globální funkci shodnou s $f$ na $V$. Doslova pro každou $f$ to neplatí (viz $1/x$ na $(0,1)$, vysvětlivka výše).
+\end{vysvetleni}
+
+\begin{priklad}[Př: svazek $\mathcal{T}_M$ hladkých vekt.\ polí na $M$]
+$\mathcal{T}U$ \quad hladká pole na $U\subset M$ \\
+pro $U$ homeomorfní $\mathbb{R}^d$ je $\mathcal{T}U$ konečně gen.\ $\mathcal{F}U$-modul \\
+ale $\mathcal{T}M$ nemusí být volný modul $=$ neparalelizovatelnost \\
+$\mathcal{T}M$ je reflexivní (stačí lokálně konečně generovaný)
+\end{priklad}
+
+\begin{vysvetleni}[Vektorová pole jako modul]
+Je-li $U$ obor mapy, je $\mathcal{T}U$ dokonce \emph{volný} modul s bází $\partial/\partial x^i$: každé pole je $a=a^i\partial/\partial x^i$ s jednoznačnými $a^i\in\mathcal{F}U$.
+Globálně je $\mathcal{T}M$ volný právě tehdy, když existuje globální báze vektorových polí, tj.\ $\mathbb{T}M$ je paralelizovatelný ($S^1$, $S^3$, Lieovy grupy ano; $S^2$ ne).
+I bez volnosti je $\mathcal{T}M$ konečně generovaný projektivní $\mathcal{F}M$-modul, a proto reflexivní: $(\mathcal{T}^*M)^*\cong\mathcal{T}M$ -- vektorová pole jsou
+právě $\mathcal{F}M$-lineární funkcionály na 1-formách (srv.\ Krtouš, věta V2.3 o ultralokálních lineárních zobrazeních).
+\end{vysvetleni}
+
+%----------------------------------------------------------------------
+\newpage
+\strana{GMI-04b-9}
+\begin{definice}[germ (zárodek) a stvol {[stalk]}]
+mějme (před)svazek $\mathcal{S}_M$ a bod $x\in M$ \\
+$\underset{x}{\sim}$ relace ekvivalence na řezech na oblastech obsah.\ $x$
+\[
+  \underset{\in\mathcal{S}U_1}{\phi_1}\ \underset{x}{\sim}\ \underset{\in\mathcal{S}U_2}{\phi_2}
+  \quad\equiv\quad
+  \exists\, U\subset M,\ x\in U,\ U\subset U_i:\quad \phi_1|_U = \phi_2|_U
+\]
+\hfill existuje okolí $U$, na kterém $\phi_1,\phi_2$ shodné
+
+třída ekvivalence $\underset{x}{\sim}$ se nazývá \kw{germ} v bodě $x$ \\
+soubor germů v bodě $x$ tvoří \kw{stvol} [stalk] $\mathcal{S}_xM$
+\end{definice}
+
+\begin{vysvetleni}[Zárodky]
+Zárodek je \uv{nekonečně malý kousek} řezu kolem $x$: zapomeneme vše, co se děje mimo libovolně malé okolí $x$. Např.\ zárodky hladkých funkcí v $x$
+nesou informaci o hodnotě a všech derivacích v $x$ (a ještě o něco víc), ale ne o funkci daleko od $x$. Stvol $\mathcal{F}_xM$ zárodků hladkých funkcí je okruh;
+tečné vektory v $x$ lze definovat jako derivace tohoto okruhu. Stvol je algebraický objekt přiřazený jedinému bodu (\uv{vlákno} svazku nad $x$),
+podobně jako vlákno bandlu.
+\end{vysvetleni}
+
+\begin{definice}[okruhované prostory {[ringed space]}]
+$(M,\mathcal{R}_M)$ či jen $\mathcal{R}M$ je \kw{okruhovaný prostor} $\equiv$ \\
+\quad $M$ \quad topologický prostor \\
+\quad $\mathcal{R}_M$ \quad svazek okruhů
+
+\kw{lokální okruhovaný prostor} $\mathcal{R}M$ $\equiv$ \\
+\quad $\mathcal{R}_xM$ je lokální $=$ má jednoznačný maximální ideál
+\end{definice}
+
+\begin{vysvetleni}[Proč \uv{lokální} okruh]
+Pro zárodky hladkých funkcí v $x$: je-li $f(x)\neq0$, je $f$ nenulová na nějakém okolí a $1/f$ tam existuje, tj.\ zárodek je invertibilní.
+Neinvertibilní zárodky jsou tedy právě ty s $f(x)=0$ a tvoří ideál $\mathfrak{m}_x$ -- jediný maximální ideál stvolu $\mathcal{F}_xM$.
+Bod $x$ je tak zakódován jako \uv{funkce, které v něm mizí}; navíc $T^*_xM\cong\mathfrak{m}_x/\mathfrak{m}_x^2$ (gradient zárodku mizejícího v $x$).
+\end{vysvetleni}
+
+umožňuje definovat pojem variety skrze zadání hladkých fcí
+
+\begin{veta}[dif.\ varieta pomocí okruh.\ pr.]
+$M$ je dif.\ var.\ (def.\ pomocí okruh.\ pr.) $\equiv$
+\begin{itemize}[nosep]
+  \item[] $(M,\mathcal{F}_M)$ je lokální okruh.\ prostor
+  \item[] lokálně izomorfní s $(\mathbb{R}^n, C^\infty_{\mathbb{R}^n})$
+  \item[] $M$ (s indukovanou top.) je Hausdorffův se spoč.\ bází top.
+\end{itemize}
+\end{veta}
+
+umožňuje zobecnit pojem variety \\
+\quad zadá se obecnější prostor fcí skrze zadání jiného lok.\ okruh.\ prostoru \\
+\quad např.\ lokálně izomorfní s grassmannovským $(\mathbb{R}^{m,k}, C^\infty_{\mathbb{R}^{m,k}})$
+
+\begin{vysvetleni}[Varieta jako lokálně okruhovaný prostor; supervariety]
+\uv{Lokálně izomorfní} znamená: každý bod má okolí $U$ a homeomorfismus $U\cong V\subset\mathbb{R}^n$, který převádí svazek $\mathcal{F}_M|_U$ na svazek hladkých funkcí
+na $V$ -- to je přesně mapa, jen formulovaná přes funkce místo souřadnic (souřadnice jsou $n$ vybraných funkcí). Hausdorffovost a spočetná báze vylučují
+patologie (např.\ přímku se zdvojeným počátkem). Supervarieta: $\mathbb{R}^{m,k}$ (častěji psáno $\mathbb{R}^{m|k}$) je $\mathbb{R}^m$ se svazkem
+$C^\infty(\mathbb{R}^m)\otimes\Lambda[\theta^1,\dots,\theta^k]$, kde $\theta^i$ jsou antikomutující (Grassmannovy) souřadnice, $\theta^i\theta^j=-\theta^j\theta^i$.
+Body jsou stejné jako u $\mathbb{R}^m$, ale funkcí je \uv{víc} -- popisují fermionové stupně volnosti v supersymetrii.
+\end{vysvetleni}
+

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QM I Simulations</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <h1>QM I – simulations</h1>
+    <div class="sub">Interactive models of the problem sheets</div>
+    <input type="search" id="search" placeholder="Filter problems…">
+    <nav class="nav" id="nav"></nav>
+    <button class="theme-btn" id="themeBtn">◐ Toggle theme</button>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<!-- core -->
+<script src="core/linalg.js"></script>
+<script src="core/fft.js"></script>
+<script src="core/plot.js"></script>
+<script src="core/ui.js"></script>
+<script src="core/bloch.js"></script>
+<script src="core/measure.js"></script>
+<!-- catalogue: topics + tracked source files + engine/problem registration API -->
+<script src="problems/registry.js"></script>
+<!-- engines (one per physics family) -->
+<script src="engines/finite.js"></script>
+<script src="engines/spin.js"></script>
+<script src="engines/ring.js"></script>
+<script src="engines/wave1d.js"></script>
+<script src="engines/angular.js"></script>
+<!-- problem presets, grouped by engine -->
+<script src="problems/finite.js"></script>
+<script src="problems/spin.js"></script>
+<script src="problems/ring.js"></script>
+<script src="problems/wave1d.js"></script>
+<script src="problems/angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

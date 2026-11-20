@@ -1,0 +1,457 @@
+% ======================================================================
+% Přednáška 11 (12. 12. 2022)
+% Shrnutí neutrinových experimentů, CP narušení, Dirac x Majorana,
+% supersymetrie, urychlovače částic
+% ======================================================================
+\section{Otevřené otázky neutrin, supersymetrie a urychlovače částic}
+
+\strana{P11-1}
+\subsection{Shrnutí neutrinových experimentů}
+
+Na minulých přednáškách jsme probrali oscilace neutrin. Experimenty, které je změřily, lze
+rozdělit podle zdroje neutrin -- každý zdroj dává jinou vůni, jinou energii \(E\) a jinou
+vzdálenost \(L\) mezi zdrojem a detektorem, a je proto citlivý na jiný parametr oscilací
+(fáze oscilace je úměrná \(\Delta m^2 L/E\)):
+\begin{itemize}[nosep]
+  \item \kw{solární} (\(\nu_e\)) -- z termojaderných reakcí ve Slunci (\(E\sim\mathrm{MeV}\),
+        \(L\approx 1{,}5\cdot10^{11}\,\mathrm{m}\)); měří \(\theta_{12}\), \(\Delta m^2_{21}\)
+        (Homestake, SNO, Super-Kamiokande\dots);
+  \item \kw{reaktorová} (\(\bar\nu_e\)) -- z \(\beta^-\) rozpadů štěpných produktů v jaderném
+        reaktoru (\(E\sim\) jednotky MeV); měří zánik \(\bar\nu_e\), např. KamLAND, Daya Bay
+        (\(\theta_{13}\));
+  \item \kw{atmosférická} -- z rozpadů pionů a mionů vzniklých interakcí kosmického záření v
+        atmosféře (\(\nu_\mu,\bar\nu_\mu,\nu_e,\bar\nu_e\)); \(L\) od \(\sim 15\,\mathrm{km}\)
+        (shora) do \(\sim 13\,000\,\mathrm{km}\) (zespodu, přes celou Zemi); Super-Kamiokande
+        zde v roce 1998 oscilace objevil (\(\theta_{23}\), \(|\Delta m^2_{32}|\));
+  \item \kw{urychlovačová} -- uměle vyrobené svazky \(\nu_\mu\) nebo \(\bar\nu_\mu\) se známou energií
+        a vzdáleností (T2K, NOvA, OPERA\dots).
+\end{itemize}
+
+\subsection{CP narušení u neutrin}
+
+Proč nás zajímá CP narušení? Vesmír obsahuje téměř výhradně hmotu a ne antihmotu; jednou z
+podmínek, aby taková asymetrie mohla vzniknout, je narušení symetrie \(CP\) (Sacharovovy
+podmínky). V kvarkovém sektoru CP narušení známe (kaony, \(B\)-mezony), ale je příliš malé.
+Neutrinová směšovací (PMNS) matice obsahuje obecně fázi \(\delta\), která CP narušuje -- a
+oscilace neutrin jsou místem, kde ji lze změřit.
+
+Operace \(CP\) převádí neutrino na antineutrino (\(C\)) a obrací helicitu (\(P\)), takže z
+levotočivého \(\nu\) udělá pravotočivé \(\bar\nu\) -- tedy opět fyzikální částici. Porovnáváme
+proto oscilace neutrin a antineutrin:
+\begin{itemize}
+  \item \kw{zachování CP}:
+        \[
+          P_{\nu_\alpha\to\nu_\beta} = P_{\bar\nu_\alpha\to\bar\nu_\beta},
+        \]
+        kde \(P_{\nu_\alpha\to\nu_\beta}\) je pravděpodobnost, že neutrino vzniklé s vůní
+        \(\alpha\) bude detekováno s vůní \(\beta\) (\(\alpha,\beta\in\{e,\mu,\tau\}\));
+  \item \kw{narušení CP} (\(\not{\!CP}\)):
+        \[
+          \vzorec{P_{\nu_\alpha\to\nu_\beta} - P_{\nu_\beta\to\nu_\alpha}
+          = P_{\nu_\alpha\to\nu_\beta} - P_{\bar\nu_\alpha\to\bar\nu_\beta}
+          \;\propto\; 2\sin\delta}
+        \]
+\end{itemize}
+První rozdíl (záměna počátečního a koncového stavu) měří narušení \emph{časové}
+symetrie \(T\). Rovnost s druhým rozdílem plyne z věty \(CPT\): \(CPT\) symetrie zaručuje
+\(P_{\nu_\beta\to\nu_\alpha} = P_{\bar\nu_\alpha\to\bar\nu_\beta}\), takže narušení \(T\) je
+ekvivalentní narušení \(CP\). Velikost asymetrie je úměrná \(\sin\delta\); je-li \(\delta=0\)
+nebo \(\pi\), CP narušeno není.
+
+\begin{vysvetleni}[Proč je potřeba tři vůně]
+  Při oscilacích jen dvou neutrin lze matici směšování zvolit reálnou a CP fáze neexistuje.
+  Pro tři generace je asymetrie (ve vakuu)
+  \(P_{\nu_\mu\to\nu_e}-P_{\bar\nu_\mu\to\bar\nu_e} \propto J\,
+  \sin\Delta_{21}\sin\Delta_{32}\sin\Delta_{31}\), kde \(\Delta_{ij}=\Delta m^2_{ij}L/(4\hbar cE)\)
+  a Jarlskogův invariant \(J=c_{12}s_{12}c_{23}s_{23}c_{13}^2s_{13}\sin\delta\). Asymetrie je
+  tedy nenulová jen tehdy, když jsou \emph{všechny} tři směšovací úhly nenulové (proto bylo
+  měření \(\theta_{13}\neq0\) v roce 2012 tak důležité). Pozor: při průletu Zemí vzniká i
+  ,,falešná`` asymetrie od interakce s elektrony v látce (MSW jev), kterou je třeba odečíst.
+\end{vysvetleni}
+
+\strana{P11-2}
+Jak se to měří na urychlovači? Svazek neutrin vzniká z rozpadů pionů,
+\[
+  \pi^+\to\mu^+\nu_\mu,\qquad \pi^-\to\mu^-\bar\nu_\mu .
+\]
+Magnetickým ,,rohem`` (horn) se fokusují buď kladné, nebo záporné piony -- přepnutím
+polarity tak dostaneme buď svazek \(\nu_\mu\), nebo \(\bar\nu_\mu\), a ve vzdáleném detektoru
+porovnáváme \(\nu_\mu\to\nu_e\) a \(\bar\nu_\mu\to\bar\nu_e\) (T2K, NOvA, budoucí DUNE).
+
+Pro tauonová neutrina připomeňme zdroj z minulé přednášky:
+\[
+  D_s^+ = (c\bar s),\qquad D_s^+\to\tau^+\nu_\tau \quad (4\,\%)
+\]
+\pozn{v poznámkách ,,(4\,\%)``, příp. ,,7\,\%``; PDG uvádí \(\approx5{,}4\,\%\)}
+
+\subsection{Dirac \texorpdfstring{$\times$}{x} Majorana}
+
+Neutrino je jediný fermion bez elektrického náboje. Otevírá to otázku, zda je neutrino
+odlišné od antineutrina (\kw{Diracova částice}, jako elektron a pozitron), nebo zda je
+neutrino \emph{svou vlastní antičásticí} (\kw{Majoranova částice}); v tom případě by se
+,,neutrino`` a ,,antineutrino`` lišily jen helicitou. Rozhodnout to lze pomocí
+\kw{dvojitého beta rozpadu}.
+
+Obyčejný \(\beta^-\) rozpad zvýší náboj jádra o jedna:
+\begin{align*}
+  {}^{A}_{Z}X &\to {}^{A}_{Z+1}Y + e^- + \bar\nu_e ,\\
+  {}^{A}_{Z+1}Y &\to {}^{A}_{Z+2}G + e^- + \bar\nu_e .
+\end{align*}
+Normálně by tedy jádro přešlo na \(Z+2\) dvěma po sobě jdoucími rozpady. U jader se sudým
+\(A\) to ale nemusí jít. Z Weizsäckerovy formule plyne, že pro dané \(A\) leží hmoty jader
+\(M(A,Z)\) jako funkce \(Z\) na parabole; pro sudé \(A\) jsou to dvě paraboly, protože párovací
+člen \(\delta\) zvýhodňuje jádra \kw{sudo-sudá} (SS, sudé \(Z\) i \(N\)) a znevýhodňuje
+\kw{licho-lichá} (LL):
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,xscale=0.9,yscale=0.85]
+  \draw[thick,->] (0,0) -- (8.6,0) node[below] {$Z$};
+  \draw[thick,->] (0,0) -- (0,5.2) node[left] {$M(A,Z)$};
+  % SS parabola
+  \draw[thick,domain=0.3:8.0,samples=60] plot (\x,{0.2+0.16*(\x-4)^2});
+  \node[right] at (8.0,2.9) {SS};
+  % LL parabola (carkovane)
+  \draw[thick,dashed,domain=0.8:8.0,samples=60] plot (\x,{1.6+0.16*(\x-4)^2});
+  \node[right] at (8.0,4.3) {LL};
+  % body: SS v Z=1,3,5,7 ; LL v Z=2,4,6
+  \foreach \z in {1,3,5,7} \fill ({\z},{0.2+0.16*(\z-4)^2}) circle (2.5pt);
+  \foreach \z in {2,4,6} \fill ({\z},{1.6+0.16*(\z-4)^2}) circle (2.5pt);
+  % prechody
+  \draw[ForestGreen,thick,->] (2,2.24) -- (1.08,1.68) node[midway,above left] {$\beta^+$};
+  \draw[ForestGreen,thick,->] (2,2.24) -- (2.95,0.42) node[pos=0.4,right] {$\beta^-$};
+  \draw[ForestGreen,thick,dashed,->] (3,0.36) -- (3.95,1.55);
+  \draw[ForestGreen,thick] (3.3,1.3) -- (3.7,0.7);
+  \draw[ForestGreen,thick] (3.3,0.7) -- (3.7,1.3);
+  \draw[ForestGreen,thick] (3,0.36) circle (0.25);
+  \node[ForestGreen] at (2.5,-0.05) {\large ?};
+  \draw[ForestGreen,thick,->] (3.15,0.15) to[bend right=10] (4.9,0.1);
+  \node[ForestGreen,below] at (4.4,-0.05) {$2\beta^-$};
+\end{tikzpicture}
+\end{center}
+
+Kroužkem označené sudo-sudé jádro \((Z)\) je lehčí než sousední licho-liché jádro \((Z+1)\),
+takže obyčejný \(\beta^-\) rozpad je energeticky zakázán (přeškrtnutá šipka). Sudo-sudé jádro
+\((Z+2)\) je ale ještě lehčí. Jediná cesta je přeskočit mezistav a změnit náboj rovnou o 2 --
+\kw{dvojitý \(\beta\) rozpad}, proces druhého řádu slabé interakce s extrémně dlouhými
+poločasy (\(\sim10^{19}\)--\(10^{24}\) let; např. \({}^{76}\mathrm{Ge}\), \({}^{130}\mathrm{Te}\),
+\({}^{136}\mathrm{Xe}\)).
+
+\strana{P11-3}
+Možné jsou dva typy:
+\begin{align*}
+  \text{Dirac:}\qquad & {}^{A}_{Z}X \to {}^{A}_{Z+2}Y + e^- + e^- + \bar\nu_e + \bar\nu_e
+     && (2\nu\beta\beta),\\
+  \text{Majorana:}\qquad & {}^{A}_{Z}X \to {}^{A}_{Z+2}Y + e^- + e^- && (0\nu\beta\beta).
+\end{align*}
+Dvouneutrinový rozpad \(2\nu\beta\beta\) je prostě ,,dva \(\beta\) rozpady najednou`` a je povolen
+v každém případě (pozorován u řady jader). Bezneutrinový rozpad \(0\nu\beta\beta\) je možný jen
+tehdy, je-li neutrino Majoranova částice: antineutrino vyzářené v jednom vrcholu se v druhém
+vrcholu pohltí jako neutrino (\(\bar\nu_e\equiv\nu_e\)). Navíc musí neutrino mít nenulovou
+hmotu, aby se mohla ,,překlopit`` jeho helicita (amplituda je úměrná efektivní Majoranově
+hmotě \(m_{\beta\beta}\)). Proces narušuje leptonové číslo o 2.
+
+\begin{vysvetleni}[Jak se \(0\nu\beta\beta\) pozná]
+  Experimentálně se měří \emph{součet energií obou elektronů}. Při \(2\nu\beta\beta\) odnášejí
+  část energie neutrina, takže spektrum je spojité od nuly do \(Q_{\beta\beta}\). Při
+  \(0\nu\beta\beta\) odnesou elektrony celou energii rozpadu (zpětný ráz jádra je zanedbatelný),
+  a ve spektru by se tak objevil úzký pík přesně na \(Q_{\beta\beta}\). Zatím pozorován nebyl,
+  limity na poločas jsou \(T_{1/2}\gtrsim10^{26}\) let (GERDA, KamLAND-Zen), viz Davídkovy slajdy
+  ,,Otevřené otázky částicové fyziky``.
+\end{vysvetleni}
+
+\subsection{Supersymetrie?}
+
+Další otevřenou otázkou (,,co ještě nevíme``) je, zda existuje \kw{supersymetrie} (SUSY) --
+symetrie mezi fermiony a bosony. Motivace: stabilizuje hmotu Higgsova bosonu vůči velkým
+kvantovým korekcím, zlepšuje sjednocení vazbových konstant při vysokých energiích a nejlehčí
+supersymetrická částice je kandidátem na temnou hmotu.
+\begin{itemize}
+  \item Každý fermion má ,,kamaráda`` -- \kw{skalární částici} (\(s=0\)), a to \(2\times\)
+        (jednu pro každou chiralitu):
+        \[
+          \mu \to \tilde\mu_L,\ \tilde\mu_R ,
+        \]
+        a stejně pro (ostatní) leptony; obdobně pro kvarky (skvarky \(\tilde q_L,\tilde q_R\)).
+  \item Obdobně pro \(g,\gamma,W,Z\): bosony dostanou partnery se spinem \(\tfrac12\)
+        (gluino \(\tilde g\), \dots).
+  \item Higgsový sektor se rozšíří na \(5\times\) Higgs: \(H^\pm,\ h^0,\ H^0,\ A^0\)
+        (\(H^+\) a \(H^-\) jsou dva stavy, celkem tedy pět).
+\end{itemize}
+Partneři elektroslabých bosonů a Higgsů se navzájem mísí (mají stejná kvantová čísla), takže
+fyzikální stavy jsou jejich kombinace:
+\begin{align*}
+  \gamma,\,Z\ (\text{a neutrální Higgsy})&:\quad \tilde\chi^0_1,\ \tilde\chi^0_2,\ \dots
+     && s=\tfrac12 \quad\text{(čtyři \kw{neutralina})},\\
+  W^\pm,\,H^\pm&:\quad \tilde\chi^\pm_1,\ \tilde\chi^\pm_2,\ \dots && s=\tfrac12
+     \quad\text{(dvě \kw{chargina})}.
+\end{align*}
+
+\strana{P11-4}
+\textbf{Jak se hledají:} Supersymetrické částice by na LHC vznikaly v párech (zachování
+\(R\)-parity), např. pár skvarků, který se rozpadá
+\[
+  \tilde q\,\tilde q \to q\,q\,\tilde\chi^0_1\,\tilde\chi^0_2 .
+\]
+Neutralina jsou neutrální a slabě interagující; nejlehčí z nich (\(\tilde\chi^0_1\), LSP) je
+stabilní a detektorem projde jako neutrino (těžší \(\tilde\chi^0_2\) se dál rozpadá až na
+\(\tilde\chi^0_1\)). Pozorujeme proto
+\[
+  \text{2 jety} + \text{velkou chybějící } p_T .
+\]
+Tato signatura je stejná jako u některých procesů SM (např. \(Z\to\nu\bar\nu\) + jety), hledá
+se tedy přebytek případů s velmi velkou chybějící \(p_T\). Zatím nic nalezeno nebylo a hmoty
+skvarků a gluin pod \(\sim 1\)--\(2\,\mathrm{TeV}\) jsou vyloučeny.
+
+\subsection{Urychlovače částic}
+
+Poslední velké téma: jak částice na potřebné energie urychlit. Urychlovat lze jen nabité
+částice, a to jedině elektrickým polem (magnetické pole mění jen směr). Dělíme je na
+\[
+  \text{\kw{lineární}} \quad\times\quad \text{\kw{kruhové}} .
+\]
+Lineární urychlovače dále dělíme na
+\begin{itemize}[nosep]
+  \item \kw{elektrostatické} -- např. Van de Graaffův generátor (VdG);
+  \item \kw{rezonanční} -- urychlují střídavým vysokofrekvenčním polem.
+\end{itemize}
+
+\subsubsection{Elektrostatické urychlovače}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.8]
+  % kopule
+  \draw[thick] (0.2,5.0) arc[start angle=200,end angle=-20,x radius=2.0,y radius=1.6];
+  \draw[thick] (0.2,5.0) -- (0.5,4.4);
+  \foreach \p in {(0.0,5.6),(0.3,6.6),(1.2,7.2),(2.0,7.35),(2.8,7.2),(3.6,6.7),(4.0,5.7),(3.8,4.6)}
+     \node at \p {\small $+$};
+  % pas
+  \draw[thick] (2.0,3.5) ellipse (0.55 and 2.5);
+  \draw[thick] (2.0,5.5) circle (0.3);
+  \draw[thick] (2.0,1.5) circle (0.3);
+  \draw[->] (2.15,4.5) arc[start angle=120,end angle=-60,radius=0.2];
+  % hrebinek nahore
+  \draw[thick,->] (2.0,5.8) -- (0.4,5.7);
+  % trubice svazku
+  \draw[thick] (3.6,4.65) -- (3.6,0.5);
+  \draw[thick] (3.85,4.65) -- (3.85,0.5);
+  \draw[ForestGreen,thick,->] (3.72,4.0) -- (3.72,2.4);
+  \node[right] at (4.0,2.8) {$X^+$};
+  % uzemneni
+  \draw[thick] (3.2,0.5) -- (4.2,0.5);
+  \draw[thick] (3.4,0.3) -- (4.0,0.3);
+  \draw[thick] (3.6,0.1) -- (3.8,0.1);
+  % HV
+  \draw[thick] (-0.6,0.2) rectangle (0.3,0.9); \node at (-0.15,0.55) {HV};
+  \draw[thick,->] (-0.15,0.9) -- (-0.15,1.4) -- (1.35,1.5);
+  \node at (0.5,1.75) {\small $+\!+\!+$};
+  % vstup X-
+  \draw[thick,->] (3.7,10.0) -- (3.7,8.0);
+  \node[right] at (3.8,9.0) {$X^-$};
+  \node[ForestGreen,right] at (5.2,7.0) {elektrostatický};
+  \node[right] at (5.2,3.2) {speciální konfigurace:};
+  \node[right] at (5.2,2.5) {tandem};
+\end{tikzpicture}
+\end{center}
+\pozn{v náčrtu z poznámek vstupuje svazek \(X^-\) shora do kopule a \(X^+\) vylétá trubicí
+dolů k uzemnění}
+
+\kw{Van de Graaffův generátor}: zdroj vysokého napětí (HV) ,,nastříká`` kladný náboj na
+nekonečný izolační pás. Pás (poháněný kladkami) náboj mechanicky vynáší nahoru do duté kovové
+kopule, kde ho hrot (hřebínek) sejme; náboj přejde na vnější povrch kopule (uvnitř vodiče je
+pole nulové, takže lze stále přidávat další náboj). Kopule se tak nabíjí na napětí \(U\) až
+\(\sim\)\,MV (max.\ asi \(25\,\mathrm{MV}\), limituje to elektrický průraz; proto bývá celé
+zařízení v tlakové nádobě s izolačním plynem \(\mathrm{SF_6}\)). Iont s nábojem \(Qe\) urychlený
+mezi kopulí a uzemněním získá energii \(E = QeU\). Výhodou je spojitý svazek s velmi přesně
+definovanou energií.
+
+\kw{Tandem} (speciální konfigurace): Záporné ionty \(X^-\) se vstřelí z uzemněné strany a
+urychlují se \emph{k} kladné kopuli (zisk \(eU\)). V kopuli projdou tenkou fólií nebo plynem
+(,,stripper``), který jim strhne elektrony, takže se z nich stanou kladné ionty \(X^{Q+}\).
+Ty jsou nyní od kopule odpuzovány a urychlují se podruhé, zpět k zemi (zisk \(QeU\)). Celkem
+\[
+  E = (1+Q)\,eU ,
+\]
+tedy stejné napětí je využito dvakrát (a vícekrát pro vícenásobně ionizované ionty) a zdroj
+iontů i terč jsou na zemním potenciálu.
+
+\strana{P11-5}
+\subsubsection{Rezonanční (lineární) urychlovače}
+
+Elektrostatické napětí nelze zvyšovat donekonečna (průraz). Řešení: použít \emph{malé}
+střídavé napětí mnohokrát za sebou. Nejjednodušší je \kw{Wideröeho urychlovač} s driftovými
+trubicemi:
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  % zdroj
+  \draw[thick] (0.3,1.4) -- (0,1.4) -- (0,0.6) -- (0.3,0.6);
+  \draw[thick] (0.1,0.7) rectangle (0.25,1.3);
+  \draw[thick] (0,1.0) -- (7.6,1.0);
+  % trubice
+  \draw[ForestGreen,thick] (1.2,0.75) rectangle (2.0,1.25);
+  \draw[ForestGreen,thick] (2.8,0.75) rectangle (4.0,1.25);
+  \draw[ForestGreen,thick] (4.8,0.7) rectangle (6.6,1.3);
+  \node at (1.7,0.85) {\small $e^-$};
+  \node at (0.5,1.75) {$e^-$};
+  \node at (1.5,1.9) {$+$}; \node at (1.5,1.5) {$-$};
+  \node at (3.4,1.6) {$+$};
+  % spoje
+  \draw[thick] (0.05,0.6) -- (0.05,-0.3);
+  \draw[thick] (3.4,0.75) -- (3.4,-0.3);
+  \fill (3.4,-0.3) circle (1.5pt);
+  \draw[thick] (0.05,-0.3) -- (6.8,-0.3) -- (6.8,-0.6);
+  \fill (0.05,-0.3) circle (1.5pt);
+  \draw[thick] (0.05,-0.3) -- (0.05,-0.6);
+  \draw (-0.15,-0.6) -- (0.25,-0.6); \draw (-0.08,-0.7) -- (0.18,-0.7); \draw (0,-0.8) -- (0.1,-0.8);
+  \draw[thick] (1.6,0.75) -- (1.6,-1.0) -- (5.7,-1.0);
+  \draw[thick] (5.7,0.7) -- (5.7,-1.0);
+  \fill (5.7,-1.0) circle (1.5pt);
+  \draw[thick] (5.7,-1.0) -- (6.0,-1.0);
+  % RF generator
+  \draw[thick] (6.0,-1.4) rectangle (7.2,-0.6);
+  \draw (6.6,-1.0) circle (0.25); \node at (6.6,-1.0) {\small $\sim$};
+  \node[right] at (7.3,-1.0) {RF};
+\end{tikzpicture}
+\end{center}
+
+Trubice jsou střídavě připojeny k pólům vysokofrekvenčního (RF) generátoru o frekvenci
+\(f\). Uvnitř trubice je pole nulové (Faradayova klec) -- částice tam jen volně letí
+(,,driftuje``). Urychlí se vždy v mezeře mezi trubicemi. Trik je v tom, že doba průletu
+trubicí je přesně půl periody: když částice vyletí z trubice, napětí se mezitím otočilo a
+v další mezeře ji opět urychlí. Pokud částice projde každou mezerou ve fázi \(\varphi_0\)
+napětí \(U(t)=U_{\max}\sin\varphi\), získá v každé mezeře energii \(QeU_{\max}\sin\varphi_0\) a
+po \(i\) mezerách má (nerelativisticky) kinetickou energii
+\[
+  E_i = i\,Q e\,U_{\max}\sin\varphi_0 = \tfrac12 m v_i^2 .
+\]
+Délka \(i\)-té trubice musí odpovídat dráze, kterou částice urazí za půl periody
+\(T/2 = 1/(2f)\):
+\[
+  \vzorec{l_i = \frac{v_i}{2f}
+  = \frac{1}{2f}\sqrt{\frac{2iQeU_{\max}\sin\varphi_0}{m}}
+  = \frac{1}{f}\sqrt{\frac{iQeU_{\max}\sin\varphi_0}{2m}}}
+\]
+Délky trubic tedy rostou jako \(\sqrt i\). Pro relativistické částice (\(v\to c\)) se délka
+ustálí na \(l=c/(2f)\) -- proto se tento typ hodí hlavně pro pomalé těžké ionty; pro
+elektrony, které jsou relativistické už od \(\sim\)\,MeV, se používají vlnovody a rezonátory
+s vysokou frekvencí.
+
+\strana{P11-6}
+\textbf{Fázová stabilita.} Částice ve svazku nemají přesně stejné energie, a tedy ani
+přesně stejný čas příletu do mezery. Je třeba, aby se odchylky samy opravovaly:
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,xscale=1.1]
+  \draw[thick,->] (-0.3,0) -- (6.6,0) node[below] {$t$};
+  \draw[thick,->] (0,-1.6) -- (0,1.9) node[left] {$U$};
+  \draw[thick,domain=0:6.2,samples=80] plot (\x,{1.4*sin(\x/6.2*360)});
+  \draw[dashed] (0,1.4) -- (1.55,1.4);
+  \node[left] at (0,1.4) {$U_{\max}$};
+  \draw (1.55,0.1) -- (1.55,-0.1) node[below] {$\pi/2$};
+  \draw[densely dashed] (1.55,0) -- (1.55,1.4);
+  \fill (1.05,{1.4*sin(1.05/6.2*360)}) circle (2pt);
+  \fill (1.25,{1.4*sin(1.25/6.2*360)}) circle (2pt);
+  \node[ForestGreen,right] at (7.0,1.2) {fázová rovnováha:\ $\varphi_0 < \frac{\pi}{2}$};
+\end{tikzpicture}
+\end{center}
+
+Synchronní částice prochází mezerou ve fázi \(\varphi_0\) na \emph{rostoucí} části sinusovky
+(\(\varphi_0<\pi/2\)). Částice, která je pomalejší a přiletí později, pak ,,vidí`` větší
+napětí, dostane víc energie a dožene synchronní částici; částice rychlejší přiletí dřív,
+dostane méně energie a zpomalí se vůči ostatním. Částice tak oscilují kolem synchronní fáze
+(\kw{fázová rovnováha}, autofázování). Kdybychom zvolili \(\varphi_0=\pi/2\) (maximum), získali
+bychom sice nejvíc energie, ale svazek by se postupně rozpadl.
+\pozor{Pozor:} pro ultrarelativistické částice se rychlost s energií téměř nemění, a v
+kruhových urychlovačích (synchrotronech nad tzv. přechodovou energií) je stabilní fáze naopak
+na klesající části.
+
+\textbf{Moderní urychlující struktury:}
+\begin{itemize}
+  \item \kw{Urychlovač s nosnou vlnou}\,\pozn{čtení ,,s nosnou vlnou`` nejisté} --
+        \emph{sekundární svazek} budí elektrické pole \(\vec E\parallel\) osa svazku (CLIC).
+        V konceptu CLIC (Compact Linear Collider, CERN) intenzivní nízkoenergetický ,,budicí``
+        svazek prochází zpomalovacími strukturami, kde vyzáří vysokofrekvenční výkon, a ten se
+        převede do urychlujících struktur hlavního svazku (two-beam acceleration).
+  \item \kw{Dutinové rezonátory} -- příčná magnetická vlna (\(\vec B\perp\) osa svazku) generuje
+        \(\vec E\parallel\) osa svazku. V kovové dutině se vybudí stojaté elektromagnetické vlnění
+        (mód \(\mathrm{TM}_{010}\)): magnetické siločáry obíhají kolem osy, elektrické pole míří
+        podél osy a urychluje. Supravodivé dutiny dosahují gradientů \(\sim 30\,\mathrm{MV/m}\).
+  \item \kw{Laser-wake field}, \kw{plasma-wake field} -- laserový puls nebo svazek částic
+        letící plazmatem odtlačí elektrony a za sebou vytvoří ,,brázdu`` (wake) s obrovským
+        podélným polem (až \(\sim 100\,\mathrm{GV/m}\), tisíckrát víc než u kovových dutin).
+        Perspektivní cesta ke kompaktním urychlovačům.
+\end{itemize}
+
+\subsection{Kruhové urychlovače}
+
+Lineární urychlovač využije každou urychlující strukturu jen jednou. Zahneme-li dráhu
+magnetickým polem do kruhu, může částice procházet stejnou urychlující mezerou mnohokrát.
+
+\subsubsection{Cyklotron}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  % duanty
+  \draw[thick] (-2.2,0.2) arc[start angle=180,end angle=0,radius=2.2] -- cycle;
+  \draw[thick] (-2.2,-0.2) arc[start angle=180,end angle=360,radius=2.2] -- cycle;
+  % spirala
+  \draw[ForestGreen,thick,domain=0:1800,samples=300,smooth]
+     plot ({(0.25+0.105*\x/180)*cos(\x)},{(0.25+0.105*\x/180)*sin(\x)});
+  \draw[ForestGreen,thick,->] (1.3,-0.2) .. controls (2.2,0.2) .. (2.9,1.6);
+  \fill (0,0) circle (2.5pt);
+  \node at (0.5,-1.5) {$\otimes\,\vec B$};
+  % RF
+  \draw[thick] (-5.0,-0.4) rectangle (-3.8,0.4);
+  \draw (-4.4,0) circle (0.25); \node at (-4.4,0) {\small $\sim$};
+  \node[left] at (-5.0,0) {RF};
+  \draw[thick] (-4.4,0.4) -- (-4.4,1.2) -- (-1.9,1.2);
+  \draw[thick] (-4.4,-0.4) -- (-4.4,-1.2) -- (-1.9,-1.2);
+\end{tikzpicture}
+\end{center}
+
+Cyklotron tvoří dvě duté polokruhové elektrody (,,duanty``, tvaru D) v homogenním
+magnetickém poli \(\vec B\) kolmém na rovinu oběhu. Iontový zdroj je uprostřed. V mezeře
+mezi duanty je střídavé napětí z RF generátoru; uvnitř duantu je pole nulové a částice
+jen opisuje půlkružnici. Při každém průchodu mezerou se urychlí, takže se poloměr dráhy
+zvětšuje -- dráha je spirála -- až částice na okraji vyletí ven.
+
+Klíčové je, že \emph{doba oběhu nezávisí na poloměru}. Z rovnosti Lorentzovy a dostředivé
+síly \(QevB = mv^2/r\) plyne \(v = QeBr/m\), a tedy oběžná frekvence
+\[
+  f = \frac{v}{2\pi r} = \frac{QeBr}{2\pi r\, m} = \frac{QeB}{2\pi m} .
+\]
+Tato \kw{cyklotronová podmínka} umožňuje použít RF generátor o \emph{konstantní} frekvenci
+\(f\) -- částice je vždy v mezeře ve správné fázi, ať je na kterémkoli poloměru. Cyklotron
+proto může pracovat kontinuálně.
+
+Maximální kinetická energie je dána poloměrem \(R\) magnetu:
+\[
+  \vzorec{E_k = \tfrac12 mv^2 = \tfrac12 m\,(2\pi R f)^2 = \frac{(QeBR)^2}{2m}}
+\]
+
+\begin{priklad}[Odhad]
+  Proton (\(Q=1\)) v poli \(B=1{,}5\,\mathrm{T}\) a s poloměrem \(R=0{,}5\,\mathrm{m}\):
+  \(f = eB/(2\pi m_p) \approx 23\,\mathrm{MHz}\) a \(E_k = (eBR)^2/(2m_p)\); v praktických
+  jednotkách \(pc = 0{,}3\cdot1{,}5\cdot0{,}5\,\mathrm{GeV}=225\,\mathrm{MeV}\), takže
+  \(E_k\approx (pc)^2/(2m_pc^2) = 225^2/1876\,\mathrm{MeV}\approx 27\,\mathrm{MeV}\).
+\end{priklad}
+
+\strana{P11-7}
+\textbf{Relativita:} \(m\to\gamma m\). S rostoucí energií roste relativistická hmotnost a
+frekvence oběhu klesá:
+\[
+  f = \frac{QeB}{2\pi\gamma m} .
+\]
+Částice se pak začne za RF napětím opožďovat a přestane být urychlována. U protonů to omezuje
+klasický cyklotron na \(\sim 20\)--\(30\,\mathrm{MeV}\) (už při \(E_k = 20\,\mathrm{MeV}\) je
+\(\gamma\approx1{,}02\), tedy posun o \(2\,\%\)). Řešení jsou dvě:
+\begin{enumerate}[label=\alph*)]
+  \item \(\vec B\) roste s \(r\) tak, aby \(\gamma(r)/B(r)\) bylo konstantní (\kw{izochronní
+        cyklotron}), ale problém s fokusací -- pole rostoucí s poloměrem svazek vertikálně
+        rozfokusovává; řeší se to azimutálně proměnným polem (sektorový cyklotron);
+  \item frekvenci měnit s energií, \(f\sim\frac1\gamma\) \(\Rightarrow\) \kw{synchrocyklotron}.
+        Pak ale lze urychlovat jen jeden shluk částic po druhém -- urychlovač pracuje
+        v pulsním režimu (viz Davídkovy slajdy ,,Urychlovače (2)``).
+\end{enumerate}
+Dalším krokem (pevný poloměr, rostoucí pole i frekvence) je synchrotron, kterým se dosahuje
+nejvyšších energií.

@@ -13,6 +13,9 @@
 # Everything inside any `latex` directory (e.g. QM_I/latex/, Termo_I/latex/)
 !**/latex/**
 
+# Interactive simulation web apps (e.g. QM_I/simulace/)
+!**/simulace/**
+
 # LaTeX build artifacts (PDF output is kept)
 *.aux
 *.log

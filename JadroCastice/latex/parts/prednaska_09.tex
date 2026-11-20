@@ -1,0 +1,437 @@
+% ======================================================================
+% Přednáška 9 (28. 11. 2022)
+% Lepton tau, „velké“ experimenty (W/Z, top, Higgs), helicita neutrina,
+% mionové a tauonové neutrino
+% ======================================================================
+\section{Lepton \texorpdfstring{$\tau$}{tau}, velké experimenty a objevy neutrin}
+
+\strana{P09-1}
+\subsection{Lepton \texorpdfstring{$\tau$}{tau}}
+
+Přednáška navazuje na přehled leptonů. Lepton \(\tau\) je nejtěžší ze tří nabitých leptonů
+(\(m_\tau \approx 1{,}777\,\mathrm{GeV}\), tedy asi \(3500\times\) těžší než elektron a téměř
+dvakrát těžší než proton). Na rozdíl od elektronu a mionu je tak těžký, že se může rozpadat
+nejen na lehčí leptony, ale i na \emph{hadrony}. Rozpad probíhá slabou interakcí: \(\tau^-\)
+vyzáří virtuální \(W^-\) a sám se změní na své neutrino \(\nu_\tau\). Virtuální \(W^-\) se pak
+,,materializuje`` do všech kanálů, na které mu stačí energie (\(\le m_\tau\)):
+\begin{align*}
+  \tau^- &\to e^- \,\bar\nu_e\, \nu_\tau, \\
+  \tau^- &\to \mu^- \,\bar\nu_\mu\, \nu_\tau, \\
+  \tau^- &\to \pi^- \,\nu_\tau, \\
+  \tau^- &\to \underbrace{h^- h^+ h^-}_{\sum h}\, \nu_\tau .
+\end{align*}
+Zde \(\bar\nu_e,\bar\nu_\mu\) jsou antineutrina (v poznámkách značená vlnovkou \(\tilde\nu\)),
+\(h\) obecně označuje nabitý hadron (většinou \(\pi^\pm\), méně \(K^\pm\)) a \(\sum h\) říká, že
+hadronový koncový stav může obsahovat více hadronů (jednu, nebo tři nabité stopy, případně
+i neutrální \(\pi^0\)).
+
+Ve všech rozpadech vystupuje \(\nu_\tau\): leptonové číslo \(L_\tau\) se zachovává. Proto se
+\(\tau\) v detektoru nikdy neprojeví celou svou energií -- část vždy odnese neutrino.
+
+\begin{vysvetleni}[Proč tolik rozpadových kanálů a jaké jsou jejich podíly]
+  Virtuální \(W^-\) se může ,,rozpadnout`` na \(e^-\bar\nu_e\), \(\mu^-\bar\nu_\mu\) a na pár
+  \(d\bar u\) ve třech barvách (podivné \(s\bar u\) je potlačeno Cabibbovým úhlem). Naivně tedy
+  máme \(1+1+3=5\) rovnocenných možností a každý leptonový kanál by měl mít asi \(1/5=20\,\%\).
+  Skutečnost: \(\mathrm{BR}(\tau\to e\nu\nu)\approx 17{,}8\,\%\), \(\mathrm{BR}(\tau\to\mu\nu\nu)
+  \approx 17{,}4\,\%\) a zbylých \(\approx 65\,\%\) jsou hadronové rozpady (\(\pi^-\nu_\tau\)
+  samotný \(\approx 11\,\%\), tříhadronové stavy asi \(15\,\%\)). Lepton \(\tau\) je tedy
+  jediný lepton, který se rozpadá převážně na hadrony. Doba života je velmi krátká,
+  \(\tau_\tau\approx 2{,}9\cdot10^{-13}\,\mathrm{s}\) (\(c\tau\approx 87\,\mu\mathrm{m}\)).
+\end{vysvetleni}
+
+\subsection{,,Velké`` experimenty}
+
+Objevy těžkých částic Standardního modelu (\(W\), \(Z\), top-kvark, Higgsův boson) se
+neudělaly jedním jednoduchým přístrojem, ale obrovskými, univerzálními detektory na
+srážečích (UA1/UA2, CDF/D0, ATLAS/CMS). Těžká částice sama žije příliš krátce, aby ji bylo
+možné přímo vidět; detekujeme až její rozpadové produkty a z nich ji \emph{rekonstruujeme}.
+Proto potřebujeme měřit co nejvíce veličin o co nejvíce typech částic. Detektor je proto
+složen ze soustředných vrstev (,,cibule``), z nichž každá měří něco jiného
+(viz Davídkovy slajdy ,,Velké experimenty v částicové fyzice``).
+
+\kw{Typické složení} (od místa srážky ven):
+\begin{itemize}[nosep]
+  \item \kw{dráhový detektor}, typicky v magnetickém poli -- měří dráhy nabitých částic
+        a z jejich zakřivení hybnost;
+\end{itemize}
+
+\strana{P09-2}
+Jak se z křivosti dráhy dostaneme k hybnosti? Na nabitou částici s nábojem \(qe\)
+(\(q\) je náboj v násobcích elementárního náboje, pro elektron \(q=-1\)) působí v magnetickém
+poli Lorentzova síla
+\[
+  \vec F_L = qe\,\vec v\times\vec B .
+\]
+Je-li rychlost kolmá na pole, \(\vec v\perp\vec B\), je velikost síly \(qevB\) a síla míří stále
+kolmo na rychlost. Částice se tedy pohybuje po kružnici o poloměru \(R\) a Lorentzova síla
+hraje roli dostředivé síly
+\[
+  F_0 = \frac{mv^2}{R}.
+\]
+Porovnáním obou sil dostaneme
+\[
+  \frac{mv^2}{R} = qevB
+  \quad\Longrightarrow\quad mv = qeBR .
+\]
+Výsledek \(p = mv = qeBR\) platí i relativisticky (stačí za \(m\) dosadit \(\gamma m\); pohybová
+rovnice \(\dd\vec p/\dd t = qe\,\vec v\times\vec B\) mění jen směr hybnosti, ne její velikost).
+Abychom dostali praktický vzorec, vynásobíme obě strany rychlostí světla \(c\):
+\[
+  mvc = qe\,c\,BR
+  \qquad\Longrightarrow\qquad
+  \frac{p\,c}{e} = q\,B\,R\,c .
+\]
+Levá strana \(pc/e\) je hybnost vyjádřená v elektronvoltech (energie \(pc\) dělená \(e\) je
+právě číselná hodnota v eV). Dosadíme-li \(B\) v teslách, \(R\) v metrech a
+\(c = 3\cdot10^{8}\,\mathrm{m/s}\):
+\[
+  p\,[\mathrm{eV}] = q\,B\,[\mathrm{T}]\;R\,[\mathrm{m}]\cdot 3\cdot10^{8},
+\]
+a po převodu na GeV (\(10^9\,\mathrm{eV}\)):
+\[
+  \vzorec{p\,[\mathrm{GeV}] = 0{,}3\,q\,B\,[\mathrm{T}]\,R\,[\mathrm{m}]}
+\]
+To je tentýž vzorec, který je na Davídkových slajdech jako \(p[\mathrm{GeV}]=0.3\,Q\,B\,R\).
+
+\begin{priklad}[Odhad]
+  V detektoru ATLAS je ve vnitřním detektoru pole \(B=2\,\mathrm{T}\). Částice s hybností
+  \(p=1\,\mathrm{GeV}\) má poloměr křivosti \(R = p/(0{,}3\,B) = 1/(0{,}6)\approx 1{,}7\,\mathrm{m}\),
+  částice s \(p=100\,\mathrm{GeV}\) už \(R\approx 170\,\mathrm{m}\) -- její dráha je na
+  délce \(\sim 1\,\mathrm{m}\) téměř rovná. Proto se relativní chyba měření hybnosti
+  s rostoucí hybností zhoršuje (\(\sigma_p/p\propto p\)) a je potřeba silné pole a velký
+  detektor.
+\end{priklad}
+
+Další vrstvy:
+\begin{itemize}[nosep]
+  \item \kw{kalorimetry} (elektromagnetický a hadronový) -- částice v nich vytvoří spršku
+        a zcela se pohltí; měří \emph{energii} nabitých i neutrálních částic (fotony,
+        neutrony, \(K^0_L\)\,\dots). Elektromagnetický kalorimetr zachytí \(e^\pm\) a \(\gamma\),
+        hadronový (za ním) hadrony.
+  \item \kw{mionové komory} -- úplně vně, protože miony jako jediné nabité částice
+        projdou kalorimetry (neinteragují silně a jako těžké téměř nevyzařují brzdné záření).
+        Cokoliv, co se dostane až sem, je téměř jistě mion.
+\end{itemize}
+Neutrina neprojdou ničím detekovatelně; jejich přítomnost poznáme jen nepřímo, z
+\kw{chybějící příčné hybnosti} (součet příčných hybností všech viditelných částic by měl
+být nulový, protože srážející se svazky nemají žádnou příčnou hybnost).
+
+\textcolor{red}{\textbf{Objev \(W\)/\(Z\)}} -- probíral se na slajdech (UA1, UA2 v CERN, 1983;
+viz Davídkovy slajdy ,,Objev W, Z``): \(W^\pm\to \ell^\pm\nu\) se hledal jako izolovaný nabitý
+lepton s velkou příčnou hybností plus velká chybějící příčná hybnost, \(Z\to\ell^+\ell^-\)
+jako pík v invariantní hmotě páru leptonů.
+
+\strana{P09-3}
+\subsection{Objev top-kvarku}
+
+Top-kvark je nejtěžší známá elementární částice (\(m_t\approx 173\,\mathrm{GeV}\)). Byl objeven
+v roce 1995 na urychlovači Tevatron (Fermilab, srážky \(p\bar p\) při \(\sqrt s = 1{,}8\,
+\mathrm{TeV}\)) experimenty CDF a D0. V silné interakci se kvarky rodí vždy v párech
+kvark--antikvark (silná interakce zachovává vůni), takže hledáme \(t\bar t\). Na úrovni
+partonů (kvarků a gluonů uvnitř protonu) existují tři základní diagramy nejnižšího řádu:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  fer/.style={thick,-{Stealth[length=2mm]}},
+  glu/.style={thick,decorate,decoration={coil,aspect=0.7,segment length=4pt,amplitude=2.5pt}}]
+  % (a) q qbar -> g -> t tbar
+  \begin{scope}
+    \coordinate (a1) at (0,0); \coordinate (a2) at (2,0);
+    \draw[fer] (-1.2,1) -- (a1);
+    \draw[fer] (a1) -- (-1.2,-1);
+    \draw[glu] (a1) -- (a2);
+    \draw[fer] (a2) -- (3.2,1);
+    \draw[fer] (3.2,-1) -- (a2);
+    \fill (a1) circle (2pt); \fill (a2) circle (2pt);
+    \node[left] at (-1.2,1) {$q$};
+    \node[left] at (-1.2,-1) {$\bar q$};
+    \node[below] at (1,-0.15) {$g$};
+    \node[right] at (3.2,1) {$t$};
+    \node[right] at (3.2,-1) {$\bar t$};
+    \node at (1,-1.6) {(a) $q\bar q\to g\to t\bar t$};
+  \end{scope}
+  % (b) g g -> g -> t tbar
+  \begin{scope}[xshift=6.3cm]
+    \coordinate (b1) at (0,0); \coordinate (b2) at (2,0);
+    \draw[glu] (-1.2,1) -- (b1);
+    \draw[glu] (-1.2,-1) -- (b1);
+    \draw[glu] (b1) -- (b2);
+    \draw[fer] (b2) -- (3.2,1);
+    \draw[fer] (3.2,-1) -- (b2);
+    \fill (b1) circle (2pt); \fill (b2) circle (2pt);
+    \node[left] at (-1.2,1) {$g$};
+    \node[left] at (-1.2,-1) {$g$};
+    \node[below] at (1,-0.15) {$g$};
+    \node[right] at (3.2,1) {$t$};
+    \node[right] at (3.2,-1) {$\bar t$};
+    \node at (1,-1.6) {(b) $gg\to g\to t\bar t$};
+  \end{scope}
+  % (c) g g -> t tbar (t-kanál)
+  \begin{scope}[xshift=11.8cm]
+    \coordinate (c1) at (0,0.8); \coordinate (c2) at (0,-0.8);
+    \draw[glu] (-1.4,0.8) -- (c1);
+    \draw[glu] (-1.4,-0.8) -- (c2);
+    \draw[fer] (c1) -- (1.6,0.8);
+    \draw[fer] (c2) -- (c1);
+    \draw[fer] (1.6,-0.8) -- (c2);
+    \fill (c1) circle (2pt); \fill (c2) circle (2pt);
+    \node[left] at (-1.4,0.8) {$g$};
+    \node[left] at (-1.4,-0.8) {$g$};
+    \node[right] at (1.6,0.8) {$t$};
+    \node[right] at (1.6,-0.8) {$\bar t$};
+    \node[right] at (0,0) {$t$};
+    \node at (0.1,-1.6) {(c) $gg\to t\bar t$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Diagram (a) je anihilace kvarku a antikvarku na virtuální gluon, (b) fúze dvou gluonů přes
+trojgluonový vrchol (možný jen proto, že gluony nesou barvu a interagují samy se sebou) a (c)
+gluonová fúze s výměnou top-kvarku v \(t\)-kanálu. Na Tevatronu (\(p\bar p\)) dominoval
+proces (a) (\(\approx 85\,\%\)), protože antikvarky jsou v antiprotonu valenční; na LHC
+(\(pp\)) naopak dominuje gluonová fúze (b), (c).
+
+Top-kvark se rozpadá dřív, než stihne vytvořit hadron (\(\tau_t\approx 5\cdot10^{-25}\,
+\mathrm{s}\)), a to prakticky výhradně (\(\approx100\,\%\)) jako
+\[
+  t\to W^+ b .
+\]
+Celý pár se tedy rozpadá jako \(t\bar t\to W^+b\,W^-\bar b\) a charakter koncového stavu
+určují rozpady dvou bosonů \(W\). Ty se rozpadají na pár kvarků \(q\bar q'\) (dva jety) s
+pravděpodobností \(\approx 2/3\) a na lepton a neutrino \(\ell\nu\) (\(\ell=e,\mu,\tau\)) s
+pravděpodobností \(\approx 1/3\) (tři barvy kvarků ve dvou dubletech \(ud,cs\) proti třem
+leptonům, \(6:3\)). Odtud tři kategorie (\(j\) = jet):
+\begin{enumerate}[label=\alph*)]
+  \item \kw{6 jetů}: \(t\bar t\to W^+b\,W^-\bar b\to 4j\,b\bar b\), pravděpodobnost
+        \(\left(\tfrac23\right)^2 = \tfrac49\);
+  \item \kw{4 jety + 1 lepton}: \(t\bar t\to W^+b\,W^-\bar b\to \ell\nu\,b\bar b\,2j\),
+        pravděpodobnost \(2\cdot\tfrac23\cdot\tfrac13 = \tfrac49\) (faktor 2, protože
+        leptonově se může rozpadnout kterýkoli z obou \(W\));
+  \item \kw{2 nabité leptony}: \(\to \ell^+\nu\,\ell^-\bar\nu\,b\bar b\), pravděpodobnost
+        \(\left(\tfrac13\right)^2=\tfrac19\).
+\end{enumerate}
+Kontrola: \(\tfrac49+\tfrac49+\tfrac19=1\).
+
+Proč nestačí brát nejčastější kanál? Kanál a) má sice velkou četnost, ale obrovské pozadí:
+šest jetů vzniká v srážkách hadronů běžně silnou interakcí (QCD). Kanál c) je velmi čistý,
+ale vzácný a se dvěma neutriny nelze hmotu topu úplně rekonstruovat. Objev se proto opíral
+hlavně o kanál b) (,,single lepton``): izolovaný lepton s velkou \(p_T\), chybějící
+příčná hybnost (jedno neutrino, jehož hybnost lze dopočítat z chybějící \(p_T\) a z podmínky
+\(m(\ell\nu)=m_W\)) a čtyři jety, z nichž dva jsou \(b\)-jety (viz Davídkovy slajdy ,,Objev
+top-kvarku``).
+
+\subsection{Objev Higgsova bosonu}
+
+Higgsův boson (\(m_H\approx125\,\mathrm{GeV}\)) byl objeven v roce 2012 experimenty ATLAS a CMS
+na LHC. Higgs se váže úměrně hmotě částic, proto se rozpadá přednostně na co nejtěžší
+částice, na které mu stačí energie. Pro objev byly klíčové kanály
+\[
+  H\to WW,\quad ZZ,\quad \gamma\gamma .
+\]
+
+\strana{P09-4}
+(Pro \(m_H=125\,\mathrm{GeV}<2m_W\) je jeden z bosonů \(W\), resp. \(Z\), virtuální; \(ZZ^*\to
+4\ell\) dává velmi čistý signál.) Zajímavý je rozpad \(H\to\gamma\gamma\): foton je
+nehmotný, a Higgs se na něj proto \emph{přímo neváže}. Rozpad přesto probíhá -- přes
+\kw{smyčku} virtuálních nabitých hmotných částic, nejvíce \(W\) a top-kvarku:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95,
+  fer/.style={thick,-{Stealth[length=2mm]}},
+  pho/.style={thick,decorate,decoration={snake,segment length=6pt,amplitude=2pt}},
+  hig/.style={thick,dashed}]
+  % W smycka
+  \begin{scope}
+    \coordinate (h) at (0,0); \coordinate (u) at (1.4,0.9); \coordinate (d) at (1.4,-0.9);
+    \draw[hig] (-1.6,0) -- (h) node[pos=0.4,above] {$H$};
+    \draw[pho] (h) -- (u) node[midway,above left] {$W$};
+    \draw[pho] (h) -- (d) node[midway,below left] {$W$};
+    \draw[pho] (u) -- (d) node[midway,right] {$W$};
+    \draw[pho] (u) -- (3.2,0.9) node[right] {$\gamma$};
+    \draw[pho] (d) -- (3.2,-0.9) node[right] {$\gamma$};
+    \foreach \p in {h,u,d} \fill (\p) circle (1.8pt);
+  \end{scope}
+  % top smycka
+  \begin{scope}[xshift=7.5cm]
+    \coordinate (h) at (0,0); \coordinate (u) at (1.4,0.9); \coordinate (d) at (1.4,-0.9);
+    \draw[hig] (-1.6,0) -- (h) node[pos=0.4,above] {$H$};
+    \draw[fer] (h) -- (u) node[midway,above left] {$t$};
+    \draw[fer] (u) -- (d) node[midway,right] {$t$};
+    \draw[fer] (d) -- (h) node[midway,below left] {$t$};
+    \draw[pho] (u) -- (3.2,0.9) node[right] {$\gamma$};
+    \draw[pho] (d) -- (3.2,-0.9) node[right] {$\gamma$};
+    \foreach \p in {h,u,d} \fill (\p) circle (1.8pt);
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Oba příspěvky interferují (destruktivně). Protože jde o diagram vyššího řádu, je
+\(\mathrm{BR}(H\to\gamma\gamma)\) jen asi \(0{,}23\,\%\); kanál je přesto výborný, protože dva
+fotony se dají změřit s vynikajícím energetickým rozlišením v elektromagnetickém kalorimetru
+a v invariantní hmotě \(m_{\gamma\gamma}\) se objeví úzký pík nad hladkým pozadím. Navíc to, že
+se Higgs rozpadá na dva fotony (spin 1), vylučuje spin 1 Higgsova bosonu (Landauova--Yangova
+věta).
+
+\subsection{Helicita neutrina}
+
+Nyní se přesuneme k neutrinům. \kw{Helicita} je průmět spinu do směru hybnosti,
+\(h = \vec s\cdot\vec p/|\vec p|\); pro částici se spinem \(1/2\) nabývá hodnot \(\pm\tfrac12\).
+Slabá interakce narušuje paritu maximálně, a proto se dá čekat, že neutrina budou mít
+určitou helicitu. Kterou, to rozhodl v roce 1958 elegantní \kw{Goldhaberův experiment}.
+
+Využívá se záchyt elektronu v izomeru europia:
+\[
+  e^- + {}^{152m}\mathrm{Eu} \;\longrightarrow\; {}^{152}\mathrm{Sm}^* + \nu_e,
+  \qquad {}^{152}\mathrm{Sm}^*\to {}^{152}\mathrm{Sm} + \gamma .
+\]
+Jádro \({}^{152m}\mathrm{Eu}\) zachytí elektron ze slupky K (orbitální moment \(l=0\), takže
+nese jen spin \(\tfrac12\)), vznikne excitované \({}^{152}\mathrm{Sm}^*\) a neutrino. Excitovaný
+stav se pak rychle (\(\sim 10^{-14}\,\mathrm{s}\), dříve než se jádro zpomalí) deexcituje
+emisí fotonu \(\gamma\) (\(961\,\mathrm{keV}\)). Spiny zúčastněných jader jsou
+\[
+  J(\mathrm{Eu}) = 0,\qquad J(\mathrm{Sm}^*) = 1,\qquad J(\mathrm{Sm}) = 0 .
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \draw[thick,->] (3.2,0) -- (0.5,0);
+  \node[above] at (1.0,0.05) {$\gamma$};
+  \draw[thick] (3.2,0) -- (5.6,0);
+  \draw[thick,->] (5.6,0) -- (8.8,0);
+  \node[below] at (8.6,-0.05) {$\nu_e$};
+  \draw[fill=white,thick] (3.2,0) circle (0.38) node {\small Sm$^*$};
+  \draw[fill=white,thick] (5.6,0) circle (0.38) node {\small Eu};
+  \draw[thick,-{Implies},double] (7.2,0.5) -- (8.0,0.5);
+  \draw[thick,fill=white] (3.2,-1.1) circle (0.33) node {\small Sm};
+  \draw[thick,->] (3.55,-1.1) -- (4.6,-1.1);
+  \draw[densely dashed,->] (5.6,-2) -- (9,-2) node[below] {$+z$};
+\end{tikzpicture}
+\end{center}
+
+Kinematika: Eu je v klidu, takže \(\mathrm{Sm}^*\) odlétá opačným směrem než neutrino.
+Zvolíme osu \(z\) ve směru letu neutrina. Do výsledku započítáme jen fotony vyletující
+\emph{dozadu}, tj. ve směru pohybu \(\mathrm{Sm}^*\) (proti neutrinu). Bilance průmětu
+momentu hybnosti \(J_z\): na začátku je \(J_z = s_z(e^-) = \pm\tfrac12\) (Eu má \(J=0\)).
+
+\strana{P09-5}
+\begin{enumerate}[label=\alph*)]
+  \item Pokud \(S_z(\nu_e)=+\tfrac12\), pak \(J_z(\mathrm{Sm}^*) = \pm\tfrac12-\tfrac12\in\{0,-1\}\).
+        Finální Sm má \(J=0\), takže foton odnese celé \(J_z(\mathrm{Sm}^*)\); foton letící
+        podél osy \(z\) ale nemůže mít průmět spinu \(0\) (je nehmotný, má jen dvě
+        polarizace \(\pm1\)). Proto \(S_z(\gamma)=-1\).
+  \item Pokud \(S_z(\nu_e)=-\tfrac12\), obdobně \(J_z(\mathrm{Sm}^*)\in\{0,+1\}\), a tedy
+        \(S_z(\gamma)=+1\).
+\end{enumerate}
+Foton letí ve směru \(-z\), takže jeho helicita je \(h_\gamma = -S_z(\gamma)\), zatímco helicita
+neutrina (letí ve směru \(+z\)) je \(h_\nu = S_z(\nu)\). V obou případech tedy vychází
+\[
+  \vzorec{\operatorname{sign} h_\gamma = \operatorname{sign} h_\nu}
+\]
+-- stačí změřit kruhovou polarizaci (helicitu) zpětně vyletujících fotonů.
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  % magnet
+  \draw[ForestGreen,thick,rounded corners=8pt] (1.2,4.0) rectangle (4.2,6.2);
+  \node[ForestGreen,right] at (4.3,6.0) {magnet};
+  % Eu
+  \draw[thick] (2.4,4.6) rectangle (3.2,5.8);
+  \node at (2.8,5.2) {Eu};
+  % stineni Pb
+  \draw[thick] (2.8,4.3) -- (1.6,1.4) -- (4.0,1.4) -- cycle;
+  \node at (2.8,2.3) {Pb};
+  % scatterery Sm2O3
+  \draw[thick,rotate around={-60:(0.6,1.2)}] (0.2,1.0) rectangle (1.6,1.4);
+  \node[left] at (0.3,2.0) {Sm$_2$O$_3$};
+  \draw[thick,rotate around={40:(5.2,1.0)}] (4.6,0.8) rectangle (6.0,1.2);
+  \node[right] at (5.8,1.9) {Sm$_2$O$_3$};
+  % detektor
+  \draw[thick] (2.4,0.1) rectangle (3.4,0.8);
+  \node at (2.9,0.45) {Det};
+  \node[below] at (2.9,0.05) {$\gamma$};
+  % paprsky
+  \draw[ForestGreen,thick,->,decorate,decoration={snake,amplitude=1pt,segment length=8pt,post length=2mm}] (2.5,4.8) -- (0.8,1.6);
+  \node[ForestGreen] at (1.2,3.4) {$\gamma$};
+  \draw[ForestGreen,thick,->] (0.9,1.0) to[bend right=15] (2.35,0.5);
+  \node[ForestGreen] at (1.4,0.3) {$\gamma$};
+\end{tikzpicture}
+\end{center}
+
+Uspořádání experimentu (náčrt z poznámek): zdroj Eu je umístěn uvnitř \kw{magnetu}
+(zmagnetovaného železa), olověné stínění (Pb\,\pozn{popisek trojúhelníku čten jako ,,Pb``}) brání přímému dopadu fotonů ze zdroje do
+detektoru, fotony rozptýlené na prstenci \(\mathrm{Sm_2O_3}\) dopadají do detektoru (scintilátor
+NaI). Rozhodující jsou dva triky:
+\begin{itemize}
+  \item \kw{Výběr směru pomocí rezonančního rozptylu.} Foton z deexcitace Sm\(^*\) má energii o
+        něco menší než excitační energie (jádro při emisi odnese zpětný ráz), proto ho jiné
+        jádro Sm normálně rezonančně pohltit nemůže. Pokud ale foton vyletí \emph{ve směru
+        pohybu} Sm\(^*\), dostane Dopplerovský posuv, který právě kompenzuje ztráty na zpětný
+        ráz. Rezonančně se na \(\mathrm{Sm_2O_3}\) rozptylují tedy jen fotony letící proti
+        neutrinu -- přesně ty, o kterých platí odvozená korelace.
+  \item \kw{Měření helicity fotonu.} Comptonův rozptyl fotonu na polarizovaných elektronech
+        v zmagnetovaném železe závisí na tom, zda je spin fotonu souhlasně nebo opačně s
+        magnetizací. Přepólováním magnetu se změní četnost fotonů, které železem projdou.
+\end{itemize}
+Výsledek: fotony měly zápornou helicitu, a tedy
+\[
+  \vzorec{h(\nu_e) = -\tfrac12}
+\]
+-- \pozor{neutrina jsou levotočivá} (a antineutrina pravotočivá). To je přímé potvrzení
+\(V-A\) struktury slabé interakce.
+
+\strana{P09-6}
+\subsection{Mionové neutrino}
+
+Je neutrino vznikající spolu s mionem stejné jako neutrino vznikající s elektronem? Tuto otázku
+rozhodl experiment Ledermana, Schwartze a Steinbergera (Brookhaven, 1962; Nobelova cena 1988).
+Svazek protonů dopadal na terč, vznikaly piony a kaony a ty se rozpadaly v letu:
+\[
+  K^\pm \to \mu^\pm \overset{(\sim)}{\nu}_\mu,\qquad
+  \pi^\pm \to \mu^\pm \overset{(\sim)}{\nu}_\mu ,
+\]
+kde \(\overset{(\sim)}{\nu}_\mu\) znamená neutrino nebo antineutrino podle náboje (\(\pi^+\to\mu^+\nu_\mu\),
+\(\pi^-\to\mu^-\bar\nu_\mu\)). Piony se rozpadají téměř výhradně na mion (rozpad na elektron
+je potlačen helicitou, \(\mathrm{BR}\approx1{,}2\cdot10^{-4}\)), takže vzniká téměř čistý svazek
+,,mionových`` neutrin. Miony a hadrony se odstínily silnou ocelovou stěnou (\(\sim
+13\,\mathrm{m}\)), kterou projdou jen neutrina. V jiskrové komoře za stínením pak
+neutrina interagovala:
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \draw[thick,->] (0,0) -- (3,0);
+  \node[left] at (0,0) {$\nu_\mu$};
+  \draw[very thick] (3.15,0) circle (0.15);
+  \draw[thick,->] (3.3,0.1) to[bend left=10] (5.2,0.8);
+  \node[right] at (5.2,0.8) {$\mu^-$};
+  \node[right] at (6.2,0.8) {nikdy ne $e^-$};
+\end{tikzpicture}
+\end{center}
+
+Pozorovaly se (desítky) případů s mionem, ale \pozor{žádné elektronové spršky}. Kdyby
+neutrino z rozpadu pionu bylo totožné s \(\nu_e\), vznikal by elektron stejně často jako
+mion. Závěr: \(\nu_\mu\neq\nu_e\), existují dva druhy neutrin a leptonové číslo se zachovává
+pro každou generaci zvlášť (\(L_e\), \(L_\mu\)).
+
+\subsection{Tauonové neutrino}
+
+Neutrino třetí generace \(\nu_\tau\) bylo přímo pozorováno až v roce 2000 (experiment DONUT,
+Fermilab). Zdrojem byly mezony
+\[
+  D_s = (c\bar s),\qquad D_s\to\tau\,\nu_\tau \quad (\approx 7\,\%)
+\]
+\pozn{číslo nejisté -- v poznámkách ,,7\,\%`` nebo ,,4\,\%``, v přednášce 11 opět ,,(4\,\%)``;
+PDG uvádí \(\mathrm{BR}(D_s^+\to\tau^+\nu_\tau)\approx 5{,}4\,\%\)}
+
+Mezony \(D_s\) vznikaly při dopadu protonů (\(800\,\mathrm{GeV}\)) na wolframový terč. \(D_s\) je dost těžký
+(\(1{,}97\,\mathrm{GeV}\)), aby se rozpadl na \(\tau\), a díky helicitnímu potlačení ostatních
+leptonických kanálů je tento rozpad relativně častý. Vzniklé \(\tau\) se rychle rozpadá a dodá
+druhé \(\nu_\tau\):
+\begin{align*}
+  \tau^- &\to e^-\,\bar\nu_e\,\nu_\tau ,\\
+         &\to \mu^-\,\bar\nu_\mu\,\nu_\tau ,\\
+         &\to \textstyle\sum h + \nu_\tau .
+\end{align*}
+V emulzním detektoru se \(\nu_\tau\) projeví interakcí \(\nu_\tau + N\to\tau^- + X\), kde
+vzniklé \(\tau\) uletí jen asi milimetr a rozpadne se -- hledá se proto charakteristický
+\kw{zlom} (,,kink``) stopy těsně za vrcholem interakce. DONUT pozoroval 9 takových případů.
+Tím byla potvrzena úplná třetí generace leptonů \((\tau,\nu_\tau)\).

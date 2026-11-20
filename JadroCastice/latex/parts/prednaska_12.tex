@@ -1,0 +1,167 @@
+% ======================================================================
+% 12. přednáška – 19. 12. 2022
+% Kruhové urychlovače (pokračování): synchrotron, synchrotronové záření
+% ======================================================================
+\section{Kruhové urychlovače: synchrotron a synchrotronové záření}
+
+\strana{P12-1}
+\emph{12. přednáška, 19. prosince 2022.}
+
+\subsection{Kruhové urychlovače -- pokračování}
+
+Minule jsme probrali urychlovače, v nichž částice obíhají v konstantním
+magnetickém poli (cyklotron) -- jejich dráha se s rostoucí energií
+rozšiřuje a při relativistických energiích přestane souhlasit frekvence
+oběhu s frekvencí urychlujícího pole. Pro nejvyšší energie potřebujeme jiný
+princip: udržet částici na \emph{stálé} kruhové dráze a magnetické pole
+zvyšovat spolu s její energií. To je \kw{synchrotron}.
+
+\subsubsection*{Synchrotron}
+
+Synchrotron je prstenec (vakuová trubice) s dipólovými magnety
+(\(M\)), které zakřivují dráhu, a s urychlovacími dutinami
+(\(RF\), radiofrekvenční rezonátory), v nichž částice při každém oběhu
+získá malou porci energie:
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  \draw[thick] (0,0) ellipse (2.4 and 1.75);
+  % RF dutina
+  \begin{scope}[rotate around={0:(0,0)}]
+    \draw[thick,fill=gray!15] (-0.35,1.6) rectangle (0.35,1.95);
+    \node[above] at (0,1.95) {\(RF\)};
+  \end{scope}
+  % magnety
+  \draw[thick,fill=Blue!15,rotate around={-28:(1.2,1.52)}]
+     (0.95,1.35) rectangle (1.45,1.7);
+  \node at (1.75,2.0) {\(M\)};
+  \draw[thick,fill=Blue!15,rotate around={-60:(2.0,0.97)}]
+     (1.75,0.8) rectangle (2.25,1.15);
+  \node at (2.6,1.35) {\(M\)};
+  \draw[-{Stealth[length=5pt]},thick,red!70!black] (-1.4,-1.42) arc[start angle=234,end angle=270,x radius=2.4,y radius=1.75];
+\end{tikzpicture}
+\end{center}
+Pro částici s jednotkovým nábojem na kružnici o poloměru \(R\) v poli
+\(B\) platí (rovnováha Lorentzovy a dostředivé síly, \(p=eBR\)) praktický
+vztah
+\[
+  \vzorec{p=0{,}3\,B\cdot R}\qquad\Longrightarrow\qquad
+  \frac{E}{B}=\text{konst},
+\]
+kde \(p\) je v \(\mathrm{GeV}/c\), \(B\) v teslech a \(R\) v metrech
+(číslo \(0{,}3\) je \(c\) v jednotkách \(10^9\,\mathrm{m/s}\), tj.\
+\(e\cdot c/(1\,\mathrm{GeV})\approx0{,}3\)). Protože \(R\) je pevné a pro
+ultrarelativistické částice \(E\approx pc\), musí magnetické pole růst
+\emph{úměrně energii} -- odtud podmínka \(E/B=\text{konst}\) (viz
+Davídkovy slajdy „Urychlovače“). Současně se musí přizpůsobovat i frekvence
+RF pole (dokud částice není ultrarelativistická a rychlost se ještě mění).
+
+\begin{priklad}[Odhad pro LHC]
+\(B\approx8{,}3\,\mathrm{T}\), poloměr zakřivení v dipólech
+\(R\approx2{,}8\,\mathrm{km}\): \(p\approx0{,}3\cdot8{,}3\cdot2800\approx
+7000\,\mathrm{GeV}/c\), tedy právě \(7\,\mathrm{TeV}\) na svazek.
+\end{priklad}
+
+\subsection{Synchrotronové záření}
+
+Každý nabitý objekt, který se pohybuje se zrychlením, vyzařuje. Pro
+kruhové urychlovače elektronů je to hlavní omezení dosažitelné energie --
+energii vyzářenou při každém oběhu musí RF dutiny znovu dodat. Výchozím
+bodem je relativistické zobecnění \kw{Larmorova vzorce}: vyzařovaný výkon
+\[
+  P_s=\frac{e^2}{6\pi\varepsilon_0 m^2c^3}\left(\dv{\vec p}{t}\right)^2
+\]
+(nerelativistický tvar pro malé rychlosti, kde \(\dv*{\vec p}{t}=m\vec a\)).
+Aby byl vzorec relativisticky správný, nahradíme derivaci podle času
+derivací podle \kw{vlastního času} \(\tau\), \(\dd\tau=\dd t/\gamma\), a
+čtverec trojvektoru čtvercem čtyřvektoru hybnosti \(p_\mu=(E/c,\vec p)\):
+\[
+  \left(\dv{p_\mu}{\tau}\right)^2\;\longrightarrow\;
+  \left(\dv{\vec p}{\tau}\right)^2-\frac{1}{c^2}\left(\dv{E}{\tau}\right)^2 .
+\]
+(Znaménko je zvoleno tak, aby výraz byl kladný pro prostorupodobné
+čtyřzrychlení; v klidové soustavě přechází na původní
+\((\dv*{\vec p}{t})^2\).) Dva důležité speciální případy:
+
+\subsubsection*{a) Kruhový urychlovač}
+Při oběhu se energie téměř nemění, \(\dv*{E}{t}\approx0\); mění se jen
+\emph{směr} hybnosti. Pootočí-li se hybnost o úhel \(\dd\alpha\), změní se
+o \(\dd p=p\cdot\dd\alpha\), takže
+\[
+  \dv{p}{t}=p\cdot\dv{\alpha}{t}=p\cdot\omega=p\,\frac{v}{R} .
+\]
+\strana{P12-2}
+Dosadíme (\(\dd\tau=\dd t/\gamma\) dává faktor \(\gamma^2\)):
+\[
+  P_s=\frac{e^2c\gamma^2}{6\pi\varepsilon_0 m^2c^4}\,\frac{p^2v^2}{R^2}
+  \doteq\frac{e^2\gamma^4c}{6\pi\varepsilon_0R^2},
+\]
+kde jsme použili \(p=\gamma mv\) a \(v\approx c\) (přesně by zde bylo
+\(\gamma^4\beta^4\)). Energie ztracená za jeden oběh je výkon krát doba
+oběhu \(2\pi R/c\):
+\[
+  \Delta E\big|_{1\,\text{oběh}}=\oint P_s\,\dd t
+  =\frac{e^2\gamma^4c}{6\pi\varepsilon_0R^2}\,\frac{2\pi R}{c}
+  =\vzorec{\frac{e^2\gamma^4}{3\varepsilon_0R}} .
+\]
+Klíčová je čtvrtá mocnina \(\gamma=E/(mc^2)\): při stejné energii vyzařuje
+elektron \((m_p/m_e)^4\approx10^{13}\)krát více než proton. Proto jsou
+synchrotronovým zářením limitovány hlavně elektronové urychlovače, zatímco
+protonové (LHC) jsou limitovány silou magnetů. Ztrátu lze zmenšit jen
+zvětšením poloměru \(R\) -- ten se ale uplatní pouze lineárně.
+
+\begin{priklad}[LEP]
+Pro elektrony je praktický tvar
+\(\Delta E[\mathrm{keV}]\approx88{,}5\,E^4[\mathrm{GeV}]/R[\mathrm{m}]\).
+\begin{itemize}
+  \item LEP-1 (\(45\,\mathrm{GeV}\), \(R=3000\,\mathrm{m}\)):
+    \(\Delta E\doteq120\,\mathrm{MeV}\) za oběh,
+  \item LEP-2 (\(100\,\mathrm{GeV}\), \(R=3000\,\mathrm{m}\)):
+    \(\Delta E\doteq2{,}95\,\mathrm{GeV}\) za oběh.
+\end{itemize}
+Kontrola: \(88{,}5\cdot45^4/3000\approx1{,}2\cdot10^5\,\mathrm{keV}\) a
+\(88{,}5\cdot10^8/3000\approx2{,}95\cdot10^6\,\mathrm{keV}\). Zvýšení
+energie jen \(2{,}2\)krát zvýšilo ztráty \(\approx25\)krát; při LEP-2 tak
+elektron za každý oběh ztratil asi \(3\,\%\) své energie, což bylo
+prakticky na hranici možností RF systému. Proto se další \(e^+e^-\)
+urychlovače plánují jako lineární (nebo s mnohem větším obvodem, FCC-ee).
+\end{priklad}
+
+\subsubsection*{b) Lineární urychlovač}
+Zde je síla rovnoběžná s rychlostí, \(\vec\beta\parallel\vec p\parallel
+\dv*{\vec p}{t}\), a mění se velikost hybnosti i energie. Protože
+\(\dd E=v\,\dd p\), je \((\dv*{E}{t})^2=c^2\beta^2(\dv*{p}{t})^2\), a tedy
+\[
+  P_s=\frac{e^2\gamma^2c}{6\pi\varepsilon_0m^2c^4}\left(\dv{p}{t}\right)^2
+  \left(1-\oprava{\beta^2}{\frac{1}{\beta^2}}\right)
+  =\frac{e^2c}{6\pi\varepsilon_0m^2c^4}\left(\dv{E}{x}\right)^2 .
+\]
+Faktor \(\gamma^2(1-\beta^2)=1\) se vykrátí a použili jsme
+\(\dv*{p}{t}=\dv*{E}{x}\) (obojí je síla, \(\dd E=F\,\dd x\)). Výkon
+vyzařovaný v lineárním urychlovači tedy \emph{nezávisí na energii}, jen na
+urychlovacím gradientu \(\dv*{E}{x}\).
+\pozor{Pozor:} se členem \((1-1/\beta^2)\), jak je napsán v poznámkách, by
+výraz vyšel záporný a výsledek by neplatil; správně je \((1-\beta^2)\).
+
+\begin{priklad}[ILC]
+Plánovaný lineární urychlovač ILC má gradient \(30\,\mathrm{MV/m}\),
+tj.\ \(\dv*{E}{x}=30\,\mathrm{MeV/m}\approx4{,}8\cdot10^{-12}\,\mathrm{N}\).
+Dosazením pro elektron
+\[
+  P_s=\frac{(1{,}6\cdot10^{-19})^2\,(4{,}8\cdot10^{-12})^2}
+  {6\pi\cdot8{,}85\cdot10^{-12}\cdot(9{,}11\cdot10^{-31})^2\cdot(3\cdot10^{8})^3}
+  =1{,}6\times10^{-16}\,\mathrm{W}.
+\]
+Za dobu průletu urychlovačem (\(\sim10\,\mathrm{km}/c\approx
+3\cdot10^{-5}\,\mathrm{s}\)) to je zcela zanedbatelných
+\(\sim10^{-20}\,\mathrm{J}\approx0{,}03\,\mathrm{eV}\). V lineárních
+urychlovačích synchrotronové záření nehraje roli.
+\end{priklad}
+
+\begin{vysvetleni}[Využití synchrotronového záření]
+Co je pro částicové fyziky ztrátou, je pro jiné obory cenný zdroj:
+synchrotronové záření je intenzivní, kolimované (do kužele o úhlu
+\(\sim1/\gamma\)) a laditelné od infračervené oblasti po tvrdé rentgenové
+záření. Specializované zdroje (ondulátory, wigglery) se používají
+v materiálovém výzkumu, chemii a biologii (viz Davídkovy slajdy
+„Urychlovače (7)“).
+\end{vysvetleni}

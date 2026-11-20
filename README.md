@@ -13,6 +13,7 @@ parts highlighted, so the notes are easier to read, search and study from.
 |--------|---------|--------|
 | [`QM_I/latex`](QM_I/latex) | Kvantová mechanika I (2014/2015) | done – [`QM_I.pdf`](QM_I/latex/QM_I.pdf) |
 | [`GeoMetody/latex`](GeoMetody/latex) | Geometrické metody teoretické fyziky I | done – [`GeoMetody.pdf`](GeoMetody/latex/GeoMetody.pdf) |
+| [`JadroCastice/latex`](JadroCastice/latex) | Jaderná a částicová fyzika (NOFY029) – rozšířený výklad | done – [`JadroCastice.pdf`](JadroCastice/latex/JadroCastice.pdf) |
 | [`Termo_I/latex`](Termo_I/latex) | Termodynamika a statistická fyzika I (NTMF043) – přednáška + cvičení | done – [`Termo_I.pdf`](Termo_I/latex/Termo_I.pdf) |
 
 ## Structure
@@ -36,8 +37,9 @@ Only the `latex/` directories are tracked; the original scans are kept locally
 - **Green boxes** – worked examples
 - **Orange frames** – the most important formulas
 - *Grey italics in brackets* – faint pencil notes from the original
-- **Purple "Vysvětlení" boxes** (GeoMetody) – explanations added during the rewrite, not part of the original notes; based on P. Krtouš, *Geometrické metody ve fyzice*
-- **Teal text with *[oprava; orig.: …]*** (GeoMetody) – a definite mistake in the original notes, corrected; the original version is shown next to it
+- **Purple "Vysvětlení" boxes** (GeoMetody, JadroCastice) – explanations added during the rewrite, not part of the original notes; based on P. Krtouš, *Geometrické metody ve fyzice*, resp. T. Davídek's lecture slides
+- JadroCastice is not a literal transcription: the terse notes are rewritten as explanatory prose (motivation, meaning of formulas, skipped derivation steps), keeping every formula, number and sketch of the original
+- **Teal text with *[oprava; orig.: …]*** (GeoMetody, JadroCastice) – a definite mistake in the original notes, corrected; the original version is shown next to it
 - Margin tags (e.g. `QM-I-7`) – page label of the original handwritten notes, for cross-checking
 
 ## Building

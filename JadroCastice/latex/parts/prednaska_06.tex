@@ -1,0 +1,452 @@
+% ======================================================================
+% 6. přednáška (7. 11. 2022) – Kosmické záření (pokr.), biologické účinky,
+% symetrie a spin, základní členění částic
+% ======================================================================
+\section{Kosmické záření, biologické účinky záření a symetrie}
+
+\strana{P06-1}
+\subsection{Kosmické záření – pokračování}
+
+Minule jsme odhadli, že mion ztratí průchodem atmosférou asi \(2\,\text{GeV}\).
+Mion je ale nestabilní (\(\mu^-\to e^-\bar\nu_e\nu_\mu\)) se střední dobou
+života \(\tau \approx 2{,}2\,\mu\text{s}\). Klasicky by za tuto dobu urazil
+nanejvýš \(c\tau\):
+\[
+  c\tau(\mu) = 658\,\text{m}, \qquad m_\mu = 106\,\text{MeV}.
+\]
+Miony vznikají ve výšce kolem \(15\,\text{km}\) – bez relativity by se tedy
+k zemi nedostal téměř žádný. Že je přesto pozorujeme, je klasický důkaz
+\kw{dilatace času}: v laboratorní soustavě žije mion \(\gamma\)-krát déle.
+
+Střední doletová vzdálenost (\kw{střední dráha do rozpadu}) v laboratoři je
+\[
+  l = \gamma(\beta c)\tau = \gamma\beta\,(c\tau)
+    = \frac{E}{m}\,\frac{p}{E}\,c\tau
+    = \frac{\sqrt{E^2-m^2}}{m}\,c\tau = 37{,}4\,\text{km}.
+\]
+Využili jsme \(\gamma = E/m\) a \(\beta = p/E\) (jednotky \(c=1\)), takže
+\(\gamma\beta = p/m\). Hodnota \(37{,}4\,\text{km}\) odpovídá
+\(p/m = 37{,}4/0{,}658 \approx 57\), tj. \(p \approx 6\,\text{GeV}\) – to je
+energie, kterou mion potřebuje, aby po ztrátě \(\sim 2\,\text{GeV}\) dorazil
+na zem s typickou energií \(\sim 4\,\text{GeV}\).
+
+\begin{priklad}[Jaká část mionů doletí?]
+Rozpad je exponenciální v dráze stejně jako v čase: pravděpodobnost, že se
+mion rozpadne na dráze \(L\), je \(1 - e^{-L/l}\). Pro \(L = 15\,\text{km}\):
+\[
+  1 - e^{-\frac{15\,\text{km}}{37{,}4\,\text{km}}} \doteq \frac13
+  \quad\Longrightarrow\quad \frac23 \text{ mionů doletí k povrchu Země.}
+\]
+(\(e^{-0{,}40}\approx 0{,}67\).) Odhad zanedbává, že mion cestou zpomaluje
+(\(\gamma\) klesá), takže skutečná ztráta rozpadem je o něco větší; řádově
+je však výsledek správný.
+\end{priklad}
+
+\subsection{Biologické účinky záření}
+
+Ionizující záření poškozuje tkáň tím, že v ní ukládá energii – ionizuje
+molekuly (především vodu a DNA). Základní měřítko je proto deponovaná
+energie na jednotku hmotnosti; různé druhy záření ale při stejné deponované
+energii škodí různě, a proto se zavádí několik druhů dávek.
+
+\begin{itemize}
+  \item \kw{Dávka} (absorbovaná dávka)
+  \[
+    \vzorec{1\,\text{Gy}\ (\text{gray}) = 1\,\text{J}/\text{kg}}
+  \]
+  – čistě fyzikální veličina: energie pohlcená v kilogramu látky.
+  \item \kw{Ekvivalentní dávka} zohledňuje druh záření pomocí radiačního
+  váhového faktoru \(w_R\):
+  \[
+    \vzorec{1\,\text{Sv} = 1\,\text{Gy}\times\text{váha}}
+  \]
+  \begin{itemize}
+    \item \(\gamma\), \(e^\pm\): váha \(=1\),
+    \item \(p\), \(\pi^\pm\): váha \(=2\),
+    \item \(\alpha\), štěpné fragmenty, těžké ionty: váha \(=20\),
+    \item neutrony: váha závisí na energii, maximální váha \(=20\)
+    (kolem \(1\,\text{MeV}\)).
+  \end{itemize}
+  Proč? Fotony a elektrony ionizují „řídce`` (malá lineární hustota
+  ionizace), takže poškození DNA jsou izolovaná a buňka je umí opravit.
+  Těžké, pomalé, mnohonásobně nabité částice (\(\alpha\), fragmenty) ukládají
+  energii velmi hustě podél krátké stopy a způsobují vícečetné zlomy DNA,
+  které jsou opravitelné jen obtížně. Neutrony ionizují nepřímo – přes
+  odražené protony a jaderné reakce – proto jejich váha závisí na energii.
+  \item \kw{Efektivní dávka} – součet ekvivalentních dávek jednotlivých
+  orgánů vážený tkáňovými váhovými faktory \(w_T\) (různé orgány mají různou
+  citlivost, např. kostní dřeň vs.\ kůže), \(E = \sum_T w_T H_T\). Udává se
+  rovněž v Sv a vyjadřuje celkové riziko pro organismus při nerovnoměrném
+  ozáření.
+\end{itemize}
+
+\kw{Účinky} záření dělíme na
+\begin{itemize}
+  \item \kw{stochastické} – náhodné, bez prahu; s dávkou roste
+  \emph{pravděpodobnost} (např. vzniku nádoru nebo genetické změny), nikoli
+  závažnost;
+  \item \kw{deterministické} – od \(\sim 100\,\text{mGy}\); nastávají vždy po
+  překročení prahu a jejich závažnost roste s dávkou:
+  \begin{itemize}
+    \item lokální poškození buněk (tkáně),
+    \item dávka \(\gg\) přírodní pozadí (\(3\)–\(4\,\text{mSv}/\text{rok}\)).
+  \end{itemize}
+\end{itemize}
+
+\strana{P06-2}
+\kw{Pásma dávek} (pro představu):
+\begin{itemize}
+  \item vysoké: \(> 1\,\text{Gy}\) (hasiči v Černobylu),
+  \item střední: \(100\,\text{mGy}\)–\(1\,\text{Gy}\) (sanační práce v Černobylu),
+  \item nízké: \(10\)–\(100\,\text{mGy}\) (vícefázová CT, vyšetření CT
+  \(50\)–\(70\,\text{mGy}\)) \pozn{čtení „50–70`` nejisté},
+  \item velmi malé: \(< 10\,\text{mGy}\) (běžný rentgenový snímek).
+\end{itemize}
+Letadlo Paříž–New York: \(0{,}05\,\text{mSv}\) – ve výšce \(\sim 10\,\text{km}\)
+nás atmosféra chrání před kosmickým zářením méně. Jeden let tedy odpovídá
+zhruba několika dnům přírodního pozadí.
+
+\subsubsection{Použití v medicíně}
+\begin{itemize}
+  \item \kw{PET} (pozitronová emisní tomografie) – pacientovi se podá
+  \(\beta^+\) zářič (např. \({}^{18}\)F v glukóze); pozitron anihiluje
+  s elektronem a dva fotony \(511\,\text{keV}\) letící opačnými směry
+  určí přímku, na níž k anihilaci došlo (Davídkovy slajdy „Aplikace
+  v medicíně``),
+  \item \kw{rtg} – zobrazení díky různé absorpci (fotoefekt \(\sim Z^5\)).
+\end{itemize}
+
+\kw{Léčení} – ozařování nádorů. Klasickým zdrojem je kobalt:
+\[
+  {}^{60}\text{Co} \to {}^{60}\text{Ni}^* + e^- + \bar\nu_e \to {}^{60}\text{Ni} + 2\gamma .
+\]
+Rozpad \(\beta^-\) vede do excitovaného stavu niklu, který se kaskádou
+dvou fotonů (\(1{,}17\) a \(1{,}33\,\text{MeV}\)) deexcituje do základního
+stavu. Pronikavé fotony o energii \(\sim\)\,MeV jsou to, co se k ozařování
+používá (\(T_{1/2}\approx 5{,}3\) roku).
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+  \draw (0,3) -- (1.6,3) node[midway, above] {\({}^{60}\)Co};
+  \draw[->] (1.2,3) -- (3.0,2.2) node[midway, above right] {\(\beta^-\)};
+  \draw (2.6,2.2) -- (4.6,2.2) node[right] {\(2{,}51\,\text{MeV}\)};
+  \draw (2.6,1.0) -- (4.6,1.0) node[right] {\(1{,}33\,\text{MeV}\)};
+  \draw (2.6,0) -- (4.6,0) node[right] {\(0\)\quad \({}^{60}\)Ni};
+  \draw[decorate,decoration={snake,amplitude=2pt,segment length=6pt}] (3.6,2.2) -- (3.6,1.15);
+  \draw[->] (3.6,1.15) -- (3.6,1.0);
+  \node[left] at (3.5,1.6) {\(\gamma\)};
+  \draw[decorate,decoration={snake,amplitude=2pt,segment length=6pt}] (3.6,1.0) -- (3.6,0.15);
+  \draw[->] (3.6,0.15) -- (3.6,0);
+  \node[left] at (3.5,0.5) {\(\gamma\)};
+\end{tikzpicture}
+\end{center}
+(Energie hladin jsou doplněny z tabulek, v náčrtku v poznámkách nejsou.)
+
+\kw{PTC} (Proton Therapy Center) – protony až do \(250\,\text{MeV}\).
+Výhoda protonů: ionizační ztráty rostou se zpomalováním (\(\sim\beta^{-2}\)),
+takže většinu energie uloží na konci dráhy v tzv. \kw{Braggově píku}.
+Volbou energie lze pík umístit přesně do nádoru a okolní zdravou tkáň
+šetřit; \(250\,\text{MeV}\) odpovídá doletu kolem \(35\,\text{cm}\) ve vodě
+(tkáni).
+
+\subsubsection{Dozimetry}
+Dozimetry měří dávku, kterou obdržel jejich nositel:
+\begin{itemize}
+  \item \kw{filmové} – zčernání fotografické emulze,
+  \item \kw{termoluminiscenční} – LiF, CaF\(_2\), MgBeO\(_4\)
+  \pozn{poslední vzorec nejistý; obvyklé TLD materiály jsou např. BeO nebo
+  MgB\(_4\)O\(_7\)}: záření převede elektrony do metastabilních pastí,
+  při zahřátí se uvolní a vyzáří světlo úměrné dávce,
+  \item \kw{elektronické} – Si (polovodičová dioda) nebo Geigerův–Müllerův
+  počítač; umožňují okamžitý odečet.
+\end{itemize}
+
+\begin{priklad}[Dávka od drobného zdroje \({}^{137}\)Cs]
+Uvažujme \oprava{\({}^{137}\)Cs}{\({}^{134}\)Cs} o aktivitě \(363\,\text{kBq}\) – drobný (kalibrační)
+zdroj ionizujícího záření. Rozpadá se \(\beta^-\) na baryum: v \(95\,\%\)
+případů do excitovaného stavu, který vyzáří foton
+\(E_\gamma = 662\,\text{keV}\), v \(5\,\%\) přímo do základního stavu.
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+  \draw (0,2.6) -- (2.2,2.6) node[midway, above] {\({}^{137}\)Cs};
+  \draw[->] (1.5,2.6) -- (3.4,1.45) node[midway, above right] {\(\beta^-\ (95\,\%)\)};
+  \draw[->] (1.5,2.6) -- (3.4,0.05) node[pos=0.6, left] {\(\beta^-\ (5\,\%)\)};
+  \draw (3.0,1.4) -- (4.8,1.4) node[right] {Ba};
+  \draw (3.0,0) -- (4.8,0);
+  \draw[decorate,decoration={snake,amplitude=2pt,segment length=6pt}] (4.0,1.4) -- (4.0,0.15);
+  \draw[->] (4.0,0.15) -- (4.0,0);
+  \node[right] at (4.1,0.7) {\(\gamma\), \(E_\gamma = 662\,\text{keV}\)};
+\end{tikzpicture}
+\end{center}
+
+Jakou dávku za rok obdrží člověk (\(80\,\text{kg}\)), který je ve vzdálenosti
+\(0{,}5\,\text{m}\) od zdroje? Předpokládáme: zdroj září izotropně, člověk
+nastavuje plochu \(\sim 1\,\text{m}^2\), takže zachytí podíl
+\(1\,\text{m}^2/(4\pi\,(0{,}5\,\text{m})^2)\) všech fotonů, a každý
+zachycený foton v těle uloží celou energii \(662\,\text{keV}\) (elektrony
+z \(\beta\) rozpadu se zastaví už v obalu zdroje/vzduchu). Rok je
+\(\approx \pi\times 10^7\,\text{s}\).
+\begin{align*}
+  D &= \frac{1\,\text{m}^2}{4\pi\, 0{,}5^2\,\text{m}^2}\cdot 363\,\text{kBq}
+       \cdot 662\,\text{keV} \,/\, 80\,\text{kg} = \\
+    &= \frac{1}{\pi}\; 363\times10^{3}\,\text{s}^{-1}\;
+       \pi\, \oprava{10^{7}}{10^{4}}\,\text{s}/\text{rok}
+       \cdot 662\times10^{3}\,\text{eV}\times 1{,}6\times10^{-19}\,\text{J}/\text{eV}
+       \,/\, 80\,\text{kg} = \\
+    &= 4{,}8\times10^{-3}\,\text{Gy}/\text{rok}.
+\end{align*}
+Výsledek \(\approx 5\,\text{mGy}/\text{rok}\) (pro fotony \(\approx 5\,\text{mSv}/\text{rok}\))
+je srovnatelný s přírodním pozadím \(3\)–\(4\,\text{mSv}/\text{rok}\) – takový
+zdroj tedy nelze nosit trvale v kapse, ale krátkodobá manipulace je
+bezpečná. (Výsledek \(4{,}8\times10^{-3}\) vychází jen s
+\(\pi\times10^{7}\,\text{s}\); s \(10^4\) by byl o tři řády menší.)
+
+Zbývá ověřit, že fotony nepohltí vzduch mezi zdrojem a člověkem.
+Radiační délka vzduchu (PDG):
+\[
+  X_0(\text{air}) = 36{,}6\,\text{g}\,\text{cm}^{-2}, \qquad
+  \rho(\text{air}) = 1{,}2\,\text{kg}\cdot\text{m}^{-3}
+  \quad\Rightarrow\quad X_0 = \frac{36{,}6\,\text{g}\,\text{cm}^{-2}}{1{,}2\times10^{-3}\,\text{g}\,\text{cm}^{-3}}
+  \approx 300\,\text{m},
+\]
+\[
+  e^{-\frac{0{,}5}{300}} \approx 1 .
+\]
+Zeslabení na půl metru vzduchu je tedy zanedbatelné.
+\end{priklad}
+
+\begin{vysvetleni}[Radiační délka vs.\ absorpční délka]
+\(X_0\) je přesně řečeno charakteristická délka pro brzdné záření elektronů
+a tvorbu párů (střední volná dráha fotonu vůči tvorbě párů je
+\(\tfrac97 X_0\)). Pro fotony \(662\,\text{keV}\) dominuje Comptonův rozptyl
+a správnější je použít hmotnostní součinitel zeslabení
+\(\mu/\rho \approx 0{,}077\,\text{cm}^2/\text{g}\), což dává
+\(\lambda \approx 1/(0{,}077\cdot 1{,}2\times10^{-3})\,\text{cm} \approx 110\,\text{m}\).
+Závěr se nemění: \(e^{-0{,}5/110} \approx 0{,}995 \approx 1\).
+\end{vysvetleni}
+
+\strana{P06-3}
+\subsection{Pohádka o symetriích}
+
+Proč se v jaderné a částicové fyzice tolik mluví o symetriích? Podle
+\kw{Noetherové věty} odpovídá každé spojité symetrii zákon zachování; a
+kvantová čísla, kterými částice klasifikujeme (spin, izospin, parita, \dots),
+jsou právě „štítky`` reprezentací těchto symetrií. Než přejdeme ke
+klasifikaci částic, ukážeme si, jak symetrie vede na zachovávající se
+veličiny a jak z chování vlnové funkce při rotacích vyplývá spin.
+
+\begin{itemize}
+  \item \kw{Izospin} \(p\)–\(n\): silná interakce „nevidí`` rozdíl mezi
+  protonem a neutronem, proto je chápeme jako dva stavy jedné částice
+  (nukleonu) s izospinem \(\tfrac12\) – podobně jako dva stavy spinu.
+  Deuteron je izosinglet:
+  \[
+    I({}^2_1\text{H}) = 0 .
+  \]
+  \item \kw{Zachovávající se veličina} \(\hat z\): pozorovatelná se zachovává,
+  pokud komutuje s hamiltoniánem,
+  \[
+    \vzorec{[\hat H, \hat z] = 0} .
+  \]
+  Z Heisenbergovy pohybové rovnice
+  \(\frac{\dd}{\dd t}\langle \hat z\rangle = \frac{i}{\hbar}\langle[\hat H,\hat z]\rangle\)
+  plyne, že její střední hodnota se v čase nemění. Je-li \(\hat z\)
+  generátorem nějaké transformace (viz níže), znamená tato komutace přesně
+  to, že hamiltonián je vůči transformaci symetrický.
+\end{itemize}
+
+\subsubsection{Translace}
+Posuňme vlnovou funkci o \(\varepsilon\) a rozviňme do Taylorovy řady:
+\begin{align*}
+  \psi(x+\varepsilon) &= \psi(x) + \varepsilon\,\pdv{\psi}{x}
+     + \frac{1}{2!}\,\varepsilon^2\,\pdv[2]{\psi}{x} + \dots
+   = e^{\varepsilon\pdv{x}}\,\psi(x)
+   = e^{\frac{i\varepsilon\left(-i\hbar\pdv{x}\right)}{\hbar}}\,\psi(x) = \\
+  &= e^{i\varepsilon\hat p_x/\hbar}\,\psi(x),
+\end{align*}
+a ve třech rozměrech
+\[
+  \vzorec{\psi(\vec x + \vec\varepsilon) = e^{i\vec\varepsilon\cdot\hat{\vec p}/\hbar}\,\psi(\vec x)} .
+\]
+Taylorova řada je formálně exponenciála operátoru derivace; ten po
+vynásobení \(-i\hbar\) je právě operátor hybnosti. \kw{Hybnost je generátor
+translací}. Je-li hamiltonián invariantní vůči posunutí (homogenní prostor),
+komutuje s \(\hat{\vec p}\) a hybnost se zachovává.
+
+\subsubsection{Rotace}
+Rotace o úhel \(\alpha\) kolem osy \(z\) působí na souřadnice maticí
+\[
+  R_{z,\alpha} = \begin{pmatrix} \cos\alpha & \sin\alpha & 0\\ -\sin\alpha & \cos\alpha & 0\\ 0 & 0 & 1\end{pmatrix}.
+\]
+Stejně jako u translací nás zajímají \emph{infinitezimální} rotace
+(\(\cos\delta\alpha\approx 1\), \(\sin\delta\alpha\approx\delta\alpha\)) –
+z nich lze konečné rotace složit. Rozepíšeme je jako jednotkovou matici
+plus malá oprava, jejíž koeficient definuje generátor \(G_k\):
+\[
+  R_{z,\delta\alpha} = \mathbf{1} + \delta\alpha\,
+  \underbrace{\begin{pmatrix} 0 & 1 & 0\\ -1 & 0 & 0\\ 0 & 0 & 0\end{pmatrix}}_{iG_3},
+  \qquad
+  R_{y,\delta\alpha} = \mathbf{1} + \delta\alpha\,
+  \underbrace{\begin{pmatrix} 0 & 0 & -1\\ 0 & 0 & 0\\ 1 & 0 & 0\end{pmatrix}}_{iG_2},
+\]
+\[
+  R_{x,\delta\alpha} = \mathbf{1} + \delta\alpha\,
+  \underbrace{\begin{pmatrix} 0 & 0 & 0\\ 0 & 0 & 1\\ 0 & -1 & 0\end{pmatrix}}_{iG_1}.
+\]
+\strana{P06-4}
+Rotace o konečný úhel \(\alpha\) kolem obecné osy s jednotkovým vektorem
+\(\vec n\) vznikne opakováním mnoha infinitezimálních
+(\(\lim_{N\to\infty}(\mathbf{1} + i\vec G\cdot\vec n\,\alpha/N)^N\)):
+\[
+  \vzorec{R_{\vec n,\alpha} = e^{i(\vec G\cdot\vec n)\alpha}} .
+\]
+Generátory nekomutují (rotace kolem různých os nejsou záměnné), jejich
+komutační relace
+\[
+  \vzorec{[\hat G_i, \hat G_j] = i\,\varepsilon_{ijk}\,\hat G_k}
+\]
+(\(\varepsilon_{ijk}\) je Levi-Civitův symbol) definují \kw{Lieovu algebru}
+grupy rotací. Jsou to přesně komutační relace momentu hybnosti
+(dělené \(\hbar\)), což naznačuje, že \kw{moment hybnosti je generátor
+rotací}. Ověříme to přímo.
+
+Operátor orbitálního momentu hybnosti je
+\[
+  \hat L_i = \varepsilon_{ijk}\,\hat x_j\,\hat p_k
+  \quad\Rightarrow\quad
+  \underline{L_3} = \hat x\hat p_2 - \hat y\hat p_1
+  = -i\hbar\left[x\pdv{y} - y\pdv{x}\right]
+  = \underline{-i\hbar\pdv{\varphi}} .
+\]
+Poslední rovnost ověříme pomocí sférických souřadnic (v konvenci, kde
+\(\theta\) je zeměpisná šířka):
+\[
+  x = r\cos\theta\cos\varphi, \qquad
+  y = r\cos\theta\sin\varphi, \qquad
+  z = r\sin\theta .
+\]
+Řetízkovým pravidlem
+\begin{align*}
+  \pdv{\varphi} &= \pdv{x}\pdv{x}{\varphi} + \pdv{y}\pdv{y}{\varphi}
+                 + \pdv{z}\pdv{z}{\varphi} = \\
+  &= \pdv{x}\,r\cos\theta(-\sin\varphi) + \pdv{y}\,r\cos\theta\cos\varphi + 0 = \\
+  &= -y\pdv{x} + x\pdv{y} .
+\end{align*}
+Nyní můžeme zopakovat trik s Taylorovou řadou pro úhel \(\varphi\):
+\[
+  \psi(\varphi+\varepsilon) = e^{\varepsilon\pdv{\varphi}}\,\psi(\varphi)
+  = e^{i\varepsilon\hat L_3/\hbar}\,\psi(\varphi),
+\]
+neboť \(\pdv{\varphi} = i\hat L_3/\hbar\). Pro obecnou rotaci kolem osy
+\(\vec n\):
+\[
+  \to\ \text{pro obecnou rotaci:}\quad e^{i(\hat{\vec L}\cdot\vec n)\varepsilon/\hbar} .
+\]
+Srovnáním s \(R_{\vec n,\alpha} = e^{i(\vec G\cdot\vec n)\alpha}\) vidíme, že
+pro skalární vlnovou funkci \(\vec G = \hat{\vec L}/\hbar\).
+
+\subsubsection{Se spinem}
+Pokud vlnová funkce má více složek, rotace míchá i tyto složky mezi sebou
+– a generátorem je pak celkový moment hybnosti:
+\[
+  \vec J = \vec L + \vec S : \qquad \vec G \to \vec G = (\vec L + \vec S)/\hbar .
+\]
+Spin \(\vec S\) je tedy ta část generátoru rotací, která působí na
+„vnitřní`` (složkové) stupně volnosti. Podle toho, jak se vlnová funkce
+transformuje, rozlišujeme:
+
+\paragraph{Skalární funkce.}
+\[
+  \hat R_{\vec n,\alpha}\,\psi(\vec x) = \psi\big(\underbrace{\hat R^{-1}_{\vec n,\alpha}\,\vec x}_{\vec x'}\big),
+  \qquad \vec J = \vec L + \vec S,\ \ \vec S = 0 .
+\]
+Rotuje se pouze argument (hodnota funkce v novém bodě je hodnota ve
+„zpětně otočeném`` bodě), funkce sama je jediné číslo. Popisuje
+\pozor{částice se spinem 0} (např. piony).
+
+\paragraph{Vektorová funkce.}
+\[
+  \psi(\vec x) = \begin{pmatrix} \psi_1(\vec x)\\ \psi_2(\vec x)\\ \psi_3(\vec x)\end{pmatrix},
+  \qquad
+  \hat R_{\vec n,\alpha}\,\psi(\vec x)
+  = \underbrace{\hat R_{\vec n,\alpha}\begin{pmatrix}\psi_1\\ \psi_2\\ \psi_3\end{pmatrix}}_{\psi'}
+    \big(\underbrace{\hat R^{-1}_{\vec n,\alpha}\,\vec x}_{\vec x'}\big)
+  = \oprava{e^{i(\hat{\vec S}\cdot\vec n)\alpha/\hbar}}{e^{i(\hat{\vec S}\cdot\vec n)/\hbar}}\,\psi\big(\hat R^{-1}\vec x\big).
+\]
+Teď se otáčí i samotný vektor \((\psi_1,\psi_2,\psi_3)\) – stejnou maticí jako
+souřadnice. Generátory této vnitřní rotace jsou (\(\hat S_k = \hbar\hat G_k\)):
+\[
+  \hat S_1 = \hbar\hat G_1 = \hbar\begin{pmatrix} 0&0&0\\ 0&0&-i\\ 0&i&0\end{pmatrix},\quad
+  \hat S_2 = \hbar\begin{pmatrix} 0&0&+i\\ 0&0&0\\ -i&0&0\end{pmatrix},\quad
+  \hat S_3 = \hbar\begin{pmatrix} 0&-i&0\\ i&0&0\\ 0&0&0\end{pmatrix}.
+\]
+Snadno ověříme (např. \(\hat S_3^2 = \hbar^2\,\mathrm{diag}(1,1,0)\) a cyklicky):
+\[
+  \hat S_1^2 + \hat S_2^2 + \hat S_3^2 = 2\hbar^2\,\mathbf{1}
+  = \oprava{s(s+1)\hbar^2}{s(s+1)}\,\mathbf{1}
+  \quad\Longrightarrow\quad \text{spin} = 1 .
+\]
+Vektorové pole (např. vektorový potenciál fotonu \(\vec A\)) tedy popisuje
+\pozor{částice se spinem 1}.
+
+\strana{P06-5}
+\paragraph{Spinorová funkce.}
+\[
+  \psi(\vec x) = \begin{pmatrix} \psi_\uparrow(\vec x)\\ \psi_\downarrow(\vec x)\end{pmatrix},
+  \qquad
+  \hat R_{\vec n,\alpha}\,\psi(\vec x)
+  = \underbrace{e^{i(\hat{\vec S}\cdot\vec n)\alpha/\hbar}\,\psi}_{\psi'}
+    \big(\underbrace{\hat R^{-1}_{\vec n,\alpha}\,\vec x}_{\vec x'}\big),
+\]
+kde pro dvousložkovou funkci \(\hat{\vec S} = \frac{\hbar}{2}\vec\sigma\)
+(\(\vec\sigma\) jsou Pauliho matice). Protože \((\vec\sigma\cdot\vec n)^2 = \mathbf{1}\),
+lze exponenciálu sečíst stejně jako \(e^{ix} = \cos x + i\sin x\):
+\[
+  \vzorec{\hat S_{\vec n,\alpha} = \Big(\cos\frac{\alpha}{2}\Big)\mathbf{1}
+  + i\sin\frac{\alpha}{2}\,(\vec\sigma\cdot\vec n)}
+  \qquad\Longrightarrow\qquad \text{spin } \tfrac12 .
+\]
+Charakteristické jsou poloviční úhly: při otočení o \(\alpha = 2\pi\) dostaneme
+\(\hat S = -\mathbf{1}\), spinor změní znaménko; teprve otočení o \(4\pi\) jej
+vrátí do původního stavu. Takto se transformují elektrony, nukleony,
+kvarky – \pozor{částice se spinem \(\tfrac12\)}.
+
+\begin{vysvetleni}[Shrnutí: spin jako vlastnost transformace]
+Spin tedy není „rotace kuličky kolem osy``, ale údaj o tom, \emph{kolik
+složek} má vlnová funkce a jakou maticí se tyto složky při otočení míchají:
+1 složka \(\to\) spin 0, 3 složky (vektor) \(\to\) spin 1, 2 složky (spinor)
+\(\to\) spin \(\tfrac12\). Obecně má reprezentace se spinem \(s\) celkem
+\(2s+1\) složek. Tento pohled vysvětluje, proč je spin čistě kvantová
+veličina a proč mohou existovat poločíselné hodnoty, které orbitální moment
+mít nemůže.
+\end{vysvetleni}
+
+\subsection{Základní členění částic}
+
+Se znalostí spinu můžeme částice roztřídit dvěma nezávislými způsoby.
+
+\textbf{Podle spinu} (určuje statistiku – Pauliho princip vs.\ Boseho–Einsteinova statistika):
+\begin{itemize}
+  \item \kw{fermiony} – poločíselný spin \(\left(\tfrac12, \tfrac32, \dots\right)\):
+  \(p\), \(n\), \(e^-\), \(\nu_e\) (spin \(\tfrac12\)); \(\Delta^{++}\), \(\Omega^-\)
+  (spin \(\tfrac32\));
+  \item \kw{bosony} – celočíselný spin: \(\gamma\), \(\pi\), \dots
+\end{itemize}
+\vspace{-4pt}\noindent\rule{2.5cm}{0.4pt}
+
+\textbf{Podle interakcí}:
+\begin{itemize}
+  \item \kw{hadrony} – interagují mj.\ silně: \(p\), \(n\), \(\pi\), \dots;
+  dělí se dále na
+  \begin{itemize}
+    \item \kw{baryony} (fermiony) – např.\ \(p, n, \Delta, \Omega\),
+    \item \kw{mezony} (bosony) – např.\ \(\pi\);
+  \end{itemize}
+  \item \kw{leptony} – interagují slabě, elektromagneticky (\emph{ne} silně):
+  \(e^-\), \(\mu^-\), \(\nu_e\), \dots\ \(\to\) fermiony se spinem \(\tfrac12\).
+\end{itemize}
+Obě dělení se kříží: např.\ proton je hadron i fermion, pion hadron
+i boson, elektron lepton i fermion. V kvarkovém modelu (později) se ukáže,
+že baryony jsou složeny ze tří kvarků (proto poločíselný spin) a mezony
+z kvarku a antikvarku (celočíselný spin).

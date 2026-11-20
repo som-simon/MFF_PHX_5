@@ -1,0 +1,591 @@
+% ======================================================================
+% 4. přednáška (24. 10. 2022)
+% Kolektivní stavy (dokončení), jaderné síly, jaderné potenciály,
+% radioaktivita (α, β, γ, vnitřní konverze), jaderné reakce, štěpení, fúze
+% ======================================================================
+\section{Jaderné síly, radioaktivita a jaderné reakce}
+\providecommand{\jcCtyrKruh}[1]{\text{\tikz[baseline=(X.base)]\node[draw,circle,inner sep=0.6pt,font=\scriptsize](X){#1};}}
+
+\strana{P04-1}
+\subsection{Kolektivní stavy -- pokračování: rotační stavy}
+
+Na minulé přednášce jsme začali mluvit o \kw{kolektivních stavech} jádra, tedy o excitacích,
+na kterých se podílí mnoho nukleonů najednou (na rozdíl od jednočásticových excitací ve
+slupkovém modelu, kdy se „přestěhuje“ jediný nukleon do vyšší hladiny). Vedle vibrací povrchu
+jádra existuje druhý typ kolektivního pohybu -- \kw{rotace}.
+
+Proč by jádro mělo vůbec rotovat „viditelně“? Kvantově mechanicky nemá smysl mluvit o rotaci
+kulově symetrického objektu: otočení koule ji nijak nezmění, takže neexistuje žádný stupeň volnosti,
+který by se mohl excitovat. Rotační stavy proto pozorujeme jen u \kw{deformovaných jader}
+(typicky protáhlých, tvaru „doutníku“ -- prolate), a to při rotaci kolem osy \emph{kolmé} k ose symetrie,
+jak ukazuje náčrtek.
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  % deformované jádro (osa symetrie svisle)
+  \draw[thick] (0,0) ellipse (0.55 and 1.1);
+  \draw[densely dotted,gray] (0,-1.4) -- (0,1.4) node[above,black,font=\small]{osa symetrie};
+  % osa rotace vodorovně
+  \draw[dashed] (-1.8,0) -- (2.6,0) node[right,font=\small]{osa rotace};
+  % šipka rotace
+  \draw[-{Stealth[length=2.2mm]},thick] (1.05,0.55) arc[start angle=90,end angle=-200,x radius=0.18,y radius=0.55];
+\end{tikzpicture}
+\end{center}
+
+Klasicky má rotující těleso energii \(E = L^2/(2I)\), kde \(L\) je moment hybnosti a \(I\) moment setrvačnosti.
+V kvantové mechanice nahradíme \(L^2 \to \hbar^2 J(J+1)\), kde \(J\) je kvantové číslo celkového momentu hybnosti
+(v poznámkách značené \(\vec{J}\), resp.\ \(j\)). Odtud plyne, že
+\begin{itemize}
+  \item \textbf{energetické hladiny se škálují s \(\vec{J}\) jako \(j(j+1)\)}:
+  \[
+    \vzorec{E_\text{rot} = \frac{\hbar^2}{2I}\, J(J+1)} ,
+  \]
+  \item \textbf{hladiny} (u sudo-sudých jader): \(0^+,\ 2^+,\ \dots\) (dále \(4^+, 6^+, \dots\)).
+\end{itemize}
+Proč jen sudá \(J\) a kladná parita? Základní stav sudo-sudého jádra je \(0^+\) a deformované jádro
+má symetrii vůči otočení o \(180^\circ\) kolem osy rotace (obě „špičky doutníku“ jsou stejné);
+tato symetrie vyřadí lichá \(J\). Charakteristickým znakem rotačního pásu je, že hladiny \emph{nejsou ekvidistantní}
+(na rozdíl od vibračních): poměr energií \(E(4^+)/E(2^+) = \frac{4\cdot5}{2\cdot3} = 3{,}33\), zatímco pro
+harmonické vibrace by byl \(2\). Z naměřené energie \(E(2^+)\) navíc přímo určíme moment setrvačnosti \(I\),
+a tedy i míru deformace jádra (viz Davídkovy slajdy „Vibrační a rotační pásy“).
+
+\subsection{Jaderné síly -- popis}
+
+Nyní se vrátíme k otázce, \emph{co} vlastně drží nukleony v jádře pohromadě. V moderním pohledu se
+každá interakce (kromě gravitace) popisuje jako \kw{výměna (virtuální) částice}. Elektromagnetická
+interakce mezi dvěma náboji je výměna fotonu; protože foton je nehmotný, Coulombův potenciál
+\(V\propto 1/r\) má nekonečný dosah. Jaderné síly mají naopak \emph{krátký dosah} (zhruba \(1\)--\(2\,\mathrm{fm}\)),
+a Yukawa (1935) z toho usoudil, že zprostředkující částice musí být hmotná. Dnes víme, že na vzdálenostech
+\(\gtrsim 1\,\mathrm{fm}\) je to \kw{pion}. Nukleony si mohou vyměnit neutrální pion \(\pi^0\) (proton zůstane protonem,
+neutron neutronem) nebo nabitý pion \(\pi^\pm\) -- pak se proton „změní“ v neutron a naopak:
+
+\begin{center}
+\begin{tikzpicture}[scale=1,
+    fermion/.style={thick,postaction={decorate},decoration={markings,mark=at position 0.55 with {\arrow{Stealth}}}},
+    pion/.style={thick,dashed}]
+  % diagram 1: p n -> p n pres pi0
+  \draw[thick,-{Stealth}] (0,1.6) -- (1.0,1.2);
+  \draw[thick] (1.0,1.2) -- (1.6,1.0);
+  \draw[thick,-{Stealth}] (1.6,1.0) -- (2.6,1.25);
+  \draw[thick] (2.6,1.25) -- (3.2,1.4);
+  \draw[thick,-{Stealth}] (0,-0.6) -- (1.0,-0.1);
+  \draw[thick] (1.0,-0.1) -- (1.6,0.1);
+  \draw[thick,-{Stealth}] (1.6,0.1) -- (2.6,-0.2);
+  \draw[thick] (2.6,-0.2) -- (3.2,-0.4);
+  \draw[pion] (1.6,1.0) -- (1.6,0.1) node[midway,right]{\(\pi^0\)};
+  \fill (1.6,1.0) circle (1.6pt); \fill (1.6,0.1) circle (1.6pt);
+  \node[left] at (0,1.6) {\(p\)}; \node[right] at (3.2,1.4) {\(p\)};
+  \node[left] at (0,-0.6) {\(n\)}; \node[right] at (3.2,-0.4) {\(n\)};
+  % diagram 2: p n -> n p pres pi+
+  \begin{scope}[xshift=5.5cm]
+  \draw[thick,-{Stealth}] (0,1.6) -- (1.0,1.2);
+  \draw[thick] (1.0,1.2) -- (1.6,1.0);
+  \draw[thick,-{Stealth}] (1.6,1.0) -- (2.6,1.25);
+  \draw[thick] (2.6,1.25) -- (3.2,1.4);
+  \draw[thick,-{Stealth}] (0,-0.6) -- (1.0,-0.1);
+  \draw[thick] (1.0,-0.1) -- (1.6,0.1);
+  \draw[thick,-{Stealth}] (1.6,0.1) -- (2.6,-0.2);
+  \draw[thick] (2.6,-0.2) -- (3.2,-0.4);
+  \draw[pion,-{Stealth}] (1.6,1.0) -- (1.6,0.1) node[midway,right]{\(\pi^+\)};
+  \fill (1.6,1.0) circle (1.6pt); \fill (1.6,0.1) circle (1.6pt);
+  \node[left] at (0,1.6) {\(p\)}; \node[right] at (3.2,1.4) {\(n\)};
+  \node[left] at (0,-0.6) {\(n\)}; \node[right] at (3.2,-0.4) {\(p\)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Hmotnost pionu a z ní plynoucí dosah síly jsou
+\[
+  m_\pi = 140\,\mathrm{MeV}, \qquad \frac{\hbar c}{m_\pi c^2} \sim 1{,}4\,\mathrm{fm} .
+\]
+(Číselně \(\hbar c = 197{,}3\,\mathrm{MeV\,fm}\), takže \(197{,}3/140 \approx 1{,}41\,\mathrm{fm}\).) Veličina
+\(\hbar/(m_\pi c)\) je \kw{Comptonova vlnová délka} pionu. Heuristicky: virtuální pion „vypůjčí“ energii
+\(\Delta E \approx m_\pi c^2\) a podle relací neurčitosti může existovat jen dobu \(\Delta t \approx \hbar/\Delta E\);
+za tu dobu urazí nejvýše \(c\,\Delta t = \hbar c/(m_\pi c^2)\). Tím je dána typická vzdálenost, na kterou jaderná síla působí.
+
+Výměna hmotné částice vede na \kw{Yukawův potenciál} (v přirozených jednotkách \(\hbar=c=1\)):
+\[
+  \vzorec{V(r) \propto -\frac{1}{r}\, e^{-m_\pi \cdot r}} ,
+  \qquad\text{tj. v obvyklých jednotkách}\quad V(r)\propto -\frac{1}{r}\,e^{-r/r_0},\ \ r_0 = \frac{\hbar c}{m_\pi c^2}.
+\]
+Oproti Coulombovu potenciálu je zde navíc exponenciální tlumení: pro \(r \ll r_0\) se potenciál chová jako \(1/r\),
+pro \(r \gg r_0\) rychle vymizí. Znaménko minus vyjadřuje přitažlivost.
+
+\textbf{Proč?} Odkud se tento tvar bere? Potenciál je Fourierovou transformací \kw{propagátoru} vyměňované částice:
+\[
+  V(r) = \frac{-1}{(2\pi)^3}\int e^{i\vec{k}\cdot\vec{r}}\;
+  \underbrace{\frac{4\pi}{k^2+m^2}}_{\text{Greenova funkce (propagátor)}}\; \dd^3\vec{k} .
+\]
+Výraz \(\frac{4\pi}{k^2+m^2}\) je \kw{Greenova funkce} (propagátor) hmotné částice s hmotností \(m\) v hybnostní
+reprezentaci; \(\vec{k}\) je přenesená hybnost.
+
+\begin{vysvetleni}[výpočet Fourierova integrálu]
+Integrál spočteme ve sférických souřadnicích s osou \(z\) podél \(\vec{r}\). Úhlová část dává
+\(\int e^{ikr\cos\theta}\,\dd\Omega = 4\pi\,\frac{\sin kr}{kr}\), takže
+\[
+  \frac{1}{(2\pi)^3}\int e^{i\vec{k}\cdot\vec{r}}\frac{4\pi}{k^2+m^2}\,\dd^3\vec{k}
+  = \frac{1}{(2\pi)^3}\cdot 4\pi\cdot\frac{4\pi}{r}\int_0^\infty \frac{k\sin kr}{k^2+m^2}\,\dd k
+  = \frac{16\pi^2}{8\pi^3 r}\cdot\frac{\pi}{2}e^{-mr} = \frac{e^{-mr}}{r},
+\]
+kde jsme použili známý integrál \(\int_0^\infty \frac{k\sin kr}{k^2+m^2}\dd k = \frac{\pi}{2}e^{-mr}\) (reziduová věta).
+Pro \(m\to0\) (foton) dostaneme \(\frac{4\pi}{k^2} \leftrightarrow \frac{1}{r}\), tedy Coulombův potenciál. Hmotnost
+vyměňované částice se tedy projeví právě jako „pól“ propagátoru v bodě \(k^2=-m^2\), který po transformaci dá
+exponenciální útlum s délkou \(1/m\). Stejná myšlenka (propagátor \(\sim 1/(q^2 - m^2)\)) se později objeví u slabé
+interakce a bosonů \(W, Z\) -- jejich velká hmotnost vysvětluje extrémně krátký dosah slabé síly.
+Viz Davídkovy slajdy „Jaderné síly (1), (2)“.
+\end{vysvetleni}
+
+\subsection{Zpět k potenciálům}
+
+Popis jaderných sil výměnou pionů je fyzikálně názorný, ale pro praktické výpočty stavů jádra (např.\ ve slupkovém
+modelu) se používá \emph{efektivní střední potenciál}, v němž se nukleon pohybuje. Přehled modelů, od nejjednodušších:
+\begin{itemize}
+  \item \kw{jáma} (pravoúhlá potenciálová jáma) -- nejjednodušší, s ostrým okrajem;
+  \item \kw{harmonický oscilátor} -- analyticky řešitelný, dobře reprodukuje první magická čísla (2, 8, 20);
+\end{itemize}
+\strana{P04-2}
+\begin{itemize}
+  \item \kw{Yukawův potenciál}
+  \[
+    V(r) = -\frac{1}{r}\, e^{-\alpha\, m_\pi \cdot r},
+  \]
+  \pozn{písmeno v exponentu čteno jako \(\alpha\); jde zřejmě jen o konstantu udávající dosah, srov.\ \(V\propto -\frac1r e^{-m_\pi r}\) výše};
+  \item \kw{Woodsův--Saxonův potenciál}
+  \[
+    \vzorec{V(r) = \frac{-V_0}{1+\exp\!\left(\frac{r-R}{a}\right)}} ,
+  \]
+  kde \(V_0\approx 50\,\mathrm{MeV}\) je hloubka jámy, \(R \approx 1{,}2\,A^{1/3}\,\mathrm{fm}\) poloměr jádra
+  a \(a\approx 0{,}5\,\mathrm{fm}\) „difuznost“ (tloušťka povrchu).
+\end{itemize}
+Proč právě Woodsův--Saxonův tvar? Jaderné síly mají krátký dosah, a proto střední potenciál, který cítí nukleon,
+kopíruje \emph{rozložení hustoty} nukleonů \(\rho(r)\). To je uvnitř jádra prakticky konstantní (saturace jaderných sil)
+a na povrchu plynule klesá k nule (Fermiho rozdělení z experimentů s rozptylem elektronů):
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \draw[-{Stealth}] (0,0) -- (4.2,0) node[below]{\(r\)};
+  \draw[-{Stealth}] (0,0) -- (0,1.8) node[left]{\(\rho(r)\)};
+  \draw[thick,domain=0:4,samples=80] plot (\x,{1.3/(1+exp((\x-2.0)/0.35))});
+  \draw[dashed,gray] (2.0,0) -- (2.0,0.65) ; \node[below] at (2.0,0) {\(R\)};
+\end{tikzpicture}
+\end{center}
+
+Woodsův--Saxonův potenciál je tedy „zaoblená“ pravoúhlá jáma: uvnitř má konstantní hodnotu \(-V_0\), v okolí
+\(r=R\) na škále \(a\) přechází k nule. Spolu se spin-orbitální interakcí reprodukuje všechna magická čísla.
+
+\subsection{Radioaktivita}
+
+Teď přejdeme od statických vlastností jader k jejich \emph{přeměnám}. Nestabilní jádro se rozpadá náhodně; nelze
+předpovědět, kdy se rozpadne konkrétní jádro, ale pravděpodobnost rozpadu za jednotku času \(\lambda\)
+(\kw{rozpadová konstanta}) je pro dané jádro konstantní a nezávisí na jeho „stáří“. Za čas \(\dd t\) se tedy rozpadne
+\(\dd N = -\lambda N\,\dd t\) jader, a integrací
+\[
+  \vzorec{N(t) = N(0)\cdot e^{-\lambda \cdot t}}
+  \quad\Longrightarrow\quad
+  \frac{\dd N}{\dd t} = -\lambda\cdot N(0)\, e^{-\lambda t} .
+\]
+Z tohoto zákona odvodíme tři užitečné charakteristiky:
+\begin{itemize}
+  \item \kw{střední doba života} \(\tau\): \(\lambda e^{-\lambda t}\dd t\) je pravděpodobnost, že se jádro rozpadne
+  v intervalu \((t, t+\dd t)\); střední hodnota času rozpadu je
+  \[
+    \tau = \int_0^\infty t\cdot \lambda\cdot e^{-\lambda t}\,\dd t = \frac{1}{\lambda}
+  \]
+  (per partes). Za dobu \(\tau\) poklesne počet jader na \(1/e \approx 37\,\%\).
+  \item \kw{poločas rozpadu} \(T_{1/2}\): doba, za kterou se rozpadne polovina jader,
+  \[
+    N(T_{1/2}) = \tfrac12 N(0) \quad\Longrightarrow\quad \vzorec{T_{1/2} = \ln 2\cdot\tau} \approx 0{,}693\,\tau .
+  \]
+  \item \kw{aktivita} -- počet rozpadů za jednotku času, což je veličina, kterou skutečně měříme detektorem:
+  \[
+    \vzorec{A(t) \equiv \frac{-\dd N(t)}{\dd t} = \lambda\cdot N(t)} ,
+  \]
+  jednotkou je \kw{becquerel} \(1\,\mathrm{Bq} = 1\,\text{rozpad/s}\) (starší jednotka \(1\,\mathrm{Ci}=3{,}7\cdot10^{10}\,\mathrm{Bq}\)).
+\end{itemize}
+
+\begin{priklad}[odhad -- radioaktivita lidského těla (Davídkovy slajdy)]
+Dospělý člověk obsahuje asi \(200\,\mathrm{g}\) draslíku, z toho \(0{,}012\,\%\) je radioaktivní \({}^{40}\mathrm{K}\)
+(\(T_{1/2}\approx 1{,}25\cdot10^9\) let). Počet jader \(N \approx \frac{200\cdot1{,}2\cdot10^{-4}}{40}\cdot 6\cdot10^{23}
+\approx 3{,}6\cdot10^{20}\), a tedy
+\(A = \frac{\ln2}{T_{1/2}}N \approx \frac{0{,}693\cdot3{,}6\cdot10^{20}}{1{,}25\cdot10^9\cdot3{,}15\cdot10^7\,\mathrm{s}} \approx 6\cdot10^3\,\mathrm{Bq}\).
+Vidíme, že i velmi dlouhý poločas dává měřitelnou aktivitu, je-li jader dost.
+\end{priklad}
+
+Podle toho, co jádro při přeměně vyzáří, rozlišujeme rozpady \(\alpha\), \(\beta\) a přechody \(\gamma\); každý je
+způsoben jinou interakcí (silná + elektromagnetická, slabá, elektromagnetická).
+
+\subsubsection{Rozpad \texorpdfstring{\(\alpha\)}{alfa}}
+
+Při rozpadu \(\alpha\) jádro vyzáří jádro helia \({}^4_2\mathrm{He}\) (\(\alpha\)-částici):
+\[
+  {}^A_Z X \;\to\; {}^{A-4}_{Z-2} Y + \alpha .
+\]
+Proč zrovna \(\alpha\)-částice, a ne třeba jednotlivý proton? Jádro \({}^4\mathrm{He}\) je mimořádně pevně vázané
+(\(B\approx 28{,}3\,\mathrm{MeV}\), tj.\ \(7\,\mathrm{MeV}\) na nukleon), takže jeho vyzáření uvolní nejvíce energie.
+Rozpad je energeticky možný, pokud
+\[
+  \vzorec{M(A,Z) > M(A-4,Z-2) + M({}^4_2\mathrm{He})} ,
+\]
+tj.\ \(Q_\alpha = [M(A,Z) - M(A-4,Z-2) - M({}^4\mathrm{He})]c^2 > 0\) (lze použít atomové hmotnosti, počet elektronů
+se vyrovná). Z Weizsäckerovy formule plyne, že to nastává pro
+\[
+  A \gtrsim 150 .
+\]
+Prakticky se však \(\alpha\)-rozpad pozoruje hlavně u těžkých jader (\(A\gtrsim 200\)), protože pro malé \(Q_\alpha\)
+je poločas astronomicky dlouhý -- důvod uvidíme níže u tunelového jevu.
+
+\strana{P04-3}
+\paragraph{Rozpadové řady.} Při rozpadu \(\alpha\) se \(A\) změní o 4, při rozpadu \(\beta\) se \(A\) nemění vůbec.
+Zbytek \(A \bmod 4\) se tedy při všech přeměnách zachovává a těžká radioaktivní jádra se dělí do
+\textbf{4 řad}:
+\begin{center}
+\begin{tabular}{lll}
+  \(A = 4n\)   & thoriová    & \({}^{232}\mathrm{Th}\to\dots\to{}^{208}\mathrm{Pb}\)\\
+  \(A = 4n+1\) & neptuniová  & \({}^{237}\mathrm{Np}\to\dots\to{}^{209}\mathrm{Bi}\)\\
+  \(A = 4n+2\) & uranová     & \({}^{238}\mathrm{U}\to\dots\to{}^{206}\mathrm{Pb}\)\\
+  \(A = 4n+3\) & aktiniová   & \({}^{235}\mathrm{U}\to\dots\to{}^{207}\mathrm{Pb}\)
+\end{tabular}
+\end{center}
+(Počáteční a koncová jádra jsou doplněna, viz Davídkovy slajdy „Rozpadové řady“.) Neptuniová řada se v přírodě
+již nevyskytuje, protože její nejdéle žijící člen \({}^{237}\mathrm{Np}\) má poločas \(2\cdot10^6\) let, což je
+zanedbatelné vůči stáří Země; ostatní řady začínají jádry s poločasy srovnatelnými se stářím Země či delšími.
+
+\paragraph{Tunelový jev.} Proč mají \(\alpha\)-zářiče tak rozdílné poločasy (od \(10^{-7}\,\mathrm{s}\) po \(10^{10}\) let),
+ačkoli se energie \(\alpha\)-částic liší jen málo (\(4\)--\(9\,\mathrm{MeV}\))? Podívejme se na potenciál, který \(\alpha\)-částice
+cítí. Uvnitř jádra je hluboká jáma od přitažlivých \emph{jaderných sil}, vně převládá odpudivá \emph{Coulombova}
+bariéra \(\propto 2Z_Y e^2/r\), vysoká typicky \(\sim 25\)--\(30\,\mathrm{MeV}\). Energie \(E_\alpha\) je mnohem nižší
+než vrchol bariéry, takže klasicky by \(\alpha\)-částice jádro nikdy neopustila -- kvantově ale bariérou může
+\emph{protunelovat}. Pro výpočet nahradíme realistický potenciál (vlevo) zjednodušeným modelem (vpravo):
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % realny potencial
+  \draw[-{Stealth}] (0,-2.2) -- (0,2.0) node[left]{\(V\)};
+  \draw[-{Stealth}] (-0.3,0) -- (5.2,0) node[below]{\(r\)};
+  \draw[thick] (0.05,-1.9) -- (0.9,-1.9) .. controls (1.4,-1.9) and (1.45,-1.0) .. (1.5,0)
+     .. controls (1.6,1.2) and (2.0,1.3) .. (2.4,1.1) .. controls (3.2,0.6) and (4,0.35) .. (5,0.25);
+  \draw[red,thick] (0,0.45) -- (3.6,0.45);
+  \node[red,above] at (0.45,0.45) {\(E_\alpha\)};
+  \draw[-{Stealth}] (3.4,1.6) node[right]{Coulomb} -- (2.6,1.15);
+  \draw[-{Stealth}] (2.4,-1.4) node[right]{jaderné síly} -- (1.45,-1.0);
+  % sipka k modelu
+  \draw[-{Stealth},thick] (6.9,1.2) -- (5.9,1.2);
+  % model
+  \begin{scope}[xshift=8.0cm]
+    \draw[-{Stealth}] (0,-2.2) -- (0,2.0) node[left]{\(V\)};
+    \draw[-{Stealth}] (-0.3,0) -- (5.2,0) node[below]{\(r\)};
+    \draw[thick] (0,-1.9) -- (1.5,-1.9) -- (1.5,1.2) -- (3.2,1.2) -- (3.2,0) -- (5,0);
+    \draw[dotted] (0,1.2) -- (1.5,1.2);
+    \node[left] at (0,1.2) {\(V_1\)};
+    \node[left] at (0,-1.9) {\(-V_0\)};
+    \draw[red,thick] (0,0.55) -- (1.5,0.55);
+    \node[red,above] at (0.75,0.55) {\(E_\alpha\)};
+    \node[below] at (1.5,-1.9) {\(r=a\)};
+    \node[below right] at (3.2,0) {\(r=b\)};
+    \node[draw,circle,inner sep=1pt,font=\small] at (0.75,-1.1) {1};
+    \node[draw,circle,inner sep=1pt,font=\small] at (2.35,-0.4) {2};
+    \node[draw,circle,inner sep=1pt,font=\small] at (4.2,0.6) {3};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Model: oblast \jcCtyrKruh1 \(0<r<a\) je jáma hloubky \(-V_0\) (vnitřek jádra, \(a\approx R\)), oblast \jcCtyrKruh2 \(a<r<b\) je bariéra
+výšky \(V_1 > E_\alpha\), oblast \jcCtyrKruh3 \(r>b\) je volný prostor. Řešíme stacionární Schrödingerovu rovnici pro \(\alpha\)-částici
+s hmotností \(m_\alpha\):
+\[
+  \left\{\frac{-\hbar^2}{2m_\alpha}\Delta + V(\vec{x})\right\}\psi(\vec{x}) = E\,\psi(\vec{x}) .
+\]
+Pro centrální potenciál separujeme radiální a úhlovou část,
+\(\psi(\vec{x}) = \frac{u(r)}{r}\,Y_{lm}(\theta,\varphi)\), a pro funkci \(u(r)\) dostaneme jednorozměrnou rovnici
+\[
+  \left(\frac{\dd^2}{\dd r^2} + \frac{2m_\alpha\,(E-V(r))}{\hbar^2} - \frac{l(l+1)}{r^2}\right)u(r) = 0 .
+\]
+Člen \(l(l+1)/r^2\) je odstředivá bariéra, která by tunelování dále ztížila; dále uvažujeme \(l=0\). V jednotlivých oblastech
+jsou řešení
+\begin{align*}
+  \jcCtyrKruh1\quad & u = A\cdot\sin\!\left(\sqrt{\frac{2m_\alpha(E+V_0)}{\hbar^2}}\;r\right), \\
+  \jcCtyrKruh2\quad & u = B\cdot\exp\!\left(\kappa\, r\right) + C\cdot\exp\!\left(-\kappa\, r\right),
+     \qquad \kappa = \sqrt{\frac{2m_\alpha(V_1-E)}{\hbar^2}}, \\
+  \jcCtyrKruh3\quad & u = D\cdot\exp\!\left(i\, k\, r\right), \qquad k = \sqrt{\frac{2m_\alpha E}{\hbar^2}} .
+\end{align*}
+(V poznámkách jsou odmocniny v oblastech 2 a 3 jen naznačeny; doplnili jsme je.) V oblasti 1 bereme jen \(\sin\),
+protože \(u(0)=0\) (jinak by \(\psi = u/r\) divergovala). V oblasti 2 je energie pod bariérou, řešení jsou reálné
+exponenciály. V oblasti 3 bereme jen \emph{vycházející} vlnu \(e^{ikr}\) -- popisujeme částici, která jádro opouští.
+Konstanty \(A,B,C,D\) se určí ze spojitosti \(u\) a \(u'\) v bodech \(r=a\), \(r=b\).
+
+\kw{Pravděpodobnost průchodu} (transmisní koeficient) je poměr hustoty pravděpodobnosti vně a uvnitř:
+\[
+  T_B = \frac{\left|D\exp\!\left(i\sqrt{\tfrac{2m_\alpha E}{\hbar^2}}\;r\right)\right|^2}{\left|A\sin\!\left(\sqrt{\tfrac{2m_\alpha(E+V_0)}{\hbar^2}}\;r\right)\right|^2} .
+\]
+
+\begin{vysvetleni}[proč je \(T_B\) tak citlivé na energii -- Geigerovo--Nuttallovo pravidlo]
+Pro širokou a vysokou bariéru (\(\kappa(b-a)\gg1\)) dominuje v oblasti 2 klesající exponenciála a výsledek je přibližně
+\(T_B \approx e^{-2\kappa(b-a)}\). Pro skutečnou Coulombovu bariéru se \(\kappa\) mění s \(r\) a exponent nahradíme integrálem
+(WKB):
+\[
+  T_B \approx \exp\!\left(-2\int_a^b \sqrt{\tfrac{2m_\alpha (V(r)-E)}{\hbar^2}}\,\dd r\right)
+  \approx \exp\!\left(-\,\text{konst}\cdot\frac{Z}{\sqrt{E_\alpha}}\right)
+\]
+(Gamowův faktor). \(\alpha\)-částice uvnitř jádra naráží na stěnu s frekvencí \(f \approx v/(2R) \sim 10^{21}\,\mathrm{s}^{-1}\)
+a při každém nárazu má šanci \(T_B\) projít, takže \(\lambda = f\,T_B\). Logaritmováním dostaneme
+\(\log T_{1/2} = a_1\frac{Z}{\sqrt{E_\alpha}} + a_2\) -- empirické \kw{Geigerovo--Nuttallovo pravidlo} (1911), které vysvětlil
+až Gamow (1928) právě tunelováním. Protože \(E_\alpha\) je pod odmocninou v exponentu, změna \(E_\alpha\) o pár MeV změní
+poločas o mnoho řádů. Viz Davídkovy slajdy „Tunelový jev (1), (2)“.
+\end{vysvetleni}
+
+\strana{P04-4}
+\subsubsection{Rozpad \texorpdfstring{\(\beta\)}{beta}}
+
+Rozpad \(\beta\) je projevem \emph{slabé interakce}: mění se v něm neutron na proton nebo naopak, přičemž \(A\) se nemění.
+Základním procesem je rozpad \textbf{volného} neutronu
+\[
+  n \to p + \bar\nu_e + e^- \qquad(\text{volný}),
+\]
+který je možný, protože \(m_n > m_p + m_e\) (\(Q = 0{,}78\,\mathrm{MeV}\)); volný neutron má střední dobu života asi
+\(880\,\mathrm{s}\). Proton je naopak lehčí než neutron, takže volný proton se nerozpadá -- v jádře ale může přeměna
+\(p\to n\) nastat, pokud to umožní rozdíl vazebných energií. V jádře jsou proto \textbf{3 varianty}:
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lll}
+  \(\beta^-\): & \({}^A_Z X \to {}^{\;\;A}_{Z+1} Y + e^- + \bar\nu_e\) & \((n) \to (p) + e^- + \bar\nu_e\)\\
+  \(\beta^+\): & \({}^A_Z X \to {}^{\;\;A}_{Z-1} Y + e^+ + \nu_e\) & \((p) \to (n) + e^+ + \nu_e\)\\
+  EC:          & \({}^A_Z X + e^- \to {}^{\;\;A}_{Z-1} Y + \nu_e\) & \((p) + e^- \to (n) + \nu_e\)
+\end{tabular}
+\end{center}
+Závorky \((n)\), \((p)\) znamenají nukleon vázaný v jádře. \kw{EC} (electron capture, záchyt elektronu, často \emph{K-záchyt})
+znamená, že jádro pohltí elektron z vlastního atomového obalu, nejčastěji z K-slupky; následuje emise charakteristického
+rentgenového záření, jak se díra v obalu zaplní. EC konkuruje \(\beta^+\) a je jedinou možností, když
+\(0 < Q < 2m_ec^2\).
+
+Pravděpodobnost (rozpadová konstanta) rozpadu \(\beta\) silně roste s uvolněnou energií:
+\[
+  \vzorec{\lambda \propto Q^5}, \qquad \left(Q = M(X) - M(Y)\right)
+\]
+(\kw{Sargentovo pravidlo}). Mocnina 5 pochází z fázového prostoru tří částic v koncovém stavu: integrujeme přes hybnosti elektronu
+a neutrina, které se dělí o energii \(Q\).
+\pozor{Pozor na hmotnosti:} s \emph{atomovými} hmotnostmi platí \(Q=[M(X)-M(Y)]c^2\) pro \(\beta^-\) i EC
+(u EC ještě minus vazebná energie zachyceného elektronu), ale pro \(\beta^+\) je
+\(Q = [M(X)-M(Y)-2m_e]c^2\), protože atom \(Y\) má o elektron méně a navíc vzniká pozitron.
+
+\paragraph{Spektrum elektronů.} Protože energie \(Q\) se dělí mezi tři částice (elektron, neutrino a zanedbatelně odražené jádro),
+elektron nemá pevnou energii, ale \emph{spojité spektrum} od nuly do maxima \(E_\text{max}\approx Q\):
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \draw[-{Stealth}] (0,0) -- (5.2,0) node[below]{\(E(e^-)\)};
+  \draw[-{Stealth}] (0,0) -- (0,2.4) node[left]{\(\frac{\dd N}{\dd E}\)};
+  \draw[thick] (0,1.3) .. controls (0.5,2.2) and (1.3,2.2) .. (2.2,1.5) .. controls (3.0,0.8) and (3.8,0.15) .. (4.4,0);
+  \draw (4.4,0.1) -- (4.4,-0.1) node[below]{\(Q\)};
+\end{tikzpicture}
+\end{center}
+
+Právě spojité spektrum vedlo Pauliho (1930) k postulování neutrina -- při dvoučásticovém rozpadu by elektron měl ostrou energii.
+Nenulová hodnota spektra u \(E\to0\) pro \(\beta^-\) je důsledkem coulombovského přitahování elektronu ke kladnému jádru
+(u \(\beta^+\) je naopak spektrum u nízkých energií potlačeno).
+
+\paragraph{Hmotnostní paraboly.} Které izobary (jádra se stejným \(A\)) jsou stabilní vůči rozpadu \(\beta\)? Ze semiempirické
+(Weizsäckerovy) formule plyne, že pro pevné \(A\) je hmotnost \(M(A,Z)\) \emph{kvadratickou funkcí} \(Z\) (Coulombův a asymetrický člen).
+Jádra tedy leží na parabole a rozpady \(\beta\) je posouvají „dolů“ k minimu: z levé větve (přebytek neutronů) rozpadem \(\beta^-\),
+z pravé (přebytek protonů) rozpadem \(\beta^+\)/EC.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % lichá jádra
+  \draw[-{Stealth}] (0,0) -- (5.6,0) node[below]{\(Z\)};
+  \draw[-{Stealth}] (0,0) -- (0,4.2) node[left]{\(M(A,Z)\)};
+  \node at (3.0,4.2) {lichá jádra, \(A=\text{konst}\)};
+  \draw[thick,domain=0.5:5.0,samples=60] plot (\x,{0.38*(\x-2.6)^2+0.6});
+  \foreach \z in {0.8,1.5,2.2,2.9,3.6,4.3} \fill (\z,{0.38*(\z-2.6)^2+0.6}) circle (2pt);
+  \draw[-{Stealth},thick] (0.95,2.15) -- (1.4,1.35) node[midway,right]{\(\beta^-\)};
+  \draw[-{Stealth},thick] (4.15,1.95) -- (3.65,1.25) node[midway,above right]{\(\beta^+\)};
+  \draw (2.2,0.1) -- (2.2,-0.1) node[below]{\(Z\)};
+  \draw (2.9,0.1) -- (2.9,-0.1) node[below]{\(Z{+}1\)};
+  % suda jadra
+  \begin{scope}[xshift=7.6cm]
+  \draw[-{Stealth}] (0,0) -- (5.6,0) node[below]{\(Z\)};
+  \draw[-{Stealth}] (0,0) -- (0,4.2) node[left]{\(M\)};
+  \node at (3.0,4.2) {\(A=\text{sudé, konst}\)};
+  \draw[thick,domain=0.4:5.0,samples=60] plot (\x,{0.38*(\x-2.7)^2+1.4});
+  \draw[thick,domain=0.4:5.0,samples=60] plot (\x,{0.38*(\x-2.7)^2+0.4});
+  \node[right] at (5.0,{0.38*(2.3)^2+1.4}) {L--L};
+  \node[right] at (5.0,{0.38*(2.3)^2+0.4}) {S--S};
+  \foreach \z in {1.0,2.6,4.2} \fill (\z,{0.38*(\z-2.7)^2+1.4}) circle (2pt);
+  \foreach \z in {0.5,1.8,3.4,4.9} \fill (\z,{0.38*(\z-2.7)^2+0.4}) circle (2pt);
+  \draw[-{Stealth},thick] (2.6,1.35) -- (1.9,0.75) node[midway,left]{\(\beta^+\)};
+  \draw[-{Stealth},thick] (2.6,1.35) -- (3.3,0.65) node[midway,right]{\(\beta^-\)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+  \item \textbf{Liché \(A\)} (sudo-lichá i licho-sudá jádra): párovací člen je nulový, všechna jádra leží na \emph{jedné parabole}
+  a stabilní je zpravidla právě jeden izobar (ten nejblíže minimu).
+  \item \textbf{Sudé \(A\)}: párovací člen \(\pm\delta\) rozdělí jádra na dvě paraboly -- \kw{licho-lichá} (L--L, výše) a \kw{sudo-sudá}
+  (S--S, níže). Při rozpadu \(\beta\) se střídají L--L a S--S, takže se „skáče“ mezi parabolami. Licho-liché jádro u minima se může
+  proto rozpadat \emph{oběma} způsoby, \(\beta^+\) i \(\beta^-\) (typický příklad \({}^{64}\mathrm{Cu}\)), a mohou existovat i dvě stabilní
+  sudo-sudá jádra se stejným \(A\) (mezi nimi je možný jen velmi vzácný dvojitý rozpad \(\beta\)). Stabilních licho-lichých jader je
+  jen několik lehkých (\({}^2\mathrm{H}, {}^6\mathrm{Li}, {}^{10}\mathrm{B}, {}^{14}\mathrm{N}\)).
+\end{itemize}
+
+\strana{P04-5}
+\subsubsection{Přechody \texorpdfstring{\(\gamma\)}{gama}}
+
+Po rozpadu \(\alpha\) nebo \(\beta\) často vzniká dceřiné jádro v \emph{excitovaném} stavu. To se pak deexcituje vyzářením fotonu
+(\(\gamma\)-přechod, elektromagnetická interakce); \(Z\) ani \(A\) se nemění, energie fotonu je rozdíl energií hladin
+(\(E_\gamma\sim 0{,}1\)--\(\text{několik}\,\mathrm{MeV}\)). Typickým příkladem -- a nejpoužívanějším kalibračním a průmyslovým zdrojem -- je
+\({}^{60}\mathrm{Co}\):
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  % Co
+  \node at (0.9,3.55) {\({}^{60}\mathrm{Co}\)};
+  \draw[thick] (0,3.1) -- (1.9,3.1); \node[left] at (0,3.1) {\(2^+\)};
+  \node[right] at (1.95,3.1) {\(E_\gamma = 0{,}06\,\mathrm{MeV}\)};
+  \draw[thick] (0,2.5) -- (2.6,2.5); \node[left] at (0,2.5) {\(5^+\)};
+  \draw[decorate,decoration={snake,amplitude=1.2pt,segment length=4pt},-{Stealth}] (0.4,3.1) -- (0.4,2.52);
+  \node[left] at (0.3,2.8) {\(\gamma\)};
+  % Ni
+  \draw[thick] (3.5,2.2) -- (5.2,2.2); \node[left] at (3.5,2.2) {\(4^+\)};
+  \draw[thick] (3.5,1.2) -- (5.2,1.2); \node[left] at (3.5,1.2) {\(2^+\)};
+  \draw[thick] (3.5,0.2) -- (5.2,0.2); \node[left] at (3.5,0.2) {\(0^+\)};
+  \node[below] at (4.35,0.15) {\({}^{60}_{28}\mathrm{Ni}\)};
+  \draw[decorate,decoration={snake,amplitude=1.2pt,segment length=4pt},-{Stealth}] (4.5,2.2) -- (4.5,1.22);
+  \node[right] at (5.3,1.7) {\(E_\gamma = 1{,}17\,\mathrm{MeV}\)};
+  \draw[decorate,decoration={snake,amplitude=1.2pt,segment length=4pt},-{Stealth}] (4.9,1.2) -- (4.9,0.22);
+  \node[right] at (5.3,0.7) {\(E_\gamma = 1{,}33\,\mathrm{MeV}\)};
+  % beta prechody
+  \draw[red,thick,-{Stealth}] (2.4,2.5) -- (3.8,2.22) node[midway,above right,font=\small]{\(\beta^-\)};
+  \draw[red,thick,-{Stealth}] (1.6,3.1) -- (3.9,1.22) node[pos=0.4,left,font=\small]{\(\beta^-\)};
+\end{tikzpicture}
+\end{center}
+
+Základní stav \({}^{60}\mathrm{Co}\) (\(5^+\), \(T_{1/2}=5{,}27\) let) se rozpadá \(\beta^-\) na hladinu \(4^+\) v \({}^{60}\mathrm{Ni}\);
+ta se kaskádou dvou \(\gamma\)-přechodů \(4^+\to2^+\to0^+\) o energiích \(1{,}17\) a \(1{,}33\,\mathrm{MeV}\) dostane do základního stavu.
+Proč se \(5^+\) nerozpadá přímo do \(2^+\) nebo \(0^+\)? Rozpad by vyžadoval velkou změnu momentu hybnosti (\(\Delta J = 3\) resp.\ 5), což
+je silně potlačené („zakázané“ přechody) -- preferuje se \(5^+\to4^+\) s \(\Delta J=1\).
+
+Stejné výběrové pravidlo vysvětluje existenci \kw{izomeru} \({}^{60\mathrm{m}}\mathrm{Co}\): stav \(2^+\) jen \(0{,}06\,\mathrm{MeV}\)
+(přesněji \(58{,}6\,\mathrm{keV}\)) nad základním stavem \(5^+\). Foton nese moment hybnosti \(L\ge1\) a musí platit
+\(|J_i-J_f|\le L\le J_i+J_f\); přechod \(2^+\to5^+\) tak vyžaduje \(L\ge3\), což je velmi pomalé, a stav žije \(10{,}5\) minuty. Část izomerů
+se proto stihne rozpadnout \(\beta^-\) přímo na hladinu \(2^+\) niklu.
+
+\subsubsection{Vnitřní konverze}
+
+Co když přechod fotonem není možný vůbec? Foton má spin 1, a proto jediný foton nemůže zprostředkovat přechod \(0\to0\)
+(\(L=0\) je vyloučeno). Příkladem je \({}^{72}\mathrm{Ge}\), jehož první excitovaný stav je \(0^+\) (\(\approx 0{,}69\,\mathrm{MeV}\)):
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \draw[thick] (0,2.4) -- (2.5,2.4) node[right]{\(2^+\)};
+  \draw[thick] (0,1.2) -- (2.5,1.2) node[right]{\(0^+\)};
+  \draw[thick] (0,0) -- (2.5,0) node[right]{\(0^+\)};
+  \node[below] at (1.25,-0.05) {\({}^{72}\mathrm{Ge}\)};
+  \draw[decorate,decoration={snake,amplitude=1.2pt,segment length=4pt},-{Stealth}] (1.25,1.2) -- (1.25,0.03);
+  \node[right] at (1.35,0.6) {\(\gamma\)};
+  \draw[thick,red] (0.85,0.25) -- (1.65,0.95);
+  \draw[thick,red] (0.85,0.95) -- (1.65,0.25);
+\end{tikzpicture}
+\end{center}
+
+Přechod \(0^+\to0^+\) se uskuteční \kw{vnitřní konverzí}: jádro předá excitační energii přímo (elektromagnetickou interakcí,
+bez reálného fotonu) jednomu z elektronů atomového obalu, nejčastěji z K-slupky, jejichž vlnová funkce má nenulovou hodnotu i uvnitř jádra.
+Elektron je emitován s ostrou energií \(E_e = \Delta E - B_K\) (\(B_K\) je vazebná energie v K-slupce) -- na rozdíl od spojitého spektra
+\(\beta\). Následuje emise rentgenového záření či Augerových elektronů. Vnitřní konverze konkuruje \(\gamma\)-přechodům obecně, nejen
+u \(0\to0\); významná je u těžkých jader a nízkých energií.
+
+\strana{P04-6}
+\subsection{Jaderné reakce}
+
+Zatím jsme se zabývali samovolnými přeměnami; nyní budeme jádra bombardovat částicemi. Jaderné reakce slouží jak ke zkoumání
+struktury jader (rozptylové experimenty), tak k výrobě izotopů a k získávání energie.
+\begin{itemize}
+  \item \textbf{Mnoho typů}, značí se zkratkou \(X(a,b)Y\), např.
+  \[
+    (n,p):\ X + n \to Y + p,\qquad (n,\gamma),\qquad (\alpha,p),\qquad \dots
+  \]
+  První písmeno je dopadající částice, druhé vyletující. Reakce \((n,\gamma)\) (radiační záchyt) se používá např.\ k výrobě
+  \({}^{60}\mathrm{Co}\) ozařováním \({}^{59}\mathrm{Co}\) neutrony v reaktoru; reakcí \((\alpha,p)\) provedl Rutherford (1919)
+  první umělou přeměnu prvků \({}^{14}\mathrm{N}(\alpha,p){}^{17}\mathrm{O}\).
+  \item \textbf{Přímé} \(\times\) \textbf{přes složené jádro}:
+  \[
+    a + X \to Y + b \qquad\qquad a + X \to C \to Y + b
+  \]
+  U \kw{přímých reakcí} interaguje dopadající částice jen s několika nukleony na povrchu a reakce proběhne za dobu průletu jádrem
+  (\(\sim10^{-22}\,\mathrm{s}\)). U reakcí přes \kw{složené jádro} \(C\) (Bohr, 1936) se energie dopadající částice rozdělí mezi všechny
+  nukleony, vznikne excitovaný a relativně dlouho žijící (\(10^{-16}\)--\(10^{-14}\,\mathrm{s}\)) systém, který „zapomene“, jak vznikl, a
+  rozpadne se statisticky -- způsob rozpadu nezávisí na způsobu vzniku.
+  \item \textbf{Energetická bilance}:
+  \[
+    \vzorec{Q = m_a + m_X - m_b - m_Y}\quad(\cdot c^2)
+    \qquad
+    \begin{cases}
+      Q<0 & \dots\ \text{endotermické},\\
+      Q>0 & \dots\ \text{exotermické}.
+    \end{cases}
+  \]
+  \(Q\) je rozdíl klidových energií na začátku a na konci, tj.\ o kolik vzroste kinetická energie. Exotermické reakce
+  mohou probíhat i s pomalými částicemi (typicky neutrony); endotermické mají \kw{prahovou energii}: v laboratorní soustavě
+  (terčík \(X\) v klidu, nerelativisticky) \(E_\text{prah} \approx -Q\left(1+\frac{m_a}{m_X}\right)\), protože část kinetické
+  energie se musí spotřebovat na pohyb těžiště a nemůže se přeměnit na hmotnost.
+\end{itemize}
+
+Účinný průřez reakce v závislosti na energii vykazuje ostrá maxima -- \kw{rezonance}:
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \draw[-{Stealth}] (0,0) -- (5.4,0) node[below]{\(E\)};
+  \draw[-{Stealth}] (0,0) -- (0,2.4) node[left]{\(\frac{\dd\sigma}{\dd\Omega}\)};
+  \draw[thick] (0.3,1.9) .. controls (0.9,1.0) and (1.5,0.7) .. (2.0,0.85)
+     .. controls (2.2,0.95) and (2.3,1.15) .. (2.45,0.8) .. controls (2.6,0.4) and (2.8,0.3) .. (3.3,0.3)
+     .. controls (3.6,0.3) and (3.7,0.55) .. (3.85,0.3) .. controls (4.0,0.2) and (4.5,0.2) .. (5.0,0.2);
+\end{tikzpicture}
+\end{center}
+
+Rezonance odpovídají energiím, při nichž soustava \(a+X\) „trefí“ hladinu složeného jádra \(C\) -- pravděpodobnost jeho vytvoření
+je pak řádově vyšší. Tvar rezonance popisuje Breitova--Wignerova formule, šířka \(\Gamma\) souvisí s dobou života hladiny
+přes \(\Gamma\tau\approx\hbar\). Klesající pozadí u nízkých energií odpovídá zákonu \(\sigma\propto 1/v\) typickému pro pomalé neutrony.
+
+\subsubsection{Štěpné reakce}
+
+Pro těžká jádra je vazebná energie na nukleon (\(\approx7{,}6\,\mathrm{MeV}\) u uranu) nižší než pro jádra střední hmotnosti
+(\(\approx 8{,}5\,\mathrm{MeV}\)). Rozdělení těžkého jádra na dvě středně těžká proto uvolní energii. Jádro \({}^{235}\mathrm{U}\) se po
+záchytu (i pomalého) neutronu rozštěpí:
+\[
+  n + {}^{235}_{\;\,92}\mathrm{U} \to X + Y + k\cdot n + m\,\gamma \qquad (k,m\in\mathbb{N}),
+\]
+kde \(X, Y\) jsou štěpné fragmenty (typicky nesymetrické, s \(A\approx 95\) a \(140\)), v průměru \(k\approx2{,}4\) neutronu.
+Právě to, že vznikají další neutrony, umožňuje \kw{řetězovou reakci}. Uvolněná energie je
+\[
+  \vzorec{Q \approx 180\,\mathrm{MeV} + 20\,\mathrm{MeV} \approx 200\,\mathrm{MeV}},
+\]
+kde zhruba \(180\,\mathrm{MeV}\) se uvolní okamžitě (hlavně kinetická energie fragmentů, okamžité neutrony a \(\gamma\)) a asi
+\(20\,\mathrm{MeV}\) později při rozpadech \(\beta\) fragmentů, které mají přebytek neutronů (část z toho odnesou antineutrina).
+Hrubý odhad: \(236\times(8{,}5-7{,}6)\,\mathrm{MeV}\approx 210\,\mathrm{MeV}\), v souladu s uvedenou hodnotou. Pro srovnání,
+chemické reakce uvolní řádově \(\mathrm{eV}\) na atom -- tedy \(10^8\)krát méně.
+
+\begin{priklad}[spotřeba paliva v JE Temelín (Davídkovy slajdy)]
+Tepelný výkon jednoho bloku \(3\,\mathrm{GW}\) za rok odpovídá
+\(\frac{3\cdot10^9\,\mathrm{J/s}\cdot3{,}15\cdot10^7\,\mathrm{s}}{200\cdot10^6\cdot1{,}6\cdot10^{-19}\,\mathrm{J}}\approx3\cdot10^{27}\) štěpení,
+tj.\ \(\approx1{,}2\,\mathrm{t}\) \({}^{235}\mathrm{U}\), a při obohacení \(4{,}25\,\%\) asi \(27\,\mathrm{t}\) uranu ročně.
+\end{priklad}
+
+\subsubsection{Fúzní reakce}
+
+Na druhém konci křivky vazebné energie leží lehká jádra: jejich sloučením (\kw{fúzí}) do pevněji vázaného jádra se energie
+také uvolňuje, a to na nukleon dokonce více než při štěpení. Překážkou je Coulombova bariéra mezi kladnými jádry, kterou je třeba
+překonat (či protunelovat) -- proto fúze vyžaduje teploty \(10^7\)--\(10^8\,\mathrm{K}\).
+\begin{itemize}
+  \item \kw{tokamak} \textbf{ITER} (budovaný mezinárodní experimentální reaktor ve Francii, plazma udržováno magnetickým polem):
+  \[
+    {}^2_1\mathrm{H} + {}^3_1\mathrm{H} \to {}^4_2\mathrm{He} + n \qquad (Q = 17{,}6\,\mathrm{MeV}).
+  \]
+  Reakce D--T má nejvyšší účinný průřez při nejnižších dosažitelných teplotách. Většinu energie (\(14{,}1\,\mathrm{MeV}\)) odnáší
+  neutron (lehčí částice při dvoučásticovém rozpadu dostane větší podíl kinetické energie).
+\strana{P04-7}
+  \item \(p + {}^7_3\mathrm{Li} \to {}^4_2\mathrm{He} + {}^4_2\mathrm{He}\) \quad \((Q = 17\,\mathrm{MeV})\) -- historicky první reakce
+  vyvolaná uměle urychlenými částicemi (Cockcroft a Walton, 1932), přesněji \(Q=17{,}35\,\mathrm{MeV}\)
+  \pozn{hmotnostní číslo Li v originále přepsáno, čteno jako 7}.
+  \item \kw{p--p cyklus} a \kw{CNO cyklus} ve Slunci -- v obou se v součtu čtyři protony přemění na \({}^4\mathrm{He}\)
+  (\(4p\to{}^4\mathrm{He}+2e^++2\nu_e\)) s uvolněnou energií \(26{,}7\,\mathrm{MeV}\). Ve Slunci dominuje p--p cyklus, v hmotnějších (teplejších)
+  hvězdách CNO cyklus, v němž jádra C, N, O slouží jen jako katalyzátor.
+\end{itemize}
